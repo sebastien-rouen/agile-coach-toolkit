@@ -1,0 +1,324 @@
+/**
+ * Tool Integration Styles
+ * Styles unifiés pour l'intégration des outils
+ */
+
+/* Section des outils récents */
+.recent-tools-section {
+  background: var(--card-bg, #ffffff);
+  border-radius: 12px;
+  padding: 2rem;
+  margin: 2rem auto;
+  max-width: 1200px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.recent-tools-section h3 {
+  color: var(--primary-color, #3b82f6);
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.recent-tools-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.recent-tool-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: var(--bg-secondary, #f8fafc);
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--text-color, #1f2937);
+  transition: all 0.2s ease;
+  border: 1px solid var(--border-color, #e5e7eb);
+}
+
+.recent-tool-link:hover {
+  background: var(--primary-color, #3b82f6);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.recent-tool-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.recent-tool-name {
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+/* Statistiques d'usage dans les cartes d'outils */
+.tool-usage-stats {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--text-secondary, #6b7280);
+}
+
+.tool-usage-count {
+  background: var(--bg-secondary, #f3f4f6);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+}
+
+.tool-last-used {
+  font-style: italic;
+}
+
+/* Indicateurs de statut améliorés */
+.tool-status-indicator {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.tool-status-indicator::after {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.tool-status-stable::after {
+  background: #10b981;
+}
+
+.tool-status-beta::after {
+  background: #f59e0b;
+}
+
+.tool-status-alpha::after {
+  background: #ef4444;
+}
+
+/* Navigation unifiée pour les outils */
+.unified-tool-nav {
+  background: linear-gradient(135deg, var(--primary-color, #3b82f6) 0%, #1e40af 100%);
+  color: white;
+  padding: 1rem 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.unified-tool-nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.tool-nav-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.tool-nav-breadcrumb a {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.tool-nav-breadcrumb a:hover {
+  color: white;
+}
+
+.tool-nav-separator {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.tool-nav-current {
+  color: white;
+  font-weight: 600;
+}
+
+/* Boutons d'action dans la navigation */
+.tool-nav-actions {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.tool-nav-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 0.875rem;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.tool-nav-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.3);
+  color: white;
+}
+
+/* Intégration avec le thème sombre */
+[data-theme="dark"] .recent-tools-section {
+  background: var(--card-bg, #2d2d2d);
+  color: var(--text-color, #e5e5e5);
+}
+
+[data-theme="dark"] .recent-tool-link {
+  background: var(--bg-secondary, #374151);
+  color: var(--text-color, #e5e5e5);
+  border-color: var(--border-color, #4b5563);
+}
+
+[data-theme="dark"] .tool-usage-count {
+  background: var(--bg-secondary, #374151);
+  color: var(--text-color, #e5e5e5);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .recent-tools-list {
+    grid-template-columns: 1fr;
+  }
+  
+  .unified-tool-nav-container {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+  
+  .tool-nav-breadcrumb {
+    justify-content: center;
+  }
+  
+  .tool-nav-actions {
+    justify-content: center;
+  }
+}
+
+/* Animations */
+@keyframes slideInFromTop {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.recent-tools-section {
+  animation: slideInFromTop 0.5s ease-out;
+}
+
+.recent-tool-link {
+  animation: slideInFromTop 0.5s ease-out;
+  animation-fill-mode: both;
+}
+
+.recent-tool-link:nth-child(1) { animation-delay: 0.1s; }
+.recent-tool-link:nth-child(2) { animation-delay: 0.2s; }
+.recent-tool-link:nth-child(3) { animation-delay: 0.3s; }
+.recent-tool-link:nth-child(4) { animation-delay: 0.4s; }
+.recent-tool-link:nth-child(5) { animation-delay: 0.5s; }
+
+/* Indicateurs de connexion */
+.connection-status {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: var(--card-bg, #ffffff);
+  border: 1px solid var(--border-color, #e5e7eb);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-size: 0.875rem;
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+.connection-status.online {
+  border-color: #10b981;
+  color: #10b981;
+}
+
+.connection-status.offline {
+  border-color: #ef4444;
+  color: #ef4444;
+}
+
+.connection-status.syncing {
+  border-color: #f59e0b;
+  color: #f59e0b;
+}
+
+/* Préférences utilisateur */
+.user-preferences-panel {
+  position: fixed;
+  top: 0;
+  right: -300px;
+  width: 300px;
+  height: 100vh;
+  background: var(--card-bg, #ffffff);
+  border-left: 1px solid var(--border-color, #e5e7eb);
+  box-shadow: -4px 0 12px rgba(0, 0, 0, 0.1);
+  transition: right 0.3s ease;
+  z-index: 1001;
+  overflow-y: auto;
+}
+
+.user-preferences-panel.open {
+  right: 0;
+}
+
+.preferences-header {
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--border-color, #e5e7eb);
+}
+
+.preferences-content {
+  padding: 1.5rem;
+}
+
+.preference-group {
+  margin-bottom: 2rem;
+}
+
+.preference-group h4 {
+  margin-bottom: 1rem;
+  color: var(--text-color, #1f2937);
+  font-weight: 600;
+}
+
+.preference-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--border-color, #f3f4f6);
+}
+
+.preference-item:last-child {
+  border-bottom: none;
+}

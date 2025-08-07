@@ -1,0 +1,117 @@
+{
+  "section": {
+    "id": "fondamentaux",
+    "title": "Fondamentaux",
+    "description": "Les bases essentielles du coaching agile",
+    "icon": "fas fa-foundation",
+    "color": "#2196F3"
+  },
+  "items": [
+    {
+      "id": "cadrage-intervention",
+      "title": "🎯 Cadrage d'Intervention",
+      "description": "Définir le périmètre, les objectifs et les modalités d'intervention",
+      "tags": ["cadrage", "contrat", "objectifs", "périmètre"],
+      "icon": "fas fa-bullseye",
+      "content": "Méthodologie pour bien démarrer une mission de coaching agile",
+      "sections_detaillees": {
+        "pitch_elevator": "Le cadrage, c'est comme préparer un voyage : tu définis la destination (objectifs), le chemin (méthode), les bagages (ressources) et les compagnons (équipe). Sans ça, tu risques de tourner en rond !",
+        "citations": [
+          {
+            "texte": "Un problème bien posé est à moitié résolu",
+            "auteur": "Charles Kettering",
+            "source": "Inventeur et ingénieur"
+          }
+        ],
+        "calendrier": {
+          "duree": "2-3 semaines de cadrage",
+          "etapes": ["Diagnostic initial", "Définition objectifs", "Plan d'action", "Validation sponsors"]
+        },
+        "checklist": [
+          "Sponsor identifié et engagé",
+          "Problématique clairement définie",
+          "Objectifs SMART établis",
+          "Contraintes et risques identifiés",
+          "Budget et timeline validés",
+          "Critères de succès définis"
+        ],
+        "templates": [
+          {
+            "nom": "Canvas de Cadrage",
+            "description": "Vue d'ensemble de la mission sur une page",
+            "format": "Canvas A3"
+          }
+        ]
+      }
+    },
+    {
+      "id": "vision-strategie",
+      "title": "👁️ Vision & Stratégie",
+      "description": "Aligner équipes et organisation sur une vision commune",
+      "tags": ["vision", "stratégie", "alignement", "communication"],
+      "icon": "fas fa-eye",
+      "content": "Techniques pour créer et communiquer une vision inspirante",
+      "sections_detaillees": {
+        "pitch_elevator": "La vision, c'est l'étoile polaire : tout le monde la voit, sait où aller, même dans la tempête. Sans vision claire, chacun rame dans son coin !",
+        "exemples_pratiques": [
+          {
+            "contexte": "Équipe démotivée après réorganisation",
+            "solution": "Atelier vision collaborative sur 2 jours",
+            "resultat": "Engagement +300%, objectifs clairs partagés"
+          }
+        ],
+        "templates": [
+          {
+            "nom": "Vision Board",
+            "description": "Représentation visuelle de la vision",
+            "format": "Canvas collaboratif"
+          }
+        ]
+      }
+    },
+    {
+      "id": "formations-frameworks",
+      "title": "🧠 Formations Frameworks",
+      "description": "Programmes de formation aux méthodes agiles",
+      "tags": ["formation", "apprentissage", "certification", "compétences"],
+      "icon": "fas fa-graduation-cap",
+      "content": "Cursus de formation adaptés aux différents rôles",
+      "sections_detaillees": {
+        "pitch_elevator": "Former, c'est comme apprendre à conduire : théorie + pratique + accompagnement. Pas de miracle sans pédagogie adaptée !",
+        "tableau_comparaison": {
+          "criteres": ["Durée", "Public", "Certification", "Pratique"],
+          "options": [
+            {"nom": "Scrum Master", "duree": "2 jours", "public": "Facilitateurs", "certification": "PSM", "pratique": "80%"},
+            {"nom": "Product Owner", "duree": "2 jours", "public": "Product", "certification": "PSPO", "pratique": "70%"},
+            {"nom": "Équipe Dev", "duree": "1 jour", "public": "Développeurs", "certification": "Non", "pratique": "90%"}
+          ]
+        }
+      }
+    },
+    {
+      "id": "assessment-diagnostic",
+      "title": "📊 Assessment & Diagnostic",
+      "description": "Évaluer le niveau de maturité agile et identifier les axes d'amélioration",
+      "tags": ["assessment", "maturité", "diagnostic", "amélioration"],
+      "icon": "fas fa-clipboard-check",
+      "content": "Méthodes d'évaluation de la maturité agile",
+      "sections_detaillees": {
+        "pitch_elevator": "L'assessment, c'est le check-up chez le médecin : on ausculte, on diagnostique, on prescrit. Impossible de soigner sans diagnostic !",
+        "metriques": [
+          {
+            "nom": "Maturité Agile Score",
+            "formule": "Moyenne pondérée sur 5 dimensions",
+            "cible": "> 3/5 pour être efficace"
+          }
+        ],
+        "templates": [
+          {
+            "nom": "Radar de Maturité",
+            "description": "Visualisation multi-dimensionnelle",
+            "format": "Graphique radar"
+          }
+        ]
+      }
+    }
+  ]
+}

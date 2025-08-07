@@ -1,0 +1,164 @@
+{
+  "section": {
+    "id": "leadership-coaching",
+    "title": "Leadership & Coaching",
+    "description": "Postures de coaching et développement du leadership",
+    "icon": "fas fa-crown",
+    "color": "#FFC107"
+  },
+  "items": [
+    {
+      "id": "postures-coaching",
+      "title": "🧭 Postures de Coaching",
+      "description": "Les différentes postures du coach agile selon les situations",
+      "tags": ["posture", "coaching", "facilitation", "mentorat"],
+      "icon": "fas fa-compass",
+      "content": "Guide des postures adaptées aux contextes",
+      "sections_detaillees": {
+        "pitch_elevator": "Les postures de coaching, c'est comme les vitesses sur un vélo : 1ère pour monter (mentor), 3ème pour rouler (facilitateur), roue libre pour descendre (observateur) !",
+        "citations": [
+          {
+            "texte": "Le coach n'a pas de solutions, il aide à les trouver",
+            "auteur": "John Whitmore",
+            "source": "Coaching for Performance"
+          }
+        ],
+        "tableau_comparaison": {
+          "criteres": ["Directive", "Expertise", "Responsabilité", "Usage"],
+          "options": [
+            {"nom": "Mentor", "directive": "Forte", "expertise": "Partage", "responsabilite": "Coach", "usage": "Débutants"},
+            {"nom": "Facilitateur", "directive": "Moyenne", "expertise": "Cache", "responsabilite": "Partagée", "usage": "Groupe mature"},
+            {"nom": "Coach", "directive": "Faible", "expertise": "Questions", "responsabilite": "Coaché", "usage": "Autonomisation"},
+            {"nom": "Formateur", "directive": "Forte", "expertise": "Transmet", "responsabilite": "Coach", "usage": "Apprentissage"}
+          ]
+        },
+        "exemples_pratiques": [
+          {
+            "contexte": "Équipe nouvelle découvre Scrum",
+            "solution": "Posture Mentor: expliquer, montrer, accompagner",
+            "resultat": "Apprentissage rapide, confiance construite"
+          },
+          {
+            "contexte": "Équipe expérimentée en routine",
+            "solution": "Posture Coach: questions puissantes, responsabilisation",
+            "resultat": "Innovation, ownership, autonomie"
+          }
+        ]
+      }
+    },
+    {
+      "id": "leadership-situationnel",
+      "title": "👑 Leadership Situationnel",
+      "description": "Adapter son style de leadership selon la maturité de l'équipe",
+      "tags": ["leadership", "situationnel", "maturité", "adaptation"],
+      "icon": "fas fa-chess-king",
+      "content": "Modèle de Hersey-Blanchard appliqué à l'agilité",
+      "sections_detaillees": {
+        "pitch_elevator": "Le leadership situationnel, c'est comme élever un enfant : directive au début (bébé), puis de plus en plus d'autonomie jusqu'à l'âge adulte !",
+        "tableau_comparaison": {
+          "criteres": ["Maturité équipe", "Style", "Comportement", "Communication"],
+          "options": [
+            {"nom": "Directif", "maturite": "Faible", "style": "Dire", "comportement": "Structure", "communication": "One-way"},
+            {"nom": "Persuasif", "maturite": "Faible-Moyenne", "style": "Vendre", "comportement": "Guide", "communication": "Explique"},
+            {"nom": "Participatif", "maturite": "Moyenne-Forte", "style": "Participer", "comportement": "Soutient", "communication": "Dialogue"},
+            {"nom": "Délégatif", "maturite": "Forte", "style": "Déléguer", "comportement": "Observe", "communication": "Minimal"}
+          ]
+        },
+        "anti_patterns": [
+          {
+            "probleme": "Même style pour toutes les équipes",
+            "consequence": "Inefficacité, frustration",
+            "solution": "Évaluer maturité, adapter style en conséquence"
+          }
+        ]
+      }
+    },
+    {
+      "id": "citations-coach",
+      "title": "💎 Citations de Coach",
+      "description": "Phrases inspirantes et questions puissantes",
+      "tags": ["citations", "inspiration", "questions", "réflexion"],
+      "icon": "fas fa-quote-left",
+      "content": "Répertoire de citations pour inspirer et faire réfléchir",
+      "sections_detaillees": {
+        "pitch_elevator": "Les bonnes citations, c'est comme les épices : bien dosées au bon moment, elles révèlent toute la saveur de votre coaching !",
+        "citations": [
+          {
+            "texte": "Qu'est-ce qui vous empêche d'essayer ?",
+            "auteur": "Question puissante",
+            "source": "Débloquer l'action"
+          },
+          {
+            "texte": "Si c'était facile, que feriez-vous ?",
+            "auteur": "Question puissante",
+            "source": "Contourner les obstacles"
+          },
+          {
+            "texte": "L'échec n'est qu'une occasion de recommencer de manière plus intelligente",
+            "auteur": "Henry Ford",
+            "source": "Mindset de croissance"
+          }
+        ],
+        "templates": [
+          {
+            "nom": "Questions GROW",
+            "description": "Goal, Reality, Options, Will - structure coaching",
+            "format": "Framework de conversation"
+          }
+        ]
+      }
+    },
+    {
+      "id": "communication-soft-skills",
+      "title": "💬 Communication & Soft Skills",
+      "description": "Techniques de communication et compétences relationnelles",
+      "tags": ["communication", "soft-skills", "écoute", "empathie"],
+      "icon": "fas fa-comments",
+      "content": "Développer ses compétences relationnelles de coach",
+      "sections_detaillees": {
+        "pitch_elevator": "La communication, c'est comme la danse : il faut être à l'écoute de son partenaire, s'adapter à son rythme, et parfois mener, parfois suivre !",
+        "techniques": [
+          {
+            "nom": "Écoute active",
+            "description": "Reformuler, questionner, refléter",
+            "benefice": "Compréhension profonde"
+          },
+          {
+            "nom": "Communication non-violente",
+            "description": "Observation, sentiment, besoin, demande",
+            "benefice": "Relations apaisées"
+          }
+        ],
+        "anti_patterns": [
+          {
+            "probleme": "Écouter pour répondre au lieu de comprendre",
+            "consequence": "Malentendus, frustration",
+            "solution": "Reformuler avant de répondre"
+          }
+        ]
+      }
+    },
+    {
+      "id": "intelligence-emotionnelle",
+      "title": "🎭 Intelligence Émotionnelle",
+      "description": "Développer et utiliser l'intelligence émotionnelle",
+      "tags": ["émotions", "EQ", "conscience", "régulation"],
+      "icon": "fas fa-heart",
+      "content": "Compétences émotionnelles du coach agile",
+      "sections_detaillees": {
+        "pitch_elevator": "L'intelligence émotionnelle, c'est comme la météo intérieure : savoir quel temps il fait chez soi et chez les autres pour s'adapter !",
+        "calendrier": {
+          "duree": "Développement continu",
+          "etapes": ["Conscience de soi", "Autorégulation", "Conscience sociale", "Gestion relations"]
+        },
+        "metriques": [
+          {
+            "nom": "EQ Assessment",
+            "formule": "Test standardisé sur 4 dimensions",
+            "cible": "Amélioration continue"
+          }
+        ]
+      }
+    }
+  ]
+}

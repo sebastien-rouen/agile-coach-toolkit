@@ -1,0 +1,1325 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagnostic Agile Fluency</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .diagnostic-container {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: #f8f9fa;
+            color: #333;
+            border: 2px solid #dee2e6;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .zone {
+            margin-bottom: 30px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .zone:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .zone-header {
+            padding: 20px;
+            color: white;
+            font-weight: bold;
+            font-size: 1.3em;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .zone-1 { background: linear-gradient(45deg, #ff6b6b, #ff8e53); }
+        .zone-2 { background: linear-gradient(45deg, #4ecdc4, #44a08d); }
+        .zone-3 { background: linear-gradient(45deg, #45b7d1, #96c93d); }
+        .zone-4 { background: linear-gradient(45deg, #667eea, #764ba2); }
+
+        .zone-icon {
+            font-size: 2em;
+        }
+
+        .zone-content {
+            padding: 25px;
+            background: white;
+        }
+
+        .question {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #ddd;
+        }
+
+        .question.answered {
+            border-left-color: #28a745;
+            background: #d4edda;
+        }
+
+        .question-text {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+
+        .question-example {
+            font-style: italic;
+            color: #6c757d;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+
+        .options {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .option {
+            padding: 8px 16px;
+            border: 2px solid #dee2e6;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .option:hover {
+            background: #e9ecef;
+        }
+
+        .option.selected {
+            background: #28a745;
+            border-color: #28a745;
+            color: white;
+        }
+
+        .results {
+            margin-top: 30px;
+            padding: 25px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 15px;
+            display: none;
+        }
+
+        .results.show {
+            display: block;
+        }
+
+        .result-zone {
+            margin-bottom: 15px;
+            padding: 15px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            border-radius: 10px;
+            transition: width 0.5s ease;
+        }
+
+        /* Styles pour le rapport détaillé */
+        .report-section {
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            border-left: 5px solid #fff;
+        }
+
+        .report-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            font-size: 1.4em;
+            font-weight: bold;
+        }
+
+        .maturity-level {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .level-beginner { background: #ff6b6b; color: white; }
+        .level-developing { background: #ffa726; color: white; }
+        .level-progressing { background: #66bb6a; color: white; }
+        .level-mastered { background: #42a5f5; color: white; }
+
+        .strengths-weaknesses {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .strength-card, .weakness-card {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid;
+        }
+
+        .strength-card {
+            border-left-color: #4caf50;
+        }
+
+        .weakness-card {
+            border-left-color: #f44336;
+        }
+
+        .action-plan {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .action-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 15px;
+            padding: 15px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+        }
+
+        .priority-high { border-left: 4px solid #f44336; }
+        .priority-medium { border-left: 4px solid #ff9800; }
+        .priority-low { border-left: 4px solid #4caf50; }
+
+        .chart-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .radar-chart {
+            width: 300px;
+            height: 300px;
+            margin: 0 auto;
+            position: relative;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 25%, transparent 25%),
+                        radial-gradient(circle, rgba(255,255,255,0.1) 50%, transparent 50%),
+                        radial-gradient(circle, rgba(255,255,255,0.1) 75%, transparent 75%);
+            border-radius: 50%;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .diagnostic-container {
+                padding: 20px;
+            }
+            
+            .controls {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+
+            .strengths-weaknesses {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .team-info {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .next-steps {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .timeline {
+            margin-top: 20px;
+        }
+
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+            padding: 15px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+        }
+
+        .timeline-badge {
+            background: #4caf50;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+    </style>
+    
+    <!-- PWA Integration -->
+    <meta name="theme-color" content="#3b82f6">
+    <link rel="manifest" href="../../manifest.json">
+    <link rel="icon" href="../../assets/icons/favicon.ico">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 Diagnostic Agile Fluency</h1>
+            <p>Découvrez le niveau d'agilité de votre équipe informatique</p>
+        </div>
+
+        <div class="diagnostic-container">
+            <div class="controls">
+                <button class="btn btn-primary" onclick="startDiagnostic()">Commencer le diagnostic</button>
+                <button class="btn btn-secondary" onclick="exportResults()">Exporter résultats</button>
+                <input type="file" id="importFile" style="display: none;" accept=".json" onchange="importResults(event)">
+                <button class="btn btn-secondary" onclick="document.getElementById('importFile').click()">Importer résultats</button>
+            </div>
+
+            <div id="questions-container">
+                <!-- Zone 1: Focusing -->
+                <div class="zone">
+                    <div class="zone-header zone-1">
+                        <span class="zone-icon">🎯</span>
+                        <div>
+                            <div>Zone 1 : FOCUSING (Se concentrer)</div>
+                            <div style="font-size: 0.8em; opacity: 0.9;">Les bases de l'agilité - Transparence et travail d'équipe</div>
+                        </div>
+                    </div>
+                    <div class="zone-content">
+                        <div class="question" data-zone="1" data-question="1">
+                            <div class="question-text">Votre équipe planifie-t-elle en pensant aux bénéfices pour les utilisateurs ?</div>
+                            <div class="question-example">Exemple : Au lieu de dire "Il faut refactoriser le code", l'équipe dit "Il faut améliorer les temps de chargement pour que nos utilisateurs soient plus satisfaits"</div>
+                            <div class="options">
+                                <div class="option" data-value="0">Jamais</div>
+                                <div class="option" data-value="1">Parfois</div>
+                                <div class="option" data-value="2">Souvent</div>
+                                <div class="option" data-value="3">Toujours</div>
+                            </div>
+                        </div>
+
+                        <div class="question" data-zone="1" data-question="2">
+                            <div class="question-text">L'équipe fait-elle des rétrospectives régulières pour s'améliorer ?</div>
+                            <div class="question-example">Exemple : Chaque sprint, l'équipe se réunit 1h pour parler de ce qui a bien marché et ce qu'il faut améliorer</div>
+                            <div class="options">
+                                <div class="option" data-value="0">Jamais</div>
+                                <div class="option" data-value="1">Parfois</div>
+                                <div class="option" data-value="2">Souvent</div>
+                                <div class="option" data-value="3">Toujours</div>
+                            </div>
+                        </div>
+
+                        <div class="question" data-zone="1" data-question="3">
+                            <div class="question-text">Toute l'équipe participe-t-elle aux décisions techniques importantes ?</div>
+                            <div class="question-example">Exemple : Quand il faut choisir une nouvelle librairie JavaScript, tous les développeurs donnent leur avis, pas seulement le lead</div>
+                            <div class="options">
+                                <div class="option" data-value="0">Jamais</div>
+                                <div class="option" data-value="1">Parfois</div>
+                                <div class="option" data-value="2">Souvent</div>
+                                <div class="option" data-value="3">Toujours</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Zone 2: Delivering -->
+                <div class="zone">
+                    <div class="zone-header zone-2">
+                        <span class="zone-icon">🚚</span>
+                        <div>
+                            <div>Zone 2 : DELIVERING (Livrer)</div>
+                            <div style="font-size: 0.8em; opacity: 0.9;">Livraison continue - Déploiement à la demande</div>
+                        </div>
+                    </div>
+                    <div class="zone-content">
+                        <div class="question" data-zone="2" data-question="1">
+                            <div class="question-text">Votre équipe peut-elle déployer en production à tout moment sans stress ?</div>
+                            <div class="question-example">Exemple : Un vendredi à 17h, si le business demande de corriger un bug critique, l'équipe peut le faire en 30 minutes sans risque</div>
+                            <div class="options">
+                                <div class="option" data-value="0">Jamais</div>
+                                <div class="option" data-value="1">Parfois</div>
+                                <div class="option" data-value="2">Souvent</div>
+                                <div class="option" data-value="3">Toujours</div>
+                            </div>
+                        </div>
+
+                        <div class="question" data-zone="2" data-question="2">
+                            <div class="question-text">Avez-vous des tests automatisés qui couvrent la majorité du code ?</div>
+                            <div class="question-example">Exemple : Quand un développeur pousse du code, les tests unitaires, d'intégration et end-to-end se lancent automatiquement</div>
+                            <div class="options">
+                                <div class="option" data-value="0">Jamais</div>
+                                <div class="option" data-value="1">Parfois</div>
+                                <div class="option" data-value="2">Souvent</div>
+                                <div class="option" data-value="3">Toujours</div>
+                            </div>
+                        </div>
+
+                        <div class="question" data-zone="2" data-question="3">
+                            <div class="question-text">Utilisez-vous l'intégration continue (CI/CD) ?</div>
+                            <div class="question-example">Exemple : À chaque commit sur Git, Jenkins/GitLab CI build automatiquement, teste et peut déployer le code</div>
+                            <div class="options">
+                                <div class="option" data-value="0">Jamais</div>
+                                <div class="option" data-value="1">Parfois</div>
+                                <div class="option" data-value="2">Souvent</div>
+                                <div class="option" data-value="3">Toujours</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Zone 3: Optimizing -->
+                <div class="zone">
+                    <div class="zone-header zone-3">
+                        <span class="zone-icon">📈</span>
+                        <div>
+                            <div>Zone 3 : OPTIMIZING (Optimiser)</div>
+                            <div style="font-size: 0.8em; opacity: 0.9;">Données et expérimentation - Adaptation continue</div>
+                        </div>
+                    </div>
+                    <div class="zone-content">
+                        <div class="question" data-zone="3" data-question="1">
+                            <div class="question-text">Votre équipe prend-elle des décisions basées sur des données réelles d'usage ?</div>
+                            <div class="question-example">Exemple : Avant d'ajouter une nouvelle fonctionnalité, l'équipe regarde Google Analytics pour voir comment les utilisateurs utilisent l'application</div>
+                            <div class="options">
+                                <div class="option" data-value="0">Jamais</div>
+                                <div class="option" data-value="1">Parfois</div>
+                                <div class="option" data-value="2">Souvent</div>
+                                <div class="option" data-value="3">Toujours</div>
+                            </div>
+                        </div>
+
+                        <div class="question" data-zone="3" data-question="2">
+                            <div class="question-text">Faites-vous des tests A/B pour valider vos idées ?</div>
+                            <div class="question-example">Exemple : Pour tester un nouveau bouton, 50% des utilisateurs voient l'ancienne version, 50% la nouvelle, puis on compare les résultats</div>
+                            <div class="options">
+                                <div class="option" data-value="0">Jamais</div>
+                                <div class="option" data-value="1">Parfois</div>
+                                <div class="option" data-value="2">Souvent</div>
+                                <div class="option" data-value="3">Toujours</div>
+                            </div>
+                        </div>
+
+                        <div class="question" data-zone="3" data-question="3">
+                            <div class="question-text">L'équipe surveille-t-elle en temps réel la performance et la qualité ?</div>
+                            <div class="question-example">Exemple : Des dashboards montrent les temps de réponse de l'API, le nombre d'erreurs, et alertent l'équipe s'il y a un problème</div>
+                            <div class="options">
+                                <div class="option" data-value="0">Jamais</div>
+                                <div class="option" data-value="1">Parfois</div>
+                                <div class="option" data-value="2">Souvent</div>
+                                <div class="option" data-value="3">Toujours</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Zone 4: Strengthening -->
+                <div class="zone">
+                    <div class="zone-header zone-4">
+                        <span class="zone-icon">🌟</span>
+                        <div>
+                            <div>Zone 4 : STRENGTHENING (Renforcer)</div>
+                            <div style="font-size: 0.8em; opacity: 0.9;">Optimisation organisationnelle - Culture collaborative</div>
+                        </div>
+                    </div>
+                    <div class="zone-content">
+                        <div class="question" data-zone="4" data-question="1">
+                            <div class="question-text">Votre équipe influence-t-elle la stratégie produit de l'entreprise ?</div>
+                            <div class="question-example">Exemple : Les développeurs participent aux réunions de direction pour proposer des innovations techniques qui peuvent créer de nouveaux business models</div>
+                            <div class="options">
+                                <div class="option" data-value="0">Jamais</div>
+                                <div class="option" data-value="1">Parfois</div>
+                                <div class="option" data-value="2">Souvent</div>
+                                <div class="option" data-value="3">Toujours</div>
+                            </div>
+                        </div>
+
+                        <div class="question" data-zone="4" data-question="2">
+                            <div class="question-text">Votre équipe collabore-t-elle étroitement avec d'autres équipes pour optimiser l'organisation ?</div>
+                            <div class="question-example">Exemple : L'équipe dev travaille avec le marketing pour optimiser les campagnes, avec les ventes pour améliorer le CRM</div>
+                            <div class="options">
+                                <div class="option" data-value="0">Jamais</div>
+                                <div class="option" data-value="1">Parfois</div>
+                                <div class="option" data-value="2">Souvent</div>
+                                <div class="option" data-value="3">Toujours</div>
+                            </div>
+                        </div>
+
+                        <div class="question" data-zone="4" data-question="3">
+                            <div class="question-text">L'équipe forme-t-elle et aide-t-elle les autres équipes à devenir plus agiles ?</div>
+                            <div class="question-example">Exemple : Votre équipe organise des formations internes sur Git, partage ses bonnes pratiques de code review avec d'autres équipes</div>
+                            <div class="options">
+                                <div class="option" data-value="0">Jamais</div>
+                                <div class="option" data-value="1">Parfois</div>
+                                <div class="option" data-value="2">Souvent</div>
+                                <div class="option" data-value="3">Toujours</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="results" class="results">
+                <div id="results-content"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const answers = {};
+        
+        // Configuration des zones avec descriptions détaillées
+        const zones = {
+            1: {
+                name: "FOCUSING",
+                description: "Votre équipe maîtrise les bases de l'agilité",
+                color: "#ff6b6b",
+                benefits: "Transparence, travail d'équipe, valeur business",
+                skills: ["Planification centrée utilisateur", "Rétrospectives régulières", "Prise de décision collaborative"],
+                weaknessAdvice: {
+                    0: "Commencez par organiser une rétrospective mensuelle simple : 'Qu'est-ce qui a bien marché ? Qu'est-ce qui peut être amélioré ?'",
+                    1: "Introduisez des user stories : 'En tant que [utilisateur], je veux [fonctionnalité] pour [bénéfice]'",
+                    2: "Créez un rituel de décision collective pour les choix techniques importants"
+                }
+            },
+            2: {
+                name: "DELIVERING", 
+                description: "Votre équipe peut livrer rapidement et de façon fiable",
+                color: "#4ecdc4",
+                benefits: "Déploiement à la demande, qualité élevée, réduction des risques",
+                skills: ["Déploiement sans stress", "Tests automatisés", "Intégration continue"],
+                weaknessAdvice: {
+                    0: "Commencez par mettre en place des tests unitaires sur les fonctions critiques",
+                    1: "Configurez un pipeline CI/CD simple avec GitHub Actions ou GitLab CI",
+                    2: "Automatisez vos déploiements avec des scripts ou des outils comme Ansible"
+                }
+            },
+            3: {
+                name: "OPTIMIZING",
+                description: "Votre équipe s'adapte en permanence grâce aux données",
+                color: "#45b7d1", 
+                benefits: "Innovation continue, leadership marché, adaptation rapide",
+                skills: ["Décisions basées sur les données", "Tests A/B", "Monitoring temps réel"],
+                weaknessAdvice: {
+                    0: "Installez Google Analytics ou un outil de monitoring simple pour comprendre l'usage",
+                    1: "Mettez en place des feature flags pour tester des fonctionnalités avec une partie des utilisateurs",
+                    2: "Créez des dashboards simples avec les métriques importantes (temps de réponse, erreurs)"
+                }
+            },
+            4: {
+                name: "STRENGTHENING",
+                description: "Votre équipe optimise toute l'organisation",
+                color: "#667eea",
+                benefits: "Influence stratégique, culture collaborative, transformation",
+                skills: ["Influence stratégique", "Collaboration inter-équipes", "Formation et mentorat"],
+                weaknessAdvice: {
+                    0: "Proposez des présentations techniques aux autres équipes pour partager vos connaissances",
+                    1: "Participez aux réunions produit pour donner votre vision technique",
+                    2: "Organisez des 'lunch & learn' pour former d'autres équipes sur vos bonnes pratiques"
+                }
+            }
+        };
+
+        function startDiagnostic() {
+            document.getElementById('questions-container').style.display = 'block';
+            document.getElementById('results').classList.remove('show');
+            resetDiagnostic();
+        }
+
+        function resetDiagnostic() {
+            Object.keys(answers).forEach(key => delete answers[key]);
+            document.querySelectorAll('.option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            document.querySelectorAll('.question').forEach(question => {
+                question.classList.remove('answered');
+            });
+            document.getElementById('results').classList.remove('show');
+        }
+
+        // Gestion des réponses
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('option')) {
+                const question = e.target.closest('.question');
+                const zone = question.dataset.zone;
+                const questionNum = question.dataset.question;
+                const value = parseInt(e.target.dataset.value);
+                
+                // Désélectionner les autres options de cette question
+                question.querySelectorAll('.option').forEach(opt => {
+                    opt.classList.remove('selected');
+                });
+                
+                // Sélectionner cette option
+                e.target.classList.add('selected');
+                question.classList.add('answered');
+                
+                // Sauvegarder la réponse
+                if (!answers[zone]) answers[zone] = {};
+                answers[zone][questionNum] = value;
+                
+                // Vérifier si toutes les questions sont répondues
+                checkCompletion();
+            }
+        });
+
+        function checkCompletion() {
+            const totalQuestions = document.querySelectorAll('.question').length;
+            const answeredQuestions = Object.values(answers).reduce((total, zone) => {
+                return total + Object.keys(zone).length;
+            }, 0);
+            
+            if (answeredQuestions === totalQuestions) {
+                setTimeout(showResults, 500);
+            }
+        }
+
+        function showResults() {
+            const results = calculateResults();
+            displayDetailedReport(results);
+        }
+
+        function calculateResults() {
+            const results = {};
+            
+            for (let zone = 1; zone <= 4; zone++) {
+                if (answers[zone]) {
+                    const zoneAnswers = Object.values(answers[zone]);
+                    const total = zoneAnswers.reduce((sum, val) => sum + val, 0);
+                    const maxPossible = zoneAnswers.length * 3;
+                    const percentage = Math.round((total / maxPossible) * 100);
+                    
+                    results[zone] = {
+                        score: total,
+                        maxScore: maxPossible,
+                        percentage: percentage,
+                        level: getLevel(percentage),
+                        answers: answers[zone]
+                    };
+                }
+            }
+            
+            return results;
+        }
+
+        function getLevel(percentage) {
+            if (percentage >= 80) return "Maîtrisé";
+            if (percentage >= 60) return "En progression";
+            if (percentage >= 40) return "Débutant";
+            return "À développer";
+        }
+
+        function getLevelClass(level) {
+            switch(level) {
+                case "Maîtrisé": return "level-mastered";
+                case "En progression": return "level-progressing";
+                case "Débutant": return "level-developing";
+                default: return "level-beginner";
+            }
+        }
+
+        function displayDetailedReport(results) {
+            const teamName = localStorage.getItem('teamName') || 'Votre équipe';
+            const date = new Date().toLocaleDateString('fr-FR');
+            
+            let html = `
+                <div class="team-info">
+                    <h2>📊 Rapport d'évaluation Agile Fluency</h2>
+                    <p><strong>Équipe :</strong> ${teamName}</p>
+<p><strong>Date :</strong> ${date}</p>
+                   <p><strong>Participants :</strong> ${Object.keys(answers).length > 0 ? 'Équipe complète' : 'Non spécifié'}</p>
+               </div>
+           `;
+
+           // Vue d'ensemble
+           html += generateOverview(results);
+           
+           // Analyse détaillée par zone
+           html += generateDetailedAnalysis(results);
+           
+           // Forces et faiblesses
+           html += generateStrengthsWeaknesses(results);
+           
+           // Plan d'action
+           html += generateActionPlan(results);
+           
+           // Prochaines étapes
+           html += generateNextSteps(results);
+           
+           html += `
+               <div style="text-align: center; margin-top: 30px;">
+                   <button class="btn btn-primary" onclick="resetDiagnostic()" style="margin-right: 10px;">Recommencer</button>
+                   <button class="btn btn-secondary" onclick="exportDetailedReport()">Exporter le rapport</button>
+               </div>
+           `;
+           
+           document.getElementById('results-content').innerHTML = html;
+           document.getElementById('results').classList.add('show');
+           document.getElementById('questions-container').style.display = 'none';
+           
+           // Animation des barres de progression
+           setTimeout(() => {
+               document.querySelectorAll('.progress-fill').forEach(bar => {
+                   bar.style.width = bar.style.width;
+               });
+           }, 100);
+       }
+
+       function generateOverview(results) {
+           const overallScore = Object.values(results).reduce((sum, result) => sum + result.percentage, 0) / Object.keys(results).length;
+           const overallLevel = getLevel(overallScore);
+           
+           let html = `
+               <div class="report-section">
+                   <div class="report-header">
+                       <span>🎯</span>
+                       <span>Vue d'ensemble</span>
+                   </div>
+                   <div class="maturity-level ${getLevelClass(overallLevel)}">
+                       Niveau global : ${overallLevel} (${Math.round(overallScore)}%)
+                   </div>
+                   <p><strong>Constat général :</strong> ${getOverallAssessment(overallScore, results)}</p>
+                   
+                   <div style="margin-top: 20px;">
+                       <h4>Scores par zone :</h4>
+           `;
+           
+           for (let zone = 1; zone <= 4; zone++) {
+               if (results[zone]) {
+                   const zoneInfo = zones[zone];
+                   const result = results[zone];
+                   
+                   html += `
+                       <div class="result-zone">
+                           <h4>Zone ${zone}: ${zoneInfo.name}</h4>
+                           <div class="maturity-level ${getLevelClass(result.level)}">
+                               ${result.level} (${result.percentage}%)
+                           </div>
+                           <div class="progress-bar">
+                               <div class="progress-fill" style="width: ${result.percentage}%; background: ${zoneInfo.color};"></div>
+                           </div>
+                       </div>
+                   `;
+               }
+           }
+           
+           html += '</div></div>';
+           return html;
+       }
+
+       function generateDetailedAnalysis(results) {
+           let html = `
+               <div class="report-section">
+                   <div class="report-header">
+                       <span>🔍</span>
+                       <span>Analyse détaillée par zone</span>
+                   </div>
+           `;
+           
+           for (let zone = 1; zone <= 4; zone++) {
+               if (results[zone]) {
+                   const zoneInfo = zones[zone];
+                   const result = results[zone];
+                   
+                   html += `
+                       <div style="margin-bottom: 25px; padding: 20px; background: rgba(255,255,255,0.05); border-radius: 10px; border-left: 4px solid ${zoneInfo.color};">
+                           <h4>Zone ${zone}: ${zoneInfo.name}</h4>
+                           <p><strong>Évaluation :</strong> ${getZoneAssessment(result, zoneInfo)}</p>
+                           <p><strong>Impact business :</strong> ${zoneInfo.benefits}</p>
+                           
+                           <div style="margin-top: 15px;">
+                               <strong>Détail des réponses :</strong>
+                               <ul style="margin-top: 10px; padding-left: 20px;">
+                   `;
+                   
+                   // Analyse des réponses individuelles
+                   Object.entries(result.answers).forEach(([questionNum, score]) => {
+                       const questionTexts = getQuestionTexts(zone, questionNum);
+                       const scoreText = ['Jamais', 'Parfois', 'Souvent', 'Toujours'][score];
+                       html += `<li>${questionTexts.question} : <strong>${scoreText}</strong></li>`;
+                   });
+                   
+                   html += `
+                               </ul>
+                           </div>
+                       </div>
+                   `;
+               }
+           }
+           
+           html += '</div>';
+           return html;
+       }
+
+       function generateStrengthsWeaknesses(results) {
+           const strengths = [];
+           const weaknesses = [];
+           
+           for (let zone = 1; zone <= 4; zone++) {
+               if (results[zone]) {
+                   const zoneInfo = zones[zone];
+                   const result = results[zone];
+                   
+                   if (result.percentage >= 70) {
+                       strengths.push({
+                           zone: zone,
+                           name: zoneInfo.name,
+                           percentage: result.percentage,
+                           description: zoneInfo.description
+                       });
+                   } else if (result.percentage < 50) {
+                       weaknesses.push({
+                           zone: zone,
+                           name: zoneInfo.name,
+                           percentage: result.percentage,
+                           description: zoneInfo.description
+                       });
+                   }
+               }
+           }
+           
+           let html = `
+               <div class="report-section">
+                   <div class="report-header">
+                       <span>⚖️</span>
+                       <span>Forces et axes d'amélioration</span>
+                   </div>
+                   
+                   <div class="strengths-weaknesses">
+                       <div class="strength-card">
+                           <h4>💪 Points forts</h4>
+           `;
+           
+           if (strengths.length > 0) {
+               strengths.forEach(strength => {
+                   html += `
+                       <div style="margin-bottom: 15px;">
+                           <strong>Zone ${strength.zone}: ${strength.name}</strong> (${strength.percentage}%)
+                           <br><em>${strength.description}</em>
+                       </div>
+                   `;
+               });
+           } else {
+               html += '<p><em>Toutes les zones ont un potentiel d\'amélioration. C\'est une excellente opportunité de croissance !</em></p>';
+           }
+           
+           html += `
+                       </div>
+                       
+                       <div class="weakness-card">
+                           <h4>🎯 Axes d'amélioration</h4>
+           `;
+           
+           if (weaknesses.length > 0) {
+               weaknesses.forEach(weakness => {
+                   html += `
+                       <div style="margin-bottom: 15px;">
+                           <strong>Zone ${weakness.zone}: ${weakness.name}</strong> (${weakness.percentage}%)
+                           <br><em>Opportunité de développement prioritaire</em>
+                       </div>
+                   `;
+               });
+           } else {
+               html += '<p><em>Excellente progression ! Continuez à maintenir et perfectionner vos acquis.</em></p>';
+           }
+           
+           html += `
+                       </div>
+                   </div>
+               </div>
+           `;
+           
+           return html;
+       }
+
+       function generateActionPlan(results) {
+           const actions = [];
+           
+           for (let zone = 1; zone <= 4; zone++) {
+               if (results[zone] && results[zone].percentage < 70) {
+                   const zoneInfo = zones[zone];
+                   const result = results[zone];
+                   
+                   // Analyser les réponses spécifiques pour donner des conseils ciblés
+                   Object.entries(result.answers).forEach(([questionNum, score]) => {
+                       if (score < 2) { // Score faible
+                           const advice = zoneInfo.weaknessAdvice[questionNum];
+                           if (advice) {
+                               actions.push({
+                                   zone: zone,
+                                   zoneName: zoneInfo.name,
+                                   action: advice,
+                                   priority: getPriority(zone, score),
+                                   timeframe: getTimeframe(zone, score)
+                               });
+                           }
+                       }
+                   });
+               }
+           }
+           
+           // Trier par priorité
+           actions.sort((a, b) => {
+               const priorityOrder = { 'Haute': 3, 'Moyenne': 2, 'Basse': 1 };
+               return priorityOrder[b.priority] - priorityOrder[a.priority];
+           });
+           
+           let html = `
+               <div class="report-section">
+                   <div class="report-header">
+                       <span>📋</span>
+                       <span>Plan d'action recommandé</span>
+                   </div>
+                   
+                   <p><strong>Recommandations personnalisées :</strong></p>
+                   <div class="action-plan">
+           `;
+           
+           if (actions.length > 0) {
+               actions.slice(0, 6).forEach((action, index) => { // Limiter à 6 actions
+                   const priorityClass = `priority-${action.priority.toLowerCase().replace('sse', 'se').replace('te', 'gh')}`;
+                   html += `
+                       <div class="action-item ${priorityClass}">
+                           <div style="flex: 1;">
+                               <strong>Zone ${action.zone} (${action.zoneName}) :</strong>
+                               <p>${action.action}</p>
+                               <small><strong>Priorité :</strong> ${action.priority} | <strong>Délai :</strong> ${action.timeframe}</small>
+                           </div>
+                       </div>
+                   `;
+               });
+           } else {
+               html += `
+                   <div class="action-item priority-low">
+                       <div>
+                           <strong>🎉 Excellente performance !</strong>
+                           <p>Votre équipe montre une bonne maîtrise de l'agilité. Concentrez-vous sur le maintien de ces bonnes pratiques et le partage de votre expérience avec d'autres équipes.</p>
+                       </div>
+                   </div>
+               `;
+           }
+           
+           html += '</div></div>';
+           return html;
+       }
+
+       function generateNextSteps(results) {
+           const overallScore = Object.values(results).reduce((sum, result) => sum + result.percentage, 0) / Object.keys(results).length;
+           
+           let html = `
+               <div class="next-steps">
+                   <div class="report-header">
+                       <span>🚀</span>
+                       <span>Prochaines étapes</span>
+                   </div>
+                   
+                   ${getNextStepsAdvice(overallScore, results)}
+                   
+                   <div class="timeline">
+                       <h4>📅 Chronologie suggérée :</h4>
+           `;
+           
+           const timeline = getTimeline(results);
+           timeline.forEach(item => {
+               html += `
+                   <div class="timeline-item">
+                       <div class="timeline-badge">${item.period}</div>
+                       <div style="flex: 1;">
+                           <strong>${item.title}</strong>
+                           <p>${item.description}</p>
+                       </div>
+                   </div>
+               `;
+           });
+           
+           html += `
+                   </div>
+                   
+                   <div style="margin-top: 20px; padding: 15px; background: rgba(255,255,255,0.1); border-radius: 8px;">
+                       <strong>💡 Conseil final :</strong>
+                       <p>L'agilité est un voyage, pas une destination. Célébrez vos progrès, apprenez de vos échecs, et gardez toujours l'utilisateur au centre de vos préoccupations !</p>
+                   </div>
+               </div>
+           `;
+           
+           return html;
+       }
+
+       // Fonctions utilitaires pour l'analyse
+       function getOverallAssessment(score, results) {
+           if (score >= 80) {
+               return "Votre équipe démontre une excellente maîtrise de l'agilité. Vous êtes un modèle pour l'organisation !";
+           } else if (score >= 60) {
+               return "Votre équipe est sur la bonne voie avec de solides fondations agiles. Quelques améliorations ciblées vous permettront d'atteindre l'excellence.";
+           } else if (score >= 40) {
+               return "Votre équipe a commencé sa transformation agile. Il y a de bonnes bases à consolider et plusieurs opportunités d'amélioration.";
+           } else {
+               return "Votre équipe débute son parcours agile. C'est le moment idéal pour poser de solides fondations et progresser étape par étape.";
+           }
+       }
+
+       function getZoneAssessment(result, zoneInfo) {
+           if (result.percentage >= 80) {
+               return `Excellente maîtrise de cette zone ! Votre équipe excelle dans ${zoneInfo.name.toLowerCase()}.`;
+           } else if (result.percentage >= 60) {
+               return `Bonne progression dans cette zone. Quelques ajustements permettront d'optimiser ${zoneInfo.name.toLowerCase()}.`;
+           } else if (result.percentage >= 40) {
+               return `Zone en développement. Des efforts ciblés sur ${zoneInfo.name.toLowerCase()} apporteront des bénéfices significatifs.`;
+           } else {
+               return `Zone prioritaire d'amélioration. Investir dans ${zoneInfo.name.toLowerCase()} transformera l'efficacité de l'équipe.`;
+           }
+       }
+
+       function getQuestionTexts(zone, questionNum) {
+           const questions = {
+               1: {
+                   1: { question: "Planification centrée utilisateur" },
+                   2: { question: "Rétrospectives régulières" },
+                   3: { question: "Prise de décision collaborative" }
+               },
+               2: {
+                   1: { question: "Déploiement à la demande" },
+                   2: { question: "Tests automatisés" },
+                   3: { question: "Intégration continue" }
+               },
+               3: {
+                   1: { question: "Décisions basées sur les données" },
+                   2: { question: "Tests A/B et expérimentation" },
+                   3: { question: "Monitoring et alertes" }
+               },
+               4: {
+                   1: { question: "Influence stratégique" },
+                   2: { question: "Collaboration inter-équipes" },
+                   3: { question: "Formation et mentorat" }
+               }
+           };
+           return questions[zone][questionNum];
+       }
+
+       function getPriority(zone, score) {
+           if (zone <= 2 && score === 0) return "Haute";
+           if (score === 0) return "Moyenne";
+           return "Basse";
+       }
+
+       function getTimeframe(zone, score) {
+           if (zone <= 2 && score === 0) return "1-2 mois";
+           if (score === 0) return "2-3 mois";
+           return "3-6 mois";
+       }
+
+       function getNextStepsAdvice(overallScore, results) {
+           if (overallScore >= 80) {
+               return `
+                   <p><strong>🎉 Félicitations !</strong> Votre équipe a atteint un niveau d'excellence agile. Voici comment maintenir et amplifier ce succès :</p>
+                   <ul>
+                       <li>Partagez vos bonnes pratiques avec d'autres équipes</li>
+                       <li>Participez à des conférences agiles pour inspirer la communauté</li>
+                       <li>Continuez à innover et expérimenter</li>
+                       <li>Mentorez d'autres équipes dans leur transformation</li>
+                   </ul>
+               `;
+           } else if (overallScore >= 60) {
+               return `
+                   <p><strong>👏 Très bon travail !</strong> Votre équipe progresse bien. Voici les prochaines étapes pour atteindre l'excellence :</p>
+                   <ul>
+                       <li>Identifiez et corrigez les derniers points bloquants</li>
+                       <li>Automatisez davantage vos processus</li>
+                       <li>Renforcez la collaboration avec les autres équipes</li>
+                       <li>Mesurez et optimisez continuellement</li>
+                   </ul>
+               `;
+           } else {
+               return `
+                   <p><strong>🚀 En route vers l'agilité !</strong> Votre équipe a de bonnes bases. Voici comment accélérer la transformation :</p>
+                   <ul>
+                       <li>Concentrez-vous d'abord sur les zones 1 et 2 (Foundation)</li>
+                       <li>Formez l'équipe aux pratiques agiles essentielles</li>
+                       <li>Commencez petit avec des victoires rapides</li>
+                       <li>Demandez l'accompagnement d'un coach agile si nécessaire</li>
+                   </ul>
+               `;
+           }
+       }
+
+       function getTimeline(results) {
+           const timeline = [];
+           
+           // Analyser les besoins selon les résultats
+           const weakZones = [];
+           for (let zone = 1; zone <= 4; zone++) {
+               if (results[zone] && results[zone].percentage < 60) {
+                   weakZones.push(zone);
+               }
+           }
+           
+           if (weakZones.includes(1)) {
+               timeline.push({
+                   period: "Mois 1",
+                   title: "Fondations agiles",
+                   description: "Mettre en place les rétrospectives et améliorer la collaboration d'équipe"
+               });
+           }
+           
+           if (weakZones.includes(2)) {
+               timeline.push({
+                   period: "Mois 2-3",
+                   title: "Qualité et automatisation",
+                   description: "Implémenter les tests automatisés et l'intégration continue"
+               });
+           }
+           
+           if (weakZones.includes(3)) {
+               timeline.push({
+                   period: "Mois 4-6",
+                   title: "Données et expérimentation",
+                   description: "Installer le monitoring et commencer les tests A/B"
+               });
+           }
+           
+           if (weakZones.includes(4)) {
+               timeline.push({
+                   period: "Mois 6+",
+                   title: "Leadership et influence",
+                   description: "Développer l'influence organisationnelle et le mentorat"
+               });
+           }
+           
+           if (timeline.length === 0) {
+               timeline.push({
+                   period: "Continu",
+                   title: "Amélioration continue",
+                   description: "Maintenir l'excellence et partager les bonnes pratiques"
+               });
+           }
+           
+           return timeline;
+       }
+
+       function exportResults() {
+           if (Object.keys(answers).length === 0) {
+               alert('Veuillez d\'abord compléter le diagnostic !');
+               return;
+           }
+           
+           const results = calculateResults();
+           const exportData = {
+               timestamp: new Date().toISOString(),
+               answers: answers,
+               results: results,
+               teamName: prompt('Nom de l\'équipe (optionnel):') || 'Équipe anonyme'
+           };
+           
+           localStorage.setItem('teamName', exportData.teamName);
+           
+           const dataStr = JSON.stringify(exportData, null, 2);
+           const dataBlob = new Blob([dataStr], {type: 'application/json'});
+           
+           const link = document.createElement('a');
+           link.href = URL.createObjectURL(dataBlob);
+           link.download = `agile-fluency-${exportData.teamName.replace(/\s+/g, '-')}-${new Date().toISOString().split('T')[0]}.json`;
+           link.click();
+       }
+
+       function exportDetailedReport() {
+           const results = calculateResults();
+           const teamName = localStorage.getItem('teamName') || 'Équipe';
+           const date = new Date().toLocaleDateString('fr-FR');
+           
+           // Créer un rapport texte détaillé
+           let report = `RAPPORT D'ÉVALUATION AGILE FLUENCY\n`;
+           report += `=====================================\n\n`;
+           report += `Équipe: ${teamName}\n`;
+           report += `Date: ${date}\n\n`;
+           
+           const overallScore = Object.values(results).reduce((sum, result) => sum + result.percentage, 0) / Object.keys(results).length;
+           report += `SCORE GLOBAL: ${Math.round(overallScore)}% - ${getLevel(overallScore)}\n\n`;
+           
+           report += `DÉTAIL PAR ZONE:\n`;
+           report += `================\n`;
+           
+           for (let zone = 1; zone <= 4; zone++) {
+               if (results[zone]) {
+                   const zoneInfo = zones[zone];
+                   const result = results[zone];
+                   
+                   report += `\nZone ${zone}: ${zoneInfo.name}\n`;
+                   report += `Score: ${result.percentage}% (${result.level})\n`;
+                   report += `Description: ${zoneInfo.description}\n`;
+                   report += `Bénéfices: ${zoneInfo.benefits}\n`;
+               }
+           }
+           
+           const reportBlob = new Blob([report], {type: 'text/plain'});
+           const link = document.createElement('a');
+           link.href = URL.createObjectURL(reportBlob);
+           link.download = `rapport-agile-fluency-${teamName.replace(/\s+/g, '-')}-${new Date().toISOString().split('T')[0]}.txt`;
+           link.click();
+       }
+
+       function importResults(event) {
+           const file = event.target.files[0];
+           if (!file) return;
+           
+           const reader = new FileReader();
+           reader.onload = function(e) {
+               try {
+                   const importData = JSON.parse(e.target.result);
+                   
+                   // Restaurer les réponses
+                   Object.assign(answers, importData.answers);
+                   
+                   // Sauvegarder le nom d'équipe
+                   localStorage.setItem('teamName', importData.teamName);
+                   
+                   // Mettre à jour l'interface
+                   Object.keys(answers).forEach(zone => {
+                       Object.keys(answers[zone]).forEach(questionNum => {
+                           const question = document.querySelector(`[data-zone="${zone}"][data-question="${questionNum}"]`);
+                           const value = answers[zone][questionNum];
+                           
+                           question.querySelectorAll('.option').forEach(option => {
+                               option.classList.remove('selected');
+                               if (parseInt(option.dataset.value) === value) {
+                                   option.classList.add('selected');
+                               }
+                           });
+                           question.classList.add('answered');
+                       });
+                   });
+                   
+                   showResults();
+                   alert(`Résultats importés pour l'équipe: ${importData.teamName}`);
+                   
+               } catch (error) {
+                   alert('Erreur lors de l\'import du fichier. Vérifiez que c\'est un fichier de diagnostic valide.');
+               }
+           };
+           reader.readAsText(file);
+       }
+   </script>
+   
+   <!-- Intégration Agile Coach Toolkit -->
+   <script src="../../assets/js/tool-integration.js"></script>
+   <script>
+     // Configuration spécifique à l'outil
+     window.TOOL_CONFIG = {
+       name: 'agile-fluency',
+       backUrl: '../../index.html#tools'
+     };
+   </script>
+</body>
+</html>

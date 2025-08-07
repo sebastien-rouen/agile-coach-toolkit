@@ -1,0 +1,163 @@
+{
+  "section": {
+    "id": "contextes-specialises",
+    "title": "Contextes Spécialisés",
+    "description": "Situations particulières et secteurs spécifiques",
+    "icon": "fas fa-bullseye",
+    "color": "#795548"
+  },
+  "items": [
+    {
+      "id": "onboarding-agile",
+      "title": "🎯 Onboarding Agile",
+      "description": "Intégrer nouveaux membres dans équipes agiles",
+      "tags": ["onboarding", "intégration", "formation", "accueil"],
+      "icon": "fas fa-door-open",
+      "content": "Processus d'intégration efficace en contexte agile",
+      "sections_detaillees": {
+        "pitch_elevator": "L'onboarding agile, c'est comme accueillir un invité : tour de la maison, présentation famille, explication règles, puis activité commune !",
+        "calendrier": {
+          "duree": "2-4 semaines d'intégration",
+          "etapes": ["Accueil & contexte", "Immersion équipe", "Formation pratique", "Première contribution", "Feedback intégration"]
+        },
+        "checklist": [
+          "Kit d'accueil avec contexte projet",
+          "Buddy assigné pour accompagnement",
+          "Formation frameworks en binôme",
+          "Participation observer puis active",
+          "Feedback à J+7, J+15, J+30"
+        ],
+        "templates": [
+          {
+            "nom": "Checklist Onboarding",
+            "description": "Étapes et validations d'intégration",
+            "format": "Liste déroulante"
+          }
+        ]
+      }
+    },
+    {
+      "id": "gestion-crise",
+      "title": "🚨 Gestion de Crise",
+      "description": "Maintenir l'agilité en situation de crise",
+      "tags": ["crise", "urgence", "adaptation", "résilience"],
+      "icon": "fas fa-exclamation-triangle",
+      "content": "Stratégies agiles pour contextes de crise",
+      "sections_detaillees": {
+        "pitch_elevator": "En crise, l'agilité devient vitale : comme en urgence médicale, on garde les gestes qui sauvent (daily, focus) et on simplifie le reste !",
+        "exemples_pratiques": [
+          {
+            "contexte": "COVID-19, passage remote d'urgence",
+            "solution": "Daily renforcés, rétrospectives hebdo, outils collaboratifs",
+            "resultat": "Continuité activité, cohésion équipe maintenue"
+          }
+        ],
+        "techniques": [
+          {
+            "nom": "War Room",
+            "description": "Cellule de crise dédiée",
+            "usage": "Coordination temps réel"
+          },
+          {
+            "nom": "Micro-sprints",
+            "description": "Sprints raccourcis (1 semaine)",
+            "usage": "Adaptation rapide contexte"
+          }
+        ]
+      }
+    },
+    {
+      "id": "anti-patterns-solutions",
+      "title": "⚠️ Anti-patterns & Solutions",
+      "description": "Identifier et corriger les mauvaises pratiques",
+      "tags": ["anti-patterns", "problèmes", "solutions", "amélioration"],
+      "icon": "fas fa-bug",
+      "content": "Catalogue des anti-patterns courants et solutions",
+      "sections_detaillees": {
+        "pitch_elevator": "Les anti-patterns, c'est comme les virus informatiques : mieux vaut les connaître pour les éviter plutôt que les subir !",
+        "anti_patterns": [
+          {
+            "probleme": "Scrum Master = Chef de projet déguisé",
+            "consequence": "Command & control, pas d'auto-organisation",
+            "solution": "Formation posture servant-leader"
+          },
+          {
+            "probleme": "Sprint = Mini-cascade",
+            "consequence": "Pas de collaboration, silos maintenus",
+            "solution": "Revoir définition Sprint, formation équipe"
+          },
+          {
+            "probleme": "Vélocité = Productivité individuelle",
+            "consequence": "Competition interne, qualité dégradée",
+            "solution": "Focus valeur équipe, pas performance individuelle"
+          }
+        ]
+      }
+    },
+    {
+      "id": "culture-devops",
+      "title": "🚀 Culture DevOps",
+      "description": "Intégrer DevOps dans la démarche agile",
+      "tags": ["devops", "déploiement", "automation", "collaboration"],
+      "icon": "fas fa-infinity",
+      "content": "Synergie entre agilité et DevOps",
+      "sections_detaillees": {
+        "pitch_elevator": "DevOps + Agile, c'est comme un restaurant rapide : cuisine agile (dev) + service ultra-rapide (ops) = client satisfait immédiatement !",
+        "metriques": [
+          {
+            "nom": "Lead Time to Production",
+            "formule": "Temps commit → production",
+            "cible": "< 1 jour pour changes simples"
+          },
+          {
+            "nom": "Deployment Frequency",
+            "formule": "Fréquence des déploiements",
+            "cible": "Plusieurs fois par jour"
+          }
+        ],
+        "outils_recommandes": [
+          {
+            "nom": "GitLab CI/CD",
+            "usage": "Pipeline intégration continue",
+            "lien": "https://gitlab.com"
+          }
+        ]
+      }
+    },
+    {
+      "id": "equipes-distribuees",
+      "title": "🌐 Équipes Distribuées",
+      "description": "Agilité avec équipes géographiquement réparties",
+      "tags": ["remote", "distribué", "géographie", "communication"],
+      "icon": "fas fa-globe",
+      "content": "Pratiques agiles adaptées au remote/distribué",
+      "sections_detaillees": {
+        "pitch_elevator": "Équipes distribuées, c'est comme un groupe de musique en visio : il faut plus de préparation, des outils adaptés, mais on peut faire du beau son !",
+        "techniques": [
+          {
+            "nom": "Follow the Sun",
+            "description": "Relais 24h selon fuseaux horaires",
+            "benefice": "Développement continu"
+          },
+          {
+            "nom": "Virtual Team Room",
+            "description": "Espace digital permanent équipe",
+            "benefice": "Proximité virtuelle"
+          }
+        ],
+        "outils_recommandes": [
+          {
+            "nom": "Miro",
+            "usage": "Collaboration visuelle temps réel",
+            "lien": "https://miro.com"
+          },
+          {
+            "nom": "Gather",
+            "usage": "Bureau virtuel avec interactions spatiales",
+            "lien": "https://gather.town"
+          }
+        ]
+      }
+    }
+  ]
+}

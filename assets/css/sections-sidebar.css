@@ -1,0 +1,448 @@
+/* ==========================================================================
+   Sections Sidebar - Navigation latérale pour les 13 sections
+   ========================================================================== */
+
+/* Sidebar Container */
+.sections-sidebar {
+  position: fixed;
+  top: var(--header-height, 70px);
+  left: -320px;
+  width: 320px;
+  height: calc(100vh - var(--header-height, 70px));
+  background: var(--color-background);
+  border-right: 1px solid var(--color-border);
+  box-shadow: 2px 0 10px var(--color-shadow);
+  z-index: 900;
+  transition: left 0.3s ease;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+}
+
+.sections-sidebar.is-open {
+  left: 0;
+}
+
+/* Desktop: sidebar toujours visible et sticky */
+@media (min-width: 769px) {
+  .sections-sidebar {
+    left: 0;
+    position: sticky;
+    top: var(--header-height, 70px);
+    transition: none;
+  }
+
+  .sections-sidebar.is-open {
+    left: 0;
+  }
+}
+
+/* Sidebar Header */
+.sections-sidebar-header {
+  padding: 1.5rem 1rem 1rem;
+  border-bottom: 1px solid var(--color-border-light);
+  background: var(--color-surface-secondary);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.sections-sidebar-title {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin: 0 0 0.5rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sections-sidebar-subtitle {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+/* Le bouton de fermeture est maintenant le toggle button qui se déplace */
+
+/* Sections List */
+.sections-list {
+  padding: 1rem 0.75rem 2rem 0.75rem;
+  list-style: none;
+  margin: 0;
+}
+
+.section-item {
+  margin-bottom: 0.75rem;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideInUp 0.4s ease forwards;
+}
+
+.section-item:last-child {
+  margin-bottom: 0;
+}
+
+@keyframes slideInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.section-link {
+  display: flex;
+  align-items: center;
+  padding: 0.3rem;
+  text-decoration: none;
+  color: var(--color-text-primary);
+  transition: all 0.2s ease;
+  gap: 0.875rem;
+  border-radius: 0.75rem;
+  position: relative;
+  overflow: hidden;
+  background: var(--color-background);
+  border: 1px solid var(--color-border-light);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.section-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-color: var(--section-color, var(--color-primary-300));
+}
+
+.section-link.is-active {
+  background: var(--section-color, var(--color-primary-500));
+  color: white;
+  border-color: var(--section-color, var(--color-primary-500));
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.section-link:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--color-primary-500);
+}
+
+.section-icon {
+  font-size: 1.25rem;
+  width: 2.25rem;
+  height: 2.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--section-color, var(--color-primary-500));
+  color: white;
+  border-radius: 0.5rem;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.section-link:hover .section-icon {
+  transform: scale(1.05);
+}
+
+.section-link.is-active .section-icon {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  transform: scale(1.05);
+}
+
+.section-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.section-name {
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  line-height: 1.3;
+  font-size: var(--font-size-sm);
+}
+
+.section-description {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  opacity: 0.8;
+}
+
+.section-link:hover .section-description {
+  opacity: 1;
+}
+
+.section-link.is-active .section-description {
+  color: rgba(255, 255, 255, 0.9);
+  opacity: 1;
+}
+
+.section-link.is-active .section-name {
+  color: white;
+}
+
+.section-count {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-tertiary);
+  margin-top: 0.25rem;
+  font-weight: 500;
+  opacity: 0.7;
+}
+
+.section-link:hover .section-count {
+  opacity: 1;
+  color: var(--color-text-secondary);
+}
+
+.section-link.is-active .section-count {
+  color: rgba(255, 255, 255, 0.8);
+  opacity: 1;
+}
+
+/* Section Colors */
+.section-link[data-section="fondamentaux"] {
+  --section-color: #2196F3;
+}
+
+.section-link[data-section="frameworks"] {
+  --section-color: #4CAF50;
+}
+
+.section-link[data-section="delivery-amelioration"] {
+  --section-color: #FF9800;
+}
+
+.section-link[data-section="animation-facilitation"] {
+  --section-color: #9C27B0;
+}
+
+.section-link[data-section="gestion-defis"] {
+  --section-color: #F44336;
+}
+
+.section-link[data-section="leadership-coaching"] {
+  --section-color: #795548;
+}
+
+.section-link[data-section="multi-equipes-scale"] {
+  --section-color: #607D8B;
+}
+
+.section-link[data-section="contextes-specialises"] {
+  --section-color: #E91E63;
+}
+
+.section-link[data-section="product-design"] {
+  --section-color: #00BCD4;
+}
+
+.section-link[data-section="transformation-culture"] {
+  --section-color: #8BC34A;
+}
+
+.section-link[data-section="outils-technologies"] {
+  --section-color: #3F51B5;
+}
+
+.section-link[data-section="developpement-coach"] {
+  --section-color: #FF5722;
+}
+
+.section-link[data-section="ressources-rex"] {
+  --section-color: #9E9E9E;
+}
+
+/* Toggle Button */
+.sections-toggle {
+  position: fixed;
+  top: 50%;
+  left: 1rem;
+  transform: translateY(-50%);
+  background: var(--color-primary-500);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
+  font-size: 1.25rem;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+.sections-toggle:hover {
+  background: var(--color-primary-600);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.sections-toggle.is-active {
+  left: 340px;
+  background: var(--color-secondary-500);
+}
+
+/* Desktop: masquer le toggle car la sidebar est toujours visible */
+@media (min-width: 769px) {
+  .sections-toggle {
+    display: none;
+  }
+}
+
+/* Mobile: positionner le toggle dans la navbar */
+@media (max-width: 768px) {
+  .sections-toggle {
+    position: static;
+    transform: none;
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: none;
+    background: transparent;
+    color: var(--color-text-primary);
+    border: 1px solid var(--color-border);
+  }
+
+  .sections-toggle:hover {
+    background: var(--color-surface-secondary);
+    transform: none;
+  }
+
+  .sections-toggle.is-active {
+    left: auto;
+    background: var(--color-primary-500);
+    color: white;
+  }
+}
+
+/* Overlay */
+.sections-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 850;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.sections-overlay.is-visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Main Content Shift */
+.main-content {
+  transition: margin-left 0.3s ease;
+}
+
+.main-content.sections-open {
+  margin-left: 320px;
+}
+
+/* Desktop: toujours décaler le contenu principal */
+@media (min-width: 769px) {
+  .main-content {
+    margin-left: 320px;
+    transition: none;
+  }
+
+  .main-content.sections-open {
+    margin-left: 320px;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .sections-sidebar {
+    width: 100%;
+    left: -100%;
+    top: 0;
+    height: 100vh;
+  }
+
+  .sections-sidebar.is-open {
+    left: 0;
+  }
+
+  .main-content.sections-open {
+    margin-left: 0;
+  }
+
+  .sections-list {
+    padding: 1rem;
+  }
+
+  .section-item {
+    margin-bottom: 1rem;
+  }
+
+  .section-link {
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .section-icon {
+    width: 2.75rem;
+    height: 2.75rem;
+    font-size: 1.5rem;
+  }
+
+  .section-name {
+    font-size: var(--font-size-base);
+    margin-bottom: 0.375rem;
+  }
+
+  .section-description {
+    font-size: var(--font-size-sm);
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+  }
+}
+
+/* Dark Theme */
+[data-theme="dark"] .sections-sidebar {
+  background: var(--color-background);
+  border-right-color: var(--color-border);
+}
+
+[data-theme="dark"] .sections-sidebar-header {
+  background: var(--color-surface-secondary);
+  border-bottom-color: var(--color-border-light);
+}
+
+[data-theme="dark"] .section-link:hover {
+  background: var(--color-surface-secondary);
+}
+
+[data-theme="dark"] .section-link.is-active {
+  background: var(--color-primary-900);
+  color: var(--color-primary-200);
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+
+  .sections-sidebar,
+  .sections-toggle,
+  .sections-overlay,
+  .main-content {
+    transition: none;
+  }
+}
+
+/* Focus styles */
+.section-link:focus,
+.sections-toggle:focus,
+.sections-sidebar-close:focus {
+  outline: 2px solid var(--color-primary-500);
+  outline-offset: 2px;
+}

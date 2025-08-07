@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mode hors ligne - Agile Coach Toolkit</title>
+    <meta name="theme-color" content="#3b82f6">
+    <link rel="icon" href="assets/icons/favicon.ico">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .offline-container {
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        .offline-icon {
+            font-size: 6rem;
+            margin-bottom: 2rem;
+            animation: pulse 2s infinite;
+        }
+
+        .offline-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .offline-subtitle {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            line-height: 1.5;
+        }
+
+        .offline-description {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 3rem;
+            opacity: 0.8;
+        }
+
+        .offline-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .btn-primary {
+            background: rgba(255, 255, 255, 0.9);
+            color: #3b82f6;
+            border-color: transparent;
+        }
+
+        .btn-primary:hover {
+            background: white;
+            color: #2563eb;
+        }
+
+        .offline-tools {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-top: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .offline-tools h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .tool-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.2s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .tool-card:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .tool-card.available {
+            cursor: pointer;
+        }
+
+        .tool-card.unavailable {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .tool-icon {
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .tool-name {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .tool-status {
+            font-size: 0.875rem;
+            opacity: 0.8;
+        }
+
+        .connection-status {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(239, 68, 68, 0.9);
+            color: white;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .connection-status.online {
+            background: rgba(16, 185, 129, 0.9);
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.05);
+                opacity: 0.8;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .offline-title {
+                font-size: 2rem;
+            }
+
+            .offline-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .offline-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .connection-status {
+                top: 10px;
+                right: 10px;
+                left: 10px;
+                text-align: center;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .offline-icon {
+                animation: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Connection Status -->
+    <div class="connection-status" id="connectionStatus">
+        🔴 Hors ligne
+    </div>
+
+    <div class="offline-container">
+        <div class="offline-icon">📱</div>
+        
+        <h1 class="offline-title">Mode hors ligne</h1>
+        
+        <p class="offline-subtitle">
+            Vous êtes actuellement déconnecté d'Internet
+        </p>
+        
+        <p class="offline-description">
+            Pas de panique ! Grâce à la technologie PWA, vous pouvez continuer à utiliser 
+            certains outils même sans connexion. Les données sont sauvegardées localement 
+            et se synchroniseront automatiquement quand vous serez de nouveau en ligne.
+        </p>
+
+        <div class="offline-actions">
+            <button class="btn btn-primary" onclick="checkConnection()">
+                🔄 Vérifier la connexion
+            </button>
+            <a href="/" class="btn">
+                🏠 Retour à l'accueil
+            </a>
+        </div>
+
+        <div class="offline-tools">
+            <h3>🛠️ Outils disponibles hors ligne</h3>
+            <div class="tools-grid">
+                <div class="tool-card available" onclick="goToTool('/tools/example-mapping/')">
+                    <div class="tool-icon">🗺️</div>
+                    <div class="tool-name">Example Mapping</div>
+                    <div class="tool-status">✅ Disponible</div>
+                </div>
+                
+                <div class="tool-card available" onclick="goToTool('/tools/planning-poker/')">
+                    <div class="tool-icon">🎲</div>
+                    <div class="tool-name">Planning Poker</div>
+                    <div class="tool-status">✅ Disponible</div>
+                </div>
+                
+                <div class="tool-card available" onclick="goToTool('/tools/agile-fluency/')">
+                    <div class="tool-icon">📊</div>
+                    <div class="tool-name">Agile Fluency</div>
+                    <div class="tool-status">✅ Disponible</div>
+                </div>
+                
+                <div class="tool-card unavailable">
+                    <div class="tool-icon">📈</div>
+                    <div class="tool-name">Statistiques</div>
+                    <div class="tool-status">❌ Connexion requise</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Check connection status
+        function updateConnectionStatus() {
+            const statusElement = document.getElementById('connectionStatus');
+            
+            if (navigator.onLine) {
+                statusElement.className = 'connection-status online';
+                statusElement.innerHTML = '🟢 En ligne';
+                
+                // Redirect to home after 2 seconds
+                setTimeout(() => {
+                    window.location.href = '/';
+                }, 2000);
+            } else {
+                statusElement.className = 'connection-status';
+                statusElement.innerHTML = '🔴 Hors ligne';
+            }
+        }
+
+        // Check connection manually
+        function checkConnection() {
+            updateConnectionStatus();
+            
+            if (!navigator.onLine) {
+                // Show feedback
+                const btn = event.target;
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '⏳ Vérification...';
+                btn.disabled = true;
+                
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.disabled = false;
+                    
+                    if (!navigator.onLine) {
+                        btn.innerHTML = '❌ Toujours hors ligne';
+                        setTimeout(() => {
+                            btn.innerHTML = originalText;
+                        }, 2000);
+                    }
+                }, 1000);
+            }
+        }
+
+        // Navigate to tool
+        function goToTool(url) {
+            if (event.target.closest('.tool-card').classList.contains('available')) {
+                window.location.href = url;
+            }
+        }
+
+        // Listen for connection changes
+        window.addEventListener('online', updateConnectionStatus);
+        window.addEventListener('offline', updateConnectionStatus);
+
+        // Initial status check
+        updateConnectionStatus();
+
+        // Periodic connection check
+        setInterval(() => {
+            // Try to fetch a small resource to verify real connectivity
+            fetch('/manifest.json', { 
+                method: 'HEAD',
+                cache: 'no-cache'
+            }).then(() => {
+                if (!navigator.onLine) {
+                    // Browser thinks we're offline but we can actually fetch
+                    // This can happen sometimes
+                    updateConnectionStatus();
+                }
+            }).catch(() => {
+                // Fetch failed, we're likely really offline
+            });
+        }, 30000); // Check every 30 seconds
+
+        // Service Worker communication
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.addEventListener('message', (event) => {
+                const { type, data } = event.data;
+                
+                if (type === 'CONNECTIVITY_CHANGED') {
+                    updateConnectionStatus();
+                }
+            });
+        }
+
+        // Analytics for offline usage
+        if (typeof localStorage !== 'undefined') {
+            try {
+                const offlineVisits = parseInt(localStorage.getItem('offline-page-visits') || '0') + 1;
+                localStorage.setItem('offline-page-visits', offlineVisits.toString());
+                localStorage.setItem('last-offline-visit', new Date().toISOString());
+            } catch (e) {
+                // Storage not available
+            }
+        }
+    </script>
+</body>
+</html>

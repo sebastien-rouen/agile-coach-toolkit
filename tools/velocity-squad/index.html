@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚀 Team Velocity Dashboard - Votre GPS Agile</title>
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Librairies externes via CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+    
+    <!-- PWA Integration -->
+    <meta name="theme-color" content="#3b82f6">
+    <link rel="manifest" href="../../manifest.json">
+    <link rel="icon" href="../../assets/icons/favicon.ico">
+</head>
+<body>
+    <!-- ====== HEADER - Cockpit de pilotage ====== -->
+    <header class="dashboard-header">
+        <div class="header-content">
+            <h1>🎯 Team Velocity Dashboard</h1>
+            <div class="mode-selector">
+                <label>Mode: </label>
+                <select id="frameworkMode">
+                    <option value="scrum">🏃‍♂️ Scrum</option>
+                    <option value="kanban">🌊 Kanban</option>
+                </select>
+            </div>
+        </div>
+    </header>
+
+    <!-- ====== BARRE D'ACTIONS - Commandes principales ====== -->
+    <nav class="action-bar">
+        <button id="importBtn" class="btn btn-primary">📥 Import</button>
+        <button id="manualEntryBtn" class="btn btn-secondary">✏️ Saisie</button>
+        <button id="templatesBtn" class="btn btn-secondary">📋 Templates</button>
+        <button id="exportBtn" class="btn btn-success">📤 Export</button>
+        <button id="shareBtn" class="btn btn-info">🔗 Partager</button>
+        <button id="moodBtn" class="btn btn-warning">😊 Humeur</button>
+        <button id="casinoBtn" class="btn btn-warning">🎰 Casino</button>
+    </nav>
+
+    <!-- ====== DASHBOARD PRINCIPAL - Layout en grille ====== -->
+    <main class="dashboard-grid">
+        <!-- Graphique principal -->
+        <section class="chart-section">
+            <div class="chart-header">
+                <h2 id="chartTitle">📊 Vélocité d'Équipe</h2>
+                <div class="chart-controls">
+                    <button id="addAnnotation" class="btn-small">📝 Fait marquant</button>
+                </div>
+            </div>
+            <div class="chart-container">
+                <canvas id="mainChart"></canvas>
+            </div>
+        </section>
+
+        <!-- KPIs et métriques -->
+        <aside class="kpi-section">
+            <h3>📈 Indicateurs Clés</h3>
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <div class="kpi-value" id="avgVelocity">-</div>
+                    <div class="kpi-label">Vélocité Moyenne</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-value" id="predictedNext">-</div>
+                    <div class="kpi-label">Prédiction Sprint +1</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-value" id="teamHealth">-</div>
+                    <div class="kpi-label">Santé Équipe</div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Performance radar -->
+        <section class="radar-section">
+            <h3>🎯 Performance Équipe</h3>
+            <div class="radar-container">
+                <canvas id="radarChart"></canvas>
+            </div>
+        </section>
+
+        <!-- Capacité équipe -->
+        <section class="capacity-section">
+            <h3>👥 Capacité Équipe</h3>
+            <div id="teamCapacity">
+                <div class="capacity-warning">
+                    ⚠️ Configurez votre équipe pour voir les prédictions
+                    <button class="btn btn-primary" style="margin-top: 1rem;">➕ Ajouter Équipe</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Heatmap burnout -->
+        <section class="heatmap-section">
+            <h3>🔥 Heatmap Burnout</h3>
+            <div id="burnoutHeatmap"></div>
+        </section>
+
+        <!-- Insights coaching -->
+        <aside class="coaching-section">
+            <h3>🎯 Insights Coach</h3>
+            <div id="coachingAlerts" class="alerts-container">
+                <div class="alert alert-info">
+                    💡 Importez vos données pour recevoir des conseils personnalisés
+                </div>
+            </div>
+        </aside>
+
+        <!-- Zone casino/gamification -->
+        <section class="casino-section">
+            <div id="casinoContainer"></div>
+        </section>
+    </main>
+
+    <!-- ====== MODALES ====== -->
+    
+    <!-- Modal Import -->
+    <div id="importModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>📥 Import de Données</h2>
+            <div class="import-options">
+                <div class="import-option" data-type="csv">
+                    <h3>📊 Fichier CSV/Excel</h3>
+                    <p>Exportez vos données JIRA ou Azure DevOps</p>
+                    <input type="file" id="csvFile" accept=".csv,.xlsx">
+                </div>
+                <div class="import-option" data-type="json">
+                    <h3>💾 Sauvegarde JSON</h3>
+                    <p>Restaurez une session précédente</p>
+                    <input type="file" id="jsonFile" accept=".json">
+                </div>
+                <div class="import-option" data-type="jira">
+                    <h3>🔗 JIRA API</h3>
+                    <input type="text" id="jiraUrl" placeholder="URL JIRA">
+                    <input type="text" id="jiraToken" placeholder="Token API">
+                    <input type="text" id="jiraProject" placeholder="Projet">
+                    <button id="jiraImportBtn" class="btn btn-primary">Importer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Saisie Manuelle -->
+    <div id="manualModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>✏️ Ajout de Sprint</h2>
+            <form id="sprintForm">
+                <div class="form-group">
+                    <label>Sprint:</label>
+                    <input type="text" id="sprintName" placeholder="Sprint 1" required>
+                </div>
+                <div class="form-group">
+                    <label>Vélocité (Story Points):</label>
+                    <input type="number" id="sprintVelocity" min="0" required>
+                </div>
+                <div class="form-group">
+                    <label>Date de fin:</label>
+                    <input type="date" id="sprintEndDate" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Ajouter</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Templates -->
+    <div id="templatesModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>📋 Templates d'Équipe</h2>
+            <div class="templates-grid">
+                <div class="template-card" data-template="startup">
+                    <h3>🚀 Startup</h3>
+                    <p>Équipe 3 pers, sprints 1 semaine<br>Données mood, annotations incluses</p>
+                </div>
+                <div class="template-card" data-template="enterprise">
+                    <h3>🏢 Enterprise</h3>
+                    <p>Équipe 5 pers, sprints 2 semaines<br>Métriques qualité avancées</p>
+                </div>
+                <div class="template-card" data-template="maintenance">
+                    <h3>🔧 Maintenance</h3>
+                    <p>Mode Kanban, équipe 2 pers<br>Focus bugs et amélioration</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Annotations -->
+    <div id="annotationModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>📝 Ajouter un Fait Marquant</h2>
+            <form id="annotationForm">
+                <div class="form-group">
+                    <label>Type:</label>
+                    <select id="annotationType">
+                        <option value="team">👥 Changement équipe</option>
+                        <option value="vacation">🏖️ Congés</option>
+                        <option value="incident">🚨 Incident</option>
+                        <option value="process">🔧 Process</option>
+                        <option value="release">🚀 Release</option>
+                        <option value="training">🎓 Formation</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Sprint:</label>
+                    <select id="annotationSprint"></select>
+                </div>
+                <div class="form-group">
+                    <label>Description:</label>
+                    <textarea id="annotationText" rows="3" placeholder="Décrivez l'événement..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Ajouter</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Configuration Équipe -->
+    <div id="teamModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>👥 Configuration Équipe</h2>
+            <div id="teamMembersList"></div>
+            <button id="addMemberBtn" class="btn btn-secondary">➕ Ajouter Membre</button>
+            <div id="addMemberForm" style="display:none;">
+                <div class="form-group">
+                    <input type="text" id="memberName" placeholder="Nom">
+                    <input type="text" id="memberRole" placeholder="Rôle">
+                    <input type="text" id="memberSkills" placeholder="Compétences (séparées par ,)">
+                    <input type="number" id="memberCapacity" placeholder="Capacité %" min="0" max="100" value="100">
+                    <button id="saveMemberBtn" class="btn btn-primary">Sauver</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Mood Tracking -->
+    <div id="moodModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>😊 Humeur du Jour</h2>
+            <div class="mood-selector">
+                <button class="mood-btn" data-mood="3">😊 Super</button>
+                <button class="mood-btn" data-mood="2">😐 Correct</button>
+                <button class="mood-btn" data-mood="1">😞 Difficile</button>
+            </div>
+            <textarea id="moodComment" placeholder="Commentaire optionnel"></textarea>
+            <button id="saveMoodBtn" class="btn btn-primary">Sauver</button>
+        </div>
+    </div>
+
+    <!-- Modal Partage -->
+    <div id="shareModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>🔗 Partager Dashboard</h2>
+            <p style="color: #666;">Génère une URL publique sans données sensibles (noms, commentaires personnels)</p>
+            
+            <div style="margin: 1.5rem 0;">
+                <button id="generateUrlBtn" class="btn btn-primary">🔗 Générer URL de Partage</button>
+            </div>
+            
+            <div id="urlResult" style="display: none;">
+                <label style="font-weight: 500; display: block; margin-bottom: 0.5rem;">
+                    URL de partage généré :
+                </label>
+                <div style="display: flex; gap: 0.5rem;">
+                    <input type="text" id="publicUrl" readonly style="flex: 1;">
+                    <button id="copyAgainBtn" class="btn btn-secondary">📋 Copier</button>
+                </div>
+                <small style="color: #666; margin-top: 0.5rem; display: block;">
+                    💡 Cette URL peut être partagée publiquement - aucune donnée sensible incluse
+                </small>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script principal -->
+    <script src="script.js"></script>
+    
+    <!-- Intégration Agile Coach Toolkit -->
+    <script src="../../assets/js/tool-integration.js"></script>
+    <script>
+      // Configuration spécifique à l'outil
+      window.TOOL_CONFIG = {
+        name: 'velocity-squad',
+        backUrl: '../../index.html#tools'
+      };
+    </script>
+</body>
+</html>

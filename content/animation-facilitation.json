@@ -1,0 +1,139 @@
+{
+  "section": {
+    "id": "animation-facilitation",
+    "title": "Animation & Facilitation",
+    "description": "Techniques d'animation et facilitation d'ateliers",
+    "icon": "fas fa-theater-masks",
+    "color": "#9C27B0"
+  },
+  "items": [
+    {
+      "id": "icebreakers",
+      "title": "🧨 Icebreakers",
+      "description": "Activités pour briser la glace et énergiser les groupes",
+      "tags": ["icebreaker", "énergie", "cohésion", "démarrage"],
+      "icon": "fas fa-snowflake",
+      "content": "Collection d'activités pour démarrer réunions et ateliers",
+      "sections_detaillees": {
+        "pitch_elevator": "Les icebreakers, c'est comme l'apéritif avant le repas : ça détend, ça fait connaissance, ça met en appétit pour la suite !",
+        "exemples_pratiques": [
+          {
+            "contexte": "Équipe nouvelle, timide, ne se connaît pas",
+            "solution": "2 vérités 1 mensonge + partage fun facts",
+            "resultat": "Ambiance détendue, connexions humaines créées"
+          },
+          {
+            "contexte": "Réunion post-déjeuner, équipe amorphe",
+            "solution": "Météo personnelle + étirement collectif 2min",
+            "resultat": "Énergie retrouvée, focus amélioré"
+          }
+        ],
+        "templates": [
+          {
+            "nom": "Check-in émotionnel",
+            "description": "Tour de table avec métaphore météo",
+            "format": "5-10 minutes"
+          },
+          {
+            "nom": "Question du jour",
+            "description": "Question légère pour se connaître",
+            "format": "Rotation par personne"
+          }
+        ]
+      }
+    },
+    {
+      "id": "techniques-facilitation",
+      "title": "🎭 Techniques de Facilitation",
+      "description": "Méthodes pour animer et faciliter efficacement",
+      "tags": ["facilitation", "animation", "groupe", "dynamique"],
+      "icon": "fas fa-hands-helping",
+      "content": "Boîte à outils du facilitateur agile",
+      "sections_detaillees": {
+        "pitch_elevator": "Faciliter, c'est comme diriger un orchestre : tu ne joues pas la musique, mais tu aides chacun à donner le meilleur de lui-même en harmonie !",
+        "techniques": [
+          {
+            "nom": "Timeboxing",
+            "description": "Limiter le temps pour forcer la priorisation",
+            "usage": "Toutes réunions et ateliers"
+          },
+          {
+            "nom": "Fisting of Five",
+            "description": "Vote rapide avec les doigts (1-5)",
+            "usage": "Prises de décision collectives"
+          },
+          {
+            "nom": "Parking Lot",
+            "description": "Zone pour sujets hors scope",
+            "usage": "Maintenir le focus"
+          }
+        ],
+        "anti_patterns": [
+          {
+            "probleme": "Facilitateur qui donne son avis personnel",
+            "consequence": "Biais, moins de participation",
+            "solution": "Rester neutre, poser des questions ouvertes"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ateliers-specifiques",
+      "title": "✨ Ateliers Spécifiques",
+      "description": "Formats d'ateliers pour objectifs précis",
+      "tags": ["atelier", "workshop", "collaboration", "créativité"],
+      "icon": "fas fa-lightbulb",
+      "content": "Ateliers structurés pour différents besoins",
+      "sections_detaillees": {
+        "pitch_elevator": "Les ateliers, c'est comme les recettes de cuisine : ingrédients (participants) + méthode (format) + timing = plat réussi !",
+        "templates": [
+          {
+            "nom": "Design Sprint",
+            "description": "5 jours pour tester une idée",
+            "format": "Process Google Ventures"
+          },
+          {
+            "nom": "User Story Mapping",
+            "description": "Cartographier le parcours utilisateur",
+            "format": "Atelier collaboratif"
+          },
+          {
+            "nom": "Lean Coffee",
+            "description": "Réunion auto-organisée par les participants",
+            "format": "To discuss/Discussing/Done"
+          }
+        ]
+      }
+    },
+    {
+      "id": "serious-games",
+      "title": "🎮 Serious Games",
+      "description": "Jeux pédagogiques pour l'apprentissage agile",
+      "tags": ["jeu", "pédagogie", "apprentissage", "fun"],
+      "icon": "fas fa-gamepad",
+      "content": "Catalogue de jeux pour apprendre en s'amusant",
+      "sections_detaillees": {
+        "pitch_elevator": "Les serious games, c'est comme apprendre à nager : plutôt que d'expliquer la théorie, on plonge dans l'eau ! On apprend mieux en faisant.",
+        "exemples_pratiques": [
+          {
+            "contexte": "Formation Scrum théorique ennuyeuse",
+            "solution": "Jeu 'Scrum avec des Lego' sur 2h",
+            "resultat": "Concepts intégrés, équipe motivée"
+          }
+        ],
+        "outils_recommandes": [
+          {
+            "nom": "Ball Point Game",
+            "usage": "Comprendre vélocité et amélioration continue",
+            "lien": "Matériel: balles de tennis"
+          },
+          {
+            "nom": "Marshmallow Challenge",
+            "usage": "Collaboration et prototypage rapide",
+            "lien": "Matériel: spaghettis + marshmallow"
+          }
+        ]
+      }
+    }
+  ]
+}

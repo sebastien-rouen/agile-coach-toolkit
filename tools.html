@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🛠️ Outils Externes - Agile Coach Toolkit</title>
+    <meta name="description" content="Collection d'outils externes intégrés pour faciliter l'animation d'équipes Agile et Scrum">
+    
+    <!-- SEO -->
+    <meta property="og:title" content="Outils Externes - Agile Coach Toolkit">
+    <meta property="og:description" content="Des outils web autonomes intégrés dans votre boîte à outils Agile">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://agile.bastalab.fr/external-tools.html">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/components/external-tools.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="assets/images/favicon.ico">
+    <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" data-component="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-brand">
+                <img src="assets/images/logo.svg" alt="Agile Coach Toolkit" class="navbar-logo">
+                <span class="navbar-title">Agile Coach Toolkit</span>
+            </a>
+            
+            <ul class="navbar-menu">
+                <li><a href="index.html" class="navbar-link">🏠 Accueil</a></li>
+                <li><a href="retrospectives.html" class="navbar-link">🔄 Rétrospectives</a></li>
+                <li><a href="estimations.html" class="navbar-link">📊 Estimations</a></li>
+                <li><a href="vision.html" class="navbar-link">👁️ Vision</a></li>
+                <li><a href="facilitation.html" class="navbar-link">🎯 Facilitation</a></li>
+                <li><a href="external-tools.html" class="navbar-link active">🛠️ Outils Externes</a></li>
+            </ul>
+            
+            <button class="navbar-toggle" aria-label="Menu mobile">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="external-tools-header">
+        <h1 class="external-tools-title">🛠️ Outils Externes</h1>
+        <p class="external-tools-subtitle">
+            Des outils web autonomes, spécialisés et intégrés dans votre environnement Agile. 
+            Utilisez-les directement ou ouvrez-les dans un nouvel onglet selon vos besoins.
+        </p>
+    </header>
+
+    <!-- Contenu Principal -->
+    <main class="container">
+        <!-- Filtres et Recherche -->
+        <section class="external-tools-filters" data-component="filters">
+            <div class="filter-group">
+                <label class="filter-label" for="tools-search">🔍 Rechercher</label>
+                <input type="text" 
+                       id="tools-search" 
+                       class="filter-search" 
+                       placeholder="Nom d'outil, description, tag..."
+                       autocomplete="off">
+            </div>
+            
+            <div class="filter-group">
+                <label class="filter-label" for="tools-category">📂 Catégorie</label>
+                <select id="tools-category" class="filter-select">
+                    <option value="all">Toutes les catégories</option>
+                    <!-- Populé dynamiquement -->
+                </select>
+            </div>
+            
+            <div class="filter-group">
+                <label class="filter-label">🏷️ Tags</label>
+                <div id="filter-tags" class="filter-tags">
+                    <!-- Populé dynamiquement -->
+                </div>
+                <small class="filter-hint">Cliquez sur les tags pour filtrer</small>
+            </div>
+            
+            <div class="filter-group">
+                <label class="filter-label">📊 Résultats</label>
+                <div id="tools-count" class="filter-results">
+                    Chargement...
+                </div>
+            </div>
+        </section>
+
+        <!-- Grille des Outils -->
+        <section id="external-tools-grid" class="external-tools-grid">
+            <!-- Populé dynamiquement par JavaScript -->
+            <div class="loading-placeholder">
+                <div class="spinner"></div>
+                <p>Chargement des outils externes...</p>
+            </div>
+        </section>
+
+        <!-- Section Informations -->
+        <section class="external-tools-info">
+            <h2 class="external-tools-info__title">ℹ️ À propos des Outils Externes</h2>
+            <p class="external-tools-info__description">
+                Les outils externes sont des applications web autonomes développées spécialement 
+                pour compléter votre boîte à outils Agile. Ils fonctionnent de manière indépendante 
+                et peuvent être utilisés en mode intégré (dans une fenêtre modale) ou dans un nouvel onglet.
+                <br><br>
+                <strong>🔒 Sécurité :</strong> Tous les outils sont hébergés sur nos serveurs sécurisés.<br>
+                <strong>📱 Responsive :</strong> Optimisés pour tous types d'appareils.<br>
+                <strong>🔄 Temps réel :</strong> Certains outils supportent la collaboration en temps réel.
+            </p>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>🎯 Agile Coach Toolkit</h4>
+                <p>Votre boîte à outils complète pour l'animation d'équipes Agile</p>
+                <div class="footer-social">
+                    <a href="https://bastalab.fr" target="_blank" rel="noopener">🌐 BastaLab</a>
+                    <a href="mailto:devbast@bastalab.fr">📧 Contact</a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h4>🔗 Liens Rapides</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="retrospectives.html">Rétrospectives</a></li>
+                    <li><a href="estimations.html">Estimations</a></li>
+                    <li><a href="vision.html">Vision</a></li>
+                    <li><a href="facilitation.html">Facilitation</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>📊 Statistiques</h4>
+                <ul class="footer-links">
+                    <li><a href="stats.html">Dashboard</a></li>
+                    <li><a href="sitemap.xml">Plan du site</a></li>
+                    <li><span id="tools-total">- outils externes</span></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>⚙️ Technique</h4>
+                <ul class="footer-links">
+                    <li><span id="page-load-time">-</span></li>
+                    <li><span id="last-update">-</span></li>
+                    <li><a href="https://git.bastalab.fr" target="_blank">Git Repository</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 Bastou - BastaLab. Made with ❤️ and ☕</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script type="module" src="assets/js/main.js"></script>
+    <script type="module" src="assets/js/tools.js"></script>
+    
+    <!-- Analytics -->
+    <script>
+        // Performance tracking
+        window.addEventListener('load', () => {
+            const loadTime = performance.now();
+            document.getElementById('page-load-time')?.textContent = 
+                `⚡ ${Math.round(loadTime)}ms`;
+        });
+        
+        // Last update from build
+        document.getElementById('last-update')?.textContent = 
+            `🔄 ${new Date(document.lastModified).toLocaleDateString('fr-FR')}`;
+    </script>
+</body>
+</html>

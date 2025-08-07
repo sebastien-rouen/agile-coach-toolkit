@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Collection d'outils gratuits et open-source pour optimiser vos pratiques agiles et améliorer la collaboration d'équipe">
+    <meta name="keywords"
+        content="agile, scrum, outils, coaching, équipe, collaboration, retrospective, planning poker">
+    <meta name="author" content="Bastou - BastaLab">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://agile.bastalab.fr/">
+    <meta property="og:title" content="Agile Coach Toolkit - Outils pour équipes agiles">
+    <meta property="og:description"
+        content="Collection d'outils gratuits et open-source pour optimiser vos pratiques agiles">
+    <meta property="og:image" content="assets/images/screenshot-main.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://agile.bastalab.fr/">
+    <meta property="twitter:title" content="Agile Coach Toolkit - Outils pour équipes agiles">
+    <meta property="twitter:description"
+        content="Collection d'outils gratuits et open-source pour optimiser vos pratiques agiles">
+    <meta property="twitter:image" content="assets/images/screenshot-main.png">
+
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#3b82f6">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Agile Coach Toolkit">
+
+    <!-- Icons -->
+    <link rel="icon" href="assets/icons/favicon.ico">
+    <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/svg+xml" href="assets/icons/icon-192.svg">
+
+    <!-- Critical CSS (inlined for performance) -->
+    <style id="critical-css-inline">
+        /* Critical above-the-fold styles will be inlined here by the system */
+    </style>
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="assets/css/variables.css" as="style">
+    <link rel="preload" href="assets/css/base.css" as="style">
+    <link rel="preload" href="assets/js/main.js" as="script">
+    <link rel="preload" href="assets/icons/icon-192.svg" as="image">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/tool-integration.css">
+    <link rel="stylesheet" href="assets/css/error-handling.css">
+    <link rel="stylesheet" href="assets/css/tooltip.css">
+    
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DN9D89MZN9"></script>
+    <script>window.dataLayer = window.dataLayer || [];function gtag() { dataLayer.push(arguments); }gtag('js', new Date());gtag('config', 'G-DN9D89MZN9');</script>
+
+    <!-- Security -->
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:;">
+
+    <title>🚀 Agile Coach Toolkit - Outils pour équipes agiles</title>
+</head>
+
+<body>
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="skip-link">Aller au contenu principal</a>
+
+    <!-- Navigation Header -->
+    <header class="header" role="banner">
+        <nav class="navbar" role="navigation" aria-label="Navigation principale">
+            <div class="navbar-container">
+                <!-- Logo and Brand -->
+                <a href="#" class="navbar-brand" aria-label="Agile Coach Toolkit - Accueil">
+                    <img src="assets/icons/icon-192.svg" alt="" class="navbar-logo" width="32" height="32">
+                    <span class="navbar-title">Agile Coach Toolkit</span>
+                </a>
+
+                <!-- Desktop Navigation Menu -->
+                <ul class="navbar-menu" role="menubar">
+                    <li role="none">
+                        <a href="#features" class="navbar-link" role="menuitem">
+                            ✨ Fonctionnalités
+                        </a>
+                    </li>
+                    <li role="none">
+                        <a href="#tools" class="navbar-link" role="menuitem">
+                            🛠️ Outils
+                        </a>
+                    </li>
+                    <li role="none">
+                        <a href="#installation" class="navbar-link" role="menuitem">
+                            🚀 Installation
+                        </a>
+                    </li>
+                    <li role="none">
+                        <a href="#documentation" class="navbar-link" role="menuitem">
+                            📚 Documentation
+                        </a>
+                    </li>
+                </ul>
+
+                <!-- Theme Toggle and Mobile Menu -->
+                <div class="navbar-actions">
+                    <button class="theme-toggle" aria-label="Basculer le mode sombre" title="Basculer le mode sombre">
+                        <span class="theme-toggle-icon" aria-hidden="true">🌙</span>
+                    </button>
+
+                    <button class="navbar-toggle" aria-label="Menu mobile" aria-expanded="false"
+                        aria-controls="mobile-menu">
+                        <span class="navbar-toggle-line"></span>
+                        <span class="navbar-toggle-line"></span>
+                        <span class="navbar-toggle-line"></span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div class="navbar-mobile" id="mobile-menu" aria-hidden="true">
+                <ul class="navbar-mobile-menu" role="menu">
+                    <li role="none">
+                        <a href="#features" class="navbar-mobile-link" role="menuitem">
+                            ✨ Fonctionnalités
+                        </a>
+                    </li>
+                    <li role="none">
+                        <a href="#tools" class="navbar-mobile-link" role="menuitem">
+                            🛠️ Outils
+                        </a>
+                    </li>
+                    <li role="none">
+                        <a href="#installation" class="navbar-mobile-link" role="menuitem">
+                            🚀 Installation
+                        </a>
+                    </li>
+                    <li role="none">
+                        <a href="#documentation" class="navbar-mobile-link" role="menuitem">
+                            📚 Documentation
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content" role="main">
+        <!-- Hero Section -->
+        <section class="hero-section" aria-labelledby="hero-title">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <div class="hero-badges">
+                        <span class="badge badge-version" aria-label="Version 1.0.0" data-animate="fadeIn"
+                            data-animate-trigger="load" data-animate-delay="100"
+                            data-tooltip="Version actuelle de l'application">
+                            <span aria-hidden="true">📦</span> Version 1.0.0
+                        </span>
+                        <span class="badge badge-license" aria-label="Licence MIT" data-animate="fadeIn"
+                            data-animate-trigger="load" data-animate-delay="200"
+                            data-tooltip="Licence open source permissive">
+                            <span aria-hidden="true">📄</span> MIT License
+                        </span>
+                        <span class="badge badge-pwa" aria-label="PWA Ready" data-animate="fadeIn"
+                            data-animate-trigger="load" data-animate-delay="300"
+                            data-tooltip="Application web progressive installable">
+                            <span aria-hidden="true">📱</span> PWA Ready
+                        </span>
+                        <span class="badge badge-accessibility" aria-label="WCAG 2.1 AA" data-animate="fadeIn"
+                            data-animate-trigger="load" data-animate-delay="400"
+                            data-tooltip="Conforme aux standards d'accessibilité">
+                            <span aria-hidden="true">♿</span> WCAG 2.1 AA
+                        </span>
+                    </div>
+
+                    <h1 id="hero-title" class="hero-title" data-animate="fadeInUp" data-animate-trigger="load"
+                        data-animate-delay="500">
+                        🚀 Agile Coach Toolkit
+                        <span class="hero-subtitle">Outils pour équipes agiles</span>
+                    </h1>
+
+                    <p class="hero-description" data-animate="fadeInUp" data-animate-trigger="load"
+                        data-animate-delay="700">
+                        Collection d'outils gratuits et open-source pour optimiser vos pratiques agiles
+                        et améliorer la collaboration d'équipe.
+                    </p>
+
+                    <div class="hero-actions" data-animate="fadeInUp" data-animate-trigger="load"
+                        data-animate-delay="900">
+                        <a href="#tools" class="btn btn-primary" role="button"
+                            data-tooltip="Voir tous les outils disponibles" data-tooltip-position="bottom">
+                            🛠️ Découvrir les outils
+                        </a>
+                        <a href="#installation" class="btn btn-secondary" role="button"
+                            data-tooltip="Guide d'installation rapide" data-tooltip-position="bottom">
+                            🚀 Installation rapide
+                        </a>
+                    </div>
+                </div>
+
+                <div class="hero-visual" aria-hidden="true">
+                    <div class="hero-screenshot">
+                        <img data-src="assets/images/screenshot-main.svg"
+                            src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjBmMGYwIi8+PC9zdmc+"
+                            alt="Capture d'écran de l'interface Agile Coach Toolkit" 
+                            class="hero-image lazy-loading" 
+                            loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="features" aria-labelledby="features-title">
+            <div class="container">
+                <header class="section-header">
+                    <h2 id="features-title" class="section-title">✨ Fonctionnalités</h2>
+                    <p class="section-description">
+                        Une suite complète d'outils modernes pour accompagner vos équipes agiles
+                    </p>
+                </header>
+
+                <div class="features-grid">
+                    <!-- Complete Tools Feature -->
+                    <article class="feature-card">
+                        <div class="feature-icon" aria-hidden="true">🎯</div>
+                        <h3 class="feature-title">Outils Complets</h3>
+                        <ul class="feature-list">
+                            <li><strong>User Stories</strong> - Éditeur avec templates et critères d'acceptation</li>
+                            <li><strong>Example Mapping</strong> - Exploration collaborative des user stories</li>
+                            <li><strong>Planning Poker</strong> - Sessions multi-joueurs avec différentes échelles</li>
+                            <li><strong>Rétrospectives</strong> - Formats Mad/Sad/Glad, Start/Stop/Continue</li>
+                            <li><strong>Sprint Board</strong> - Kanban visuel avec drag'n drop</li>
+                        </ul>
+                    </article>
+
+                    <!-- Modern Technology Feature -->
+                    <article class="feature-card">
+                        <div class="feature-icon" aria-hidden="true">🚀</div>
+                        <h3 class="feature-title">Technologie Moderne</h3>
+                        <ul class="feature-list">
+                            <li><strong>100% Vanilla JavaScript</strong> - Pas de frameworks lourds</li>
+                            <li><strong>PWA Ready</strong> - Installation et utilisation hors-ligne</li>
+                            <li><strong>Responsive Design</strong> - Optimisé mobile/tablet/desktop</li>
+                            <li><strong>Dark Mode</strong> - Interface adaptative</li>
+                            <li><strong>Performance</strong> - Lighthouse 95+ sur tous les critères</li>
+                        </ul>
+                    </article>
+
+                    <!-- Security & Privacy Feature -->
+                    <article class="feature-card">
+                        <div class="feature-icon" aria-hidden="true">🛡️</div>
+                        <h3 class="feature-title">Sécurité & Vie Privée</h3>
+                        <ul class="feature-list">
+                            <li><strong>Données locales</strong> - Aucune collecte de données personnelles</li>
+                            <li><strong>CSP Headers</strong> - Protection contre XSS</li>
+                            <li><strong>RGPD Compliant</strong> - Respect de la vie privée européenne</li>
+                            <li><strong>WCAG 2.1 AA</strong> - Accessibilité respectée</li>
+                            <li><strong>Open Source</strong> - Code transparent et auditable</li>
+                        </ul>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tools Section -->
+        <section id="tools" class="tools below-fold" aria-labelledby="tools-title" data-lazy-component="tools-grid">
+            <div class="container">
+                <header class="section-header">
+                    <h2 id="tools-title" class="section-title">🛠️ Outils disponibles</h2>
+                    <p class="section-description">
+                        Découvrez notre collection d'outils agiles prêts à l'emploi
+                    </p>
+                </header>
+
+                <!-- Tools Filter -->
+                <div class="tools-filter">
+                    <div class="filter-group">
+                        <label for="tools-search" class="filter-label">Rechercher</label>
+                        <input type="search" id="tools-search" class="filter-input" placeholder="Rechercher un outil..."
+                            aria-describedby="search-help">
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="status-filter" class="filter-label">Statut</label>
+                        <select id="status-filter" class="filter-select">
+                            <option value="all">Tous les statuts</option>
+                            <option value="stable">✅ Stable</option>
+                            <option value="beta">🚧 Bêta</option>
+                            <option value="alpha">⚠️ Alpha</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Tools Grid -->
+                <div class="tools-grid compressed-asset" role="region" aria-label="Liste des outils disponibles">
+                    <!-- Tools will be populated dynamically by JavaScript -->
+                </div>
+
+                <!-- Tools Summary -->
+                <div class="tools-summary">
+                    <p class="tools-count">
+                        <span id="tools-total">6</span> outils disponibles •
+                        <span id="tools-stable">2</span> stables •
+                        <span id="tools-beta">2</span> en bêta •
+                        <span id="tools-alpha">2</span> en alpha
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Installation Section -->
+        <section id="installation" class="installation" aria-labelledby="installation-title">
+            <div class="container">
+                <header class="section-header">
+                    <h2 id="installation-title" class="section-title">🚀 Installation rapide</h2>
+                    <p class="section-description">
+                        Plusieurs options pour déployer et utiliser l'Agile Coach Toolkit
+                    </p>
+                </header>
+
+                <div class="installation-options">
+                    <!-- PWA Installation -->
+                    <article class="installation-card">
+                        <div class="installation-icon" aria-hidden="true">📱</div>
+                        <h3 class="installation-title">Progressive Web App</h3>
+                        <p class="installation-description">
+                            Installez directement depuis votre navigateur pour une expérience native
+                        </p>
+                        <div class="installation-steps">
+                            <ol>
+                                <li>Cliquez sur le bouton "Installer" dans votre navigateur</li>
+                                <li>Confirmez l'installation</li>
+                                <li>Utilisez l'app depuis votre écran d'accueil</li>
+                            </ol>
+                        </div>
+                        <button class="btn btn-primary install-pwa-btn" style="display: none;"
+                            data-tooltip="Installer l'application sur votre appareil" data-tooltip-position="top">
+                            📱 Installer l'application
+                        </button>
+                    </article>
+
+                    <!-- Web Deployment -->
+                    <article class="installation-card">
+                        <div class="installation-icon" aria-hidden="true">🌐</div>
+                        <h3 class="installation-title">Déploiement Web</h3>
+                        <p class="installation-description">
+                            Hébergez sur votre serveur web pour un accès équipe
+                        </p>
+                        <div class="code-block">
+                            <pre><code># Clone du repository
+git clone https://github.com/sebastien-rouen/agile-coach-toolkit.git
+cd agile-coach-toolkit
+
+# Serveur de développement
+python -m http.server 8080
+# ou
+php -S localhost:8080
+
+# Accès: http://localhost:8080</code></pre>
+                        </div>
+                    </article>
+
+                    <!-- Docker Deployment -->
+                    <article class="installation-card">
+                        <div class="installation-icon" aria-hidden="true">🐳</div>
+                        <h3 class="installation-title">Docker</h3>
+                        <p class="installation-description">
+                            Containerisation pour un déploiement simplifié
+                        </p>
+                        <div class="code-block">
+                            <pre><code># Build de l'image
+docker build -t agile-coach-toolkit .
+
+# Run du container
+docker run -p 80:80 agile-coach-toolkit
+
+# Accès: http://localhost</code></pre>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Documentation Section -->
+        <section id="documentation" class="documentation" aria-labelledby="documentation-title">
+            <div class="container">
+                <header class="section-header">
+                    <h2 id="documentation-title" class="section-title">📚 Documentation</h2>
+                    <p class="section-description">
+                        Guides, exemples et ressources pour tirer le meilleur parti des outils
+                    </p>
+                </header>
+
+                <div class="documentation-grid">
+                    <!-- Getting Started -->
+                    <article class="doc-card">
+                        <div class="doc-icon" aria-hidden="true">🚀</div>
+                        <h3 class="doc-title">Guide de démarrage</h3>
+                        <p class="doc-description">
+                            Premiers pas avec l'Agile Coach Toolkit et configuration de base
+                        </p>
+                        <ul class="doc-links">
+                            <li><a href="#installation">Installation</a></li>
+                            <li><a href="#features">Fonctionnalités</a></li>
+                            <li><a href="#tools">Outils disponibles</a></li>
+                        </ul>
+                    </article>
+
+                    <!-- Architecture -->
+                    <article class="doc-card">
+                        <div class="doc-icon" aria-hidden="true">🏗️</div>
+                        <h3 class="doc-title">Architecture</h3>
+                        <p class="doc-description">
+                            Structure du projet, technologies utilisées et principes de conception
+                        </p>
+                        <ul class="doc-links">
+                            <li><a href="#" onclick="alert('Documentation technique à venir')">Structure du projet</a>
+                            </li>
+                            <li><a href="#" onclick="alert('Documentation technique à venir')">Technologies</a></li>
+                            <li><a href="#" onclick="alert('Documentation technique à venir')">Principes de design</a>
+                            </li>
+                        </ul>
+                    </article>
+
+                    <!-- Contribution -->
+                    <article class="doc-card">
+                        <div class="doc-icon" aria-hidden="true">🤝</div>
+                        <h3 class="doc-title">Contribution</h3>
+                        <p class="doc-description">
+                            Comment contribuer au projet, standards de code et processus
+                        </p>
+                        <ul class="doc-links">
+                            <li><a href="#" onclick="alert('Guide de contribution à venir')">Guide de contribution</a>
+                            </li>
+                            <li><a href="#" onclick="alert('Standards de code à venir')">Standards de code</a></li>
+                            <li><a href="#" onclick="alert('Processus de développement à venir')">Processus</a></li>
+                        </ul>
+                    </article>
+
+                    <!-- Performance -->
+                    <article class="doc-card">
+                        <div class="doc-icon" aria-hidden="true">⚡</div>
+                        <h3 class="doc-title">Performance</h3>
+                        <p class="doc-description">
+                            Métriques, optimisations et bonnes pratiques de performance
+                        </p>
+                        <div class="performance-metrics" data-lazy-component="performance-metrics">
+                            <div class="metric" data-animate="scaleIn" data-animate-trigger="scroll"
+                                data-animate-delay="100"
+                                data-tooltip="Score Lighthouse Performance - Temps de chargement optimisé"
+                                data-tooltip-position="top">
+                                <span class="metric-label">Performance</span>
+                                <span class="metric-value" data-metric="performance">98/100</span>
+                            </div>
+                            <div class="metric" data-animate="scaleIn" data-animate-trigger="scroll"
+                                data-animate-delay="200"
+                                data-tooltip="Score Lighthouse Accessibilité - Conforme WCAG 2.1 AA"
+                                data-tooltip-position="top">
+                                <span class="metric-label">Accessibilité</span>
+                                <span class="metric-value" data-metric="accessibility">100/100</span>
+                            </div>
+                            <div class="metric" data-animate="scaleIn" data-animate-trigger="scroll"
+                                data-animate-delay="300"
+                                data-tooltip="Score Lighthouse SEO - Optimisé pour les moteurs de recherche"
+                                data-tooltip-position="top">
+                                <span class="metric-label">SEO</span>
+                                <span class="metric-value" data-metric="seo">100/100</span>
+                            </div>
+                            <div class="metric" data-animate="scaleIn" data-animate-trigger="scroll"
+                                data-animate-delay="400"
+                                data-tooltip="Temps de chargement de la page"
+                                data-tooltip-position="top">
+                                <span class="metric-label">Load Time</span>
+                                <span class="metric-value" data-metric="loadTime">-</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="footer-container">
+            <!-- Main Footer Content -->
+            <div class="footer-content">
+                <!-- Brand Section -->
+                <div class="footer-section">
+                    <h3 class="footer-title">🎯 Agile Coach Toolkit</h3>
+                    <p class="footer-description">
+                        Votre boîte à outils complète pour l'animation d'équipes Agile et l'amélioration
+                        continue des pratiques collaboratives.
+                    </p>
+                    <div class="footer-social">
+                        <a href="https://bastalab.fr" target="_blank" rel="noopener noreferrer" class="footer-link">
+                            🌐 BastaLab
+                        </a>
+                        <a href="mailto:devbast@bastalab.fr" class="footer-link">
+                            📧 Contact
+                        </a>
+                        <a href="https://github.com/sebastien-rouen/agile-coach-toolkit" target="_blank"
+                            rel="noopener noreferrer" class="footer-link">
+                            🔗 GitHub
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="footer-section">
+                    <h4 class="footer-section-title">🔗 Liens Rapides</h4>
+                    <ul class="footer-links">
+                        <li><a href="#features" class="footer-link">Fonctionnalités</a></li>
+                        <li><a href="#tools" class="footer-link">Outils</a></li>
+                        <li><a href="#installation" class="footer-link">Installation</a></li>
+                        <li><a href="#documentation" class="footer-link">Documentation</a></li>
+                        <li><a href="tools.html" class="footer-link">Outils externes</a></li>
+                    </ul>
+                </div>
+
+                <!-- Tools -->
+                <div class="footer-section">
+                    <h4 class="footer-section-title">🛠️ Outils</h4>
+                    <ul class="footer-links">
+                        <li><a href="tools/example-mapping/" class="footer-link" target="_blank" rel="noopener">Example
+                                Mapping</a></li>
+                        <li><a href="tools/planning-poker/" class="footer-link" target="_blank" rel="noopener">Planning
+                                Poker</a></li>
+                        <li><span class="footer-link-disabled">User Stories (Bêta)</span></li>
+                        <li><span class="footer-link-disabled">Rétrospectives (Bêta)</span></li>
+                    </ul>
+                </div>
+
+                <!-- Technical Info -->
+                <div class="footer-section">
+                    <h4 class="footer-section-title">⚙️ Informations</h4>
+                    <ul class="footer-links">
+                        <li>
+                            <span class="footer-info">
+                                📦 Version <span id="app-version">1.0.0</span>
+                            </span>
+                        </li>
+                        <li>
+                            <span class="footer-info">
+                                ⚡ Chargé en <span id="load-time">-</span>ms
+                            </span>
+                        </li>
+                        <li>
+                            <span class="footer-info">
+                                🔄 Mis à jour le <span id="last-update">-</span>
+                            </span>
+                        </li>
+                        <li>
+                            <a href="stats.html" class="footer-link">📊 Statistiques</a>
+                        </li>
+                        <li>
+                            <span class="footer-info">
+                                👥 <span id="visitor-count">-</span> visites
+                            </span>
+                        </li>
+                        <li>
+                            <span class="footer-info" id="tool-stats">
+                                🛠️ Chargement...
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <p class="footer-copyright">
+                        &copy; 2025 <a href="https://bastalab.fr" target="_blank" rel="noopener">Bastou - BastaLab</a>.
+                        Made with ❤️ and ☕
+                    </p>
+                    <div class="footer-legal">
+                        <a href="#" onclick="alert('Politique de confidentialité à venir')" class="footer-legal-link">
+                            Confidentialité
+                        </a>
+                        <a href="#" onclick="alert('Conditions d\'utilisation à venir')" class="footer-legal-link">
+                            Conditions
+                        </a>
+                        <span class="footer-legal-text">
+                            📄 MIT License
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- PWA Install Prompt (Hidden by default) -->
+    <div class="pwa-install-prompt" id="pwa-install-prompt" aria-hidden="true" role="dialog"
+        aria-labelledby="pwa-prompt-title">
+        <div class="pwa-install-content">
+            <div class="pwa-install-icon" aria-hidden="true">📱</div>
+            <div class="pwa-install-text">
+                <h3 id="pwa-prompt-title">Installer l'application</h3>
+                <p>Accédez rapidement à vos outils agiles depuis votre écran d'accueil. Fonctionne hors ligne !</p>
+            </div>
+            <div class="pwa-install-actions">
+                <button class="btn btn-primary btn-sm" id="pwa-install-accept">
+                    📱 Installer maintenant
+                </button>
+                <button class="btn btn-ghost btn-sm" id="pwa-install-dismiss">
+                    Plus tard
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Indicator (Legacy - will be replaced by new loading system) -->
+    <div class="loading-indicator" id="loading-indicator" aria-hidden="true">
+        <div class="loading-spinner"></div>
+        <p>Chargement...</p>
+    </div>
+
+    <!-- Scripts -->
+    <!-- Load data and components first -->
+    <script src="assets/js/tools-data.js"></script>
+    <script src="assets/js/navigation.js"></script>
+    <script src="assets/js/tools-grid.js"></script>
+    <script src="assets/js/theme-manager.js"></script>
+
+    <!-- Interactive components -->
+    <script src="assets/js/modal-system.js"></script>
+    <script src="assets/js/tooltip-system.js"></script>
+    <script src="assets/js/loading-system.js"></script>
+    <script src="assets/js/animation-system.js"></script>
+    <script src="assets/js/interactive-components.js"></script>
+
+    <!-- Tools synchronization -->
+    <script src="assets/js/tools-sync.js" defer></script>
+
+    <!-- Logging integration -->
+    <script src="assets/js/logging-integration.js" defer></script>
+
+    <!-- PWA Manager -->
+    <script src="assets/js/pwa-manager.js" defer></script>
+
+    <!-- Hero & Features enhancements -->
+    <script src="assets/js/hero-features.js" defer></script>
+
+    <!-- Visual effects -->
+    <script src="assets/js/visual-effects.js" defer></script>
+
+    <!-- Footer enhancements -->
+    <script src="assets/js/footer-enhancements.js" defer></script>
+
+    <!-- Footer particles -->
+    <script src="assets/js/footer-particles.js" defer></script>
+
+    <!-- Installation, Documentation & PWA enhancements -->
+    <script src="assets/js/installation-docs-enhancements.js" defer></script>
+
+    <!-- Utilities (load first) -->
+    <script src="assets/js/utils.js"></script>
+
+    <!-- Error Handling System (load before main) -->
+    <script src="assets/js/error-handler.js"></script>
+    <script src="assets/js/network-error-handler.js"></script>
+    <script src="assets/js/fallback-content.js"></script>
+
+    <!-- Main application script -->
+    <script src="assets/js/main.js" defer></script>
+
+    <!-- Service Worker Registration -->
+    <script>
+        // Register service worker for PWA functionality
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('SW registered: ', registration);
+                    })
+                    .catch(registrationError => {
+                        console.log('SW registration failed: ', registrationError);
+                    });
+            });
+        }
+
+        // Performance tracking
+        window.addEventListener('load', () => {
+            const loadTime = Math.round(performance.now());
+            const loadTimeElement = document.getElementById('load-time');
+            if (loadTimeElement) {
+                loadTimeElement.textContent = loadTime;
+            }
+        });
+
+        // Last update
+        const lastUpdateElement = document.getElementById('last-update');
+        if (lastUpdateElement) {
+            lastUpdateElement.textContent = new Date(document.lastModified).toLocaleDateString('fr-FR');
+        }
+    </script>
+
+    <!-- 🔒 Analytics respectueux de la vie privée -->
+    <script src="assets/js/analytics.js" type="module"></script>
+    <script>
+        // Initialisation des analytics après chargement
+        document.addEventListener('DOMContentLoaded', () => {
+            // Les analytics sont auto-initialisés par le module
+            
+            // Tracking des interactions spécifiques
+            document.querySelectorAll('.btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const action = e.target.textContent.trim();
+                    if (window.analytics) {
+                        window.analytics.trackEvent('button_click', 'ui', action);
+                    }
+                });
+            });
+
+            // Tracking des outils
+            document.querySelectorAll('[data-tool]').forEach(toolElement => {
+                toolElement.addEventListener('click', (e) => {
+                    const toolName = e.target.getAttribute('data-tool') || 
+                                   e.target.closest('[data-tool]')?.getAttribute('data-tool');
+                    if (toolName && window.analytics) {
+                        window.analytics.trackToolUsage(toolName, 'click');
+                    }
+                });
+            });
+
+            // Tracking des sections visitées (scroll)
+            const sections = document.querySelectorAll('section[id]');
+            const observerOptions = {
+                threshold: 0.5,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const sectionObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && window.analytics) {
+                        window.analytics.trackEvent('section_view', 'navigation', entry.target.id);
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => sectionObserver.observe(section));
+
+            // Mise à jour périodique du dashboard
+            setInterval(() => {
+                if (window.analytics) {
+                    window.analytics.saveToDashboard();
+                }
+            }, 30000); // Toutes les 30 secondes
+        });
+
+        // Tracking des erreurs de chargement d'images
+        document.addEventListener('error', (e) => {
+            if (e.target.tagName === 'IMG' && window.analytics) {
+                window.analytics.logError({
+                    type: 'resource',
+                    message: `Image failed to load: ${e.target.src}`,
+                    element: e.target.tagName,
+                    src: e.target.src
+                });
+            }
+        }, true);
+    </script>
+
+    <!-- Performance Optimization Scripts -->
+    <script src="assets/js/lazy-loading.js"></script>
+    <script src="assets/js/resource-preloader.js"></script>
+    <script src="assets/js/compression-optimizer.js"></script>
+    <script src="assets/js/critical-css.js"></script>
+    
+    <!-- Sections Manager -->
+    <script src="assets/js/sections-manager.js"></script>
+
+    <!-- Performance indicator -->
+    <div class="preload-indicator" id="preload-indicator"></div>
+
+    <script>
+        // Initialize performance monitoring
+        document.addEventListener('DOMContentLoaded', () => {
+            // Show loading indicator
+            const indicator = document.getElementById('preload-indicator');
+            if (indicator) {
+                indicator.classList.add('loading');
+                
+                // Hide after load
+                window.addEventListener('load', () => {
+                    setTimeout(() => {
+                        indicator.classList.remove('loading');
+                    }, 500);
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

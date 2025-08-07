@@ -1,0 +1,104 @@
+{
+    "generatedAt": "2025-01-31T10:30:00.000Z",
+    "dataSource": "privacy_analytics",
+    "privacyCompliant": true,
+    "localOnly": true,
+    "totalVisits": 127,
+    "uniqueSessions": 43,
+    "pages": [
+        {
+            "page": "/index.html",
+            "count": 45
+        },
+        {
+            "page": "/tools/planning-poker/",
+            "count": 29
+        },
+        {
+            "page": "/tools/example-mapping/",
+            "count": 22
+        },
+        {
+            "page": "/stats.html",
+            "count": 18
+        },
+        {
+            "page": "/tools.html",
+            "count": 14
+        }
+    ],
+    "tools": [
+        {
+            "tool": "planning-poker",
+            "count": 28
+        },
+        {
+            "tool": "example-mapping",
+            "count": 22
+        },
+        {
+            "tool": "velocity-squad",
+            "count": 8
+        },
+        {
+            "tool": "agile-fluency",
+            "count": 5
+        }
+    ],
+    "dailyVisits": [
+        {
+            "date": "2025-01-24",
+            "visits": 12
+        },
+        {
+            "date": "2025-01-25",
+            "visits": 18
+        },
+        {
+            "date": "2025-01-26",
+            "visits": 15
+        },
+        {
+            "date": "2025-01-27",
+            "visits": 22
+        },
+        {
+            "date": "2025-01-28",
+            "visits": 19
+        },
+        {
+            "date": "2025-01-29",
+            "visits": 25
+        },
+        {
+            "date": "2025-01-30",
+            "visits": 16
+        }
+    ],
+    "performance": {
+        "loadTime": 847,
+        "FCP": 623,
+        "LCP": 1156,
+        "CLS": 0.045,
+        "FID": 23
+    },
+    "errors": 2,
+    "lastVisit": "2025-01-31T10:25:33.000Z",
+    "coreWebVitalsScore": {
+        "loadTime": "good",
+        "FCP": "good",
+        "LCP": "good",
+        "CLS": "good",
+        "FID": "good"
+    },
+    "deviceBreakdown": {
+        "mobile": 58,
+        "desktop": 52,
+        "tablet": 17
+    },
+    "sessionDuration": {
+        "average": 245,
+        "median": 180,
+        "max": 1200
+    }
+}

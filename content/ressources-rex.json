@@ -1,0 +1,1576 @@
+{
+  "section": {
+    "id": "ressources-rex",
+    "title": "Ressources & REX",
+    "description": "Templates, checklists et retours d'expérience terrain",
+    "icon": "fas fa-folder-open",
+    "color": "#00BCD4"
+  },
+  "items": [
+    {
+      "id": "templates-canvases",
+      "title": "📋 Templates & Canvases",
+      "description": "Collection complète de templates prêts à utiliser",
+      "tags": ["template", "canvas", "outil", "prêt-à-utiliser", "facilitation"],
+      "icon": "fas fa-file-alt",
+      "content": "Bibliothèque de 50+ templates pour toutes les situations du coach agile",
+      "sections_detaillees": {
+        "pitch_elevator": "Les templates, c'est comme avoir des moules à gâteaux : la forme est donnée, tu peux te concentrer sur les ingrédients et la créativité. Gain de temps garanti !",
+        "citations": [
+          {
+            "texte": "Un bon template libère la créativité au lieu de la contraindre",
+            "auteur": "Design Thinking principe",
+            "source": "IDEO Methodology"
+          }
+        ],
+        "categories_templates": [
+          {
+            "categorie": "Formation & Onboarding",
+            "description": "Templates pour former et intégrer équipes agiles",
+            "templates": [
+              {
+                "nom": "Team Charter Canvas",
+                "description": "Contrat d'équipe sur une page A3",
+                "format": "Canvas A3 ou digital",
+                "usage": "Formation nouvelle équipe, clarification rôles",
+                "duree": "60-90 minutes",
+                "participants": "3-9 personnes",
+                "sections": [
+                  "Notre mission & objectifs",
+                  "Nos valeurs & principes", 
+                  "Nos rôles & responsabilités",
+                  "Nos règles de fonctionnement",
+                  "Notre Definition of Done",
+                  "Nos engagements mutuels"
+                ],
+                "benefices": [
+                  "Alignement équipe immédiat",
+                  "Clarification des attentes",
+                  "Réduction des conflits futurs"
+                ],
+                "variantes": [
+                  "Remote Team Charter (version digitale)",
+                  "Scrum Team Charter (focus cérémonies)",
+                  "Product Team Charter (focus utilisateur)"
+                ]
+              },
+              {
+                "nom": "Agile Maturity Assessment",
+                "description": "Évaluation 360° maturité agile équipe",
+                "format": "Questionnaire + Radar Chart",
+                "usage": "Diagnostic initial, suivi progression",
+                "duree": "30 minutes par personne",
+                "participants": "Toute l'équipe",
+                "dimensions": [
+                  "Pratiques techniques (TDD, CI/CD, Refactoring)",
+                  "Collaboration équipe (Daily, Planning, Review)",
+                  "Amélioration continue (Rétros, Expérimentation)",
+                  "Orientation client (User Stories, Feedback)",
+                  "Leadership partagé (Auto-organisation, Décisions)"
+                ],
+                "scoring": "1-5 par dimension avec commentaires",
+                "livrables": [
+                  "Radar de maturité visuel",
+                  "Plan d'amélioration priorisé",
+                  "Roadmap de montée en compétences"
+                ]
+              },
+              {
+                "nom": "Scrum Master Job Description Canvas",
+                "description": "Définition de poste Scrum Master contextualisée",
+                "format": "Canvas A3",
+                "usage": "Recrutement, clarification rôle, évaluation",
+                "sections": [
+                  "Contexte organisation & équipes",
+                  "Responsabilités principales",
+                  "Compétences techniques requises",
+                  "Soft skills essentielles",
+                  "Interactions clés (PO, équipe, stakeholders)",
+                  "Critères de succès mesurables"
+                ],
+                "personnalisation": "Adaptable selon secteur et maturité équipe"
+              }
+            ]
+          },
+          {
+            "categorie": "Planification & Suivi",
+            "description": "Templates pour organiser et suivre le travail",
+            "templates": [
+              {
+                "nom": "Sprint Planning Agenda Template",
+                "description": "Déroulement structuré du Sprint Planning",
+                "format": "Agenda détaillé avec timeboxes",
+                "duree": "4h pour Sprint 2 semaines",
+                "structure": [
+                  {
+                    "phase": "Préparation (15 min)",
+                    "activites": ["Check matériel", "Review Sprint Goal", "Vérif backlog prêt"]
+                  },
+                  {
+                    "phase": "Sprint Goal (30 min)", 
+                    "activites": ["Présentation contexte PO", "Discussion équipe", "Formulation Sprint Goal"]
+                  },
+                  {
+                    "phase": "Sélection Stories (90 min)",
+                    "activites": ["Présentation stories PO", "Questions équipe", "Estimation efforts", "Sélection selon capacité"]
+                  },
+                  {
+                    "phase": "Break (15 min)",
+                    "activites": ["Pause énergisante"]
+                  },
+                  {
+                    "phase": "Décomposition tâches (120 min)",
+                    "activites": ["Breakdown stories en tâches", "Estimation heures", "Identification dépendances", "Plan Sprint"]
+                  },
+                  {
+                    "phase": "Engagement & Clôture (30 min)",
+                    "activites": ["Engagement équipe", "Risques identifiés", "Communication stakeholders"]
+                  }
+                ],
+                "checklist_facilitateur": [
+                  "Backlog refiné et prêt",
+                  "Vélocité équipe connue", 
+                  "Objectifs business clarifiés",
+                  "Contraintes techniques identifiées",
+                  "Disponibilité équipe confirmée"
+                ]
+              },
+              {
+                "nom": "OKR Canvas Agile",
+                "description": "Objectives & Key Results adaptés équipes agiles",
+                "format": "Canvas trimestriel",
+                "usage": "Alignement objectifs équipe/organisation",
+                "structure": [
+                  "Objective (inspirant et qualitatif)",
+                  "Key Results (3 max, mesurables, ambitieux)",
+                  "Initiatives (comment on va faire)",
+                  "Métriques de suivi",
+                  "Risques & dépendances"
+                ],
+                "exemples": [
+                  {
+                    "objective": "Devenir l'équipe de référence en qualité",
+                    "key_results": [
+                      "Réduire bugs production de 50%",
+                      "Atteindre 90% couverture de tests",
+                      "Obtenir 4.5/5 satisfaction utilisateur"
+                    ]
+                  }
+                ]
+              },
+              {
+                "nom": "User Story Mapping Template",
+                "description": "Cartographie complète du parcours utilisateur",
+                "format": "Mur digital ou physique",
+                "usage": "Vision produit, priorisation features, releases planning",
+                "structure": [
+                  "User Activities (niveau 1 - squelette)",
+                  "User Tasks (niveau 2 - muscle)", 
+                  "User Stories (niveau 3 - détails)",
+                  "Releases/Sprints (priorisation verticale)"
+                ],
+                "roles": [
+                  "Product Owner (anime)",
+                  "UX Designer (parcours utilisateur)",
+                  "Équipe développement (faisabilité)",
+                  "Stakeholders (validation)"
+                ],
+                "livrables": [
+                  "Story Map visuel complet",
+                  "Release plan priorisé",
+                  "Backlog structuré par valeur"
+                ]
+              }
+            ]
+          },
+          {
+            "categorie": "Amélioration & Rétrospectives",
+            "description": "Templates pour faciliter l'amélioration continue",
+            "templates": [
+              {
+                "nom": "Retrospective Facilitation Toolkit",
+                "description": "Kit complet animation rétrospectives variées",
+                "contenu": [
+                  "20 formats de rétro détaillés",
+                  "Guide sélection format selon contexte",
+                  "Checklist préparation facilitateur",
+                  "Templates de suivi actions d'amélioration"
+                ],
+                "formats_inclus": [
+                  "Start/Stop/Continue classique",
+                  "Mad/Sad/Glad émotionnel",
+                  "Speedboat métaphorique", 
+                  "4Ls apprentissage",
+                  "Timeline événements",
+                  "Celebration Grid",
+                  "Lean Coffee auto-organisé"
+                ],
+                "guide_selection": {
+                  "equipe_demotivee": "Mad/Sad/Glad ou Celebration Grid",
+                  "equipe_new": "Start/Stop/Continue simple",
+                  "problemes_recurrents": "Timeline ou 5 Whys",
+                  "manque_vision": "Speedboat ou Vision Board"
+                }
+              },
+              {
+                "nom": "Action Items Tracking Template",
+                "description": "Suivi systématique des actions d'amélioration",
+                "format": "Tableau de bord dynamique",
+                "colonnes": [
+                  "Action (SMART)",
+                  "Responsable",
+                  "Échéance",
+                  "Statut (À faire/En cours/Terminé/Abandonné)",
+                  "Impact mesuré",
+                  "Leçons apprises"
+                ],
+                "metriques": [
+                  "% actions terminées dans les temps",
+                  "Durée moyenne de réalisation",
+                  "Impact moyen des améliorations"
+                ],
+                "automatisations": [
+                  "Rappels automatiques échéance",
+                  "Rapport mensuel pour management",
+                  "Intégration outil équipe (Jira/Trello)"
+                ]
+              },
+              {
+                "nom": "Kaizen Event Canvas",
+                "description": "Organisation d'événement d'amélioration intensive",
+                "format": "Canvas préparation + suivi",
+                "usage": "Problème complexe nécessitant focus dédié",
+                "preparation": [
+                  "Problème ciblé & mesurable",
+                  "Équipe dédiée 2-3 jours",
+                  "Données factuelles disponibles",
+                  "Sponsor engagé",
+                  "Espace dédié équipé"
+                ],
+                "deroulement": [
+                  "J1 matin: Analyse problème & causes racines",
+                  "J1 après-midi: Génération solutions créatives",
+                  "J2 matin: Prototypage/test solutions",
+                  "J2 après-midi: Plan implémentation",
+                  "J3: Mise en œuvre & mesure premiers résultats"
+                ]
+              }
+            ]
+          },
+          {
+            "categorie": "Communication & Stakeholders",
+            "description": "Templates pour communication efficace",
+            "templates": [
+              {
+                "nom": "Stakeholder Mapping Canvas",
+                "description": "Cartographie influence/intérêt des parties prenantes",
+                "format": "Matrice 2x2 + fiches détaillées",
+                "axes": [
+                  "Influence (forte/faible)",
+                  "Intérêt (fort/faible)"
+                ],
+                "quadrants": [
+                  "Gérer étroitement (forte influence + fort intérêt)",
+                  "Maintenir satisfaction (forte influence + faible intérêt)",
+                  "Informer (faible influence + fort intérêt)",
+                  "Surveiller (faible influence + faible intérêt)"
+                ],
+                "fiche_stakeholder": [
+                  "Nom & rôle",
+                  "Motivations & objectifs",
+                  "Craintes & résistances",
+                  "Canaux communication préférés",
+                  "Stratégie d'engagement"
+                ]
+              },
+              {
+                "nom": "Executive Summary Template",
+                "description": "Résumé exécutif projet agile pour dirigeants",
+                "format": "1-2 pages maximum",
+                "structure": [
+                  "Situation actuelle (3 lignes)",
+                  "Problème/Opportunité (5 lignes)",
+                  "Solution proposée (approche agile)",
+                  "Bénéfices attendus (ROI, délais, qualité)",
+                  "Ressources nécessaires",
+                  "Timeline & jalons clés",
+                  "Risques & mitigation",
+                  "Demande/Décision attendue"
+                ],
+                "conseils_redaction": [
+                  "Commencer par les bénéfices business",
+                  "Éviter le jargon agile",
+                  "Quantifier les impacts",
+                  "Inclure témoignages clients si possible"
+                ]
+              }
+            ]
+          }
+        ],
+        "conseils_usage": [
+          {
+            "conseil": "Personnaliser chaque template selon votre contexte",
+            "detail": "Un template générique marche rarement tel quel. Adaptez le vocabulaire, les exemples, la durée selon votre équipe."
+          },
+          {
+            "conseil": "Tester en petit groupe avant déploiement large",
+            "detail": "Pilotez le template avec 1-2 équipes pour identifier les améliorations avant de généraliser."
+          },
+          {
+            "conseil": "Créer une bibliothèque partagée et accessible",
+            "detail": "Centralisez vos templates dans un espace accessible (SharePoint, Confluence, Drive) avec moteur de recherche."
+          },
+          {
+            "conseil": "Documenter les retours d'expérience sur chaque template",
+            "detail": "Notez ce qui marche/marche pas pour constituer votre propre guide d'usage."
+          }
+        ],
+        "outils_creation": [
+          {
+            "nom": "Miro",
+            "usage": "Templates collaboratifs visuels",
+            "avantages": "Bibliothèque intégrée, collaboration temps réel",
+            "lien": "https://miro.com/templates"
+          },
+          {
+            "nom": "Figma",
+            "usage": "Design de canvas personnalisés",  
+            "avantages": "Design professionnel, partage facile",
+            "lien": "https://figma.com"
+          },
+          {
+            "nom": "Canva",
+            "usage": "Templates visuels attractifs",
+            "avantages": "Nombreux templates, facile d'usage",
+            "lien": "https://canva.com"
+          },
+          {
+            "nom": "Google Slides/PowerPoint",
+            "usage": "Templates présentation et canvas",
+            "avantages": "Accessible partout, export facile",
+            "lien": "Outils standards"
+          }
+        ],
+        "anti_patterns": [
+          {
+            "probleme": "Template trop complexe avec trop de sections",
+            "consequence": "Paralysie, sessions qui traînent, abandon",
+            "solution": "Maximum 6-8 sections, focus sur l'essentiel"
+          },
+          {
+            "probleme": "Utiliser toujours les mêmes templates",
+            "consequence": "Lassitude équipe, pensée en silos",
+            "solution": "Varier les formats, laisser équipe choisir parfois"
+          },
+          {
+            "probleme": "Ne pas adapter le template au niveau de maturité",
+            "consequence": "Frustration, incompréhension",
+            "solution": "Version simple pour débutants, complexe pour experts"
+          }
+        ]
+      }
+    },
+    {
+      "id": "checklists-operationnelles",
+      "title": "✅ Checklists Opérationnelles",
+      "description": "Listes de vérification pour sécuriser vos pratiques agiles",
+      "tags": ["checklist", "vérification", "qualité", "process", "sécurisation"],
+      "icon": "fas fa-tasks",
+      "content": "Collection de 25+ checklists pour tous les événements et pratiques agiles",
+      "sections_detaillees": {
+        "pitch_elevator": "Les checklists, c'est comme la liste avant partir en vacances : évite les oublis importants, assure la tranquillité d'esprit, et garantit que rien d'essentiel n'est laissé au hasard !",
+        "citations": [
+          {
+            "texte": "Une checklist simple et utilisable peut sauver des vies... et des projets",
+            "auteur": "Atul Gawande",
+            "source": "The Checklist Manifesto"
+          }
+        ],
+        "categories_checklists": [
+          {
+            "categorie": "Cérémonies Scrum",
+            "description": "Checklists pour bien mener chaque cérémonie",
+            "checklists": [
+              {
+                "nom": "Sprint Planning - Checklist Facilitateur",
+                "duree": "Avant, pendant et après la cérémonie",
+                "items": {
+                  "preparation": [
+                    "📋 Backlog refiné avec stories prêtes (INVEST)",
+                    "📊 Vélocité équipe des 3 derniers sprints calculée",
+                    "🎯 Objectifs business du sprint clarifiés avec PO",
+                    "👥 Disponibilité équipe confirmée (congés, formations)",
+                    "🏠 Salle réservée avec matériel (tableau, post-its, wifi)",
+                    "⏰ Agenda partagé avec timeboxes définies",
+                    "📱 Outils digitaux testés (si remote)",
+                    "☕ Pauses et rafraîchissements prévus"
+                  ],
+                  "pendant": [
+                    "🎯 Sprint Goal défini et validé par tous",
+                    "📖 Chaque story comprise par l'équipe",
+                    "❓ Questions équipe posées et répondues",
+                    "⚖️ Capacité équipe respectée (vélocité + buffer)",
+                    "🔗 Dépendances externes identifiées et gérées",
+                    "✋ Engagement équipe explicitement demandé",
+                    "📝 Décisions importantes documentées",
+                    "⏱️ Timeboxes respectées avec fermeté bienveillante"
+                  ],
+                  "apres": [
+                    "📊 Sprint backlog visible par tous (board physique/digital)",
+                    "📧 Résumé envoyé aux stakeholders (goal + scope)",
+                    "🔄 Daily suivante planifiée avec horaire défini",
+                    "📋 Actions d'amélioration du planning notées",
+                    "🎯 Sprint Goal affiché visiblement pour l'équipe"
+                  ]
+                },
+                "signaux_alerte": [
+                  "Planning dépasse durée prévue de +30%",
+                  "Équipe n'arrive pas à s'engager sur Sprint Goal",
+                  "Plus de 20% stories non estimées",
+                  "Dépendances externes bloquantes non résolues"
+                ]
+              },
+              {
+                "nom": "Daily Scrum - Checklist Qualité",
+                "duree": "15 minutes maximum",
+                "format": "Debout, même heure, même lieu",
+                "items": {
+                  "avant": [
+                    "🕘 Heure fixe respectée par tous",
+                    "📍 Lieu défini (physique ou virtuel)",
+                    "📊 Board à jour avant la daily",
+                    "⏱️ Timer visible (15min max)"
+                  ],
+                  "pendant": [
+                    "🎯 Focus sur Sprint Goal affiché",
+                    "👥 Tous les membres équipe présents",
+                    "💬 Chacun répond aux 3 questions standard",
+                    "🚧 Impediments identifiés et notés",
+                    "🤝 Aide proposée entre membres équipe",
+                    "📋 Board mis à jour en temps réel",
+                    "🚫 Pas de résolution problème en daily",
+                    "⏰ 15 minutes JAMAIS dépassées"
+                  ],
+                  "apres": [
+                    "📝 Impediments transmis au Scrum Master",
+                    "👥 Discussions détaillées en offline",
+                    "📊 Métriques mises à jour si nécessaire",
+                    "🔄 Board reflète la réalité"
+                  ]
+                },
+                "questions_standard": [
+                  "Qu'ai-je fait hier pour atteindre notre Sprint Goal ?",
+                  "Que vais-je faire aujourd'hui pour atteindre notre Sprint Goal ?",
+                  "Y a-t-il quelque chose qui m'empêche d'atteindre notre Sprint Goal ?"
+                ]
+              },
+              {
+                "nom": "Sprint Review - Checklist Succès",
+                "duree": "2h max pour sprint 2 semaines",
+                "participants": "Équipe + Stakeholders + Utilisateurs",
+                "items": {
+                  "preparation": [
+                    "🎯 Incrément potentiellement livrable prêt",
+                    "👥 Stakeholders invités et confirmés",
+                    "🖥️ Demo environment stable et testé",
+                    "📋 Agenda partagé avec timing",
+                    "📊 Métriques sprint préparées (vélocité, burndown)",
+                    "🎤 Matériel démo testé (écran, micro, wifi)",
+                    "📝 Formulaire feedback préparé"
+                  ],
+                  "pendant": [
+                    "📈 Contexte business rappelé en introduction",
+                    "🎯 Sprint Goal et résultats présentés",
+                    "💻 Demo sur environnement réel (pas slides)",
+                    "👥 Participation active stakeholders encouragée",
+                    "📝 Feedback collecté de manière structurée",
+                    "🔮 Discussion sur prochaines priorités",
+                    "📊 Métriques partagées (vélocité, qualité)",
+                    "⏰ Timing respecté sans précipitation"
+                  ],
+                  "apres": [
+                    "📋 Feedback consolidé et priorisé",
+                    "🔄 Product Backlog mis à jour",
+                    "📧 Synthèse envoyée aux participants",
+                    "📊 Métriques archivées pour historique",
+                    "🎯 Ajustements stratégie produit si nécessaire"
+                  ]
+                }
+              },
+              {
+                "nom": "Sprint Retrospective - Checklist Amélioration",
+                "duree": "1h30 max pour sprint 2 semaines",
+                "participants": "Équipe uniquement (espace sécurisé)",
+                "items": {
+                  "preparation": [
+                    "🔒 Espace sécurisé réservé (équipe uniquement)",
+                    "📊 Données sprint disponibles (métriques, incidents)",
+                    "🎭 Format rétro choisi selon contexte équipe",
+                    "📝 Actions précédente rétro reviewées",
+                    "🍿 Ambiance détendue (snacks, musique)",
+                    "⏱️ Timing prévu pour chaque phase"
+                  ],
+                  "deroulement": [
+                    "🎯 Rétrospective Prime Directive rappelée",
+                    "🌡️ Check-in humeur équipe",
+                    "📊 Review actions précédente rétro",
+                    "🔍 Analyse du sprint (format choisi)",
+                    "💡 Génération insights et solutions",
+                    "🎯 Sélection 2-3 actions max SMART",
+                    "🤝 Engagement équipe sur actions",
+                    "🌡️ Check-out satisfaction rétro"
+                  ],
+                  "cloture": [
+                    "📝 Actions documentées avec responsables",
+                    "📅 Actions intégrées planning prochain sprint",
+                    "📊 Feedback format rétro noté",
+                    "🔄 Prochain format rétro sélectionné",
+                    "📈 Suivi satisfaction équipe archivé"
+                  ]
+                },
+                "prime_directive": "Nous partons du principe que chacun a fait de son mieux compte tenu de ses connaissances, compétences et ressources disponibles à ce moment-là."
+              }
+            ]
+          },
+          {
+            "categorie": "Qualité & Definition of Done",
+            "description": "Checklists pour garantir la qualité des livrables",
+            "checklists": [
+              {
+                "nom": "Definition of Done - Template Équipe",
+                "description": "Critères qualité à respecter avant considérer une story terminée",
+                "categories": [
+                  {
+                    "nom": "Développement",
+                    "criteres": [
+                      "✅ Code développé selon standards équipe",
+                      "✅ Tests unitaires écrits et passants (>80% couverture)",
+                      "✅ Code reviewé et approuvé par pair",
+                      "✅ Documentation technique mise à jour",
+                      "✅ Code intégré sur branche principale",
+                      "✅ Build automatique successful"
+                    ]
+                  },
+                  {
+                    "nom": "Tests & Qualité",
+                    "criteres": [
+                      "✅ Tests d'intégration passants",
+                      "✅ Tests fonctionnels validés",
+                      "✅ Régression non-introduite vérifiée",
+                      "✅ Performance acceptable validée",
+                      "✅ Sécurité vérifiée (scan automatique)",
+                      "✅ Accessibilité respectée (WCAG basics)"
+                    ]
+                  },
+                  {
+                    "nom": "Validation Métier",
+                    "criteres": [
+                      "✅ Critères d'acceptation respectés 100%",
+                      "✅ Demo validée par Product Owner",
+                      "✅ Feedback utilisateur collecté si applicable",
+                      "✅ Documentation utilisateur créée",
+                      "✅ Formation support réalisée si nécessaire"
+                    ]
+                  },
+                  {
+                    "nom": "Déploiement",
+                    "criteres": [
+                      "✅ Déployable sur environnement production",
+                      "✅ Scripts migration DB testés",
+                      "✅ Monitoring/logs configurés",
+                      "✅ Rollback plan documenté",
+                      "✅ Communication changements préparée"
+                    ]
+                  }
+                ],
+                "adaptation_contexte": [
+                  "Équipe junior: DoD plus détaillée avec exemples",
+                  "Équipe senior: DoD concise avec standards implicites",
+                  "Produit critique: DoD renforcée sécurité/performance",
+                  "MVP/Prototype: DoD allégée focus validation"
+                ]
+              },
+              {
+                "nom": "Code Review - Checklist Revieweur",
+                "description": "Points de vérification lors review de code",
+                "categories": [
+                  {
+                    "nom": "Fonctionnalité",
+                    "points": [
+                      "Le code fait-il ce qui est demandé ?",
+                      "La logique métier est-elle correcte ?",
+                      "Les cas d'erreur sont-ils gérés ?",
+                      "Les validations sont-elles suffisantes ?"
+                    ]
+                  },
+                  {
+                    "nom": "Qualité Code",
+                    "points": [
+                      "Le code est-il lisible et compréhensible ?",
+                      "Les noms variables/fonctions sont-ils explicites ?",
+                      "Y a-t-il du code dupliqué à factoriser ?",
+                      "La complexité est-elle maîtrisée ?"
+                    ]
+                  },
+                  {
+                    "nom": "Standards",
+                    "points": [
+                      "Les conventions équipe sont-elles respectées ?",
+                      "L'architecture est-elle cohérente ?",
+                      "Les patterns établis sont-ils suivis ?",
+                      "Les commentaires sont-ils pertinents ?"
+                    ]
+                  },
+                  {
+                    "nom": "Tests",
+                    "points": [
+                      "Les tests couvrent-ils les cas nominaux ?",
+                      "Les cas d'erreur sont-ils testés ?",
+                      "Les tests sont-ils maintenables ?",
+                      "La couverture est-elle suffisante ?"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "categorie": "Démarrage Projet/Équipe",
+            "description": "Checklists pour bien commencer",
+            "checklists": [
+              {
+                "nom": "Onboarding Nouveau Membre - Checklist RH/SM",
+                "duree": "2-4 semaines d'intégration",
+                "responsables": ["RH", "Scrum Master", "Buddy assigné"],
+                "phases": [
+                  {
+                    "phase": "J-1 (Préparation)",
+                    "items": [
+                      "🖥️ Poste de travail préparé et configuré",
+                      "🔑 Accès systèmes/outils créés et testés",
+                      "👤 Buddy expérimenté assigné et briefé",
+                      "📋 Kit d'accueil physique/digital préparé",
+                      "📅 Planning première semaine établi",
+                      "👥 Équipe informée de l'arrivée"
+                    ]
+                  },
+                  {
+                    "phase": "J1 (Premier jour)",
+                    "items": [
+                      "🤝 Accueil personnalisé par manager/SM",
+                      "🏢 Tour des locaux et présentation équipe",
+                      "📋 Remise kit accueil avec infos essentielles",
+                      "🎯 Présentation mission équipe et contexte projet",
+                      "👤 Premier échange avec buddy assigné",
+                      "💻 Configuration environnement dev avec aide",
+                      "📅 Planification première semaine détaillée"
+                    ]
+                  },
+                  {
+                    "phase": "Semaine 1",
+                    "items": [
+                      "📚 Formation frameworks agiles (Scrum basics)",
+                      "👥 Participation observer aux cérémonies",
+                      "🔧 Maîtrise outils équipe (Jira, Git, IDE)",
+                      "📖 Lecture documentation produit/technique",
+                      "🍕 Déjeuner informel avec membres équipe",
+                      "✅ Première tâche simple en binôme",
+                      "💬 Daily check-in avec buddy"
+                    ]
+                  },
+                  {
+                    "phase": "Semaine 2-3",
+                    "items": [
+                      "🎯 Participation active cérémonies Scrum",
+                      "💻 Première story en autonomie avec support",
+                      "🔍 Code review de ses développements",
+                      "📝 Contribution documentation équipe",
+                      "🤝 Intégration naturelle discussions équipe",
+                      "📈 Feedback régulier buddy/SM sur progression"
+                    ]
+                  },
+                  {
+                    "phase": "Fin mois 1",
+                    "items": [
+                      "📊 Évaluation intégration avec formulaire",
+                      "💬 Entretien feedback 360° (nouveau/équipe/manager)",
+                      "🎯 Définition objectifs mois 2",
+                      "🏆 Célébration intégration réussie",
+                      "📝 REX process onboarding pour amélioration"
+                    ]
+                  }
+                ],
+                "kit_accueil": [
+                  "Welcome Book équipe avec photos/rôles",
+                  "Glossaire métier et technique",
+                  "Contacts utiles (IT, RH, restauration)",
+                  "Plan locaux avec services",
+                  "Accès wifi et services en ligne",
+                  "Goodies équipe (mug, t-shirt, stickers)"
+                ]
+              },
+              {
+                "nom": "Lancement Nouveau Projet - Checklist Project Kickoff",
+                "duree": "2-3 semaines préparation",
+                "responsable": "Scrum Master + Product Owner",
+                "items": {
+                  "vision_produit": [
+                    "🎯 Vision produit claire et inspirante définie",
+                    "👥 Personas utilisateurs identifiés et documentés",
+                    "🗺️ User Journey Map créé",
+                    "💰 Business case et ROI estimés",
+                    "🏆 Critères de succès mesurables établis",
+                    "⏰ Timeline globale et jalons majeurs définis"
+                  ],
+                  "equipe_organisation": [
+                    "👤 Product Owner identifié et formé",
+                    "👤 Scrum Master assigné et disponible",
+                    "👥 Équipe développement constituée (3-9 personnes)",
+                    "🏢 Espace de travail équipe défini et équipé",
+                    "📅 Calendrier cérémonies établi et partagé",
+                    "🛠️ Outils collaboration choisis et configurés"
+                  ],
+                  "technique_infrastructure": [
+                    "🖥️ Architecture technique définie",
+                    "🔧 Environnements dev/test/prod provisionnés",
+                    "🔄 Pipeline CI/CD configuré",
+                    "📊 Outils monitoring/logging en place",
+                    "🔒 Standards sécurité et conformité validés",
+                    "📚 Documentation technique initialisée"
+                  ],
+                  "backlog_planification": [
+                    "📋 Epic principales identifiées et priorisées",
+                    "📖 User Stories Sprint 1 rédigées et raffinées",
+                    "⚖️ Stories estimées par l'équipe",
+                    "🎯 Sprint Goal initial défini",
+                    "📊 Vélocité initiale estimée",
+                    "🔗 Dépendances externes identifiées"
+                  ]
+                }
+              }
+            ]
+          }
+        ],
+        "bonnes_pratiques": [
+          {
+            "pratique": "Checklist courte et actionnables",
+            "detail": "Maximum 7±2 items par checklist pour éviter surcharge cognitive"
+          },
+          {
+            "pratique": "Langage simple et précis", 
+            "detail": "Éviter jargon, utiliser verbes d'action, être spécifique"
+          },
+          {
+            "pratique": "Mise à jour régulière",
+            "detail": "Réviser checklists tous les 3 mois selon REX équipe"
+          },
+          {
+            "pratique": "Validation terrain avant déploiement",
+            "detail": "Tester checklist avec vraie équipe avant généralisation"
+          }
+        ],
+        "anti_patterns": [
+          {
+            "probleme": "Checklist trop longue (>15 items)",
+            "consequence": "Surcharge cognitive, abandon de la checklist",
+            "solution": "Regrouper par catégories, max 7 items par section"
+          },
+          {
+            "probleme": "Items trop vagues ou subjectifs", 
+            "consequence": "Interprétations diverses, inefficacité",
+            "solution": "Critères objectifs et mesurables"
+          },
+          {
+            "probleme": "Checklist figée jamais mise à jour",
+            "consequence": "Obsolescence, perte d'utilité",
+            "solution": "Review trimestrielle avec équipe"
+          }
+        ]
+      }
+    },
+    {
+      "id": "modeles-rapports",
+      "title": "📊 Modèles de Rapports",
+      "description": "Templates de reporting et communication stakeholders",
+      "tags": ["rapport", "communication", "dashboard", "suivi", "stakeholders"],
+      "icon": "fas fa-chart-bar",
+      "content": "Collection de modèles de rapports pour tous types de stakeholders",
+      "sections_detaillees": {
+        "pitch_elevator": "Les rapports agiles, c'est comme la météo à la télé : info essentielle, visuelle, compréhensible par tous en 2 minutes. Fini les pavés de 20 pages que personne ne lit !",
+        "citations": [
+          {
+            "texte": "Un dashboard qui ne déclenche pas d'action est inutile",
+            "auteur": "Lean Analytics principe",
+            "source": "Alistair Croll & Benjamin Yoskovitz"
+          }
+        ],
+        "types_rapports": [
+          {
+            "type": "Rapports Opérationnels",
+            "description": "Suivi quotidien/hebdomadaire pour l'équipe",
+            "frequence": "Quotidien à hebdomadaire",
+            "audience": "Équipe + management direct",
+            "rapports": [
+              {
+                "nom": "Daily Dashboard Équipe",
+                "format": "Dashboard digital temps réel",
+                "contenu": [
+                  "🎯 Sprint Goal et progression",
+                  "📊 Burndown Chart jour actuel",
+                  "🚧 Impediments actifs et statut",
+                  "✅ Stories terminées aujourd'hui",
+                  "🔄 Stories en cours avec responsables",
+                  "⚠️ Risques identifiés"
+                ],
+                "outils": ["Jira Dashboard", "Azure DevOps", "Tableau Kanban"],
+                "mise_a_jour": "Temps réel automatique"
+              },
+              {
+                "nom": "Sprint Report - Fin de Sprint",
+                "format": "1 page A4 ou email structuré",
+                "contenu": [
+                  "🎯 Sprint Goal et % réalisé",
+                  "📈 Vélocité (planifiée vs réalisée)",
+                  "✅ Stories terminées avec valeur livrée",
+                  "🚫 Stories non terminées et raisons",
+                  "🏆 Succès majeurs à célébrer", 
+                  "🚧 Obstacles rencontrés et résolutions",
+                  "🔮 Focus prochain sprint",
+                  "📊 Métriques clés (qualité, satisfaction)"
+                ],
+                "template": {
+                  "titre": "Sprint [X] Report - [Dates]",
+                  "sections": [
+                    "✅ Ce qu'on a livré (valeur business)",
+                    "📊 Métriques sprint",
+                    "🎉 Succès à célébrer",
+                    "🚧 Défis surmontés", 
+                    "🔮 Prochaines étapes"
+                  ]
+                }
+              },
+              {
+                "nom": "Weekly Team Health Report",
+                "format": "Visuel coloré (feu tricolore)",
+                "contenu": [
+                  "💚 Vert: Ce qui va bien cette semaine",
+                  "🟡 Orange: Points d'attention à surveiller", 
+                  "🔴 Rouge: Problèmes nécessitant aide/escalade",
+                  "📈 Tendance par rapport semaine précédente",
+                  "🎯 Actions correctives en cours"
+                ],
+                "metriques": [
+                  "Moral équipe (NIKO-NIKO)",
+                  "Vélocité tendance",
+                  "Qualité (bugs, incidents)",
+                  "Blocages externes"
+                ]
+              }
+            ]
+          },
+          {
+            "type": "Rapports Managériaux",
+            "description": "Communication pour management et sponsors",
+            "frequence": "Mensuel à trimestriel", 
+            "audience": "Managers, sponsors, steering committee",
+            "rapports": [
+              {
+                "nom": "Executive Summary Mensuel",
+                "format": "2 pages maximum + annexes si besoin",
+                "structure": [
+                  {
+                    "section": "Résumé Exécutif (5 lignes max)",
+                    "contenu": "Statut global, réalisations clés, points d'alerte majeurs"
+                  },
+                  {
+                    "section": "Avancement Objectifs",
+                    "contenu": "% réalisation OKR/roadmap, jalons atteints, écarts"
+                  },
+                  {
+                    "section": "Indicateurs Clés",
+                    "contenu": "Vélocité, qualité, satisfaction client, ROI"
+                  },
+                  {
+                    "section": "Risques & Actions",
+                    "contenu": "Top 3 risques, impact, plans de mitigation"
+                  },
+                  {
+                    "section": "Demandes/Décisions",
+                    "contenu": "Support nécessaire, décisions attendues, escalades"
+                  }
+                ],
+                "principles": [
+                  "Commencer par l'impact business",
+                  "Éviter le jargon technique",
+                  "Quantifier autant que possible",
+                  "Proposer des solutions, pas que des problèmes"
+                ]
+              },
+              {
+                "nom": "Transformation Agile Progress Report",
+                "format": "Dashboard visuel + rapport narratif",
+                "audience": "Direction, HR, Change Management",
+                "contenu": [
+                  "🎯 Objectifs transformation et avancement",
+                  "📊 Métriques adoption agile par équipe",
+                  "📈 ROI mesurable (TTM, satisfaction, productivité)",
+                  "👥 Évolution culture et satisfaction employés",
+                  "🏆 Success stories et témoignages",
+                  "🚧 Résistances identifiées et plan action",
+                  "💰 Budget consommé vs prévisionnel",
+                  "🔮 Prochaines phases et jalons"
+                ],
+                "metriques_cles": [
+                  "% équipes formées agile",
+                  "Adoption pratiques (CI/CD, rétros, etc.)",
+                  "Time-to-market évolution",
+                  "Employee satisfaction index",
+                  "ROI financier calculé"
+                ]
+              }
+            ]
+          },
+          {
+            "type": "Rapports Clients/Utilisateurs",
+            "description": "Communication valeur livrée aux utilisateurs finaux",
+            "frequence": "Par release ou mensuel",
+            "audience": "Clients, utilisateurs finaux, support",
+            "rapports": [
+              {
+                "nom": "Release Notes Orientées Utilisateur",
+                "format": "Article blog ou newsletter",
+                "principe": "Focus bénéfices utilisateur, pas technique",
+                "structure": [
+                  "🎉 Nouveautés majeures avec captures écran",
+                  "⚡ Améliorations performance/UX",
+                  "🐛 Corrections importantes",
+                  "🔜 Aperçu prochaines fonctionnalités",
+                  "📞 Support et documentation"
+                ],
+                "ton": "Accessible, enthousiaste, orienté valeur"
+              },
+              {
+                "nom": "Customer Impact Report",
+                "format": "Infographie + témoignages",
+                "contenu": [
+                  "📈 Métriques d'usage et adoption",
+                  "💬 Témoignages clients positifs",
+                  "📊 ROI client mesuré",
+                  "🏆 Cas d'usage remarquables",
+                  "🔮 Roadmap orientée besoins clients"
+                ]
+              }
+            ]
+          }
+        ],
+        "principes_communication": [
+          {
+            "principe": "Audience First",
+            "detail": "Adapter contenu, format et fréquence selon qui va lire"
+          },
+          {
+            "principe": "Show, Don't Tell",
+            "detail": "Privilégier visuels, graphiques, démos aux longs textes"
+          },
+          {
+            "principe": "Actionable Insights",
+            "detail": "Chaque information doit aider à prendre une décision"
+          },
+          {
+            "principe": "Trend over Snapshot",
+            "detail": "Montrer évolution dans le temps, pas qu'instant T"
+          }
+        ],
+        "outils_recommandes": [
+          {
+            "nom": "Power BI / Tableau",
+            "usage": "Dashboards interactifs pour managers",
+            "avantages": "Mise à jour auto, drill-down, partage facile"
+          },
+          {
+            "nom": "Jira/Azure DevOps native dashboards",
+            "usage": "Rapports équipe techniques",
+            "avantages": "Intégration native, temps réel"
+          },
+          {
+            "nom": "Google Data Studio",
+            "usage": "Dashboards gratuits connectés data",
+            "avantages": "Gratuit, flexible, partage Google"
+          },
+          {
+            "nom": "Notion/Confluence",
+            "usage": "Rapports narratifs collaboratifs",
+            "avantages": "Rédaction collaborative, templates"
+          }
+        ]
+      }
+    },
+    {
+      "id": "retours-experience-terrain",
+      "title": "🏭 Retours d'Expérience Terrain",
+      "description": "Études de cas réels et leçons apprises",
+      "tags": ["REX", "étude-cas", "apprentissage", "échec", "succès"],
+      "icon": "fas fa-lightbulb",
+      "content": "Capitalisation d'expériences terrain avec contexte, actions, résultats et leçons",
+      "sections_detaillees": {
+        "pitch_elevator": "Les REX, c'est comme les recettes de grand-mère : ce qui a marché, raté, et pourquoi. Plus précieux que tous les manuels théoriques du monde !",
+        "citations": [
+          {
+            "texte": "L'expérience est le nom que chacun donne à ses erreurs",
+            "auteur": "Oscar Wilde",
+            "source": "The Picture of Dorian Gray"
+          },
+          {
+            "texte": "Celui qui ne tire pas les leçons de l'histoire est condamné à la répéter",
+            "auteur": "George Santayana",
+            "source": "The Life of Reason"
+          }
+        ],
+        "categories_rex": [
+          {
+            "categorie": "Transformations Agiles",
+            "description": "REX sur accompagnement changement organisationnel",
+            "rex": [
+              {
+                "titre": "Transformation Agile Banque - 500 personnes",
+                "contexte": {
+                  "organisation": "Banque traditionnelle française",
+                  "taille": "500 développeurs, 50 équipes",
+                  "situation_initiale": "Waterfall strict, silos fonctionnels, cycle 18 mois",
+                  "declencheur": "Concurrence fintech, time-to-market trop lent",
+                  "objectifs": "Réduire TTM 50%, améliorer satisfaction client"
+                },
+                "approche": {
+                  "strategie": "Big Bang évité, approche par vagues",
+                  "duree": "24 mois",
+                  "phases": [
+                    "Phase 1: Formation leadership + 5 équipes pilotes (6 mois)",
+                    "Phase 2: Extension 20 équipes + coaching intensif (12 mois)", 
+                    "Phase 3: Généralisation + culture change (6 mois)"
+                  ],
+                  "accompagnement": [
+                    "Formation 100% équipes (Scrum, Kanban, DevOps)",
+                    "Coaching individuel managers (résistance changement)",
+                    "Refonte organisation (feature teams vs composants)",
+                    "Outils & infrastructure (CI/CD, cloud)"
+                  ]
+                },
+                "resultats": {
+                  "quantitatifs": [
+                    "Time-to-market: 18 mois → 6 semaines (-85%)",
+                    "Satisfaction client: 2.1/5 → 4.2/5 (+100%)",
+                    "Employee engagement: 45% → 78% (+73%)",
+                    "Bugs production: -60%",
+                    "ROI transformation: 300% sur 2 ans"
+                  ],
+                  "qualitatifs": [
+                    "Culture collaboration vs compétition",
+                    "Prise d'initiative développeurs",
+                    "Relations client/IT apaisées",
+                    "Innovation bottom-up"
+                  ]
+                },
+                "lecons_apprises": {
+                  "reussites": [
+                    "Leadership sponsoring visible et actif essentiel",
+                    "Formation massive avant pratique = adoption rapide",
+                    "Équipes pilotes comme ambassadeurs très efficace",
+                    "Métriques business (pas que technique) convaincantes"
+                  ],
+                  "echecs_evites": [
+                    "Big Bang initial abandonné après résistances",
+                    "Formation théorique seule inefficace",
+                    "Ignorer middle management = sabotage"
+                  ],
+                  "conseils": [
+                    "Investir 30% budget transformation en conduite changement",
+                    "Commencer par équipes volontaires motivées",
+                    "Communiquer wins rapides toutes les 6 semaines",
+                    "Former managers AVANT équipes"
+                  ]
+                },
+                "facteurs_cles_succes": [
+                  "CEO personnellement impliqué et communicant",
+                  "Budget formation conséquent (500K€)",
+                  "Coaches externes expérimentés secteur bancaire",
+                  "Metrics dashboard temps réel pour management",
+                  "Célébration succès équipes pilotes"
+                ]
+              },
+              {
+                "titre": "Échec Transformation - Startup Scale-up",
+                "contexte": {
+                  "organisation": "Startup SaaS en hyper-croissance",
+                  "taille": "150 personnes → 400 en 18 mois",
+                  "situation_initiale": "Agile informel, culture startup",
+                  "probleme": "Chaos organisationnel, qualité dégradée",
+                  "tentative": "Mise en place Scrum/SAFe rigide"
+                },
+                "approche": {
+                  "erreurs_commises": [
+                    "Imposition SAFe sans consultation équipes",
+                    "Process lourd vs culture légère existante",
+                    "Formation théorique sans accompagnement",
+                    "Pas de prise en compte résistance culturelle"
+                  ],
+                  "duree": "6 mois avant abandon"
+                },
+                "resultats": {
+                  "echec": [
+                    "Rejet massif par équipes techniques",
+                    "Turnover +40% développeurs seniors",
+                    "Productivité chutée -30%",
+                    "Moral équipe au plus bas"
+                  ]
+                },
+                "lecons_apprises": {
+                  "erreurs": [
+                    "One-size-fits-all ne marche jamais",
+                    "Culture organisationnelle ignorée",
+                    "Pas d'écoute des équipes existantes",
+                    "Process trop lourd pour contexte agile"
+                  ],
+                  "corrections": [
+                    "Restart avec approche bottom-up",
+                    "Co-construction avec équipes",
+                    "Adaptation légère (Kanban + daily)",
+                    "Focus outils collaboration vs process"
+                  ],
+                  "nouveau_resultat": "Adoption progressive, moral restauré"
+                }
+              }
+            ]
+          },
+          {
+            "categorie": "Équipes Distribuées",
+            "description": "REX sur agilité à distance et équipes multi-sites",
+            "rex": [
+              {
+                "titre": "Équipe 100% Remote - Success Story",
+                "contexte": {
+                  "organisation": "Scale-up EdTech européenne",
+                  "equipe": "8 développeurs, 5 pays, 4 fuseaux horaires",
+                  "produit": "Plateforme e-learning B2B",
+                  "defis": "Cohésion équipe, communication asynchrone, culture commune"
+                },
+                "solutions_implementees": [
+                  {
+                    "probleme": "Manque cohésion équipe",
+                    "solution": "Rituels fun quotidiens + team building trimestriel présentiel",
+                    "detail": "Virtual coffee 15min/jour, online games hebdo, meetup 3 jours/trimestre"
+                  },
+                  {
+                    "probleme": "Communication asynchrone difficile",
+                    "solution": "Documentation intensive + video messaging",
+                    "detail": "Notion pour tout, Loom pour explications, décisions par écrit"
+                  },
+                  {
+                    "probleme": "Fuseaux horaires contraignants",
+                    "solution": "Core hours 10h-14h + rotations meetings",
+                    "detail": "Daily à 11h CET, autres cérémonies tournantes"
+                  },
+                  {
+                    "probleme": "Onboarding remote difficile",
+                    "solution": "Buddy system + immersion première semaine",
+                    "detail": "1 semaine présentiel obligatoire + buddy 3 mois"
+                  }
+                ],
+                "resultats": {
+                  "satisfaction_equipe": "4.6/5 (vs 3.8/5 équipes présentiel)",
+                  "productivite": "+25% vs baseline pré-remote",
+                  "turnover": "5% annuel (vs 15% marché)",
+                  "innovation": "40% features issues d'initiatives équipe"
+                },
+                "outils_cles": [
+                  "Slack (communication quotidienne)",
+                  "Notion (documentation vivante)",
+                  "Gather (bureau virtuel spatial)",
+                  "Miro (collaboration visuelle)",
+                  "Loom (communication vidéo async)"
+                ]
+              }
+            ]
+          },
+          {
+            "categorie": "Innovations Pratiques",
+            "description": "REX sur expérimentations et innovations terrain",
+            "rex": [
+              {
+                "titre": "Innovation: Sprint Review avec Clients Finaux",
+                "contexte": {
+                  "equipe": "Squad mobile banking, 6 personnes",
+                  "probleme": "Feedback indirect via business analysts",
+                  "idee": "Inviter vrais clients aux Sprint Reviews"
+                },
+                "implementation": [
+                  "Sélection 5 clients ambassadeurs engagés",
+                  "Compensation participation (bon d'achat)",
+                  "Format adapté: 30min max, démo puis Q&A",
+                  "Préparation équipe: pitch commercial vs technique"
+                ],
+                "resultats": {
+                  "positifs": [
+                    "Motivation équipe décuplée",
+                    "Feedback direct ultra-précieux",
+                    "Features adoptées +80%",
+                    "Clients ambassadeurs enthousiastes"
+                  ],
+                  "challenges": [
+                    "Préparation plus longue",
+                    "Stress équipe initial",
+                    "Coordination agenda complexe"
+                  ]
+                },
+                "evolution": "Pratique généralisée autres squads, format optimisé"
+              }
+            ]
+          }
+        ],
+        "template_rex": {
+          "structure": [
+            {
+              "section": "Contexte",
+              "questions": [
+                "Quelle était la situation initiale ?",
+                "Quels étaient les défis/objectifs ?",
+                "Qui étaient les acteurs clés ?"
+              ]
+            },
+            {
+              "section": "Actions",
+              "questions": [
+                "Qu'avez-vous fait concrètement ?",
+                "Quelle a été votre approche ?",
+                "Quels outils/méthodes avez-vous utilisés ?"
+              ]
+            },
+            {
+              "section": "Résultats",
+              "questions": [
+                "Qu'est-ce qui a marché/pas marché ?",
+                "Quels ont été les impacts mesurables ?",
+                "Comment les parties prenantes ont-elles réagi ?"
+              ]
+            },
+            {
+              "section": "Leçons",
+              "questions": [
+                "Que referiez-vous à l'identique ?",
+                "Que changeriez-vous ?",
+                "Quels conseils donneriez-vous ?"
+              ]
+            }
+          ]
+        },
+        "conseils_capitalisation": [
+          {
+            "conseil": "Documenter à chaud",
+            "detail": "Noter REX immédiatement après expérience, mémoire fraîche"
+          },
+          {
+            "conseil": "Inclure les échecs",
+            "detail": "Échecs plus instructifs que succès, créer culture droit erreur"
+          },
+          {
+            "conseil": "Quantifier quand possible",
+            "detail": "Données chiffrées plus convaincantes que ressenti"
+          },
+          {
+            "conseil": "Partager largement",
+            "detail": "REX n'a de valeur que s'il est partagé et réutilisé"
+          }
+        ]
+      }
+    },
+    {
+      "id": "kit-demarrage-mission",
+      "title": "💼 Kit de Démarrage Mission",
+      "description": "Ensemble complet pour démarrer sereinement une mission de coaching",
+      "tags": ["kit", "démarrage", "mission", "coaching", "onboarding"],
+      "icon": "fas fa-briefcase",
+      "content": "Checklist, templates et outils pour les 30 premiers jours de mission",
+      "sections_detaillees": {
+        "pitch_elevator": "Le kit de démarrage, c'est comme la trousse de premiers secours : tout l'essentiel dans un format compact pour démarrer sereinement et éviter les oublis qui coûtent cher !",
+        "contenu_kit": {
+          "phase_preparation": {
+            "nom": "J-15 à J-1: Préparation Mission",
+            "objectif": "Arriver préparé et crédible dès J1",
+            "deliverables": [
+              {
+                "nom": "Diagnostic Express Pré-Mission",
+                "description": "Questionnaire 20 questions pour comprendre contexte",
+                "contenu": [
+                  "🏢 Contexte organisation (taille, secteur, maturité agile)",
+                  "👥 Équipes concernées (nombre, expérience, localisation)",
+                  "🎯 Objectifs mission (explicites et implicites)",
+                  "⚠️ Défis identifiés (résistances, contraintes)",
+                  "📊 Situation actuelle (pratiques, outils, culture)",
+                  "🤝 Stakeholders clés (sponsors, détracteurs, influenceurs)"
+                ],
+                "format": "Entretien 1h avec sponsor + questionnaire équipe"
+              },
+              {
+                "nom": "Proposition Mission Structurée",
+                "description": "Document cadrage mission sur 3-4 pages",
+                "structure": [
+                  "🎯 Compréhension enjeux et objectifs",
+                  "🛣️ Approche et méthodologie proposée",
+                  "📅 Planning et jalons clés",
+                  "📋 Livrables et critères succès",
+                  "💰 Investissement (jours, budget, ressources)",
+                  "🤝 Modalités collaboration",
+                  "⚠️ Hypothèses et prérequis",
+                  "📊 Métriques de suivi"
+                ],
+                "template": "Format exécutif, visuel, orienté valeur"
+              },
+              {
+                "nom": "Kit Matériel & Outils",
+                "description": "Préparation logistique mission",
+                "checklist": [
+                  "💻 Setup outils digitaux (Miro, Trello, Slack comptes)",
+                  "📦 Matériel facilitation (post-its, feutres, chrono)",
+                  "📚 Ressources formation (slides, exercices, serious games)",
+                  "📄 Templates prêts à l'usage (rétro, planning, charter)",
+                  "🎯 Icebreakers adaptés au contexte équipe",
+                  "📊 Questionnaires évaluation (avant/après)"
+                ]
+              }
+            ]
+          },
+          "phase_demarrage": {
+            "nom": "J1 à J7: Première Semaine",
+            "objectif": "Créer confiance et établir diagnostic fin",
+            "deliverables": [
+              {
+                "nom": "Rencontres Individuelles Structurées",
+                "description": "1h avec chaque membre équipe + stakeholders",
+                "guide_entretien": [
+                  "👋 Présentation mutuelle (5 min)",
+                  "🎯 Rôle et responsabilités actuelles (10 min)",
+                  "📊 Perception situation actuelle agile (15 min)",
+                  "😊 Ce qui marche bien / frustrations (15 min)",
+                  "💡 Idées d'amélioration (10 min)",
+                  "🤝 Attentes vis-à-vis coaching (5 min)"
+                ],
+                "notes_template": "Fiche standardisée pour consolidation"
+              },
+              {
+                "nom": "Observation Cérémonies",
+                "description": "Participation observer pour diagnostic factuel",
+                "grille_observation": [
+                  "⏰ Respect timing et régularité",
+                  "👥 Participation et engagement",
+                  "🎯 Focus sur objectifs vs bavardage",
+                  "🛠️ Utilisation outils et supports",
+                  "💬 Qualité interactions et communication",
+                  "🔄 Respect process vs adaptations"
+                ],
+                "output": "Rapport observation avec recommendations"
+              },
+              {
+                "nom": "Diagnostic Maturité Agile 360°",
+                "description": "Évaluation complète équipe sur 5 dimensions",
+                "dimensions": [
+                  {
+                    "nom": "Pratiques Techniques",
+                    "criteres": ["Tests automatisés", "CI/CD", "Code review", "Refactoring"]
+                  },
+                  {
+                    "nom": "Collaboration Équipe", 
+                    "criteres": ["Cérémonies Scrum", "Auto-organisation", "Transparence", "Communication"]
+                  },
+                  {
+                    "nom": "Orientation Client",
+                    "criteres": ["User Stories", "Feedback utilisateur", "Value focus", "Empathie"]
+                  },
+                  {
+                    "nom": "Amélioration Continue",
+                    "criteres": ["Rétrospectives", "Expérimentation", "Apprentissage", "Adaptation"]
+                  },
+                  {
+                    "nom": "Leadership Partagé",
+                    "criteres": ["Prise initiative", "Accountability", "Décision collective", "Coaching mutuel"]
+                  }
+                ],
+                "scoring": "1-5 par critère avec justification",
+                "livrable": "Radar maturité + plan action priorisé"
+              }
+            ]
+          },
+          "phase_plan_action": {
+            "nom": "J8 à J14: Plan d'Action",
+            "objectif": "Co-construire roadmap amélioration avec équipe",
+            "deliverables": [
+              {
+                "nom": "Atelier Vision Équipe",
+                "description": "Demi-journée co-construction vision amélioration",
+                "format": "Atelier facilité 4h avec équipe complète",
+                "agenda": [
+                  "🎯 Icebreaker & contexte (30 min)",
+                  "📊 Présentation diagnostic (45 min)",
+                  "💭 Vision équipe dans 6 mois (60 min)",
+                  "☕ Pause (15 min)",
+                  "🛣️ Roadmap actions prioritaires (90 min)",
+                  "🤝 Engagement et next steps (30 min)"
+                ],
+                "livrables": [
+                  "Vision équipe poster affiché",
+                  "Top 5 actions prioritaires SMART",
+                  "Engagement formel équipe"
+                ]
+              },
+              {
+                "nom": "Roadmap Coaching 3 Mois",
+                "description": "Plan détaillé accompagnement par sprint",
+                "structure": [
+                  {
+                    "periode": "Mois 1: Fondations",
+                    "focus": "Cadrer pratiques de base, créer habitudes",
+                    "actions": [
+                      "Formation Scrum/Kanban équipe",
+                      "Optimisation cérémonies existantes",
+                      "Mise en place métriques de base",
+                      "Coaching individuel blocages majeurs"
+                    ]
+                  },
+                  {
+                    "periode": "Mois 2: Optimisation",
+                    "focus": "Améliorer collaboration et qualité",
+                    "actions": [
+                      "Techniques facilitation avancées",
+                      "Amélioration continue systématique",
+                      "Coaching Product Owner",
+                      "Résolution conflits/résistances"
+                    ]
+                  },
+                  {
+                    "periode": "Mois 3: Autonomisation",
+                    "focus": "Transfert compétences, pérennisation",
+                    "actions": [
+                      "Formation facilitateurs internes",
+                      "Systèmes auto-évaluation équipe", 
+                      "Plan post-mission",
+                      "Bilan et célébration"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "phase_execution": {
+            "nom": "J15 à J90: Exécution Mission",
+            "objectif": "Accompagner transformation avec mesure impact",
+            "outils_suivi": [
+              {
+                "nom": "Dashboard Mission",
+                "description": "Tableau bord temps réel avancement",
+                "metriques": [
+                  "🎯 % objectifs mission atteints",
+                  "📈 Évolution maturité agile (radar)",
+                  "😊 Satisfaction équipe (NPS interne)",
+                  "⚡ Métriques performance (vélocité, qualité)",
+                  "🏆 Actions amélioration réalisées"
+                ],
+                "frequence": "Mise à jour hebdomadaire"
+              },
+              {
+                "nom": "Rapport Mensuel Sponsor",
+                "description": "Communication synthétique pour management",
+                "format": "1 page exécutive + annexes détaillées",
+                "contenu": [
+                  "✅ Réalisations clés du mois",
+                  "📊 Avancement objectifs mission",
+                  "🚧 Défis rencontrés et solutions",
+                  "💡 Insights et apprentissages",
+                  "🔮 Focus mois suivant",
+                  "🤝 Support nécessaire"
+                ]
+              }
+            ]
+          },
+          "phase_cloture": {
+            "nom": "J90+: Clôture et Transfert",
+            "objectif": "Pérenniser acquis et transférer autonomie",
+            "deliverables": [
+              {
+                "nom": "Bilan Mission Complet",
+                "description": "REX mission avec avant/après mesurable",
+                "contenu": [
+                  "🎯 Rappel objectifs et réalisations",
+                  "📊 Métriques avant/après transformation",
+                  "🏆 Succès majeurs et facteurs clés",
+                  "🚧 Défis surmontés et leçons apprises",
+                  "💰 ROI mission (qualité, vélocité, satisfaction)",
+                  "🔮 Recommandations post-mission",
+                  "🤝 Plan maintien acquis"
+                ]
+              },
+              {
+                "nom": "Kit Autonomie Équipe",
+                "description": "Ressources pour continuer sans coach externe",
+                "contenu": [
+                  "📚 Bibliothèque templates personnalisés équipe",
+                  "✅ Checklists pratiques contextualisées",
+                  "👥 Identification facilitateurs internes formés",
+                  "📊 Outils auto-évaluation maturité",
+                  "🆘 Hotline/support ponctuel 6 mois",
+                  "📅 Points étapes trimestriels"
+                ]
+              }
+            ]
+          }
+        },
+        "checklist_materiel": [
+          "💻 Laptop avec outils facilitation installés",
+          "📱 Téléphone avec apps collaboration (Zoom, Slack, etc.)",
+          "🎯 Chronomètre et minuteur visuel",
+          "📝 Post-its couleurs (3 packs minimum)",
+          "🖊️ Feutres épais couleurs (pack 12)",
+          "📐 Grandes feuilles paperboards (rouleau)",
+          "📎 Patafix et scotch",
+          "🎲 Dés et matériel serious games",
+          "📷 Appareil photo pour capitaliser ateliers",
+          "☕ Budget snacks/café pour équipe"
+        ],
+        "budget_type_mission": {
+          "mission_courte": {
+            "duree": "1 mois",
+            "jours": "15-20 jours",
+            "budget": "15-25K€",
+            "livrables": "Diagnostic + quick wins + plan action"
+          },
+          "mission_moyenne": {
+            "duree": "3 mois", 
+            "jours": "40-60 jours",
+            "budget": "40-70K€",
+            "livrables": "Transformation complète 1 équipe"
+          },
+          "mission_longue": {
+            "duree": "6-12 mois",
+            "jours": "80-150 jours",
+            "budget": "80-200K€",
+            "livrables": "Transformation multi-équipes + culture"
+          }
+        },
+        "anti_patterns_demarrage": [
+          {
+            "probleme": "Arriver sans préparation, improviser",
+            "consequence": "Perte crédibilité, démarrage chaotique",
+            "solution": "Kit préparation systématique J-15"
+          },
+          {
+            "probleme": "Commencer par former avant diagnostiquer",
+            "consequence": "Formation inadaptée, résistance équipe",
+            "solution": "Toujours diagnostic avant action"
+          },
+          {
+            "probleme": "Promettre résultats irréalistes",
+            "consequence": "Déception, échec mission",
+            "solution": "Objectifs SMART et timeline réaliste"
+          }
+        ]
+      }
+    }
+  ]
+}

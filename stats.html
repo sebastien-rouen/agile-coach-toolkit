@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📊 Stats - Coach Agile Toolkit</title>
+    
+    <!-- Styles inline pour éviter les dépendances -->
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            min-height: 100vh;
+        }
+        
+        .container {
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: white;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .stat-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .stat-card h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .stat-list {
+            list-style: none;
+        }
+        
+        .stat-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .chart-container {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-top: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .refresh-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .refresh-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 3rem;
+            color: white;
+        }
+        
+        .error {
+            background: #ff6b6b;
+            color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+        
+        @media (max-width: 768px) {
+            .container { padding: 1rem; }
+            .stats-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <button class="refresh-btn" onclick="loadStats()" title="Actualiser">🔄</button>
+    
+    <div class="container">
+        <div class="header">
+            <h1>📊 Statistiques Coach Agile Toolkit</h1>
+            <p>Analyse d'usage et métriques en temps réel</p>
+        </div>
+        
+        <div id="loading" class="loading">
+            <h2>⏳ Chargement des statistiques...</h2>
+        </div>
+        
+        <div id="error" class="error" style="display: none;"></div>
+        
+        <div id="stats-content" style="display: none;">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>👥 Visiteurs</h3>
+                    <div class="stat-number" id="total-visits">-</div>
+                    <p>Total des visites</p>
+                </div>
+                
+                <div class="stat-card">
+                    <h3>🔧 Outils utilisés</h3>
+                    <div class="stat-number" id="tools-used">-</div>
+                    <p>Outils différents consultés</p>
+                </div>
+                
+                <div class="stat-card">
+                    <h3>🎯 Sessions uniques</h3>
+                    <div class="stat-number" id="unique-sessions">-</div>
+                    <p>Sessions utilisateur</p>
+                </div>
+                
+                <div class="stat-card">
+                    <h3>⏱️ Dernière visite</h3>
+                    <div class="stat-number" id="last-visit">-</div>
+                    <p>Dernière activité</p>
+                </div>
+            </div>
+            
+            <!-- Nouvelles métriques de performance -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>⚡ Temps de chargement</h3>
+                    <div class="stat-number" id="load-time">-</div>
+                    <p>Temps moyen (ms)</p>
+                </div>
+                
+                <div class="stat-card">
+                    <h3>🎨 First Contentful Paint</h3>
+                    <div class="stat-number" id="fcp">-</div>
+                    <p>FCP moyen (ms)</p>
+                </div>
+                
+                <div class="stat-card">
+                    <h3>🖼️ Largest Contentful Paint</h3>
+                    <div class="stat-number" id="lcp">-</div>
+                    <p>LCP moyen (ms)</p>
+                </div>
+                
+                <div class="stat-card">
+                    <h3>📐 Cumulative Layout Shift</h3>
+                    <div class="stat-number" id="cls">-</div>
+                    <p>CLS moyen</p>
+                </div>
+            </div>
+            
+            <!-- Indicateurs d'erreurs et qualité -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>🚨 Erreurs détectées</h3>
+                    <div class="stat-number" id="error-count">-</div>
+                    <p>Erreurs JavaScript</p>
+                </div>
+                
+                <div class="stat-card">
+                    <h3>🔒 Respect vie privée</h3>
+                    <div class="stat-number">✅</div>
+                    <p>Analytics local uniquement</p>
+                </div>
+                
+                <div class="stat-card">
+                    <h3>📊 Données stockées</h3>
+                    <div class="stat-number" id="data-size">-</div>
+                    <p>Entrées en localStorage</p>
+                </div>
+                
+                <div class="stat-card">
+                    <h3>🔄 Dernière MAJ</h3>
+                    <div class="stat-number" id="last-update">-</div>
+                    <p>Mise à jour données</p>
+                </div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>🔝 Pages populaires</h3>
+                    <ul class="stat-list" id="popular-pages"></ul>
+                </div>
+                
+                <div class="stat-card">
+                    <h3>🛠️ Outils favoris</h3>
+                    <ul class="stat-list" id="popular-tools"></ul>
+                </div>
+            </div>
+            
+            <div class="chart-container">
+                <h3>📈 Évolution sur les 7 derniers jours</h3>
+                <canvas id="usage-chart" width="800" height="300"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 🚀 Script de stats by DevBast
+        
+        let statsData = {};
+        
+        async function loadStats() {
+            try {
+                document.getElementById('loading').style.display = 'block';
+                document.getElementById('error').style.display = 'none';
+                document.getElementById('stats-content').style.display = 'none';
+                
+                // Chargement des données depuis le fichier généré
+                const response = await fetch('/logs/usage-stats.json');
+                if (!response.ok) throw new Error('Erreur de chargement');
+                
+                statsData = await response.json();
+                displayStats();
+                
+            } catch (error) {
+                console.error('Erreur:', error);
+                document.getElementById('error').textContent = `❌ ${error.message}`;
+                document.getElementById('error').style.display = 'block';
+            } finally {
+                document.getElementById('loading').style.display = 'none';
+            }
+        }
+        
+        function displayStats() {
+            // Affichage des métriques principales
+            document.getElementById('total-visits').textContent = statsData.totalVisits || 0;
+            document.getElementById('tools-used').textContent = (statsData.tools?.length || 0);
+            document.getElementById('unique-sessions').textContent = statsData.uniqueSessions || 0;
+            document.getElementById('last-visit').textContent = formatDate(statsData.lastVisit);
+            
+            // Nouvelles métriques de performance
+            if (statsData.performance) {
+                const perf = statsData.performance;
+                document.getElementById('load-time').textContent = perf.loadTime ? `${perf.loadTime}ms` : 'N/A';
+                document.getElementById('fcp').textContent = perf.FCP ? `${perf.FCP}ms` : 'N/A';
+                document.getElementById('lcp').textContent = perf.LCP ? `${perf.LCP}ms` : 'N/A';
+                document.getElementById('cls').textContent = perf.CLS !== null ? perf.CLS.toFixed(3) : 'N/A';
+                
+                // Coloration selon les seuils Core Web Vitals
+                colorizePerformanceMetric('load-time', perf.loadTime, 1500, 3000);
+                colorizePerformanceMetric('fcp', perf.FCP, 1800, 3000);
+                colorizePerformanceMetric('lcp', perf.LCP, 2500, 4000);
+                colorizePerformanceMetric('cls', perf.CLS, 0.1, 0.25);
+            } else {
+                ['load-time', 'fcp', 'lcp', 'cls'].forEach(id => {
+                    document.getElementById(id).textContent = 'N/A';
+                });
+            }
+            
+            // Métriques d'erreurs et qualité
+            document.getElementById('error-count').textContent = statsData.errors || 0;
+            document.getElementById('last-update').textContent = formatDate(statsData.generatedAt);
+            
+            // Taille des données stockées (simulation)
+            const dataSize = getLocalStorageSize();
+            document.getElementById('data-size').textContent = dataSize;
+            
+            // Pages populaires
+            const pagesHtml = (statsData.pages || [])
+                .slice(0, 5)
+                .map(page => `<li><span>${page.page}</span><strong>${page.count}</strong></li>`)
+                .join('');
+            document.getElementById('popular-pages').innerHTML = pagesHtml;
+            
+            // Outils favoris
+            const toolsHtml = (statsData.tools || [])
+                .slice(0, 5)
+                .map(tool => `<li><span>${tool.tool}</span><strong>${tool.count}</strong></li>`)
+                .join('');
+            document.getElementById('popular-tools').innerHTML = toolsHtml;
+            
+            // Graphique simple (ASCII art ou Canvas simple)
+            drawSimpleChart();
+            
+            document.getElementById('stats-content').style.display = 'block';
+        }
+        
+        function colorizePerformanceMetric(elementId, value, goodThreshold, poorThreshold) {
+            const element = document.getElementById(elementId);
+            if (!element || value === null || value === undefined) return;
+            
+            element.style.color = '#333'; // Reset
+            
+            if (value <= goodThreshold) {
+                element.style.color = '#22c55e'; // Vert
+            } else if (value <= poorThreshold) {
+                element.style.color = '#f59e0b'; // Orange
+            } else {
+                element.style.color = '#ef4444'; // Rouge
+            }
+        }
+        
+        function getLocalStorageSize() {
+            try {
+                const analyticsData = localStorage.getItem('agile_toolkit_analytics');
+                const sessionReports = localStorage.getItem('session_reports');
+                
+                let totalEntries = 0;
+                if (analyticsData) totalEntries += JSON.parse(analyticsData).length;
+                if (sessionReports) totalEntries += JSON.parse(sessionReports).length;
+                
+                return totalEntries > 0 ? `${totalEntries}` : '0';
+            } catch (e) {
+                return 'N/A';
+            }
+        }
+        
+        function drawSimpleChart() {
+            const canvas = document.getElementById('usage-chart');
+            if (!canvas.getContext) return;
+            
+            const ctx = canvas.getContext('2d');
+            const data = statsData.dailyVisits || [];
+            
+            // Graphique basique en barres
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#667eea';
+            
+            const barWidth = canvas.width / data.length;
+            const maxValue = Math.max(...data.map(d => d.visits), 1);
+            
+            data.forEach((day, index) => {
+                const height = (day.visits / maxValue) * (canvas.height - 50);
+                const x = index * barWidth;
+                const y = canvas.height - height - 30;
+                
+                ctx.fillRect(x + 10, y, barWidth - 20, height);
+                
+                // Labels
+                ctx.fillStyle = '#333';
+                ctx.font = '12px Arial';
+                ctx.textAlign = 'center';
+                ctx.fillText(day.date, x + barWidth/2, canvas.height - 10);
+                ctx.fillText(day.visits, x + barWidth/2, y - 5);
+                
+                ctx.fillStyle = '#667eea';
+            });
+        }
+        
+        function formatDate(dateString) {
+            if (!dateString) return 'N/A';
+            const date = new Date(dateString);
+            return date.toLocaleDateString('fr-FR', { 
+                day: '2-digit', 
+                month: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+        }
+        
+        // Auto-refresh toutes les 5 minutes
+        setInterval(loadStats, 5 * 60 * 1000);
+        
+        // Chargement initial
+        loadStats();
+    </script>
+</body>
+</html>

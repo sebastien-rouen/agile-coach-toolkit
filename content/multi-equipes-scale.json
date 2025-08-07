@@ -1,0 +1,132 @@
+{
+  "section": {
+    "id": "multi-equipes-scale",
+    "title": "Multi-équipes & Scale",
+    "description": "Coordination et scaling agile",
+    "icon": "fas fa-building",
+    "color": "#607D8B"
+  },
+  "items": [
+    {
+      "id": "scaling-agile",
+      "title": "🏗️ Scaling Agile",
+      "description": "Frameworks et pratiques pour la mise à l'échelle",
+      "tags": ["scaling", "SAFe", "LeSS", "coordination"],
+      "icon": "fas fa-expand-arrows-alt",
+      "content": "Stratégies de scaling selon la taille organisation",
+      "sections_detaillees": {
+        "pitch_elevator": "Scaler l'agile, c'est comme agrandir une recette : on ne multiplie pas juste par 10, il faut adapter technique, temps de cuisson, matériel !",
+        "tableau_comparaison": {
+          "criteres": ["Taille", "Complexité", "Prescription", "Temps mise en place"],
+          "options": [
+            {"nom": "Scrum of Scrums", "taille": "2-4 équipes", "complexite": "Faible", "prescription": "Minimale", "temps": "1 mois"},
+            {"nom": "LeSS", "taille": "2-8 équipes", "complexite": "Moyenne", "prescription": "Modérée", "temps": "3-6 mois"},
+            {"nom": "SAFe", "taille": "50-1000+", "complexite": "Élevée", "prescription": "Forte", "temps": "12-24 mois"},
+            {"nom": "Spotify Model", "taille": "Variable", "complexite": "Moyenne", "prescription": "Adaptable", "temps": "6-12 mois"}
+          ]
+        },
+        "anti_patterns": [
+          {
+            "probleme": "Choisir framework avant de comprendre le besoin",
+            "consequence": "Over-engineering, résistance",
+            "solution": "Diagnostic contexte, puis adaptation framework"
+          }
+        ]
+      }
+    },
+    {
+      "id": "coordination-equipes",
+      "title": "🤝 Coordination d'Équipes",
+      "description": "Synchronisation et collaboration inter-équipes",
+      "tags": ["coordination", "synchronisation", "dépendances", "communication"],
+      "icon": "fas fa-handshake",
+      "content": "Pratiques pour fluidifier les interactions entre équipes",
+      "sections_detaillees": {
+        "pitch_elevator": "Coordonner les équipes, c'est comme conduire un convoi : même direction, vitesse adaptée, communication radio constante !",
+        "calendrier": {
+          "duree": "Rythme de synchronisation",
+          "etapes": ["Scrum of Scrums quotidien", "Sprint Review commune", "Retrospective des rétros", "Planification partagée"]
+        },
+        "exemples_pratiques": [
+          {
+            "contexte": "3 équipes dépendantes, livraisons désynchronisées",
+            "solution": "Sprint sync, Definition of Done commune, démo intégrée",
+            "resultat": "Livraisons cohérentes, moins de bugs d'intégration"
+          }
+        ],
+        "outils_recommandes": [
+          {
+            "nom": "Dependency Board",
+            "usage": "Visualiser et gérer les dépendances",
+            "lien": "Tableau Kanban des dépendances"
+          }
+        ]
+      }
+    },
+    {
+      "id": "culture-organisationnelle",
+      "title": "🌱 Culture Organisationnelle",
+      "description": "Développer une culture agile à grande échelle",
+      "tags": ["culture", "valeurs", "mindset", "changement"],
+      "icon": "fas fa-seedling",
+      "content": "Transformation culturelle pour soutenir l'agilité",
+      "sections_detaillees": {
+        "pitch_elevator": "Changer la culture, c'est comme planter une forêt : ça commence par quelques graines (early adopters), puis ça se propage naturellement !",
+        "citations": [
+          {
+            "texte": "Culture eats strategy for breakfast",
+            "auteur": "Peter Drucker",
+            "source": "Management guru"
+          }
+        ],
+        "metriques": [
+          {
+            "nom": "Culture Index",
+            "formule": "Enquête trimestrielle sur valeurs agiles",
+            "cible": "Progression constante sur 2 ans"
+          }
+        ]
+      }
+    },
+    {
+      "id": "change-management",
+      "title": "🔄 Change Management",
+      "description": "Conduite du changement à grande échelle",
+      "tags": ["changement", "transformation", "accompagnement", "adoption"],
+      "icon": "fas fa-route",
+      "content": "Stratégies de conduite du changement agile",
+      "sections_detaillees": {
+        "pitch_elevator": "Le change management, c'est comme déménager : préparation minutieuse, communiquer sur le pourquoi, accompagner pendant, célébrer l'arrivée !",
+        "calendrier": {
+          "duree": "18-24 mois pour transformation complète",
+          "etapes": ["Diagnostic", "Vision & stratégie", "Pilotes", "Déploiement", "Ancrage"]
+        },
+        "templates": [
+          {
+            "nom": "Change Canvas",
+            "description": "Vue d'ensemble de la transformation",
+            "format": "Canvas A1"
+          }
+        ]
+      }
+    },
+    {
+      "id": "structure-organisationnelle",
+      "title": "🏢 Structure Organisationnelle",
+      "description": "Adapter l'organisation pour supporter l'agilité",
+      "tags": ["organisation", "structure", "équipes", "hiérarchie"],
+      "icon": "fas fa-sitemap",
+      "content": "Évolution des structures organisationnelles",
+      "sections_detaillees": {
+        "pitch_elevator": "Réorganiser, c'est comme refaire son salon : il faut que ce soit beau ET fonctionnel, adapté à la vie de famille !",
+        "anti_patterns": [
+          {
+            "probleme": "Garde l'ancienne hiérarchie avec nouvelle méthode",
+            "consequence": "Schizophrénie organisationnelle",
+            "solution": "Aligner structure sur nouveau mode de fonctionnement"
+          }
+        ]
+      }
+    }
+  ]
+}

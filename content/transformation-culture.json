@@ -1,0 +1,139 @@
+{
+  "section": {
+    "id": "transformation-culture",
+    "title": "Transformation & Culture",
+    "description": "Conduite du changement organisationnel",
+    "icon": "fas fa-seedling",
+    "color": "#8BC34A"
+  },
+  "items": [
+    {
+      "id": "conduite-changement",
+      "title": "🔄 Conduite du Changement",
+      "description": "Méthodologie de transformation agile",
+      "tags": ["changement", "transformation", "kotter", "accompagnement"],
+      "icon": "fas fa-sync-alt",
+      "content": "Approche structurée pour transformation agile",
+      "sections_detaillees": {
+        "pitch_elevator": "Conduire le changement, c'est comme faire du jardinage : préparer le terrain, planter au bon moment, arroser régulièrement, patience pour voir pousser !",
+        "calendrier": {
+          "duree": "12-24 mois selon taille organisation",
+          "etapes": ["Urgence & coalition", "Vision & stratégie", "Communication", "Action & quick wins", "Consolidation", "Ancrage"]
+        },
+        "citations": [
+          {
+            "texte": "Le changement est la seule constante dans la vie",
+            "auteur": "Héraclite",
+            "source": "Philosophe grec"
+          }
+        ],
+        "anti_patterns": [
+          {
+            "probleme": "Big Bang transformation sans préparation",
+            "consequence": "Résistance massive, échec",
+            "solution": "Approche progressive, pilotes, apprentissage"
+          }
+        ]
+      }
+    },
+    {
+      "id": "transformation-roadmap",
+      "title": "🎯 Transformation Roadmap",
+      "description": "Planification de la transformation agile",
+      "tags": ["roadmap", "planification", "étapes", "jalons"],
+      "icon": "fas fa-map-marked-alt",
+      "content": "Feuille de route de transformation",
+      "sections_detaillees": {
+        "pitch_elevator": "La roadmap de transformation, c'est comme rénover une maison : par étapes, une pièce à la fois, en gardant l'habitable !",
+        "templates": [
+          {
+            "nom": "Transformation Canvas",
+            "description": "Vue d'ensemble transformation sur une page",
+            "format": "Canvas A1"
+          },
+          {
+            "nom": "Wave Planning",
+            "description": "Déploiement par vagues successives",
+            "format": "Timeline"
+          }
+        ],
+        "metriques": [
+          {
+            "nom": "Transformation Health",
+            "formule": "Score agrégé sur KPIs clés",
+            "cible": "Amélioration continue trimestre"
+          }
+        ]
+      }
+    },
+    {
+      "id": "roi-transformation",
+      "title": "📈 ROI de la Transformation",
+      "description": "Mesurer et démontrer la valeur de l'agilité",
+      "tags": ["ROI", "valeur", "métriques", "business-case"],
+      "icon": "fas fa-chart-bar",
+      "content": "Calcul et suivi du retour sur investissement",
+      "sections_detaillees": {
+        "pitch_elevator": "Mesurer le ROI agile, c'est comme peser l'impact d'un régime : certains effets se voient vite (énergie), d'autres prennent du temps (santé long terme) !",
+        "metriques": [
+          {
+            "nom": "Time to Market",
+            "formule": "Temps idée → production",
+            "cible": "Réduction 30-50%"
+          },
+          {
+            "nom": "Employee Satisfaction",
+            "formule": "Enquête trimestrielle engagement",
+            "cible": "Score > 4/5"
+          },
+          {
+            "nom": "Customer Satisfaction",
+            "formule": "NPS ou CSAT",
+            "cible": "Amélioration continue"
+          }
+        ]
+      }
+    },
+    {
+      "id": "culture-entreprise",
+      "title": "🌱 Culture d'Entreprise",
+      "description": "Développer une culture agile durable",
+      "tags": ["culture", "valeurs", "comportements", "mindset"],
+      "icon": "fas fa-heart",
+      "content": "Transformation culturelle profonde",
+      "sections_detaillees": {
+        "pitch_elevator": "Changer la culture, c'est comme apprendre une nouvelle langue : immersion, pratique quotidienne, patience... et un jour c'est naturel !",
+        "techniques": [
+          {
+            "nom": "Culture Hacking",
+            "description": "Petites expériences pour faire évoluer",
+            "exemple": "Lunch & Learn, Success Stories"
+          },
+          {
+            "nom": "Leadership by Example",
+            "description": "Dirigeants incarnent le changement",
+            "exemple": "Manager participant aux Daily"
+          }
+        ]
+      }
+    },
+    {
+      "id": "design-organisationnel",
+      "title": "🏢 Design Organisationnel",
+      "description": "Repenser la structure pour l'agilité",
+      "tags": ["organisation", "structure", "équipes", "gouvernance"],
+      "icon": "fas fa-project-diagram",
+      "content": "Évolution des structures organisationnelles",
+      "sections_detaillees": {
+        "pitch_elevator": "Designer l'organisation, c'est comme architecturer une maison : fonctionnel ET beau, adapté aux habitants ET évolutif !",
+        "exemples_pratiques": [
+          {
+            "contexte": "Silos fonctionnels, pas de transverse",
+            "solution": "Feature teams cross-fonctionnelles",
+            "resultat": "Autonomie équipes, livraison end-to-end"
+          }
+        ]
+      }
+    }
+  ]
+}

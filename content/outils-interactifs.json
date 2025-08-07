@@ -1,0 +1,217 @@
+{
+  "section": {
+    "id": "outils-technologies",
+    "title": "Outils & Technologies",
+    "description": "Applications et outils digitaux pour l'agilité",
+    "icon": "fas fa-tools",
+    "color": "#9E9E9E"
+  },
+  "items": [
+    {
+      "id": "velocity-calculator",
+      "title": "📊 Calculateur de Vélocité",
+      "description": "Calcule et analyse la vélocité de ton équipe",
+      "tags": ["vélocité", "métriques", "scrum", "calculateur"],
+      "icon": "fas fa-calculator",
+      "tool_type": "interactive",
+      "tool_path": "tools/velocity-tool/",
+      "content": "Outil interactif pour calculer la vélocité d'équipe",
+      "sections_detaillees": {
+        "pitch_elevator": "La vélocité, c'est comme le compteur de ta voiture : ça te dit à quelle vitesse tu avances pour mieux planifier ton voyage !",
+        "fonctionnalites": [
+          "Calcul automatique vélocité moyenne",
+          "Graphiques d'évolution sur plusieurs sprints", 
+          "Prédictions pour les sprints suivants",
+          "Export des données en CSV"
+        ],
+        "exemples_pratiques": [
+          {
+            "contexte": "Équipe instable, vélocité fluctuante",
+            "solution": "Suivre tendance sur 6 sprints minimum",
+            "resultat": "Prédictions plus fiables, meilleure planification"
+          }
+        ]
+      }
+    },
+    {
+        "id": "example-mapping-tool",
+        "title": "🗺️ Example Mapping",
+        "description": "Outil interactif pour créer des Example Maps collaboratives",
+        "tags": ["example mapping", "BDD", "user stories", "collaboration", "atelier"],
+        "icon": "fas fa-map",
+        "tool_type": "interactive",
+        "tool_path": "tools/example-mapping-tool/",
+        "content": "Outil interactif pour faciliter les ateliers d'Example Mapping",
+        "sections_detaillees": {
+          "pitch_elevator": "L'Example Mapping, c'est comme faire un puzzle en équipe : chaque pièce (exemple) aide à voir l'image complète de la fonctionnalité !",
+          "fonctionnalites": [
+            "Interface glisser-déposer pour les cartes",
+            "Couleurs par type (Story/Règle/Exemple/Question)",
+            "Export en PDF ou image",
+            "Mode collaboration temps réel"
+          ],
+          "exemples_pratiques": [
+            {
+              "contexte": "User story complexe mal comprise par l'équipe",
+              "solution": "Atelier Example Mapping de 25min avec toute l'équipe",
+              "resultat": "Clarification complète, questions identifiées, story affinée"
+            }
+          ],
+          "citations": [
+            {
+              "texte": "Si vous ne pouvez pas donner d'exemples, vous ne comprenez pas la story",
+              "auteur": "Matt Wynne"
+            }
+          ]
+      }
+    },
+    {
+      "id": "outils-collaboration",
+      "title": "🛠️ Outils de Collaboration",
+      "description": "Plateformes pour collaboration d'équipe",
+      "tags": ["collaboration", "communication", "remote", "partage"],
+      "icon": "fas fa-users-cog",
+      "content": "Sélection d'outils pour fluidifier la collaboration",
+      "sections_detaillees": {
+        "pitch_elevator": "Les outils de collaboration, c'est comme avoir un bureau virtuel : chacun a son espace, on se retrouve facilement, tout est à portée de clic !",
+        "tableau_comparaison": {
+          "criteres": ["Usage", "Taille équipe", "Prix", "Facilité"],
+          "options": [
+            {"nom": "Slack", "usage": "Communication", "taille": "Toutes", "prix": "Freemium", "facilite": "Facile"},
+            {"nom": "Microsoft Teams", "usage": "Collaboration complète", "taille": "Moyennes/Grandes", "prix": "Abonnement", "facilite": "Moyenne"},
+            {"nom": "Discord", "usage": "Communication vocale", "taille": "Petites", "prix": "Gratuit", "facilite": "Facile"},
+            {"nom": "Zoom", "usage": "Visioconférence", "taille": "Toutes", "prix": "Freemium", "facilite": "Très facile"}
+          ]
+        },
+        "exemples_pratiques": [
+          {
+            "contexte": "Équipe 100% remote, besoin convivialité",
+            "solution": "Slack + chaînes fun + café virtuel quotidien",
+            "resultat": "Cohésion équipe maintenue, communication fluide"
+          }
+        ],
+        "outils_recommandes": [
+          {
+            "nom": "Slack",
+            "usage": "Communication équipe asynchrone",
+            "lien": "https://slack.com"
+          },
+          {
+            "nom": "Notion",
+            "usage": "Documentation collaborative",
+            "lien": "https://notion.so"
+          }
+        ]
+      }
+    },
+    {
+      "id": "applications-agiles",
+      "title": "📱 Applications Agiles",
+      "description": "Apps spécialement conçues pour l'agilité",
+      "tags": ["apps", "scrum", "kanban", "gestion", "mobile"],
+      "icon": "fas fa-mobile-alt",
+      "content": "Applications dédiées aux pratiques agiles",
+      "sections_detaillees": {
+        "pitch_elevator": "Les apps agiles, c'est comme avoir un coach dans la poche : rappels, conseils, tableaux de bord... l'agilité partout !",
+        "tableau_comparaison": {
+          "criteres": ["Focus", "Complexité", "Intégrations", "Mobile"],
+          "options": [
+            {"nom": "Jira", "focus": "Gestion complète", "complexite": "Élevée", "integrations": "Nombreuses", "mobile": "Bonne"},
+            {"nom": "Trello", "focus": "Kanban simple", "complexite": "Faible", "integrations": "Moyennes", "mobile": "Excellente"},
+            {"nom": "Azure DevOps", "focus": "Dev + Ops", "complexite": "Élevée", "integrations": "Microsoft", "mobile": "Moyenne"},
+            {"nom": "Linear", "focus": "Issue tracking", "complexite": "Moyenne", "integrations": "Sélectives", "mobile": "Excellente"}
+          ]
+        },
+        "anti_patterns": [
+          {
+            "probleme": "Outil trop complexe pour le besoin",
+            "consequence": "Adoption difficile, overhead administratif",
+            "solution": "Commencer simple, évoluer selon maturité"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ia-automatisation",
+      "title": "🤖 IA & Automatisation",
+      "description": "Intelligence artificielle au service de l'agilité",
+      "tags": ["IA", "automatisation", "productivité", "innovation"],
+      "icon": "fas fa-robot",
+      "content": "Exploiter l'IA pour améliorer les pratiques agiles",
+      "sections_detaillees": {
+        "pitch_elevator": "L'IA en agile, c'est comme avoir un assistant super-intelligent : il fait les tâches répétitives pendant que tu te concentres sur la créativité !",
+        "exemples_pratiques": [
+          {
+            "contexte": "Rédaction user stories chronophage",
+            "solution": "Prompt ChatGPT pour générer template + critères acceptation",
+            "resultat": "Gain 60% temps, qualité homogène"
+          },
+          {
+            "contexte": "Analyse sentiment dans rétrospectives",
+            "solution": "IA analyse commentaires pour identifier patterns",
+            "resultat": "Insights objectifs, tendances détectées"
+          }
+        ],
+        "outils_recommandes": [
+          {
+            "nom": "ChatGPT",
+            "usage": "Génération contenu, brainstorming",
+            "lien": "https://chat.openai.com"
+          },
+          {
+            "nom": "Notion AI",
+            "usage": "Rédaction et organisation documentation",
+            "lien": "https://notion.so/ai"
+          },
+          {
+            "nom": "Zapier",
+            "usage": "Automatisation workflows",
+            "lien": "https://zapier.com"
+          }
+        ]
+      }
+    },
+    {
+      "id": "analytics-dashboards",
+      "title": "📊 Analytics & Dashboards",
+      "description": "Tableaux de bord et analytics pour équipes agiles",
+      "tags": ["analytics", "dashboard", "métriques", "visualisation"],
+      "icon": "fas fa-chart-pie",
+      "content": "Outils de mesure et visualisation des performances",
+      "sections_detaillees": {
+        "pitch_elevator": "Les dashboards agiles, c'est comme le tableau de bord de ta voiture : info essentielle d'un coup d'œil pour piloter efficacement !",
+        "metriques": [
+          {
+            "nom": "Burndown Chart",
+            "formule": "Travail restant vs temps",
+            "outil": "Jira, Azure DevOps"
+          },
+          {
+            "nom": "Cumulative Flow",
+            "formule": "Flux travail par statut",
+            "outil": "Kanban boards"
+          },
+          {
+            "nom": "Velocity Trend",
+            "formule": "Évolution vélocité équipe",
+            "outil": "Scrum tools"
+          }
+        ],
+        "templates": [
+          {
+            "nom": "Team Dashboard",
+            "description": "Métriques équipe sur une page",
+            "format": "Dashboard temps réel"
+          }
+        ],
+        "anti_patterns": [
+          {
+            "probleme": "Trop de métriques, paralysie analyse",
+            "consequence": "Focus perdu, micro-management",
+            "solution": "3-5 métriques clés maximum"
+          }
+        ]
+      }
+    }
+  ]
+}

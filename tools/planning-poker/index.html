@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎲 Planning Poker - Estimation Agile</title>
+    <meta name="description" content="Outil d'estimation collaborative avec cartes Fibonacci pour équipes Agile">
+    
+    <!-- PWA Integration -->
+    <meta name="theme-color" content="#3b82f6">
+    <link rel="manifest" href="../../manifest.json">
+    <link rel="icon" href="../../assets/icons/favicon.ico">
+    
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="enhanced-styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Room Creation Screen -->
+        <div class="room-creation" id="roomCreation" style="display: none;">
+            <h2>🎲 Créer une session Planning Poker</h2>
+            <p>Créez une nouvelle session d'estimation collaborative pour votre équipe Agile</p>
+            
+            <form class="room-form" id="roomForm">
+                <div class="form-group">
+                    <label for="facilitatorName">Votre nom (Facilitateur) :</label>
+                    <input type="text" 
+                           id="facilitatorName" 
+                           placeholder="Ex: Marie Dupont"
+                           required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="sessionName">Nom de la session (optionnel) :</label>
+                    <input type="text" 
+                           id="sessionName" 
+                           placeholder="Ex: Sprint 12 - Estimation stories">
+                </div>
+                
+                <button type="submit" class="btn btn-primary">
+                    🚀 Créer la session
+                </button>
+            </form>
+        </div>
+
+        <!-- Main Session Interface -->
+        <div id="sessionInterface" style="display: none;">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-content">
+                    <h1>🎲 Planning Poker</h1>
+                    <p class="subtitle">Estimation collaborative pour équipes Agile</p>
+                    <div class="session-id-display">
+                        <span id="sessionId">Session: PP-2024-001</span>
+                    </div>
+                </div>
+            </header>
+
+        <!-- Toolbar -->
+        <div class="toolbar">
+            <button class="btn btn-primary" onclick="poker.newStory()">
+                📝 Nouvelle Story
+            </button>
+            <button class="btn btn-secondary" onclick="poker.resetVotes()">
+                🔄 Reset
+            </button>
+            <button class="btn btn-success" onclick="poker.revealVotes()" id="revealBtn" disabled>
+                👁️ Révéler
+            </button>
+            
+            <div class="toolbar-divider"></div>
+            
+            <select id="cardSet" class="card-set-selector" onchange="poker.changeCardSet(this.value)">
+                <option value="fibonacci">🔢 Fibonacci</option>
+                <option value="tshirt">👕 T-Shirt</option>
+                <option value="hours">⏰ Heures</option>
+                <option value="power2">⚡ Puissance 2</option>
+            </select>
+            
+            <div class="toolbar-divider"></div>
+            
+            <button class="btn btn-outline" onclick="poker.exportResults()">
+                💾 Export
+            </button>
+            <button class="btn btn-info" onclick="poker.showStats()">
+                📊 Stats
+            </button>
+            <button class="btn btn-outline" onclick="poker.showShareModal()" title="Partager la session">
+                🔗 Partager
+            </button>
+            <button class="btn btn-outline" onclick="poker.showHelp()">
+                ❓ Aide
+            </button>
+        </div>
+
+        <!-- Current Story -->
+        <div class="story-panel" id="currentStory">
+            <div class="story-header">
+                <div class="story-content">
+                    <h3 class="story-title" id="storyTitle">
+                        Cliquez sur "Nouvelle Story" pour commencer
+                    </h3>
+                    <p class="story-description" id="storyDescription">
+                        Ajoutez une User Story à estimer par l'équipe
+                    </p>
+                    <div class="story-meta">
+                        <div class="story-meta-item">
+                            <span class="story-meta-label">Epic:</span>
+                            <span class="story-meta-value" id="storyEpic">Non définie</span>
+                        </div>
+                        <div class="story-meta-item">
+                            <span class="story-meta-label">Priorité:</span>
+                            <span class="story-meta-value" id="storyPriority">Non définie</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="story-actions">
+                    <button class="btn-icon" onclick="poker.editStory()" title="Éditer">✏️</button>
+                    <button class="btn-icon" onclick="poker.copyStory()" title="Copier">📋</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Interaction Grid -->
+        <div class="main-interaction-grid">
+            <!-- Voting Cards -->
+            <div class="voting-section">
+                <h4 class="voting-title">🎯 Sélectionnez votre estimation</h4>
+                <div class="cards-container" id="cardsContainer">
+                    <!-- Cards generated dynamically -->
+                </div>
+                
+                <div class="voting-actions">
+                    <button class="btn btn-warning" onclick="poker.skipStory()">
+                        ⏭️ Passer cette story
+                    </button>
+                    <button class="btn btn-info" onclick="poker.addQuestion()">
+                        ❓ Poser une question
+                    </button>
+                </div>
+            </div>
+
+            <!-- Participants & Votes -->
+            <div class="participants-section">
+                <div class="participants-header">
+                    <h4>👥 Participants & Votes</h4>
+                    <button class="btn btn-small" onclick="poker.addParticipant()">
+                        + Ajouter
+                    </button>
+                </div>
+                
+                <div class="participants-grid" id="participantsGrid">
+                    <!-- Participants generated dynamically -->
+                </div>
+            </div>
+
+            <!-- Questions & Discussion -->
+            <div class="discussion-panel" id="discussionPanel">
+                <h4>💭 Questions & Discussion</h4>
+                <div class="questions-list" id="questionsList">
+                    <!-- Questions dynamically added -->
+                </div>
+                <div class="discussion-input">
+                    <input type="text" 
+                           id="questionInput" 
+                           placeholder="Tapez votre question ou commentaire..."
+                           onkeypress="poker.handleQuestionKeypress(event)">
+                    <button class="btn btn-primary" onclick="poker.addQuestionFromInput()">
+                        ➤ Envoyer
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Panel -->
+        <div class="results-panel" id="resultsPanel" style="display: none;">
+            <h4>📊 Résultats du vote</h4>
+            <div class="results-content">
+                <div class="results-stats">
+                    <div class="stat-item">
+                        <span class="stat-label">Médiane:</span>
+                        <span class="stat-value" id="medianValue">-</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Moyenne:</span>
+                        <span class="stat-value" id="averageValue">-</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Consensus:</span>
+                        <span class="stat-value" id="consensusValue">-</span>
+                    </div>
+                </div>
+                
+                <div class="results-chart" id="resultsChart">
+                    <!-- Graphique simple des votes -->
+                </div>
+                
+                <div class="results-actions">
+                    <button class="btn btn-success" onclick="poker.acceptEstimate()">
+                        ✅ Accepter cette estimation
+                    </button>
+                    <button class="btn btn-secondary" onclick="poker.discussAndRevote()">
+                        💬 Discussion & Re-vote
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Story History -->
+        <div class="history-section">
+            <div class="history-header">
+                <h4>📚 Historique des estimations</h4>
+                <button class="btn btn-small" onclick="poker.clearHistory()">
+                    🗑️ Vider
+                </button>
+            </div>
+            <div class="history-list" id="historyList">
+                <div class="history-empty">
+                    <p>Aucune estimation terminée</p>
+                </div>
+            </div>
+        </div>
+
+
+        
+        </div> <!-- Fin sessionInterface -->
+    </div>
+
+    <!-- Modal for Story Creation/Edit -->
+    <div class="modal" id="storyModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="storyModalTitle">📝 Nouvelle User Story</h3>
+                <button class="modal-close" onclick="poker.closeModal()">&times;</button>
+            </div>
+            
+            <form class="story-form" id="storyForm">
+                <div class="form-group">
+                    <label for="storyTitleInput">Titre de la Story:</label>
+                    <input type="text" 
+                           id="storyTitleInput" 
+                           class="form-input"
+                           placeholder="En tant que... je veux... pour..."
+                           required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="storyDescriptionInput">Description (optionnelle):</label>
+                    <textarea id="storyDescriptionInput" 
+                              class="form-textarea"
+                              placeholder="Détails, critères d'acceptation, notes..."
+                              rows="3"></textarea>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="storyEpicInput">Epic:</label>
+                        <input type="text" 
+                               id="storyEpicInput" 
+                               class="form-input"
+                               placeholder="Nom de l'Epic">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="storyPriorityInput">Priorité:</label>
+                        <select id="storyPriorityInput" class="form-select">
+                            <option value="">Non définie</option>
+                            <option value="critical">🔴 Critique</option>
+                            <option value="high">🟠 Haute</option>
+                            <option value="medium">🟡 Moyenne</option>
+                            <option value="low">🟢 Basse</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" onclick="poker.closeModal()">
+                        Annuler
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        💾 Sauvegarder
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Share Modal -->
+    <div class="modal" id="shareModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>🔗 Partager cette session</h3>
+                <button class="modal-close" onclick="poker.closeShareModal()">&times;</button>
+            </div>
+            
+            <div class="modal-body">
+                <p>Partagez ce lien avec votre équipe pour qu'elle puisse rejoindre la session de Planning Poker :</p>
+                
+                <div class="share-link-container">
+                    <div class="share-link-input">
+                        <input type="text" 
+                               id="shareLink" 
+                               readonly 
+                               placeholder="Lien de partage...">
+                        <button class="btn btn-primary" onclick="enhancedCopyShareLink()" title="Copier le lien">
+                            📋
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="share-info">
+                    <h4>📋 Instructions :</h4>
+                    <ol>
+                        <li>Copiez le lien ci-dessus</li>
+                        <li>Envoyez-le à votre équipe (email, Slack, Teams...)</li>
+                        <li>Les participants cliquent sur le lien pour rejoindre</li>
+                        <li>Ils entrent leur nom et commencent l'estimation</li>
+                    </ol>
+                </div>
+                
+                <div class="share-qr" id="shareQR" style="display: none;">
+                    <h4>📱 QR Code :</h4>
+                    <div class="qr-placeholder">
+                        <p>QR Code généré automatiquement</p>
+                        <small>Scannez avec votre téléphone</small>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="poker.closeShareModal()">
+                    Fermer
+                </button>
+                <button class="btn btn-info" onclick="poker.toggleQR()">
+                    📱 Afficher QR Code
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Help Modal -->
+    <div class="modal" id="helpModal">
+        <div class="modal-content modal-large">
+            <div class="modal-header">
+                <h3>❓ Guide du Planning Poker</h3>
+                <button class="modal-close" onclick="poker.closeHelpModal()">&times;</button>
+            </div>
+            
+            <div class="help-content">
+                <h4>🎯 Principe</h4>
+                <p>Le Planning Poker est une technique d'estimation collaborative qui permet aux équipes Agile d'estimer l'effort nécessaire pour réaliser des User Stories.</p>
+                
+                <h4>📋 Processus en 6 étapes</h4>
+                <ol>
+                    <li><strong>Présentation:</strong> Le Product Owner présente la User Story</li>
+                    <li><strong>Discussion:</strong> L'équipe pose des questions et clarifie les détails</li>
+                    <li><strong>Estimation privée:</strong> Chaque membre sélectionne sa carte sans la révéler</li>
+                    <li><strong>Révélation:</strong> Toutes les cartes sont révélées simultanément</li>
+                    <li><strong>Discussion des écarts:</strong> Si les estimations diffèrent beaucoup, discussion</li>
+                    <li><strong>Nouveau vote:</strong> Si nécessaire, répéter jusqu'au consensus</li>
+                </ol>
+                
+                <h4>🎴 Types de cartes</h4>
+                <ul>
+                    <li><strong>Fibonacci:</strong> 1, 2, 3, 5, 8, 13, 21 (points de story)</li>
+                    <li><strong>T-Shirt:</strong> XS, S, M, L, XL, XXL (tailles relatives)</li>
+                    <li><strong>Heures:</strong> 1h, 2h, 4h, 8h, 16h, 32h (temps estimé)</li>
+                    <li><strong>Puissance de 2:</strong> 1, 2, 4, 8, 16, 32 (complexité technique)</li>
+                </ul>
+                
+                <h4>☕ Cartes spéciales</h4>
+                <ul>
+                    <li><strong>?:</strong> "Je ne comprends pas la story"</li>
+                    <li><strong>☕:</strong> "J'ai besoin d'une pause"</li>
+                    <li><strong>∞:</strong> "Cette story est trop grosse"</li>
+                </ul>
+                
+                <h4>✨ Bonnes pratiques</h4>
+                <ul>
+                    <li>Limiter les sessions à 2h maximum</li>
+                    <li>Avoir les critères d'acceptation clairs avant d'estimer</li>
+                    <li>Ne pas faire de moyenne, chercher le consensus</li>
+                    <li>Noter les questions et points de blocage</li>
+                    <li>Rétrospective régulière sur la précision des estimations</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="ux-enhancements.js"></script>
+    <script src="session-enhancements.js"></script>
+    
+    <!-- Intégration Agile Coach Toolkit -->
+    <script src="../../assets/js/tool-integration.js"></script>
+    <script>
+      // Configuration spécifique à l'outil
+      window.TOOL_CONFIG = {
+        name: 'planning-poker',
+        backUrl: '../../index.html#tools'
+      };
+    </script>
+</body>
+</html>

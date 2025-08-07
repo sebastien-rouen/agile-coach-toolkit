@@ -1,0 +1,155 @@
+{
+  "section": {
+    "id": "product-design",
+    "title": "Product & Design",
+    "description": "Product management et design thinking",
+    "icon": "fas fa-palette",
+    "color": "#E91E63"
+  },
+  "items": [
+    {
+      "id": "product-backlog-management",
+      "title": "📋 Product Backlog Management",
+      "description": "Gestion et priorisation du backlog produit",
+      "tags": ["backlog", "priorisation", "user-stories", "valeur"],
+      "icon": "fas fa-list-ol",
+      "content": "Techniques de gestion efficace du backlog",
+      "sections_detaillees": {
+        "pitch_elevator": "Le backlog, c'est comme la liste de courses : organisée par priorité, détaillée pour l'immédiat, esquissée pour plus tard !",
+        "techniques": [
+          {
+            "nom": "MoSCoW",
+            "description": "Must/Should/Could/Won't have",
+            "usage": "Priorisation release"
+          },
+          {
+            "nom": "Value vs Effort",
+            "description": "Matrice impact/effort",
+            "usage": "Identification quick wins"
+          },
+          {
+            "nom": "Kano Model",
+            "description": "Basic/Performance/Delight features",
+            "usage": "Stratégie fonctionnalités"
+          }
+        ],
+        "templates": [
+          {
+            "nom": "User Story Template",
+            "description": "En tant que... Je veux... Afin de...",
+            "format": "Template standardisé"
+          }
+        ]
+      }
+    },
+    {
+      "id": "product-roadmapping",
+      "title": "🗺️ Product Roadmapping",
+      "description": "Planification stratégique du produit",
+      "tags": ["roadmap", "stratégie", "planification", "vision"],
+      "icon": "fas fa-route",
+      "content": "Construction et communication de la roadmap produit",
+      "sections_detaillees": {
+        "pitch_elevator": "La roadmap, c'est comme planifier des vacances : destination claire, étapes importantes, mais flexible sur les détails du voyage !",
+        "calendrier": {
+          "duree": "Vision 12-18 mois, détail 3-6 mois",
+          "etapes": ["Vision produit", "Thèmes majeurs", "Releases", "Ajustements trimestriels"]
+        },
+        "anti_patterns": [
+          {
+            "probleme": "Roadmap = Gantt déguisé avec dates fixes",
+            "consequence": "Rigidité, pas d'adaptation marché",
+            "solution": "Roadmap par outcomes, pas par dates"
+          }
+        ]
+      }
+    },
+    {
+      "id": "design-thinking-process",
+      "title": "🎨 Design Thinking Process",
+      "description": "Processus créatif centré utilisateur",
+      "tags": ["design-thinking", "créativité", "utilisateur", "innovation"],
+      "icon": "fas fa-lightbulb",
+      "content": "Méthodologie d'innovation centrée utilisateur",
+      "sections_detaillees": {
+        "pitch_elevator": "Design Thinking, c'est comme être cuisinier : goûter ce que mange le client (empathie), imaginer nouveau plat (idéation), tester recette (prototype) !",
+        "calendrier": {
+          "duree": "1-5 jours selon complexité",
+          "etapes": ["Empathie", "Définition", "Idéation", "Prototypage", "Test"]
+        },
+        "templates": [
+          {
+            "nom": "Empathy Map",
+            "description": "Ce que dit/fait/pense/ressent l'utilisateur",
+            "format": "Canvas 4 quadrants"
+          },
+          {
+            "nom": "How Might We",
+            "description": "Reformulation problème en opportunité",
+            "format": "Questions ouvertes"
+          }
+        ]
+      }
+    },
+    {
+      "id": "user-research-personas",
+      "title": "👤 User Research & Personas",
+      "description": "Recherche utilisateur et création de personas",
+      "tags": ["user-research", "personas", "interviews", "insights"],
+      "icon": "fas fa-user-friends",
+      "content": "Méthodes de recherche et compréhension utilisateurs",
+      "sections_detaillees": {
+        "pitch_elevator": "User research, c'est comme être détective : observer, interroger, analyser pour comprendre qui sont vraiment tes utilisateurs !",
+        "techniques": [
+          {
+            "nom": "User Interviews",
+            "description": "Entretiens qualitatifs 1-1",
+            "duree": "30-60 minutes"
+          },
+          {
+            "nom": "Usability Testing",
+            "description": "Test d'utilisabilité avec prototypes",
+            "duree": "5 utilisateurs suffisent"
+          }
+        ],
+        "templates": [
+          {
+            "nom": "Persona Card",
+            "description": "Fiche d'identité utilisateur type",
+            "format": "Carte A4"
+          }
+        ]
+      }
+    },
+    {
+      "id": "prototypage-testing",
+      "title": "🧪 Prototypage & Testing",
+      "description": "Création et test de prototypes rapides",
+      "tags": ["prototype", "test", "validation", "lean"],
+      "icon": "fas fa-flask",
+      "content": "Approches de prototypage pour validation rapide",
+      "sections_detaillees": {
+        "pitch_elevator": "Prototyper, c'est comme faire un brouillon : rapide, pas cher, jetable. Mieux vaut se tromper sur le brouillon que sur le produit final !",
+        "techniques": [
+          {
+            "nom": "Paper Prototyping",
+            "description": "Maquettes papier interactives",
+            "avantage": "Ultra-rapide, cheap"
+          },
+          {
+            "nom": "Clickable Mockups",
+            "description": "Prototypes cliquables Figma/Sketch",
+            "avantage": "Réaliste, testable"
+          }
+        ],
+        "outils_recommandes": [
+          {
+            "nom": "Figma",
+            "usage": "Prototypage collaboratif",
+            "lien": "https://figma.com"
+          }
+        ]
+      }
+    }
+  ]
+}

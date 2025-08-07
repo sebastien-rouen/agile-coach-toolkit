@@ -1,0 +1,570 @@
+{
+  "section": {
+    "id": "frameworks",
+    "title": "Frameworks Agiles",
+    "description": "Tes frameworks de référence pour structurer le travail des équipes",
+    "icon": "fas fa-cogs",
+    "color": "#4CAF50"
+  },
+  "items": [
+    {
+      "id": "scrum-framework",
+      "title": "🚵 Scrum Framework",
+      "description": "Le framework le plus populaire pour délivrer de la valeur par itérations",
+      "tags": ["scrum", "sprint", "iteratif", "ceremonies"],
+      "icon": "fas fa-sync-alt",
+      "content": "Framework itératif et incrémental pour développer des produits complexes",
+      "sections_detaillees": {
+        "pitch_elevator": "Choisir Scrum, c'est comme choisir sa voiture : 🏎️ Scrum = sportive (agile, réactive, équipe soudée), 🚐 Kanban = utilitaire (pratique, flexible), 🚌 Waterfall = bus (prévisible, beaucoup de monde), 🚗 Scrumban = hybride (économique + performant). Tout dépend du voyage à faire !",
+        "citations": [
+          {
+            "texte": "Scrum n'est pas une méthodologie, c'est un framework qui révèle les dysfonctionnements",
+            "auteur": "Ken Schwaber",
+            "source": "Co-créateur de Scrum"
+          },
+          {
+            "texte": "Les règles de Scrum sont volontairement incomplètes. Elles définissent juste assez pour commencer.",
+            "auteur": "Jeff Sutherland", 
+            "source": "Scrum Guide"
+          }
+        ],
+        "calendrier": {
+          "duree": "Cycles de 1-4 semaines (Sprints)",
+          "etapes": ["Sprint Planning", "Daily Scrum", "Sprint Review", "Sprint Retrospective"]
+        },
+        "roles_contextes": {
+          "description": "Adaptation des rôles Scrum selon le contexte équipe",
+          "roles_base": [
+            {
+              "nom": "Product Owner",
+              "responsabilite": "Vision produit, priorisation backlog",
+              "icon": "fas fa-bullseye"
+            },
+            {
+              "nom": "Scrum Master",
+              "responsabilite": "Facilitation, coaching équipe",
+              "icon": "fas fa-user-cog"
+            },
+            {
+              "nom": "Development Team",
+              "responsabilite": "Création de l'incrément",
+              "icon": "fas fa-users"
+            }
+          ],
+          "adaptations_secteurs": [
+            {
+              "secteur": "Équipe Informatique",
+              "icon": "fas fa-laptop-code",
+              "exemple_contexte": "Développement application web",
+              "roles": [
+                {
+                  "nom": "Product Owner",
+                  "qui": "Chef de produit digital",
+                  "responsabilite": "Définit features, priorise selon business value"
+                },
+                {
+                  "nom": "Scrum Master", 
+                  "qui": "Coach agile / Tech Lead senior",
+                  "responsabilite": "Facilite sprints, résout blocages techniques"
+                },
+                {
+                  "nom": "Development Team",
+                  "qui": "Développeurs Full-Stack, DevOps, QA",
+                  "responsabilite": "Code, tests, déploiement continu"
+                }
+              ]
+            },
+            {
+              "secteur": "Équipe RH",
+              "icon": "fas fa-users-cog", 
+              "exemple_contexte": "Projet digitalisation RH",
+              "roles": [
+                {
+                  "nom": "Product Owner",
+                  "qui": "DRH ou Responsable SIRH",
+                  "responsabilite": "Priorise besoins employés, conformité légale"
+                },
+                {
+                  "nom": "Scrum Master",
+                  "qui": "Chef de projet RH formé agile",
+                  "responsabilite": "Animation équipe, gestion résistances"
+                },
+                {
+                  "nom": "Development Team", 
+                  "qui": "Consultants RH, Analystes, Community Managers",
+                  "responsabilite": "Processus RH, formations, communication"
+                }
+              ]
+            },
+            {
+              "secteur": "Équipe Commerciale",
+              "icon": "fas fa-chart-line",
+              "exemple_contexte": "Lancement nouveau produit",
+              "roles": [
+                {
+                  "nom": "Product Owner",
+                  "qui": "Directeur Commercial",
+                  "responsabilite": "Stratégie vente, objectifs chiffres"
+                },
+                {
+                  "nom": "Scrum Master",
+                  "qui": "Manager commercial coach",
+                  "responsabilite": "Motivation équipe, résolution blocages terrain"
+                },
+                {
+                  "nom": "Development Team",
+                  "qui": "Commerciaux, Marketing, Support client",
+                  "responsabilite": "Prospection, ventes, satisfaction client"
+                }
+              ]
+            },
+            {
+              "secteur": "Équipe Mairie",
+              "icon": "fas fa-landmark",
+              "exemple_contexte": "Modernisation services citoyens",
+              "roles": [
+                {
+                  "nom": "Product Owner", 
+                  "qui": "Élu référent ou Directeur général",
+                  "responsabilite": "Besoins citoyens, budget public"
+                },
+                {
+                  "nom": "Scrum Master",
+                  "qui": "Chef de projet transversal",
+                  "responsabilite": "Coordination services, gestion contraintes"
+                },
+                {
+                  "nom": "Development Team",
+                  "qui": "Agents techniques, Accueil, Communication",
+                  "responsabilite": "Nouveaux processus, formation agents"
+                }
+              ]
+            },
+            {
+              "secteur": "Équipe Santé",
+              "icon": "fas fa-heartbeat",
+              "exemple_contexte": "Amélioration parcours patient",
+              "roles": [
+                {
+                  "nom": "Product Owner",
+                  "qui": "Médecin chef ou Cadre de santé",
+                  "responsabilite": "Qualité soins, sécurité patients"
+                },
+                {
+                  "nom": "Scrum Master",
+                  "qui": "Qualiticien ou Chef de projet",
+                  "responsabilite": "Facilitation interprofessionnelle"
+                },
+                {
+                  "nom": "Development Team",
+                  "qui": "Infirmiers, Médecins, Administratifs",
+                  "responsabilite": "Protocoles de soins, coordination"
+                }
+              ]
+            },
+            {
+              "secteur": "Équipe Éducation",
+              "icon": "fas fa-graduation-cap",
+              "exemple_contexte": "Transformation pédagogique",
+              "roles": [
+                {
+                  "nom": "Product Owner",
+                  "qui": "Directeur pédagogique",
+                  "responsabilite": "Objectifs apprentissage, programme"
+                },
+                {
+                  "nom": "Scrum Master",
+                  "qui": "Coordinateur pédagogique",
+                  "responsabilite": "Animation équipe enseignante"
+                },
+                {
+                  "nom": "Development Team",
+                  "qui": "Enseignants, Formateurs, Tuteurs",
+                  "responsabilite": "Contenus, méthodes, évaluation"
+                }
+              ]
+            },
+            {
+              "secteur": "Équipe Sportive",
+              "icon": "fas fa-volleyball-ball",
+              "exemple_contexte": "Préparation championnat régional",
+              "roles": [
+                {
+                  "nom": "Product Owner",
+                  "qui": "Entraîneur principal",
+                  "responsabilite": "Définit stratégie équipe, objectifs saison, composition"
+                },
+                {
+                  "nom": "Scrum Master", 
+                  "qui": "Capitaine d'équipe ou Entraîneur adjoint",
+                  "responsabilite": "Motivation groupe, résolution conflits, cohésion"
+                },
+                {
+                  "nom": "Development Team",
+                  "qui": "Joueurs titulaires et remplaçants",
+                  "responsabilite": "Entraînements, matchs, progression individuelle/collective"
+                }
+              ]
+            },
+            {
+              "secteur": "Équipe Militaire",
+              "icon": "fas fa-shield-alt",
+              "exemple_contexte": "Préparation mission opérationnelle",
+              "roles": [
+                {
+                  "nom": "Product Owner",
+                  "qui": "Commandant d'unité",
+                  "responsabilite": "Objectifs mission, priorités tactiques, ressources"
+                },
+                {
+                  "nom": "Scrum Master",
+                  "qui": "Sergent-chef ou Adjudant",
+                  "responsabilite": "Coordination équipe, briefings, gestion obstacles terrain"
+                },
+                {
+                  "nom": "Development Team",
+                  "qui": "Soldats spécialisés (combat, com, logistique)",
+                  "responsabilite": "Exécution mission, adaptabilité, entraide opérationnelle"
+                }
+              ]
+            }
+          ]
+        },
+        "tableau_comparaison": {
+            "criteres": ["Complexité projet", "Taille équipe", "Changements fréquents", "Collaboration client", "Prévisibilité", "Maturité équipe", "Secteur optimal"],
+            "options": [
+                {
+                "nom": "Scrum", 
+                "complexite_projet": "Élevée", 
+                "taille_equipe": "3-9 personnes", 
+                "changements": "Excellente", 
+                "collaboration": "Forte et continue", 
+                "previsibilite": "Moyenne", 
+                "maturite": "Débutant à Expert", 
+                "secteur": "Produit digital, R&D"
+                },
+                {
+                "nom": "Kanban", 
+                "complexite_projet": "Variable", 
+                "taille_equipe": "2-15 personnes", 
+                "changements": "Immédiate", 
+                "collaboration": "Modérée", 
+                "previsibilite": "Faible", 
+                "maturite": "Intermédiaire+", 
+                "secteur": "Support, maintenance"
+                },
+                {
+                "nom": "Waterfall", 
+                "complexite_projet": "Bien définie", 
+                "taille_equipe": "5-50+ personnes", 
+                "changements": "Difficile", 
+                "collaboration": "Début et fin", 
+                "previsibilite": "Très forte", 
+                "maturite": "Débutant", 
+                "secteur": "Réglementaire, construction"
+                },
+                {
+                "nom": "Scrumban", 
+                "complexite_projet": "Mixte", 
+                "taille_equipe": "3-12 personnes", 
+                "changements": "Bonne", 
+                "collaboration": "Adaptable", 
+                "previsibilite": "Moyenne", 
+                "maturite": "Expert", 
+                "secteur": "DevOps, transition"
+                },
+                {
+                "nom": "SAFe", 
+                "complexite_projet": "Très élevée", 
+                "taille_equipe": "50-1000+ personnes", 
+                "changements": "Planifiée", 
+                "collaboration": "Structurée", 
+                "previsibilite": "Forte", 
+                "maturite": "Intermédiaire", 
+                "secteur": "Entreprise, banque"
+                }
+            ]
+        },
+        "guide_choix": {
+            "description": "Comment choisir le bon framework selon votre contexte",
+            "scenarios": [
+                {
+                "situation": "Startup produit digital, équipe 5 devs, pivots fréquents",
+                "recommandation": "Scrum",
+                "raison": "Structure apprentissage, adaptation rapide, collaboration intense"
+                },
+                {
+                "situation": "Support IT, demandes variables, SLA à respecter",
+                "recommandation": "Kanban", 
+                "raison": "Flux continu, priorités changeantes, pas de sprints fixes"
+                },
+                {
+                "situation": "Projet réglementaire, cahier charges fixe, audit qualité",
+                "recommandation": "Waterfall",
+                "raison": "Prévisibilité requise, documentation complète, peu de changements"
+                },
+                {
+                "situation": "Équipe DevOps, features + incidents + maintenance",
+                "recommandation": "Scrumban",
+                "raison": "Planification features + réactivité incidents"
+                },
+                {
+                "situation": "Banque, 200 développeurs, coordination complexe",
+                "recommandation": "SAFe",
+                "raison": "Scaling nécessaire, alignement stratégique, gouvernance"
+                }
+            ]
+        },
+        "criteres_decision": {
+            "questions_cles": [
+                "🎯 Le besoin client est-il clairement défini au départ ?",
+                "🔄 À quelle fréquence les exigences changent-elles ?",
+                "👥 Quelle est la disponibilité du Product Owner ?",
+                "⚡ Quelle urgence pour le time-to-market ?",
+                "📏 Quelle complexité technique du projet ?",
+                "🏢 Quelles sont les contraintes organisationnelles ?",
+                "💰 Quel budget pour l'accompagnement changement ?"
+            ],
+            "matrice_decision": {
+                "description": "Score chaque critère de 1-5, le framework avec le score le plus élevé est recommandé",
+                "facteurs": [
+                {
+                    "nom": "Incertitude produit",
+                    "scrum": 5,
+                    "kanban": 4,
+                    "waterfall": 1,
+                    "scrumban": 4
+                },
+                {
+                    "nom": "Équipe co-localisée", 
+                    "scrum": 5,
+                    "kanban": 3,
+                    "waterfall": 3,
+                    "scrumban": 4
+                },
+                {
+                    "nom": "Client très disponible",
+                    "scrum": 5,
+                    "kanban": 2,
+                    "waterfall": 1,
+                    "scrumban": 3
+                },
+                {
+                    "nom": "Changements fréquents",
+                    "scrum": 5,
+                    "kanban": 5,
+                    "waterfall": 1,
+                    "scrumban": 4
+                }
+                ]
+            }
+        },
+        "templates": [
+          {
+            "nom": "Sprint Planning Canvas",
+            "description": "Template pour organiser le planning de Sprint",
+            "format": "Canvas A3"
+          },
+          {
+            "nom": "Definition of Done Checklist",
+            "description": "Critères de qualité partagés par l'équipe",
+            "format": "Checklist"
+          }
+        ],
+        "checklist": [
+          "Product Owner identifié et disponible",
+          "Équipe de développement stable (3-9 personnes)",
+          "Scrum Master formé et expérimenté",
+          "Backlog initial créé et priorisé",
+          "Definition of Done définie par l'équipe",
+          "Environnement technique prêt",
+          "Cérémonies planifiées dans l'agenda"
+        ],
+        "exemples_pratiques": [
+          {
+            "contexte": "Équipe de 6 développeurs, nouveau produit digital",
+            "solution": "Sprints de 2 semaines, Daily à 9h, Review le jeudi, Rétro le vendredi",
+            "resultat": "Livraison prévisible, feedback client rapide, amélioration continue"
+          }
+        ],
+        "metriques": [
+          {
+            "nom": "Vélocité",
+            "formule": "Somme des story points terminés par Sprint",
+            "cible": "Stabilité sur 3-4 Sprints"
+          },
+          {
+            "nom": "Burn Down Chart",
+            "formule": "Travail restant vs temps écoulé",
+            "cible": "Tendance descendante régulière"
+          }
+        ],
+        "outils_recommandes": [
+          {
+            "nom": "Jira",
+            "usage": "Gestion de backlog et suivi des Sprints",
+            "lien": "https://atlassian.com/jira"
+          },
+          {
+            "nom": "Azure DevOps",
+            "usage": "Suivi complet du cycle de développement",
+            "lien": "https://azure.microsoft.com/devops"
+          }
+        ],
+        "anti_patterns": [
+          {
+            "probleme": "Sprint sans objectif clair",
+            "consequence": "Équipe démotivée, pas de cohérence",
+            "solution": "Définir un Sprint Goal inspirant à chaque Planning"
+          },
+          {
+            "probleme": "Daily de reporting au manager",
+            "consequence": "Perte de l'esprit équipe, stress",
+            "solution": "Daily par et pour l'équipe, focus sur l'objectif Sprint"
+          }
+        ]
+      }
+    },
+    {
+      "id": "kanban-method",
+      "title": "🎢 Kanban Method",
+      "description": "Méthode de flux continu pour optimiser le travail en cours",
+      "tags": ["kanban", "flux", "wip", "continu"],
+      "icon": "fas fa-columns",
+      "content": "Système visuel de gestion du flux de travail basé sur la limitation du WIP",
+      "sections_detaillees": {
+        "pitch_elevator": "Kanban, c'est comme la file d'attente chez le boulanger : tu vois ce qui arrive, ce qui se prépare, ce qui est prêt. Pas de course, pas de stress, juste un flux régulier et visible !",
+        "analogies_choix": {
+            "cuisine": "C'est comme choisir son style de cuisine : Scrum = cuisine de chef (créativité + technique), Kanban = cuisine de bistrot (efficace + adaptatif), Waterfall = cuisine industrielle (process + volume), Scrumban = cuisine fusion (mélange des styles)",
+            "sport": "Comme choisir son sport d'équipe : Scrum = rugby (stratégie + cohésion), Kanban = course relais (flux + handoff), Waterfall = natation synchronisée (chorégraphie + précision), Scrumban = triathlon (polyvalence + endurance)"
+        },
+        "citations": [
+          {
+            "texte": "Arrêtez de commencer, commencez à finir",
+            "auteur": "David J. Anderson",
+            "source": "Kanban Method"
+          }
+        ],
+        "calendrier": {
+          "duree": "Flux continu sans itérations fixes",
+          "etapes": ["Visualiser", "Limiter WIP", "Gérer flux", "Améliorer"]
+        },
+        "tableau_comparaison": {
+          "criteres": ["Structure", "Planification", "Changements", "Mesures"],
+          "options": [
+            {"nom": "Kanban", "structure": "Flexible", "planification": "Continue", "changements": "Immédiate", "mesures": "Lead Time"}
+          ]
+        },
+        "templates": [
+          {
+            "nom": "Kanban Board Template",
+            "description": "Tableau basique : To Do / Doing / Done",
+            "format": "Template digital"
+          }
+        ],
+        "checklist": [
+          "Flux de travail identifié et cartographié",
+          "Colonnes du tableau définies",
+          "Limites WIP établies par colonne",
+          "Règles explicites documentées",
+          "Métriques de flux mises en place"
+        ],
+        "exemples_pratiques": [
+          {
+            "contexte": "Support client avec demandes variables",
+            "solution": "Board : Nouveau / Analyse / En cours / Test / Résolu - WIP limité à 3 par personne",
+            "resultat": "Temps de résolution réduit de 40%, moins de stress équipe"
+          }
+        ],
+        "metriques": [
+          {
+            "nom": "Lead Time",
+            "formule": "Temps total de prise en charge d'une demande",
+            "cible": "Réduction progressive et stabilité"
+          },
+          {
+            "nom": "Throughput",
+            "formule": "Nombre d'éléments livrés par période",
+            "cible": "Augmentation progressive"
+          }
+        ],
+        "outils_recommandes": [
+          {
+            "nom": "Trello",
+            "usage": "Kanban simple et visuel",
+            "lien": "https://trello.com"
+          }
+        ],
+        "anti_patterns": [
+          {
+            "probleme": "Pas de limite WIP",
+            "consequence": "Tout est urgent, rien n'avance",
+            "solution": "Limiter le travail en cours selon la capacité équipe"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scrumban-hybrid",
+      "title": "🧺 Scrumban",
+      "description": "Approche hybride combinant structure Scrum et fluidité Kanban",
+      "tags": ["scrumban", "hybride", "transition", "pragmatique"],
+      "icon": "fas fa-blender",
+      "content": "Framework hybride pour équipes en transition ou contextes mixtes",
+      "sections_detaillees": {
+        "pitch_elevator": "Scrumban, c'est comme cuisiner avec une recette (Scrum) mais en s'adaptant selon les ingrédients du moment (Kanban). Le meilleur des deux mondes !",
+        "citations": [
+          {
+            "texte": "Scrumban est né de la nécessité pratique, pas de la théorie",
+            "auteur": "Corey Ladas",
+            "source": "Scrumban Essays"
+          }
+        ],
+        "calendrier": {
+          "duree": "Sprints flexibles + flux continu",
+          "etapes": ["Planning à la demande", "Daily", "Review quand nécessaire", "Rétro régulière"]
+        },
+        "exemples_pratiques": [
+          {
+            "contexte": "Équipe maintenance avec quelques nouvelles features",
+            "solution": "Kanban pour bugs/maintenance + mini-sprints pour features",
+            "resultat": "Réactivité sur incidents + planification pour innovations"
+          }
+        ],
+        "anti_patterns": [
+          {
+            "probleme": "Utiliser Scrumban pour éviter les contraintes",
+            "consequence": "Perte de discipline, régression",
+            "solution": "Scrumban nécessite plus de maturité, pas moins"
+          }
+        ]
+      }
+    },
+    {
+      "id": "autres-frameworks",
+      "title": "🎯 Autres Frameworks",
+      "description": "SAFe, LeSS, Nexus... quand Scrum/Kanban ne suffisent plus",
+      "tags": ["safe", "less", "nexus", "scaling"],
+      "icon": "fas fa-sitemap",
+      "content": "Frameworks de mise à l'échelle pour grandes organisations",
+      "sections_detaillees": {
+        "pitch_elevator": "Comme organiser un repas : Scrum pour 6 personnes, ces frameworks pour 50 ! Même principe, coordination en plus.",
+        "tableau_comparaison": {
+          "criteres": ["Complexité", "Taille", "Prescription", "Flexibilité"],
+          "options": [
+            {"nom": "SAFe", "complexite": "Élevée", "taille": "50-1000+", "prescription": "Forte", "flexibilite": "Faible"},
+            {"nom": "LeSS", "complexite": "Moyenne", "taille": "8-50", "prescription": "Moyenne", "flexibilite": "Élevée"},
+            {"nom": "Nexus", "complexite": "Faible", "taille": "9-27", "prescription": "Faible", "flexibilite": "Élevée"}
+          ]
+        },
+        "exemples_pratiques": [
+          {
+            "contexte": "Banque avec 200 développeurs sur même produit",
+            "solution": "SAFe avec Program Increment de 10 semaines",
+            "resultat": "Coordination améliorée, visibilité management"
+          }
+        ]
+      }
+    }
+  ]
+}

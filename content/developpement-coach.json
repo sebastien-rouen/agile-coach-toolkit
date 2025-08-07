@@ -1,0 +1,215 @@
+{
+  "section": {
+    "id": "developpement-coach",
+    "title": "Développement Coach",
+    "description": "Formation et montée en compétences du coach",
+    "icon": "fas fa-graduation-cap",
+    "color": "#3F51B5"
+  },
+  "items": [
+    {
+      "id": "plan-developpement",
+      "title": "📚 Plan de Développement",
+      "description": "Parcours de montée en compétences personnalisé",
+      "tags": ["développement", "compétences", "carrière", "formation"],
+      "icon": "fas fa-road",
+      "content": "Structurer son évolution professionnelle de coach",
+      "sections_detaillees": {
+        "pitch_elevator": "Le plan de développement, c'est comme un programme sportif : objectifs clairs, exercices progressifs, évaluation régulière !",
+        "calendrier": {
+          "duree": "Plan annuel avec révision trimestrielle",
+          "etapes": ["Auto-évaluation", "Objectifs SMART", "Actions formation", "Pratique terrain", "Feedback & ajustement"]
+        },
+        "templates": [
+          {
+            "nom": "Skills Matrix Coach",
+            "description": "Évaluation compétences sur grille",
+            "format": "Matrice Excel"
+          },
+          {
+            "nom": "Development Canvas",
+            "description": "Plan développement sur une page",
+            "format": "Canvas A3"
+          }
+        ],
+        "metriques": [
+          {
+            "nom": "Skill Progress Score",
+            "formule": "Auto-évaluation + feedback 360",
+            "cible": "Progression constante sur compétences clés"
+          }
+        ],
+        "exemples_pratiques": [
+          {
+            "contexte": "Coach junior, besoin structurer apprentissage",
+            "solution": "Plan 12 mois: certifications + mentorat + projets variés",
+            "resultat": "Montée compétences rapide, confiance accrue"
+          }
+        ]
+      }
+    },
+    {
+      "id": "evenements-formations",
+      "title": "🎪 Événements & Formations",
+      "description": "Formations, conférences et événements agiles",
+      "tags": ["formation", "conférence", "événement", "networking"],
+      "icon": "fas fa-calendar-alt",
+      "content": "Agenda des opportunités d'apprentissage",
+      "sections_detaillees": {
+        "pitch_elevator": "Les événements agiles, c'est comme les festivals : on découvre, on apprend, on rencontre, on repart inspiré et connecté !",
+        "tableau_comparaison": {
+          "criteres": ["Type", "Durée", "Public", "Coût"],
+          "options": [
+            {"nom": "Agile France", "type": "Conférence", "duree": "2 jours", "public": "Tous", "cout": "300-500€"},
+            {"nom": "ScrumDay", "type": "Conférence", "duree": "1 jour", "public": "Scrum", "cout": "150-250€"},
+            {"nom": "Meetup local", "type": "Rencontre", "duree": "2h", "public": "Communauté", "cout": "Gratuit"},
+            {"nom": "Formation certifiante", "type": "Formation", "duree": "2-3 jours", "public": "Spécialisé", "cout": "1000-2000€"}
+          ]
+        },
+        "outils_recommandes": [
+          {
+            "nom": "Meetup.com",
+            "usage": "Trouver événements locaux",
+            "lien": "https://meetup.com"
+          },
+          {
+            "nom": "Eventbrite",
+            "usage": "Découvrir formations et conférences",
+            "lien": "https://eventbrite.fr"
+          }
+        ]
+      }
+    },
+    {
+      "id": "communautes-reseaux",
+      "title": "🌐 Communautés & Réseaux",
+      "description": "Communautés de pratique et réseaux professionnels",
+      "tags": ["communauté", "réseau", "partage", "entraide"],
+      "icon": "fas fa-users",
+      "content": "S'intégrer dans l'écosystème agile",
+      "sections_detaillees": {
+        "pitch_elevator": "Les communautés agiles, c'est comme rejoindre un club de passionnés : on partage, on s'entraide, on grandit ensemble !",
+        "exemples_pratiques": [
+          {
+            "contexte": "Coach isolé en région, besoin d'échanges",
+            "solution": "Participation active Slack communautés + meetups virtuels",
+            "resultat": "Réseau étendu, veille facilitée, support pairs"
+          }
+        ],
+        "outils_recommandes": [
+          {
+            "nom": "Slack Agile Alliance",
+            "usage": "Discussions quotidiennes avec pairs",
+            "lien": "agilealliance.slack.com"
+          },
+          {
+            "nom": "LinkedIn Groups",
+            "usage": "Réseautage professionnel",
+            "lien": "linkedin.com/groups"
+          },
+          {
+            "nom": "Discord Agile",
+            "usage": "Échanges informels temps réel",
+            "lien": "Serveurs Discord spécialisés"
+          }
+        ],
+        "techniques": [
+          {
+            "nom": "Lurking actif",
+            "description": "Observer avant participer",
+            "conseil": "Comprendre codes communauté"
+          },
+          {
+            "nom": "Give first",
+            "description": "Donner avant de recevoir",
+            "conseil": "Partager expériences, aider autres"
+          }
+        ]
+      }
+    },
+    {
+      "id": "veille-resources",
+      "title": "🎙️ Veille & Resources",
+      "description": "Sources d'information et veille continue",
+      "tags": ["veille", "ressources", "podcast", "lecture"],
+      "icon": "fas fa-rss",
+      "content": "Rester à jour dans l'écosystème agile",
+      "sections_detaillees": {
+        "pitch_elevator": "La veille agile, c'est comme suivre l'actualité : podcasts au petit-déj, articles à midi, vidéos le soir... rester connecté sans y passer sa vie !",
+        "outils_recommandes": [
+          {
+            "nom": "Scrum.org Blog",
+            "usage": "Articles officiels Scrum",
+            "lien": "https://scrum.org/resources/blog"
+          },
+          {
+            "nom": "Agile Alliance",
+            "usage": "Ressources communauté mondiale",
+            "lien": "https://agilealliance.org"
+          },
+          {
+            "nom": "YouTube",
+            "usage": "Conférences et tutoriels",
+            "lien": "Chaînes: Agile Alliance, Scrum.org"
+          }
+        ],
+        "templates": [
+          {
+            "nom": "Veille Dashboard",
+            "description": "Centraliser sources dans un outil",
+            "format": "Notion/Obsidian"
+          }
+        ],
+        "techniques": [
+          {
+            "nom": "Time-boxing veille",
+            "description": "30min/jour maximum",
+            "benefice": "Éviter l'infobésité"
+          },
+          {
+            "nom": "Curation active",
+            "description": "Partager ressources intéressantes",
+            "benefice": "Mémoriser et créer valeur"
+          }
+        ]
+      }
+    },
+    {
+      "id": "certifications",
+      "title": "🏆 Certifications",
+      "description": "Parcours de certifications agiles",
+      "tags": ["certification", "scrum", "safe", "reconnaissance"],
+      "icon": "fas fa-certificate",
+      "content": "Guide des certifications pertinentes",
+      "sections_detaillees": {
+        "pitch_elevator": "Les certifications, c'est comme le permis de conduire : ça prouve qu'on connaît le code, mais l'expérience de conduite, c'est autre chose !",
+        "tableau_comparaison": {
+          "criteres": ["Niveau", "Durée", "Coût", "Reconnaissance"],
+          "options": [
+            {"nom": "PSM I", "niveau": "Débutant", "duree": "Auto-formation", "cout": "200€", "reconnaissance": "Élevée"},
+            {"nom": "CSM", "niveau": "Débutant", "duree": "2 jours + examen", "cout": "1500€", "reconnaissance": "Élevée"},
+            {"nom": "SAFe SPC", "niveau": "Expert", "duree": "4 jours + pratique", "cout": "3000€", "reconnaissance": "Entreprises"},
+            {"nom": "ICP-ACC", "niveau": "Intermédiaire", "duree": "3 jours", "cout": "2000€", "reconnaissance": "Coaching"}
+          ]
+        },
+        "conseils": [
+          {
+            "conseil": "Commencer par PSM I ou CSM",
+            "raison": "Base solide, coût raisonnable"
+          },
+          {
+            "conseil": "Pratiquer avant certifier",
+            "raison": "Certificat sans expérience = peu de valeur"
+          }
+        ],
+        "anti_patterns": [
+          {
+            "probleme": "Collectionner certificats sans pratique",
+            "consequence": "Crédibilité faible, connaissance théorique",
+            "solution": "Minimum 6 mois pratique entre certifications"
+          }
+        ]
+      }
+    }
+  ]
+}

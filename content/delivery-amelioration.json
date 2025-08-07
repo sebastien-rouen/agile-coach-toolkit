@@ -1,0 +1,855 @@
+{
+  "section": {
+    "id": "delivery-amelioration",
+    "title": "Delivery & Amélioration",
+    "description": "Événements de livraison et amélioration continue",
+    "icon": "fas fa-rocket",
+    "color": "#FF9800"
+  },
+  "items": [
+    {
+      "id": "sprint-review",
+      "title": "📦 Sprint Review",
+      "description": "Démonstration et feedback sur l'incrément produit",
+      "tags": ["review", "demo", "feedback", "stakeholders"],
+      "icon": "fas fa-presentation",
+      "content": "Cérémonie de présentation du travail réalisé pendant le Sprint",
+      "sections_detaillees": {
+        "pitch_elevator": "La Sprint Review, c'est comme présenter tes plats aux invités : tu montres ce que tu as cuisiné, tu reçois les compliments ET les critiques pour améliorer le prochain repas !",
+        "citations": [
+          {
+            "texte": "Le feedback est le petit-déjeuner des champions",
+            "auteur": "Ken Blanchard",
+            "source": "The One Minute Manager"
+          }
+        ],
+        "calendrier": {
+          "duree": "2h max pour Sprint de 2 semaines",
+          "etapes": ["Demo du travail fini", "Feedback stakeholders", "Adaptation Product Backlog", "Discussion de la suite"]
+        },
+        "checklist": [
+          "Incrément démontrable préparé",
+          "Stakeholders invités et présents",
+          "Product Owner anime la session",
+          "Focus sur le FAIT, pas le travail en cours",
+          "Feedback collecté et documenté",
+          "Product Backlog mis à jour"
+        ],
+        "anti_patterns": [
+          {
+            "probleme": "Présentation PowerPoint au lieu de démo produit",
+            "consequence": "Perte de confiance, feedback non pertinent",
+            "solution": "Toujours démontrer le produit fonctionnel réel"
+          }
+        ]
+      }
+    },
+    {
+      "id": "retrospectives-formats",
+      "title": "🔍 Formats de Rétrospectives",
+      "description": "Collection complète de formats pour animer vos rétrospectives",
+      "tags": ["retrospective", "formats", "amélioration", "facilitation", "innovation"],
+      "icon": "fas fa-mirror",
+      "content": "Bibliothèque de 20+ formats de rétrospectives avec usage, impact et templates",
+      "sections_detaillees": {
+        "pitch_elevator": "Les rétros, c'est comme changer de restaurant : même objectif (bien manger) mais ambiance différente pour ne pas s'ennuyer. La variété stimule la créativité et l'engagement !",
+        "citations": [
+          {
+            "texte": "La définition de la folie, c'est de répéter la même chose en espérant des résultats différents",
+            "auteur": "Albert Einstein",
+            "source": "Adaptation pour l'agilité"
+          },
+          {
+            "texte": "Les équipes qui varient leurs formats de rétro sont 40% plus engagées",
+            "auteur": "State of Agile Report",
+            "source": "2023 Survey"
+          }
+        ],
+        "formats_retrospectives": [
+          {
+            "nom": "Start, Stop, Continue",
+            "difficulte": "Débutant",
+            "duree": "45-60 min",
+            "participants": "3-9 personnes",
+            "pourquoi": "Format simple et universel, facile à comprendre",
+            "quand_utiliser": "Première rétro, équipe nouvelle, contexte stable",
+            "impact": "Clarté des actions, simplicité d'usage",
+            "animation": {
+              "etapes": [
+                "Préparer 3 colonnes : Start / Stop / Continue",
+                "Brainstorming individuel 10 min",
+                "Partage et regroupement 15 min", 
+                "Vote et priorisation 10 min",
+                "Actions concrètes 10 min"
+              ],
+              "materiel": "Post-its, tableau, stylos"
+            },
+            "template": {
+              "description": "3 colonnes simples avec questions guides",
+              "contenu": "Start: Qu'est-ce qu'on devrait commencer à faire? | Stop: Qu'est-ce qu'on devrait arrêter? | Continue: Qu'est-ce qui fonctionne bien?"
+            },
+            "variantes": [
+              "More of / Less of / Keep doing",
+              "Add / Remove / Keep"
+            ]
+          },
+          {
+            "nom": "Mad, Sad, Glad",
+            "difficulte": "Débutant",
+            "duree": "45-60 min", 
+            "participants": "3-12 personnes",
+            "pourquoi": "Approche émotionnelle, libère la parole",
+            "quand_utiliser": "Tensions dans l'équipe, après événement difficile",
+            "impact": "Expression des émotions, climat apaisé",
+            "animation": {
+              "etapes": [
+                "Expliquer les 3 émotions avec exemples",
+                "Réflexion individuelle 8 min",
+                "Tour de parole par émotion 20 min",
+                "Identification des causes 10 min",
+                "Actions d'amélioration 12 min"
+              ],
+              "materiel": "Post-its colorés (rouge/bleu/vert)"
+            },
+            "template": {
+              "description": "3 zones émotionnelles avec smileys",
+              "contenu": "Mad 😠: Ce qui m'a énervé | Sad 😢: Ce qui m'a déçu | Glad 😊: Ce qui m'a rendu heureux"
+            },
+            "conseils": [
+              "Commencer par Glad pour climat positif",
+              "Écoute active sans jugement",
+              "Transformer émotions en actions"
+            ]
+          },
+          {
+            "nom": "Speedboat / Sailboat",
+            "difficulte": "Intermédiaire",
+            "duree": "60-75 min",
+            "participants": "4-10 personnes", 
+            "pourquoi": "Métaphore visuelle puissante, identification forces/freins",
+            "quand_utiliser": "Projet long terme, besoin de vision, obstacles récurrents",
+            "impact": "Vision partagée, identification obstacles systémiques",
+            "animation": {
+              "etapes": [
+                "Dessiner bateau avec île (objectif) à l'horizon",
+                "Identifier les vents (accélérateurs) 15 min",
+                "Identifier les ancres (freins) 15 min", 
+                "Identifier les récifs (risques) 10 min",
+                "Prioriser les actions 15 min"
+              ],
+              "materiel": "Grande feuille, feutres colorés, post-its"
+            },
+            "template": {
+              "description": "Métaphore maritime complète",
+              "contenu": "🚤 Bateau = Équipe | 🏝️ Île = Objectif | 💨 Vent = Accélérateurs | ⚓ Ancre = Freins | 🪨 Récifs = Risques"
+            },
+            "variantes": [
+              "Rocket Ship (fusée vers planète)",
+              "Car Journey (voiture vers destination)"
+            ]
+          },
+          {
+            "nom": "4Ls (Liked, Learned, Lacked, Longed for)",
+            "difficulte": "Intermédiaire",
+            "duree": "60-90 min",
+            "participants": "4-12 personnes",
+            "pourquoi": "Apprentissage centré, vision prospective",
+            "quand_utiliser": "Fin de projet, équipe apprenante, bilan formation",
+            "impact": "Culture d'apprentissage, capitalisation expérience",
+            "animation": {
+              "etapes": [
+                "Explication des 4L avec exemples 5 min",
+                "Réflexion individuelle 15 min",
+                "Partage Liked & Learned 20 min",
+                "Partage Lacked & Longed for 15 min", 
+                "Synthèse et actions 15 min"
+              ],
+              "materiel": "4 quadrants, post-its, chronomètre"
+            },
+            "template": {
+              "description": "4 quadrants avec questions spécifiques",
+              "contenu": "Liked: Ce qu'on a aimé | Learned: Ce qu'on a appris | Lacked: Ce qui nous a manqué | Longed for: Ce qu'on aimerait avoir"
+            },
+            "benefices": [
+              "Met l'accent sur l'apprentissage",
+              "Équilibre positif/amélioration",
+              "Vision prospective"
+            ]
+          },
+          {
+            "nom": "Météo de l'Équipe",
+            "difficulte": "Débutant",
+            "duree": "30-45 min",
+            "participants": "3-15 personnes",
+            "pourquoi": "Check-in rapide, métaphore universelle",
+            "quand_utiliser": "Rétro express, début de projet, équipe distribuée",
+            "impact": "Cohésion équipe, expression facile des ressentis",
+            "animation": {
+              "etapes": [
+                "Chaque membre choisit sa météo du sprint 5 min",
+                "Tour de parole avec justification 15 min",
+                "Identification tendances climatiques 10 min",
+                "Actions pour améliorer le climat 10 min"
+              ],
+              "materiel": "Emojis météo, tableau digital"
+            },
+            "template": {
+              "description": "Bulletin météo de l'équipe",
+              "contenu": "☀️ Soleil: Tout va bien | ⛅ Nuageux: Quelques soucis | 🌧️ Pluie: Difficultés | ⛈️ Orage: Gros problèmes | 🌈 Arc-en-ciel: Après la pluie..."
+            },
+            "variantes": [
+              "Météo par rôle (PO, SM, Dev)",
+              "Prévisions météo du prochain sprint"
+            ]
+          },
+          {
+            "nom": "Timeline / Histoire du Sprint",
+            "difficulte": "Avancé",
+            "duree": "75-90 min",
+            "participants": "4-8 personnes",
+            "pourquoi": "Reconstruction chronologique, événements marquants",
+            "quand_utiliser": "Sprint complexe, incidents multiples, équipe mature",
+            "impact": "Compréhension causale, apprentissage systémique",
+            "animation": {
+              "etapes": [
+                "Créer timeline vierge du sprint 5 min",
+                "Chacun place ses événements marquants 20 min",
+                "Reconstruction collective chronologique 25 min",
+                "Analyse des patterns et causes 15 min",
+                "Identification amélioration 10 min"
+              ],
+              "materiel": "Grande frise temporelle, post-its colorés par type"
+            },
+            "template": {
+              "description": "Frise chronologique avec légende",
+              "contenu": "📅 Timeline J1 à J10 | 🎯 Événements positifs (vert) | ❌ Problèmes (rouge) | ⚠️ Risques évités (orange) | 💡 Apprentissages (bleu)"
+            },
+            "conseils": [
+              "Un facilitateur neutre recommandé",
+              "Focus sur les faits, pas les opinions",
+              "Célébrer aussi les réussites"
+            ]
+          },
+          {
+            "nom": "Starfish (5 branches)",
+            "difficulte": "Intermédiaire",
+            "duree": "60-75 min",
+            "participants": "5-12 personnes",
+            "pourquoi": "Plus nuancé que Start/Stop/Continue",
+            "quand_utiliser": "Équipe expérimentée, besoin d'analyse fine",
+            "impact": "Analyse granulaire, actions graduées",
+            "animation": {
+              "etapes": [
+                "Dessiner étoile 5 branches avec labels",
+                "Brainstorming par branche 25 min",
+                "Clustering des idées similaires 15 min",
+                "Dot voting pour prioriser 10 min",
+                "Actions concrètes top 3 15 min"
+              ],
+              "materiel": "Étoile géante, post-its, gommettes"
+            },
+            "template": {
+              "description": "Étoile à 5 branches avec gradation",
+              "contenu": "Keep: Continuer | More: Faire plus | Less: Faire moins | Start: Commencer | Stop: Arrêter complètement"
+            },
+            "avantages": [
+              "Nuances entre 'more/less' vs 'start/stop'",
+              "Actions progressives plus réalistes"
+            ]
+          },
+          {
+            "nom": "Champagne & Vinaigre",
+            "difficulte": "Débutant", 
+            "duree": "45-60 min",
+            "participants": "3-10 personnes",
+            "pourquoi": "Métaphore gastronomique, positif/négatif équilibré",
+            "quand_utiliser": "Équipe gourmande, besoin de célébration",
+            "impact": "Reconnaissance réussites, amélioration ciblée",
+            "animation": {
+              "etapes": [
+                "Explication métaphore culinaire 5 min",
+                "Identification moments 'Champagne' 15 min",
+                "Identification moments 'Vinaigre' 15 min",
+                "Recherche causes 10 min",
+                "Menu du prochain sprint 10 min"
+              ],
+              "materiel": "Images champagne/vinaigre, post-its dorés/verts"
+            },
+            "template": {
+              "description": "Dégustation du sprint écoulé",
+              "contenu": "🍾 Champagne: À célébrer, moments de joie | 🫒 Vinaigre: À améliorer, goût amer | 🍽️ Menu prochain sprint: Recette du succès"
+            }
+          },
+          {
+            "nom": "KALM (Keep, Add, Less, More)",
+            "difficulte": "Intermédiaire",
+            "duree": "50-70 min", 
+            "participants": "4-12 personnes",
+            "pourquoi": "Zen attitude, amélioration sereine",
+            "quand_utiliser": "Équipe stressée, besoin d'apaisement",
+            "impact": "Approche zen, changements progressifs",
+            "animation": {
+              "etapes": [
+                "Moment de respiration collective 2 min",
+                "Réflexion silencieuse KALM 12 min",
+                "Partage en cercle 20 min",
+                "Regroupement thématique 10 min",
+                "Sélection sereine des actions 15 min"
+              ],
+              "materiel": "Ambiance zen, musique douce, thé"
+            },
+            "template": {
+              "description": "Approche mindful de la rétrospective",
+              "contenu": "🧘 Keep: Maintenir en conscience | ➕ Add: Ajouter avec intention | ⬇️ Less: Réduire avec sagesse | ⬆️ More: Amplifier ce qui marche"
+            }
+          },
+          {
+            "nom": "Oscar Awards",
+            "difficulte": "Ludique",
+            "duree": "60-75 min",
+            "participants": "5-15 personnes",
+            "pourquoi": "Gamification, reconnaissance, fun",
+            "quand_utiliser": "Fin de release majeure, célébration, moral bas",
+            "impact": "Reconnaissance mutuelle, esprit d'équipe renforcé",
+            "animation": {
+              "etapes": [
+                "Nomination catégories Oscar 10 min",
+                "Vote secret par catégorie 15 min",
+                "Cérémonie remise prix 20 min",
+                "Speech gagnants 15 min",
+                "Amélioration pour prochain film 10 min"
+              ],
+              "materiel": "Statuettes factices, tapis rouge, musique"
+            },
+            "template": {
+              "description": "Cérémonie des Oscars de l'équipe",
+              "contenu": "🏆 Catégories: Meilleur debugging | Meilleure entraide | Meilleur refactoring | Meilleure idée | Crash test de l'année"
+            },
+            "categories_suggeres": [
+              "Meilleur debugging de l'année",
+              "Oscar de l'entraide",
+              "Meilleure innovation technique", 
+              "Prix du courage (qui a osé)",
+              "Crash test de l'année (échec instructif)"
+            ]
+          },
+          {
+            "nom": "Dot Voting + Open Space",
+            "difficulte": "Avancé",
+            "duree": "90-120 min",
+            "participants": "8-20 personnes",
+            "pourquoi": "Auto-organisation, sujets émergents, grande équipe",
+            "quand_utiliser": "Multi-équipes, sujets complexes, temps disponible",
+            "impact": "Solutions émergentes, ownership des actions",
+            "animation": {
+              "etapes": [
+                "Brainstorming sujets à traiter 15 min",
+                "Dot voting sur sujets prioritaires 10 min",
+                "Constitution groupes volontaires 5 min",
+                "Sessions Open Space parallèles 45 min",
+                "Restitution et synthèse 25 min"
+              ],
+              "materiel": "Espaces multiples, facilitateurs, supports mobiles"
+            },
+            "template": {
+              "description": "Format ouvert auto-organisé",
+              "contenu": "📋 Marketplace des sujets | 🗳️ Vote démocratique | 👥 Constitution groupes | 💬 Sessions parallèles | 📢 Restitution collective"
+            }
+          },
+          {
+            "nom": "Perfection Game",
+            "difficulte": "Avancé",
+            "duree": "75-90 min",
+            "participants": "4-10 personnes",
+            "pourquoi": "Recherche d'excellence, amélioration continue poussée",
+            "quand_utiliser": "Équipe mature, standards élevés, amélioration fine",
+            "impact": "Excellence opérationnelle, standards élevés",
+            "animation": {
+              "etapes": [
+                "Noter le sprint sur 10 individuellement 5 min",
+                "Partage des notes avec justification 20 min",
+                "Pour chaque point manquant: que faudrait-il? 30 min",
+                "Priorisation améliorations vers 10/10 15 min",
+                "Engagement amélioration 10 min"
+              ],
+              "materiel": "Échelle 1-10, calculatrice, tableau"
+            },
+            "template": {
+              "description": "Quête de la perfection en équipe",
+              "contenu": "🎯 Note actuelle /10 | ⭐ Pour passer à 10: que manque-t-il? | 🔧 Actions concrètes pour l'excellence | 📈 Suivi amélioration"
+            }
+          },
+          {
+            "nom": "Hot Air Balloon",
+            "difficulte": "Intermédiaire",
+            "duree": "60-75 min", 
+            "participants": "4-10 personnes",
+            "pourquoi": "Métaphore voyage, élévation, vision",
+            "quand_utiliser": "Nouveau projet, changement organisation, vision",
+            "impact": "Vision élevée, identification freins/moteurs",
+            "animation": {
+              "etapes": [
+                "Dessiner montgolfière avec destination 5 min",
+                "Air chaud (ce qui nous élève) 15 min",
+                "Sacs de sable (ce qui nous freine) 15 min",
+                "Météo (contexte externe) 10 min",
+                "Plan de vol amélioration 15 min"
+              ],
+              "materiel": "Dessin montgolfière, post-its colorés"
+            },
+            "template": {
+              "description": "Voyage en montgolfière de l'équipe",
+              "contenu": "🎈 Ballon = Équipe | 🔥 Air chaud = Forces | ⚖️ Sacs sable = Freins | 🌤️ Météo = Contexte | 🗺️ Destination = Objectif"
+            }
+          },
+          {
+            "nom": "Tree Retrospective",
+            "difficulte": "Créatif",
+            "duree": "60-80 min",
+            "participants": "4-12 personnes", 
+            "pourquoi": "Métaphore nature, croissance organique",
+            "quand_utiliser": "Équipe créative, croissance équipe, développement",
+            "impact": "Vision croissance, ancrage solide",
+            "animation": {
+              "etapes": [
+                "Dessiner arbre géant collectivement 10 min",
+                "Racines (fondations solides) 15 min",
+                "Tronc (force de l'équipe) 10 min", 
+                "Branches (opportunités) 15 min",
+                "Feuilles mortes (à éliminer) 10 min",
+                "Plantation avenir 10 min"
+              ],
+              "materiel": "Papier kraft, feutres verts/marrons"
+            },
+            "template": {
+              "description": "Écosystème de croissance équipe",
+              "contenu": "🌳 Arbre = Équipe | 🪴 Racines = Fondations | 📏 Tronc = Forces | 🌿 Branches = Opportunités | 🍂 Feuilles mortes = À éliminer"
+            }
+          }
+        ],
+        "sources_inspiration": [
+          {
+            "nom": "Retromat",
+            "url": "https://retromat.org",
+            "description": "Générateur aléatoire de formats de rétrospectives",
+            "type": "Plateforme web"
+          },
+          {
+            "nom": "Miroverse",  
+            "url": "https://miroverse.io",
+            "description": "Templates collaboratifs pour rétrospectives",
+            "type": "Templates Miro"
+          },
+          {
+            "nom": "Draft.io",
+            "url": "https://draft.io", 
+            "description": "Outil collaboratif avec templates rétro",
+            "type": "Outil en ligne"
+          },
+          {
+            "nom": "Fun Retrospectives",
+            "url": "https://funretrospectives.com",
+            "description": "Collection de formats ludiques et créatifs",
+            "type": "Site ressources"
+          },
+          {
+            "nom": "Liberating Structures",
+            "url": "https://liberatingstructures.com", 
+            "description": "Microstructures pour facilitation innovante",
+            "type": "Méthodes facilitation"
+          },
+          {
+            "nom": "Innovation Games",
+            "url": "https://innovationgames.com",
+            "description": "Jeux collaboratifs pour insights équipe",
+            "type": "Jeux d'entreprise"  
+          },
+          {
+            "nom": "Management 3.0",
+            "url": "https://management30.com/practice/celebration-grids",
+            "description": "Celebration Grid et autres pratiques",
+            "type": "Pratiques management"
+          },
+          {
+            "nom": "Tasty Cupcakes", 
+            "url": "http://tastycupcakes.org",
+            "description": "Recettes d'activités agiles savoureuses",
+            "type": "Activités agiles"
+          },
+          {
+            "nom": "SessionLab",
+            "url": "https://sessionlab.com",
+            "description": "Plateforme design de workshops",
+            "type": "Design d'ateliers"
+          },
+          {
+            "nom": "Hyper Island Toolbox",
+            "url": "https://toolbox.hyperisland.com", 
+            "description": "Méthodes créatives et collaboratives",
+            "type": "Boîte à outils créative"
+          }
+        ],
+        "conseils_facilitation": [
+          {
+            "conseil": "Varier les formats selon l'énergie équipe",
+            "detail": "Équipe fatiguée = format simple, équipe énergique = format créatif"
+          },
+          {
+            "conseil": "Adapter la durée selon la maturité",
+            "detail": "Équipe novice: 45min max, équipe experte: jusqu'à 90min"
+          },
+          {
+            "conseil": "Préparer 2-3 formats et laisser équipe choisir", 
+            "detail": "Ownership et engagement renforcés"
+          },
+          {
+            "conseil": "Commencer par un format basique puis évoluer",
+            "detail": "Start/Stop/Continue → Mad/Sad/Glad → formats avancés"
+          },
+          {
+            "conseil": "Documenter ce qui marche pour votre équipe",
+            "detail": "Créer votre propre catalogue personnalisé"
+          }
+        ],
+        "anti_patterns": [
+          {
+            "probleme": "Toujours le même format Start/Stop/Continue",
+            "consequence": "Lassitude, engagement décroissant, insights répétitifs",
+            "solution": "Rotation formats, laisser équipe choisir parfois"
+          },
+          {
+            "probleme": "Format trop complexe pour l'équipe",
+            "consequence": "Confusion, frustration, perte de temps",
+            "solution": "Adapter complexité à la maturité équipe"
+          },
+          {
+            "probleme": "Pas d'actions concrètes à la fin",
+            "consequence": "Impression de perdre son temps",
+            "solution": "Toujours finir par 2-3 actions SMART maximum"
+          }
+        ]
+      }
+    },
+    {
+      "id": "metriques-kpi",
+      "title": "📊 Métriques & KPI",
+      "description": "Indicateurs pour mesurer performance et progression",
+      "tags": ["métriques", "kpi", "mesure", "performance", "data"],
+      "icon": "fas fa-chart-line", 
+      "content": "Tableau de bord des métriques essentielles pour équipes agiles",
+      "sections_detaillees": {
+        "pitch_elevator": "Les métriques, c'est le tableau de bord de ta voiture : vitesse, essence, température. Tu peux conduire sans, mais tu risques la panne sèche ou la surchauffe !",
+        "citations": [
+          {
+            "texte": "You can't manage what you don't measure",
+            "auteur": "Peter Drucker", 
+            "source": "Management guru"
+          },
+          {
+            "texte": "Mesurer pour apprendre, pas pour juger",
+            "auteur": "Principe Lean Startup",
+            "source": "Eric Ries"
+          }
+        ],
+        "categories_metriques": [
+          {
+            "categorie": "Vélocité & Flux",
+            "description": "Mesure la capacité de livraison de l'équipe",
+            "metriques": [
+              {
+                "nom": "Vélocité",
+                "formule": "Story Points terminés par Sprint",
+                "cible": "Stabilité sur 3-4 Sprints",
+                "utilite": "Planification, prédictibilité",
+                "frequence": "Chaque Sprint",
+                "piege": "Ne pas comparer les équipes entre elles"
+              },
+              {
+                "nom": "Lead Time",
+                "formule": "Temps total de prise en charge d'une User Story",
+                "cible": "Réduction progressive et stabilité",
+                "utilite": "Identifier les goulots d'étranglement",
+                "frequence": "Hebdomadaire",
+                "piege": "Ignorer les items exceptionnellement complexes"
+              },
+              {
+                "nom": "Cycle Time", 
+                "formule": "Temps de travail effectif sur un item",
+                "cible": "Réduction continue",
+                "utilite": "Optimisation du flux de travail",
+                "frequence": "Hebdomadaire",
+                "piege": "Pression excessive sur les développeurs"
+              },
+              {
+                "nom": "Throughput",
+                "formule": "Nombre d'items livrés par période",
+                "cible": "Augmentation progressive",
+                "utilite": "Capacité de livraison réelle",
+                "frequence": "Mensuelle",
+                "piege": "Privilégier quantité vs qualité"
+              }
+            ]
+          },
+          {
+            "categorie": "Qualité & Valeur",
+            "description": "Mesure la qualité des livrables et leur valeur",
+            "metriques": [
+              {
+                "nom": "Defect Rate",
+                "formule": "Bugs remontés / Stories livrées",
+                "cible": "< 10% en moyenne",
+                "utilite": "Qualité du développement",
+                "frequence": "Chaque Sprint",
+                "piege": "Décourager le signalement de bugs"
+              },
+              {
+                "nom": "Customer Satisfaction (CSAT)",
+                "formule": "Note satisfaction client /5",
+                "cible": "> 4/5 en moyenne",
+                "utilite": "Valeur perçue par l'utilisateur",
+                "frequence": "Mensuelle",
+                "piege": "Échantillon non représentatif"
+              },
+              {
+                "nom": "Net Promoter Score (NPS)",
+                "formule": "% Promoteurs - % Détracteurs", 
+                "cible": "> +50",
+                "utilite": "Recommandation du produit",
+                "frequence": "Trimestrielle",
+                "piege": "Interpréter sans contexte"
+              }
+            ]
+          },
+          {
+            "categorie": "Équipe & Bien-être",
+            "description": "Mesure la santé et motivation de l'équipe",
+            "metriques": [
+              {
+                "nom": "Team Happiness (NIKO-NIKO)",
+                "formule": "Note quotidienne équipe 1-5",
+                "cible": "> 3.5/5 en moyenne, pas de chute brutale",
+                "utilite": "Détection précoce problèmes moral",
+                "frequence": "Quotidienne",
+                "piege": "Pression sociale pour note élevée"
+              },
+              {
+                "nom": "Engagement Score",
+                "formule": "Enquête engagement trimestrielle",
+                "cible": "Amélioration continue",
+                "utilite": "Motivation et implication équipe",
+                "frequence": "Trimestrielle", 
+                "piege": "Questions biaisées ou leading"
+              },
+              {
+                "nom": "Turnover Rate",
+                "formule": "Départs équipe / Effectif total",
+                "cible": "< 15% annuel",
+                "utilite": "Stabilité et santé équipe",
+                "frequence": "Mensuelle",
+                "piege": "Ignorer les départs choisis positifs"
+              }
+            ]
+          }
+        ],
+        "dashboard_recommande": {
+          "description": "Tableau de bord idéal pour équipe Scrum",
+          "metriques_essentielles": [
+            "Burndown Chart du Sprint courant",
+            "Vélocité des 6 derniers Sprints", 
+            "Team Happiness tendance 30 jours",
+            "Defect Rate évolution",
+            "Lead Time moyenne"
+          ],
+          "outils": [
+            "Jira Dashboard",
+            "Azure DevOps Analytics",
+            "Tableau personnalisé Google Sheets"
+          ]
+        },
+        "anti_patterns": [
+          {
+            "probleme": "Mesurer pour mesurer sans action derrière",
+            "consequence": "Métriques vanity, pas d'amélioration réelle",
+            "solution": "Chaque métrique doit déclencher une action si seuil franchi"
+          },
+          {
+            "probleme": "Trop de métriques (> 10)",
+            "consequence": "Paralysie analyse, perte de focus",
+            "solution": "Maximum 5-7 métriques clés bien choisies"
+          },
+          {
+            "probleme": "Comparer les équipes sur leurs métriques",
+            "consequence": "Competition malsaine, gaming du système", 
+            "solution": "Chaque équipe suit son évolution propre"
+          },
+          {
+            "probleme": "Métriques utilisées pour évaluation individuelle",
+            "consequence": "Peur, gaming, déresponsabilisation équipe",
+            "solution": "Métriques = amélioration équipe, pas évaluation"
+          }
+        ],
+        "outils_recommandes": [
+          {
+            "nom": "Jira + eazyBI",
+            "usage": "Dashboards avancés sur données Jira",
+            "lien": "https://eazybi.com"
+          },
+          {
+            "nom": "Azure DevOps Analytics", 
+            "usage": "Analytics intégrés Azure DevOps",
+            "lien": "https://docs.microsoft.com/azure/devops/report/"
+          },
+          {
+            "nom": "ActionableAgile",
+            "usage": "Métriques Lean/Kanban spécialisées",
+            "lien": "https://actionableagile.com"
+          }
+        ]
+      }
+    },
+    {
+      "id": "amelioration-continue",
+      "title": "🔄 Amélioration Continue",
+      "description": "Culture et pratiques d'amélioration permanente",
+      "tags": ["kaizen", "amélioration", "culture", "apprentissage", "pdca"],
+      "icon": "fas fa-infinity",
+      "content": "Méthodes pour installer une culture d'amélioration continue durable",
+      "sections_detaillees": {
+        "pitch_elevator": "L'amélioration continue, c'est comme faire du sport : 15 minutes par jour valent mieux que 3h une fois par mois. Petit + régulier = transformation profonde !",
+        "citations": [
+          {
+            "texte": "Il n'y a rien de constant si ce n'est le changement",
+            "auteur": "Héraclite",
+            "source": "Philosophe grec"
+          },
+          {
+            "texte": "Kaizen signifie amélioration. Kai = changement, Zen = bon",
+            "auteur": "Masaaki Imai",
+            "source": "Kaizen Institute"
+          }
+        ],
+        "principes_fondamentaux": [
+          {
+            "principe": "Amélioration incrémentale",
+            "description": "Petits changements réguliers plutôt que révolutions",
+            "exemple": "Réduire daily de 15 à 12 min plutôt que la supprimer"
+          },
+          {
+            "principe": "Implication de tous",
+            "description": "Chaque membre peut proposer des améliorations",
+            "exemple": "Boîte à idées, temps dédié innovation"
+          },
+          {
+            "principe": "Mesure et feedback",
+            "description": "Mesurer l'impact des changements",
+            "exemple": "Avant/après sur métriques clés"
+          },
+          {
+            "principe": "Standardisation des bonnes pratiques",
+            "description": "Ancrer ce qui fonctionne bien",
+            "exemple": "Definition of Done enrichie régulièrement"
+          }
+        ],
+        "cycle_pdca": {
+          "description": "Plan-Do-Check-Act appliqué à l'équipe agile",
+          "etapes": [
+            {
+              "phase": "Plan",
+              "description": "Identifier problème et solution à tester",
+              "duree": "1-2 jours",
+              "activites": ["Analyse cause racine", "Hypothèse amélioration", "Critères succès"]
+            },
+            {
+              "phase": "Do", 
+              "description": "Expérimenter la solution à petite échelle",
+              "duree": "1 Sprint",
+              "activites": ["Mise en place expérimentation", "Collecte données", "Observations"]
+            },
+            {
+              "phase": "Check",
+              "description": "Analyser les résultats de l'expérimentation",
+              "duree": "Quelques heures",
+              "activites": ["Comparaison avant/après", "Feedback équipe", "Mesures objectives"]
+            },
+            {
+              "phase": "Act",
+              "description": "Décider de l'adoption ou abandon",
+              "duree": "1 jour",
+              "activites": ["Décision collective", "Standardisation si OK", "Nouvelle expérimentation si KO"]
+            }
+          ]
+        },
+        "pratiques_operationnelles": [
+          {
+            "nom": "Improvement Backlog",
+            "description": "Backlog dédié aux améliorations équipe",
+            "mise_en_place": "Colonne 'Améliorations' dans backlog principal",
+            "gestion": "Priorisation par équipe, capacity dédiée 10-20%"
+          },
+          {
+            "nom": "Kaizen Events",
+            "description": "Ateliers dédiés amélioration intensive",
+            "duree": "1-2 jours",
+            "frequence": "Trimestrielle",
+            "format": "Focus sur 1 problème majeur, solutions créatives"
+          },
+          {
+            "nom": "A3 Problem Solving",
+            "description": "Méthode structurée résolution problème sur 1 page A3",
+            "sections": ["Problème", "État actuel", "État cible", "Causes racines", "Contremesures", "Plan action", "Suivi"]
+          },
+          {
+            "nom": "Gemba Walks",
+            "description": "Observation sur le terrain du travail réel",
+            "qui": "Manager ou coach externe",
+            "objectif": "Identifier améliorations par observation directe"
+          }
+        ],
+        "calendrier": {
+          "duree": "Cycle permanent d'amélioration",
+          "etapes": ["Observer (quotidien)", "Expérimenter (Sprint)", "Mesurer (fin Sprint)", "Ajuster (rétro)", "Standardiser (si concluant)"]
+        },
+        "checklist": [
+          "Temps dédié à l'amélioration (10-20% capacity équipe)",
+          "Backlog d'améliorations visible et priorisé",
+          "Métriques de suivi des améliorations",
+          "Culture d'expérimentation (droit à l'erreur)",
+          "Célébration des échecs apprenants",
+          "Partage inter-équipes des bonnes pratiques",
+          "Formation continue équipe sur amélioration"
+        ],
+        "indicateurs_culture": [
+          {
+            "indicateur": "Nombre d'améliorations proposées par mois",
+            "cible": "> 2 par membre équipe"
+          },
+          {
+            "indicateur": "% améliorations implémentées",
+            "cible": "> 30% des propositions"
+          },
+          {
+            "indicateur": "Temps moyen implémentation amélioration",
+            "cible": "< 1 mois"
+          }
+        ],
+        "anti_patterns": [
+          {
+            "probleme": "Amélioration = uniquement rétrospectives",
+            "consequence": "Amélioration sporadique, pas de culture",
+            "solution": "Intégrer amélioration dans quotidien équipe"
+          },
+          {
+            "probleme": "Pas de temps dédié amélioration",
+            "consequence": "Toujours reporté, jamais prioritaire",
+            "solution": "Capacity réservée 10-20% pour amélioration"
+          },
+          {
+            "probleme": "Améliorations imposées par management",
+            "consequence": "Résistance, pas d'ownership équipe",
+            "solution": "Bottom-up, équipe propose et décide"
+          }
+        ]
+      }
+    }
+  ]
+}

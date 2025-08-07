@@ -1,0 +1,114 @@
+{
+  "section": {
+    "id": "gestion-defis",
+    "title": "Gestion des Défis",
+    "description": "Gérer résistance, conflits et situations difficiles",
+    "icon": "fas fa-shield-alt",
+    "color": "#F44336"
+  },
+  "items": [
+    {
+      "id": "resistance-changement",
+      "title": "🛡️ Résistance au Changement",
+      "description": "Identifier et accompagner les résistances",
+      "tags": ["résistance", "changement", "accompagnement", "adoption"],
+      "icon": "fas fa-user-shield",
+      "content": "Stratégies pour transformer la résistance en adhésion",
+      "sections_detaillees": {
+        "pitch_elevator": "La résistance, c'est comme la défense immunitaire : c'est normal et protecteur. Au lieu de la combattre, il faut la comprendre et l'apprivoiser !",
+        "citations": [
+          {
+            "texte": "La résistance au changement n'existe pas, il n'y a que la résistance à être changé",
+            "auteur": "Jean-Pierre Boutinet",
+            "source": "Psychologie du changement"
+          }
+        ],
+        "exemples_pratiques": [
+          {
+            "contexte": "Manager qui sabote les dailies 'ça sert à rien'",
+            "solution": "Discussion 1-1, comprendre ses peurs, l'impliquer",
+            "resultat": "Devient sponsor, aide à evangeliser"
+          }
+        ],
+        "techniques": [
+          {
+            "nom": "Courbe du deuil",
+            "description": "Identifier où en est la personne dans l'acceptation",
+            "etapes": ["Déni", "Colère", "Marchandage", "Dépression", "Acceptation"]
+          }
+        ],
+        "anti_patterns": [
+          {
+            "probleme": "Forcer l'adoption sans écouter",
+            "consequence": "Résistance passive, sabotage",
+            "solution": "Écouter les peurs, impliquer dans la solution"
+          }
+        ]
+      }
+    },
+    {
+      "id": "gestion-conflits",
+      "title": "⚔️ Gestion des Conflits",
+      "description": "Résoudre tensions et conflits dans l'équipe",
+      "tags": ["conflit", "médiation", "communication", "résolution"],
+      "icon": "fas fa-handshake",
+      "content": "Méthodes de résolution et prévention des conflits",
+      "sections_detaillees": {
+        "pitch_elevator": "Le conflit, c'est comme la fièvre : signal d'alarme que quelque chose ne va pas. Bien géré, ça renforce l'équipe !",
+        "tableau_comparaison": {
+          "criteres": ["Urgence", "Méthode", "Durée", "Facilitateur"],
+          "options": [
+            {"nom": "Conflit mineur", "urgence": "Faible", "methode": "Discussion informelle", "duree": "30min", "facilitateur": "Non"},
+            {"nom": "Conflit équipe", "urgence": "Moyenne", "methode": "Facilitation neutre", "duree": "2h", "facilitateur": "Oui"},
+            {"nom": "Conflit majeur", "urgence": "Forte", "methode": "Médiation RH", "duree": "1 jour", "facilitateur": "Externe"}
+          ]
+        },
+        "checklist": [
+          "Intervenir rapidement avant escalade",
+          "Écouter toutes les parties séparément",
+          "Identifier les besoins sous-jacents",
+          "Faciliter dialogue constructif",
+          "Trouver solution gagnant-gagnant",
+          "Suivre l'application des accords"
+        ]
+      }
+    },
+    {
+      "id": "gestion-stress",
+      "title": "🔥 Gestion du Stress",
+      "description": "Techniques pour gérer stress et prévenir burn-out",
+      "tags": ["stress", "burn-out", "bien-être", "équilibre"],
+      "icon": "fas fa-spa",
+      "content": "Prévention et gestion du stress en environnement agile",
+      "sections_detaillees": {
+        "pitch_elevator": "Le stress, c'est comme le sel en cuisine : un peu donne du goût (motivation), trop gâche tout (burn-out). Dosage délicat !",
+        "metriques": [
+          {
+            "nom": "Happiness Index",
+            "formule": "Note quotidienne équipe 1-5",
+            "cible": "Moyenne > 3.5, pas de chute brutale"
+          }
+        ],
+        "techniques": [
+          {
+            "nom": "NIKO-NIKO Calendar",
+            "description": "Humeur quotidienne avec smileys",
+            "benefice": "Détection précoce problèmes"
+          },
+          {
+            "nom": "Workload Poker",
+            "description": "Estimation charge comme planning poker",
+            "benefice": "Éviter surcharge équipe"
+          }
+        ],
+        "anti_patterns": [
+          {
+            "probleme": "Ignorer les signaux de surcharge",
+            "consequence": "Burn-out, turn-over, qualité dégradée",
+            "solution": "Surveillance proactive, dialogue ouvert"
+          }
+        ]
+      }
+    }
+  ]
+}

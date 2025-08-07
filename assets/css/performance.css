@@ -1,0 +1,308 @@
+/* ==========================================================================
+   Performance Optimizations & Reduced Effects
+   ========================================================================== */
+
+/* Lazy loading styles */
+.lazy-loading {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.lazy-loaded {
+  opacity: 1;
+}
+
+.lazy-error {
+  opacity: 0.5;
+  filter: grayscale(100%);
+}
+
+/* Image lazy loading placeholder */
+img[loading="lazy"]:not(.lazy-loaded) {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Critical CSS inlining optimization */
+.critical-css-loaded .non-critical-content {
+  opacity: 1;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.non-critical-content {
+  opacity: 0;
+}
+
+/* Resource preloading indicators */
+.preload-indicator {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease-out;
+  z-index: 9999;
+}
+
+.preload-indicator.loading {
+  transform: scaleX(1);
+}
+
+/* Compression optimization classes */
+.compressed-asset {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 200px;
+}
+
+.bundle-loaded {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+}
+
+.bundle-loading {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+/* Low performance mode */
+.low-performance * {
+  animation-duration: 0.2s !important;
+  transition-duration: 0.2s !important;
+}
+
+.low-performance .hero-particle,
+.low-performance .hero-floating-element {
+  display: none;
+}
+
+.low-performance .interactive-bg-element {
+  opacity: 0.05;
+  transform: none !important;
+}
+
+/* Reduced effects mode */
+.reduced-effects .hero-section::before,
+.reduced-effects .hero-section::after,
+.reduced-effects .features::before {
+  display: none;
+}
+
+.reduced-effects .hero-screenshot {
+  transform: none !important;
+}
+
+.reduced-effects .feature-card:hover {
+  transform: translateY(-2px);
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .hero-particles,
+  .hero-floating-element,
+  .interactive-bg-element {
+    display: none;
+  }
+  
+  .hero-section::before,
+  .hero-section::after {
+    opacity: 0.5;
+  }
+  
+  .feature-card {
+    will-change: auto;
+  }
+  
+  .hero-screenshot {
+    transform: none !important;
+  }
+}
+
+/* Battery saving mode */
+@media (prefers-reduced-motion: reduce) {
+  .scroll-progress {
+    display: none;
+  }
+  
+  .hero-particles,
+  .hero-floating-element {
+    display: none;
+  }
+  
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* High performance mode for capable devices */
+@media (min-width: 1024px) and (min-resolution: 2dppx) {
+  .hero-section {
+    background-attachment: fixed;
+  }
+  
+  .feature-card {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+}
+
+/* GPU acceleration hints */
+.hero-title,
+.hero-screenshot,
+.feature-card,
+.badge {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Optimize for 60fps */
+@media (min-width: 768px) {
+  .hero-screenshot,
+  .feature-card {
+    will-change: transform;
+  }
+}
+
+/* Cleanup will-change after animations */
+.animation-complete {
+  will-change: auto;
+}
+
+/* Critical rendering path optimization */
+.above-fold {
+  contain: layout style paint;
+}
+
+.below-fold {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 500px;
+}
+
+/* Performance monitoring styles */
+.performance-metrics {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  background: rgba(var(--primary-color-rgb), 0.1);
+  border-radius: 8px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.875rem;
+}
+
+.metric {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.metric-label {
+  font-weight: 600;
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.metric-value {
+  font-weight: 700;
+  color: var(--primary-color);
+  font-size: 1.125rem;
+}
+
+/* Intersection Observer optimization */
+.intersection-observed {
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.intersection-observed:not(.in-view) {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.intersection-observed.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Connection-aware optimizations */
+.slow-connection .heavy-animation,
+.slow-connection .complex-gradient,
+.slow-connection .backdrop-filter {
+  display: none !important;
+}
+
+.fast-connection .enhanced-effects {
+  display: block;
+}
+
+/* Prefetch hover states */
+.prefetch-on-hover:hover::after {
+  content: '🔮';
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  font-size: 0.75rem;
+  opacity: 0.7;
+}
+
+/* Bundle loading states */
+.bundle-critical {
+  display: block !important;
+}
+
+.bundle-deferred {
+  display: none;
+}
+
+.bundle-deferred.loaded {
+  display: block;
+  animation: fadeInUp 0.3s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Service Worker cache indicators */
+.cached-content::before {
+  content: '💾';
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-size: 0.75rem;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* Performance debugging (development only) */
+.perf-debug .slow-element {
+  outline: 2px solid red !important;
+}
+
+.perf-debug .fast-element {
+  outline: 2px solid green !important;
+}
+
+.perf-debug .lazy-element {
+  outline: 2px solid orange !important;
+}

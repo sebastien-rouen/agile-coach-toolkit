@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Example Mapping - Outil pour Scrum Master/Coach Agile</title>
+    
+    <!-- PWA Integration -->
+    <meta name="theme-color" content="#3b82f6">
+    <link rel="icon" href="../../assets/icons/favicon.ico">
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>🗂️ Example Mapping Tool</h1>
+            <p class="subtitle">Outil professionnel pour Scrum Masters & Coaches Agiles</p>
+            
+            <div class="toolbar">
+                <button class="btn btn-primary" onclick="exampleTool.addCard('story')">+ Story</button>
+                <button class="btn btn-secondary" onclick="exampleTool.addCard('rule')">+ Règle</button>
+                <button class="btn btn-success" onclick="exampleTool.addCard('example')">+ Exemple</button>
+                <button class="btn btn-danger" onclick="exampleTool.addCard('question')">+ Question</button>
+                
+                <div class="toolbar-group">
+                    <button class="btn btn-outline" onclick="exampleTool.clearAll()">🗑️ Vider</button>
+                    <button class="btn btn-outline" onclick="exampleTool.exportJSON()">💾 Export JSON</button>
+                    <button class="btn btn-outline" onclick="exampleTool.exportJIRA()">📋 Export JIRA</button>
+                    <input type="file" id="importFile" accept=".json" style="display: none;" onchange="exampleTool.importJSON(event)">
+                    <button class="btn btn-outline" onclick="document.getElementById('importFile').click()">📂 Import</button>
+                </div>
+                
+                <button class="btn btn-info" onclick="exampleTool.showHelp()">❓ Guide</button>
+            </div>
+        </header>
+
+        <!-- Legend -->
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-color story"></div>
+                <span><strong><span class="color-text-yellow">Jaune - User Stories:</span></strong> "En tant que... je veux... pour..."</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color rule"></div>
+                <span><strong><span class="color-text-blue">Bleu - Règles:</span></strong> Critères d'acceptation, contraintes métier</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color example"></div>
+                <span><strong><span class="color-text-green">Vert - Exemples:</span></strong> Scénarios concrets, tests d'acceptation</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color question"></div>
+                <span><strong><span class="color-text-red">Rouge - Questions:</span></strong> Points à clarifier, incertitudes</span>
+            </div>
+        </div>
+
+        <!-- Board with columns organization -->
+        <div class="board" id="board">
+            <div class="board-columns" id="main-board">
+                <!-- Les colonnes seront ajoutées ici dynamiquement -->
+            </div>
+            <div class="questions-sidebar" id="questions-sidebar">
+                <h4>🔴 Questions en suspens</h4>
+                <div class="questions-container" id="questions-container">
+                    <!-- Questions will be displayed here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Voting Panel -->
+        <div class="voting-panel" id="votingPanel">
+            <h3>🎯 Estimation d'équipe</h3>
+            <div class="fibonacci-buttons">
+                <button class="vote-btn" data-value="1">1</button>
+                <button class="vote-btn" data-value="2">2</button>
+                <button class="vote-btn" data-value="3">3</button>
+                <button class="vote-btn" data-value="5">5</button>
+                <button class="vote-btn" data-value="8">8</button>
+                <button class="vote-btn" data-value="13">13</button>
+                <button class="vote-btn" data-value="20">20</button>
+                <button class="vote-btn" data-value="?">?</button>
+            </div>
+            <div class="vote-result" id="voteResult"></div>
+        </div>
+
+        <!-- Examples Library -->
+        <div class="examples-library" id="examplesLibrary">
+            <h3>📚 Exemples pré-remplis par domaine</h3>
+            <div class="example-buttons">
+                <button class="btn btn-small" onclick="exampleTool.loadExample('auth')">🔐 Authentification</button>
+                <button class="btn btn-small" onclick="exampleTool.loadExample('cart')">🛒 Panier e-commerce</button>
+                <button class="btn btn-small" onclick="exampleTool.loadExample('search')">🔍 Recherche</button>
+                <button class="btn btn-small" onclick="exampleTool.loadExample('payment')">💳 Paiement</button>
+                <button class="btn btn-small" onclick="exampleTool.loadExample('registration')">📝 Inscription</button>
+                <button class="btn btn-small" onclick="exampleTool.loadExample('health')">🏥 Santé - Parcours patient</button>
+                <button class="btn btn-small" onclick="exampleTool.loadExample('devops')">🚀 DevOps - Déploiement</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal pour aide -->
+    <div class="modal" id="helpModal">
+        <div class="modal-content">
+            <span class="close" onclick="exampleTool.closeModal()">&times;</span>
+            <h2>🎓 Guide d'utilisation - Example Mapping</h2>
+            
+            <h3>Principe fondamental</h3>
+            <p>L'Example Mapping permet de structurer les conversations autour des critères d'acceptation des User Stories en 25 minutes maximum, en utilisant des exemples concrets.</p>
+            
+            <h3>Méthode en 4 étapes avec organisation par couleurs</h3>
+            <ol>
+                <li><strong><span class="color-bg-yellow">🟨 Story (Jaune):</span></strong> Placez la user story en haut de chaque colonne</li>
+                <li><strong><span class="color-bg-blue">🟦 Règles (Bleu):</span></strong> Identifiez les règles métier sous chaque story</li>
+                <li><strong><span class="color-bg-green">🟩 Exemples (Vert):</span></strong> Trouvez des exemples concrets pour chaque règle</li>
+                <li><strong><span class="color-bg-red">🟥 Questions (Rouge):</span></strong> À droite, plus petites, ce qui n'est pas clair</li>
+            </ol>
+            
+            <h3>Organisation visuelle optimisée</h3>
+            <div class="layout-explanation">
+                <div class="layout-demo">
+                    <div class="demo-column">
+                        <div class="demo-card demo-story">Story 1</div>
+                        <div class="demo-card demo-rule">Règle 1.1</div>
+                        <div class="demo-card demo-rule">Règle 1.2</div>
+                        <div class="demo-card demo-example">Exemple 1.1</div>
+                        <div class="demo-card demo-example">Exemple 1.2</div>
+                    </div>
+                    <div class="demo-column">
+                        <div class="demo-card demo-story">Story 2</div>
+                        <div class="demo-card demo-rule">Règle 2.1</div>
+                        <div class="demo-card demo-example">Exemple 2.1</div>
+                    </div>
+                    <div class="demo-questions">
+                        <div class="demo-card demo-question">Question ?</div>
+                        <div class="demo-card demo-question">Question ?</div>
+                    </div>
+                </div>
+                <p><em>Organisation : 1 colonne par <span class="color-bg-yellow">story jaune</span>, avec <span class="color-bg-blue">règles bleues</span> puis <span class="color-bg-green">exemples verts</span> en dessous. <span class="color-bg-red">Questions rouges</span> regroupées à droite.</em></p>
+            </div>
+            
+            <h3>Analogie de la recette de cuisine</h3>
+            <ul>
+                <li><strong><span class="color-bg-yellow">🟨 Story =</span></strong> Nom du plat ("Tarte aux pommes")</li>
+                <li><strong><span class="color-bg-blue">🟦 Règles =</span></strong> Instructions de base ("Préchauffer à 180°")</li>
+                <li><strong><span class="color-bg-green">🟩 Exemples =</span></strong> Variations concrètes ("Pour 6 personnes : 4 pommes")</li>
+                <li><strong><span class="color-bg-red">🟥 Questions =</span></strong> Ce qu'on ne sait pas ("Temps si four ventilé?")</li>
+            </ul>
+            
+            <h3>Signaux d'alarme</h3>
+            <ul>
+                <li><strong>Trop de <span class="color-text-red">cartes rouges</span> :</strong> Story pas prête, plus de recherche nécessaire</li>
+                <li><strong>Trop de <span class="color-text-blue">cartes bleues</span> :</strong> Story trop grosse, à découper</li>
+                <li><strong>Session > 25 min :</strong> Story trop complexe ou mal comprise</li>
+            </ul>
+
+            <h3>Exemples par domaine</h3>
+            <p>L'outil inclut des exemples concrets pour différents secteurs :</p>
+            <ul>
+                <li><strong>IT :</strong> Authentification, e-commerce, recherche</li>
+                <li><strong>🏥 Santé :</strong> Amélioration parcours patient</li>
+                <li><strong>🚀 DevOps :</strong> Pipeline de déploiement automatisé</li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    
+    <!-- Intégration Agile Coach Toolkit -->
+    <script src="../../assets/js/tool-integration.js"></script>
+    <script>
+      // Configuration spécifique à l'outil
+      window.TOOL_CONFIG = {
+        name: 'example-mapping',
+        backUrl: '../../index.html#tools'
+      };
+    </script>
+</body>
+</html>
