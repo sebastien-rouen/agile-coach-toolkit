@@ -1,0 +1,355 @@
+/**
+ * sidebar.css - Styles pour le menu latéral
+ */
+
+/* ============================================
+   SIDEBAR OVERLAY
+   ============================================ */
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  z-index: 998;
+  opacity: 0;
+  visibility: hidden;
+  transition: all var(--transition-base);
+}
+
+/* Sur mobile, l'overlay s'affiche quand la sidebar est active */
+@media (max-width: 1024px) {
+  .sidebar-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+/* Sur desktop, pas d'overlay */
+@media (min-width: 1025px) {
+  .sidebar-overlay {
+    display: none;
+  }
+}
+
+/* ============================================
+   SIDEBAR
+   ============================================ */
+.sidebar {
+  position: fixed;
+  top: var(--header-height, 64px);
+  left: 0;
+  width: 340px;
+  height: calc(100vh - var(--header-height, 64px));
+  background: var(--bg-secondary);
+  border-right: var(--border-width) solid var(--border-default);
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: transform var(--transition-base);
+}
+
+/* Sur desktop : sidebar visible par défaut */
+@media (min-width: 1025px) {
+  .sidebar {
+    transform: translateX(0);
+  }
+}
+
+/* Sur mobile/tablet : sidebar cachée par défaut */
+@media (max-width: 1024px) {
+  .sidebar {
+    top: 0;
+    height: 100vh;
+    width: 320px;
+    transform: translateX(-100%);
+  }
+
+  .sidebar.active {
+    transform: translateX(0);
+  }
+}
+
+/* ============================================
+   SIDEBAR HEADER
+   ============================================ */
+.sidebar-header {
+  padding: var(--space-lg);
+  border-bottom: var(--border-width) solid var(--border-default);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--bg-tertiary);
+}
+
+.sidebar-title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+}
+
+.sidebar-title svg {
+  color: var(--primary-color);
+}
+
+/* ============================================
+   TABS
+   ============================================ */
+.tabs {
+  display: flex;
+  gap: var(--space-xs);
+  padding: var(--space-md);
+  background: var(--bg-tertiary);
+  border-bottom: var(--border-width) solid var(--border-default);
+}
+
+.tab {
+  flex: 1;
+  padding: var(--space-sm) var(--space-md);
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  position: relative;
+}
+
+.tab:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.tab.active {
+  background: var(--primary-color);
+  color: white;
+}
+
+.tab svg {
+  width: 16px;
+  height: 16px;
+}
+
+.tab-badge {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 2px 6px;
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  min-width: 20px;
+  text-align: center;
+}
+
+.tab.active .tab-badge {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* ============================================
+   CATEGORIES NAVIGATION
+   ============================================ */
+.categories-nav {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-md);
+}
+
+.sidebar-section-title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-md) var(--space-sm);
+  margin-top: var(--space-md);
+  margin-bottom: var(--space-xs);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid var(--border-default);
+}
+
+.sidebar-section-title:first-child {
+  margin-top: 0;
+}
+
+.sidebar-section-title .section-icon {
+  font-size: 1.1em;
+}
+
+.category-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-md);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  color: var(--text-primary);
+  transition: all var(--transition-fast);
+  margin-bottom: var(--space-xs);
+  position: relative;
+  border: var(--border-width) solid transparent;
+}
+
+.category-item:hover {
+  background: var(--bg-hover);
+  border-color: var(--border-hover);
+  text-decoration: none;
+  transform: translateX(4px);
+}
+
+.category-item:active {
+  transform: translateX(2px);
+}
+
+.category-icon {
+  font-size: 1.5rem;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-md);
+  flex-shrink: 0;
+}
+
+.category-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.category-name {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-primary);
+  margin-bottom: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.category-count {
+  font-size: var(--font-size-xs);
+  color: var(--text-tertiary);
+}
+
+/* Bouton favori dans la sidebar */
+.category-item .favorite-btn {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-sm);
+  color: var(--text-tertiary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.category-item .favorite-btn:hover {
+  background: var(--bg-tertiary);
+  color: var(--warning-color);
+  transform: scale(1.1);
+}
+
+.category-item .favorite-btn.active {
+  color: var(--warning-color);
+}
+
+.category-item .favorite-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* ============================================
+   SCROLLBAR PERSONNALISÉE
+   ============================================ */
+.categories-nav::-webkit-scrollbar {
+  width: 6px;
+}
+
+.categories-nav::-webkit-scrollbar-track {
+  background: var(--bg-tertiary);
+  border-radius: 3px;
+}
+
+.categories-nav::-webkit-scrollbar-thumb {
+  background: var(--border-default);
+  border-radius: 3px;
+}
+
+.categories-nav::-webkit-scrollbar-thumb:hover {
+  background: var(--text-tertiary);
+}
+
+/* ============================================
+   BURGER BUTTON
+   ============================================ */
+/* Sur desktop : cacher le bouton burger */
+@media (min-width: 1025px) {
+  .burger-btn {
+    display: none;
+  }
+}
+
+/* Sur mobile/tablet : afficher le bouton burger */
+@media (max-width: 1024px) {
+  .burger-btn {
+    display: flex;
+  }
+}
+
+/* ============================================
+   MAIN CONTENT AVEC SIDEBAR
+   ============================================ */
+/* Sur desktop : décaler le contenu pour laisser place à la sidebar */
+@media (min-width: 1025px) {
+  .main-content {
+    margin-left: 340px;
+    transition: margin-left var(--transition-base);
+  }
+
+  /* Ajuster aussi le header si nécessaire */
+  body {
+    padding-left: 0;
+  }
+}
+
+/* Sur mobile/tablet : pas de décalage */
+@media (max-width: 1024px) {
+  .main-content {
+    margin-left: 0;
+  }
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 340px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar {
+    width: 100%;
+    max-width: 320px;
+  }
+}

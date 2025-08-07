@@ -1,0 +1,30 @@
+{
+  "category": "frameworks",
+  "title": "Frameworks Agiles",
+  "description": "Tes frameworks de référence pour structurer le travail des équipes",
+  "icon": "fas fa-cogs",
+  "color": "#4CAF50",
+  "articles": [
+    {
+      "id": "scrum-framework",
+      "title": "Scrum Framework",
+      "file": "scrum-framework.md",
+      "tags": ["scrum", "sprint", "iteratif", "ceremonies"],
+      "order": 1
+    },
+    {
+      "id": "kanban-method",
+      "title": "Kanban Method",
+      "file": "kanban-method.md",
+      "tags": ["kanban", "flux", "wip", "continu"],
+      "order": 2
+    },
+    {
+      "id": "scrumban",
+      "title": "Scrumban",
+      "file": "scrumban.md",
+      "tags": ["scrumban", "hybride", "transition", "pragmatique"],
+      "order": 3
+    }
+  ]
+}

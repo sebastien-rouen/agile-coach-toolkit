@@ -1,0 +1,154 @@
+{
+  "site": {
+    "name": "Coach Agile Toolkit",
+    "tagline": "Collection d'outils gratuits et open-source pour optimiser vos pratiques agiles",
+    "version": "3.0.0",
+    "author": "Sébastien",
+    "license": "MIT"
+  },
+  "categories": [
+    {
+      "id": "fondamentaux",
+      "emoji": "🎯",
+      "title": "Fondamentaux",
+      "subtitle": "Bases du coaching agile",
+      "color": "#FF6B6B",
+      "icon": "target"
+    },
+    {
+      "id": "frameworks",
+      "emoji": "🚵",
+      "title": "Frameworks",
+      "subtitle": "Scrum, Kanban & autres méthodes",
+      "color": "#4ECDC4",
+      "icon": "layers"
+    },
+    {
+      "id": "delivery-amelioration",
+      "emoji": "📦",
+      "title": "Delivery & Amélioration",
+      "subtitle": "Livraison et amélioration continue",
+      "color": "#FFA07A",
+      "icon": "package"
+    },
+    {
+      "id": "animation-facilitation",
+      "emoji": "🎭",
+      "title": "Animation & Facilitation",
+      "subtitle": "Techniques d'animation et serious games",
+      "color": "#9B59B6",
+      "icon": "users"
+    },
+    {
+      "id": "gestion-defis",
+      "emoji": "🛡️",
+      "title": "Gestion des Défis",
+      "subtitle": "Résistance, conflits et stress",
+      "color": "#E74C3C",
+      "icon": "shield"
+    },
+    {
+      "id": "leadership-coaching",
+      "emoji": "👑",
+      "title": "Leadership & Coaching",
+      "subtitle": "Postures et soft skills",
+      "color": "#F39C12",
+      "icon": "crown"
+    },
+    {
+      "id": "multi-equipes-scale",
+      "emoji": "🏗️",
+      "title": "Multi-équipes & Scale",
+      "subtitle": "Coordination et scaling agile",
+      "color": "#607D8B",
+      "icon": "building"
+    },
+    {
+      "id": "contextes-specialises",
+      "emoji": "🎯",
+      "title": "Contextes Spécialisés",
+      "subtitle": "Situations particulières et secteurs",
+      "color": "#8E44AD",
+      "icon": "compass"
+    },
+    {
+      "id": "product-design",
+      "emoji": "🎨",
+      "title": "Product & Design",
+      "subtitle": "Product management et design thinking",
+      "color": "#E91E63",
+      "icon": "palette"
+    },
+    {
+      "id": "transformation-culture",
+      "emoji": "🌱",
+      "title": "Transformation & Culture",
+      "subtitle": "Conduite du changement organisationnel",
+      "color": "#8BC34A",
+      "icon": "sprout"
+    },
+    {
+      "id": "outils-technologies",
+      "emoji": "🛠️",
+      "title": "Outils & Technologies",
+      "subtitle": "Applications et outils digitaux",
+      "color": "#00BCD4",
+      "icon": "wrench"
+    },
+    {
+      "id": "developpement-coach",
+      "emoji": "📚",
+      "title": "Développement Coach",
+      "subtitle": "Formation et montée en compétences",
+      "color": "#3F51B5",
+      "icon": "book"
+    },
+    {
+      "id": "ressources-rex",
+      "emoji": "📋",
+      "title": "Ressources & REX",
+      "subtitle": "Templates et retours d'expérience",
+      "color": "#00ACC1",
+      "icon": "clipboard"
+    }
+  ],
+  "wizard": {
+    "questions": [
+      {
+        "id": "role",
+        "question": "Quel est ton rôle principal ?",
+        "options": [
+          { "label": "Scrum Master", "tags": ["frameworks", "animation-facilitation", "gestion-defis"] },
+          { "label": "Product Owner", "tags": ["product-design", "delivery-amelioration"] },
+          { "label": "Coach Agile", "tags": ["fondamentaux", "transformation-culture", "leadership-coaching"] },
+          { "label": "Membre d'équipe", "tags": ["frameworks", "animation-facilitation"] },
+          { "label": "Manager", "tags": ["leadership-coaching", "multi-equipes-scale", "transformation-culture"] }
+        ]
+      },
+      {
+        "id": "objective",
+        "question": "Que cherches-tu à faire aujourd'hui ?",
+        "options": [
+          { "label": "Animer un événement Agile", "tags": ["animation-facilitation", "frameworks"] },
+          { "label": "Faciliter une rétrospective", "tags": ["animation-facilitation", "gestion-defis"] },
+          { "label": "Comprendre un framework", "tags": ["frameworks", "fondamentaux"] },
+          { "label": "Améliorer la collaboration", "tags": ["delivery-amelioration", "leadership-coaching"] },
+          { "label": "Gérer un conflit ou une résistance", "tags": ["gestion-defis", "leadership-coaching"] },
+          { "label": "Accompagner une transformation", "tags": ["transformation-culture", "leadership-coaching"] },
+          { "label": "Utiliser un outil pratique", "tags": ["ressources-rex"] }
+        ]
+      },
+      {
+        "id": "context",
+        "question": "Dans quel contexte es-tu ?",
+        "options": [
+          { "label": "Équipe unique (< 10 personnes)", "tags": ["frameworks", "animation-facilitation"] },
+          { "label": "Plusieurs équipes (Scale)", "tags": ["multi-equipes-scale"] },
+          { "label": "Début de transformation Agile", "tags": ["fondamentaux", "transformation-culture"] },
+          { "label": "Équipe mature", "tags": ["delivery-amelioration", "developpement-coach"] },
+          { "label": "Contexte spécialisé (remote, DevOps...)", "tags": ["contextes-specialises", "outils-technologies"] }
+        ]
+      }
+    ]
+  }
+}

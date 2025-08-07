@@ -1,0 +1,37 @@
+{
+  "category": "fondamentaux",
+  "title": "Fondamentaux",
+  "description": "Les bases essentielles du coaching agile",
+  "icon": "fas fa-foundation",
+  "color": "#2196F3",
+  "articles": [
+    {
+      "id": "cadrage-intervention",
+      "title": "Cadrage d'Intervention",
+      "file": "cadrage-intervention.md",
+      "tags": ["cadrage", "contrat", "objectifs", "périmètre"],
+      "order": 1
+    },
+    {
+      "id": "vision-strategie",
+      "title": "Vision & Stratégie",
+      "file": "vision-strategie.md",
+      "tags": ["vision", "stratégie", "alignement", "communication"],
+      "order": 2
+    },
+    {
+      "id": "formations-frameworks",
+      "title": "Formations Frameworks",
+      "file": "formations-frameworks.md",
+      "tags": ["formation", "apprentissage", "certification", "compétences"],
+      "order": 3
+    },
+    {
+      "id": "assessment-diagnostic",
+      "title": "Assessment & Diagnostic",
+      "file": "assessment-diagnostic.md",
+      "tags": ["assessment", "maturité", "diagnostic", "amélioration"],
+      "order": 4
+    }
+  ]
+}

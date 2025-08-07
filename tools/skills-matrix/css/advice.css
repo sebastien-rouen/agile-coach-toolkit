@@ -1,0 +1,210 @@
+/**
+ * Skills Matrix - Styles des conseils automatisés
+ */
+
+/* ============================================
+   ADVICE SECTION
+   ============================================ */
+.advice-section {
+    margin-top: 40px;
+    background: #16213e;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+.advice-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.advice-card {
+    background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%);
+    border-radius: 10px;
+    padding: 20px;
+    border-left: 4px solid;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    color: #349abd;
+}
+
+.advice-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+.advice-card.level-1 {
+    border-left-color: #ff6b6b;
+}
+
+.advice-card.level-2 {
+    border-left-color: #df982d;
+}
+
+.advice-card.level-3 {
+    border-left-color: #e2ce14;
+}
+
+.advice-card.level-4 {
+    border-left-color: #38ef7d;
+}
+
+.advice-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.advice-emoji {
+    font-size: 2em;
+}
+
+.advice-title {
+    font-size: 1.2em;
+    font-weight: 700;
+    color: #00d4ff;
+}
+
+.advice-member {
+    font-size: 0.9em;
+    color: #95a5a6;
+    margin-bottom: 10px;
+}
+
+.advice-message {
+    color: #e0e0e0;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.advice-resources {
+    margin-top: 15px;
+}
+
+.advice-resources h4 {
+    color: #f093fb;
+    font-size: 0.9em;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.resource-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    background: #0f3460;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.resource-item:hover {
+    background: #1a1a2e;
+    transform: translateX(5px);
+}
+
+.resource-icon {
+    font-size: 1.2em;
+}
+
+.resource-text {
+    flex: 1;
+    font-size: 0.9em;
+    color: white;
+}
+
+.action-plan {
+    margin-top: 15px;
+    padding: 15px;
+    background: rgba(102, 126, 234, 0.1);
+    border-radius: 8px;
+    border: 1px solid #667eea;
+}
+
+.action-plan h4 {
+    color: #667eea;
+    font-size: 0.9em;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.action-plan p {
+    color: #e0e0e0;
+    font-size: 0.9em;
+    line-height: 1.5;
+}
+
+/* ============================================
+   ADVICE FILTERS
+   ============================================ */
+.advice-filter {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.filter-btn {
+    padding: 8px 16px;
+    background: #1a1a2e;
+    color: #e0e0e0;
+    border: 2px solid #667eea;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.filter-btn:hover {
+    border-color: #00d4ff;
+}
+
+.filter-btn.active {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-color: transparent;
+}
+
+.no-advice {
+    text-align: center;
+    padding: 40px;
+    color: #95a5a6;
+    font-size: 1.1em;
+}
+
+/* ============================================
+   PROGRESS BADGES
+   ============================================ */
+.progress-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8em;
+    font-weight: 600;
+    margin-left: 10px;
+}
+
+.progress-badge.beginner {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+    color: white;
+}
+
+.progress-badge.learning {
+    background: linear-gradient(135deg, #c2780a 0%, #df982d 100%);
+    color: white;
+}
+
+.progress-badge.competent {
+    background: linear-gradient(135deg, #e2ce14 0%, rgb(179, 167, 9) 100%);
+    color: #333;
+}
+
+.progress-badge.expert {
+    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+    color: #333;
+}

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagnostic Agile Fluency</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- PWA Integration -->
+    <meta name="theme-color" content="#3b82f6">
+    <link rel="manifest" href="../../manifest.json">
+    <link rel="icon" href="../../assets/icons/favicon.ico">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 Diagnostic Agile Fluency</h1>
+            <p>Découvrez le niveau d'agilité de votre équipe informatique</p>
+        </div>
+
+        <div class="diagnostic-container">
+            <div class="controls">
+                <button class="btn btn-primary" onclick="startDiagnostic()">Commencer le diagnostic</button>
+                <button class="btn btn-secondary" onclick="exportResults()">Exporter résultats</button>
+                <input type="file" id="importFile" style="display: none;" accept=".json" onchange="importResults(event)">
+                <button class="btn btn-secondary" onclick="document.getElementById('importFile').click()">Importer résultats</button>
+            </div>
+
+            <div id="questions-container">
+                <!-- Zone 1: Focusing -->
+                <div class="zone">
+                    <div class="zone-header zone-1">
+                        <span class="zone-icon">🎯</span>
+                        <div>
+                            <div>Zone 1 : FOCUSING (Se concentrer)</div>
+                            <div style="font-size: 0.8em; opacity: 0.9;">Les bases de l'agilité - Transparence et travail d'équipe</div>
+                        </div>
+                    </div>
+                    <div class="zone-content">
+                        <div class="question" data-zone="1" data-question="1">
+                            <div class="question-text">Votre équipe planifie-t-elle en pensant aux bénéfices pour les utilisateurs ?</div>
+                            <div class="question-example">Exemple : Au lieu de dire "Il faut refactoriser le code", l'équipe dit "Il faut améliorer les temps de chargement pour que nos utilisateurs soient plus satisfaits"</div>
+                            <div class="options">
+                                <div class="option" data-value="0">Jamais</div>
+                                <div class="option" data-value="1">Parfois</div>
+                                <div class="option" data-value="2">Souvent</div>
+                                <div class="option" data-value="3">Toujours</div>
+                            </div>
+                        </div>
+
+                        <div class="question" data-zone="1" data-question="2">
+                            <div class="question-text">L'équipe fait-elle des rétrospectives régulières pour s'améliorer ?</div>
+                            <div class="question-example">Exemple : Chaque sprint, l'équipe se réunit 1h pour parler de ce qui a bien marché et ce qu'il faut améliorer</div>
+                            <div class="options">
+                                <div class="option" data-value="0">Jamais</div>
+                                <div class="option" data-value="1">Parfois</div>
+                                <div class="option" data-value="2">Souvent</div>
+                                <div class="option" data-value="3">Toujours</div>
+                            </div>
+                        </div>
+
+                        <div class="question" data-zone="1" data-question="3">
+                            <div class="question-text">Toute l'équipe participe-t-elle aux décisions techniques importantes ?</div>
+                            <div class="question-example">Exemple : Quand il faut choisir une nouvelle librairie JavaScript, tous les développeurs donnent leur avis, pas seulement le lead</div>
+                            <div class="options">
+                                <div class="option" data-value="0">Jamais</div>
+                                <div class="option" data-value="1">Parfois</div>
+                                <div class="option" data-value="2">Souvent</div>
+                                <div class="option" data-value="3">Toujours</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Zone 2: Delivering -->
+                <div class="zone">
+                    <div class="zone-header zone-2">
+                        <span class="zone-icon">🚚</span>
+                        <div>
+                            <div>Zone 2 : DELIVERING (Livrer)</div>
+                            <div style="font-size: 0.8em; opacity: 0.9;">Livraison continue - Déploiement à la demande</div>
+                        </div>
+                    </div>
+                    <div class="zone-content">
+                        <div class="question" data-zone="2" data-question="1">
+                            <div class="question-text">Votre équipe peut-elle déployer en production à tout moment sans stress ?</div>
+                            <div class="question-example">Exemple : Un vendredi à 17h, si le business demande de corriger un bug critique, l'équipe peut le faire en 30 minutes sans risque</div>
+                            <div class="options">
+                                <div class="option" data-value="0">Jamais</div>
+                                <div class="option" data-value="1">Parfois</div>
+                                <div class="option" data-value="2">Souvent</div>
+                                <div class="option" data-value="3">Toujours</div>
+                            </div>
+                        </div>
+
+                        <div class="question" data-zone="2" data-question="2">
+                            <div class="question-text">Avez-vous des tests automatisés qui couvrent la majorité du code ?</div>
+                            <div class="question-example">Exemple : Quand un développeur pousse du code, les tests unitaires, d'intégration et end-to-end se lancent automatiquement</div>
+                            <div class="options">
+                                <div class="option" data-value="0">Jamais</div>
+                                <div class="option" data-value="1">Parfois</div>
+                                <div class="option" data-value="2">Souvent</div>
+                                <div class="option" data-value="3">Toujours</div>
+                            </div>
+                        </div>
+
+                        <div class="question" data-zone="2" data-question="3">
+                            <div class="question-text">Utilisez-vous l'intégration continue (CI/CD) ?</div>
+                            <div class="question-example">Exemple : À chaque commit sur Git, Jenkins/GitLab CI build automatiquement, teste et peut déployer le code</div>
+                            <div class="options">
+                                <div class="option" data-value="0">Jamais</div>
+                                <div class="option" data-value="1">Parfois</div>
+                                <div class="option" data-value="2">Souvent</div>
+                                <div class="option" data-value="3">Toujours</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Zone 3: Optimizing -->
+                <div class="zone">
+                    <div class="zone-header zone-3">
+                        <span class="zone-icon">📈</span>
+                        <div>
+                            <div>Zone 3 : OPTIMIZING (Optimiser)</div>
+                            <div style="font-size: 0.8em; opacity: 0.9;">Données et expérimentation - Adaptation continue</div>
+                        </div>
+                    </div>
+                    <div class="zone-content">
+                        <div class="question" data-zone="3" data-question="1">
+                            <div class="question-text">Votre équipe prend-elle des décisions basées sur des données réelles d'usage ?</div>
+                            <div class="question-example">Exemple : Avant d'ajouter une nouvelle fonctionnalité, l'équipe regarde Google Analytics pour voir comment les utilisateurs utilisent l'application</div>
+                            <div class="options">
+                                <div class="option" data-value="0">Jamais</div>
+                                <div class="option" data-value="1">Parfois</div>
+                                <div class="option" data-value="2">Souvent</div>
+                                <div class="option" data-value="3">Toujours</div>
+                            </div>
+                        </div>
+
+                        <div class="question" data-zone="3" data-question="2">
+                            <div class="question-text">Faites-vous des tests A/B pour valider vos idées ?</div>
+                            <div class="question-example">Exemple : Pour tester un nouveau bouton, 50% des utilisateurs voient l'ancienne version, 50% la nouvelle, puis on compare les résultats</div>
+                            <div class="options">
+                                <div class="option" data-value="0">Jamais</div>
+                                <div class="option" data-value="1">Parfois</div>
+                                <div class="option" data-value="2">Souvent</div>
+                                <div class="option" data-value="3">Toujours</div>
+                            </div>
+                        </div>
+
+                        <div class="question" data-zone="3" data-question="3">
+                            <div class="question-text">L'équipe surveille-t-elle en temps réel la performance et la qualité ?</div>
+                            <div class="question-example">Exemple : Des dashboards montrent les temps de réponse de l'API, le nombre d'erreurs, et alertent l'équipe s'il y a un problème</div>
+                            <div class="options">
+                                <div class="option" data-value="0">Jamais</div>
+                                <div class="option" data-value="1">Parfois</div>
+                                <div class="option" data-value="2">Souvent</div>
+                                <div class="option" data-value="3">Toujours</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Zone 4: Strengthening -->
+                <div class="zone">
+                    <div class="zone-header zone-4">
+                        <span class="zone-icon">🌟</span>
+                        <div>
+                            <div>Zone 4 : STRENGTHENING (Renforcer)</div>
+                            <div style="font-size: 0.8em; opacity: 0.9;">Optimisation organisationnelle - Culture collaborative</div>
+                        </div>
+                    </div>
+                    <div class="zone-content">
+                        <div class="question" data-zone="4" data-question="1">
+                            <div class="question-text">Votre équipe influence-t-elle la stratégie produit de l'entreprise ?</div>
+                            <div class="question-example">Exemple : Les développeurs participent aux réunions de direction pour proposer des innovations techniques qui peuvent créer de nouveaux business models</div>
+                            <div class="options">
+                                <div class="option" data-value="0">Jamais</div>
+                                <div class="option" data-value="1">Parfois</div>
+                                <div class="option" data-value="2">Souvent</div>
+                                <div class="option" data-value="3">Toujours</div>
+                            </div>
+                        </div>
+
+                        <div class="question" data-zone="4" data-question="2">
+                            <div class="question-text">Votre équipe collabore-t-elle étroitement avec d'autres équipes pour optimiser l'organisation ?</div>
+                            <div class="question-example">Exemple : L'équipe dev travaille avec le marketing pour optimiser les campagnes, avec les ventes pour améliorer le CRM</div>
+                            <div class="options">
+                                <div class="option" data-value="0">Jamais</div>
+                                <div class="option" data-value="1">Parfois</div>
+                                <div class="option" data-value="2">Souvent</div>
+                                <div class="option" data-value="3">Toujours</div>
+                            </div>
+                        </div>
+
+                        <div class="question" data-zone="4" data-question="3">
+                            <div class="question-text">L'équipe forme-t-elle et aide-t-elle les autres équipes à devenir plus agiles ?</div>
+                            <div class="question-example">Exemple : Votre équipe organise des formations internes sur Git, partage ses bonnes pratiques de code review avec d'autres équipes</div>
+                            <div class="options">
+                                <div class="option" data-value="0">Jamais</div>
+                                <div class="option" data-value="1">Parfois</div>
+                                <div class="option" data-value="2">Souvent</div>
+                                <div class="option" data-value="3">Toujours</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="results" class="results">
+                <div id="results-content"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    
+    <!-- Intégration Agile Coach Toolkit -->
+    <script src="../../assets/js/tool-integration.js"></script>
+    <script>
+      // Configuration spécifique à l'outil
+      window.TOOL_CONFIG = {
+        name: 'agile-fluency',
+        backUrl: '../../index.html#tools'
+      };
+    </script>
+</body>
+</html>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skills Matrix</title>
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/matrix.css">
+    <link rel="stylesheet" href="css/radar.css">
+    <link rel="stylesheet" href="css/modal.css">
+    <link rel="stylesheet" href="css/advice.css">
+    <link rel="stylesheet" href="css/mobile.css">
+    <link rel="stylesheet" href="css/notifications.css">
+    
+    <!-- Theme Light (optionnel) -->
+    <link rel="stylesheet" href="css/theme-light.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>📊 Skills Matrix</h1>
+
+        <!-- Bulle d'information stockage -->
+        <div class="storage-info">
+            <span class="storage-text">💾 Stockage :</span>
+            <div class="storage-badge active" title="Données sauvegardées dans votre navigateur">
+                <span class="storage-icon">🖥️</span>
+                <span>Local (navigateur)</span>
+            </div>
+            <div class="storage-badge coming" title="Fonctionnalité à venir">
+                <span class="storage-icon">☁️</span>
+                <span>Cloud (bientôt)</span>
+            </div>
+        </div>
+
+        <!-- Menu Mobile Compact -->
+        <div class="mobile-menu">
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                <span>☰</span>
+                <span>Menu Actions</span>
+            </button>
+            <div class="mobile-menu-content" id="mobileMenuContent">
+                <!-- Menu items will be added here -->
+            </div>
+        </div>
+
+        <!-- Menu de sélection de template pour mobile -->
+        <select id="mobileTemplateSelect" style="display: none;">
+            <option value="">-- Choisir un modèle --</option>
+            <!-- Templates chargés dynamiquement depuis templates.js -->
+        </select>
+
+        <!-- Contrôles Desktop -->
+        <div class="controls">
+            <!-- Groupe 1: Template -->
+            <div class="controls-group">
+                <div class="template-selector">
+                    <select id="templateSelect">
+                        <option value="">📋 Charger un modèle</option>
+                        <!-- Templates chargés dynamiquement depuis templates.js -->
+                    </select>
+                </div>
+            </div>
+
+            <div class="controls-divider"></div>
+
+            <!-- Groupe 2: Sélection -->
+            <div class="controls-group">
+                <div class="member-selector-control" id="memberSelectorControl">
+                    <button class="btn btn-selector" id="memberSelectorBtn">
+                        <span class="btn-icon">👥</span> Membres <span class="btn-arrow">▼</span>
+                    </button>
+                    <div class="member-selector-dropdown" id="memberSelectorDropdown"></div>
+                </div>
+            </div>
+
+            <div class="controls-divider"></div>
+
+            <!-- Groupe 3: Ajout -->
+            <div class="controls-group">
+                <button class="btn" onclick="addMember()">
+                    <span class="btn-icon">👤</span> Membre
+                </button>
+                <button class="btn" onclick="addSkill()">
+                    <span class="btn-icon">🎯</span> Compétence
+                </button>
+                <button class="btn" onclick="manageAppetencesOwnerships()">
+                    <span class="btn-icon">⚡</span> Appétences <span class="btn-arrow">▼</span>
+                </button>
+            </div>
+
+            <div class="controls-divider"></div>
+
+            <!-- Groupe 4: Actions -->
+            <div class="controls-group">
+                <button class="btn btn-success" onclick="saveData()">
+                    <span class="btn-icon">💾</span> Sauvegarder
+                </button>
+                <button class="btn btn-success" onclick="exportToJSON()">
+                    <span class="btn-icon">📥</span> JSON
+                </button>
+                <button class="btn btn-success" onclick="exportToCSV()">
+                    <span class="btn-icon">📊</span> CSV
+                </button>
+            </div>
+
+            <div class="controls-divider"></div>
+
+            <!-- Groupe 5: Reset -->
+            <div class="controls-group">
+                <button class="btn btn-danger" onclick="resetMatrix()">
+                    <span class="btn-icon">🔄</span> Réinitialiser
+                </button>
+            </div>
+        </div>
+
+        <!-- Legend -->
+        <div class="legend">
+            <div class="legend-item level-1">
+                <strong>1 Débutant</strong><br>
+                Aucune compétence - Formation nécessaire
+            </div>
+            <div class="legend-item level-2">
+                <strong>2 Apprentissage</strong><br>
+                Compétence faible - Support régulier requis
+            </div>
+            <div class="legend-item level-3">
+                <strong>3 Compétent</strong><br>
+                Bon niveau - Support occasionnel nécessaire
+            </div>
+            <div class="legend-item level-4">
+                <strong>4 Expert</strong><br>
+                Maîtrise complète - Travail en autonomie
+            </div>
+        </div>
+
+        <!-- Matrix -->
+        <div class="matrix-container">
+            <table id="skillsMatrix">
+                <thead>
+                    <tr id="headerRow">
+                        <th>Personnel / Compétences</th>
+                    </tr>
+                </thead>
+                <tbody id="matrixBody"></tbody>
+            </table>
+        </div>
+
+        <!-- Radar Section -->
+        <div class="radar-section">
+            <h2>📈 Radar des Compétences</h2>
+            <div class="member-selector" id="memberSelector"></div>
+            <div class="radar-container">
+                <div class="radar-canvas-wrapper">
+                    <canvas id="radarCanvas" width="800" height="800"></canvas>
+                </div>
+                <div class="radar-legend-wrapper">
+                    <div class="radar-legend" id="radarLegend"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Advice Section -->
+        <div class="advice-section">
+            <h2>💡 Conseils Personnalisés Coach Sticko</h2>
+            <div class="advice-filter">
+                <button class="filter-btn active" onclick="filterAdvice('all', this)">Tous</button>
+                <button class="filter-btn" onclick="filterAdvice('beginner', this)">Débutants</button>
+                <button class="filter-btn" onclick="filterAdvice('learning', this)">En apprentissage</button>
+                <button class="filter-btn" onclick="filterAdvice('competent', this)">Compétents</button>
+            </div>
+            <div class="advice-cards" id="adviceCards"></div>
+        </div>
+    </div>
+
+    <!-- Modal Appétences & Ownerships -->
+    <div class="modal-overlay" id="appetencesModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">🎯 Gérer Appétences & Ownerships</h2>
+                <button class="modal-close" onclick="closeAppetencesModal()">×</button>
+            </div>
+            <div id="modalMembersContent"></div>
+        </div>
+    </div>
+
+    <!-- JavaScript Files -->
+    <script src="js/config.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/templates.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/matrix.js"></script>
+    <script src="js/radar.js"></script>
+    <script src="js/advice.js"></script>
+    <script src="js/modal.js"></script>
+    <script src="js/main.js"></script>
+
+    <!-- Intégration Agile Coach Toolkit -->
+    <script src="../../assets/js/tool-integration.js"></script>
+    <script>
+        window.TOOL_CONFIG = {
+            name: 'skills-matrix',
+            backUrl: '../../index.html#tools'
+        };
+    </script>
+</body>
+
+</html>

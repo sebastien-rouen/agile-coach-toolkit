@@ -1,0 +1,112 @@
+/**
+ * Skills Matrix - Styles du radar chart
+ */
+
+/* ============================================
+   RADAR SECTION
+   ============================================ */
+.radar-section {
+    margin-top: 40px;
+    background: #16213e;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+.radar-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 30px;
+    justify-content: center;
+    padding: 15px 0 0 0;
+}
+
+.radar-canvas-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    background: #0f3460;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+#radarCanvas {
+    width: 100%;
+    height: auto;
+}
+
+.radar-legend-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-width: 250px;
+}
+
+/* ============================================
+   MEMBER SELECTOR (masqué sur desktop, visible sur mobile)
+   ============================================ */
+.member-selector {
+    display: none;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+}
+
+.member-toggle {
+    padding: 10px 20px;
+    background: #1a1a2e;
+    color: #e0e0e0;
+    border: 2px solid #667eea;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.member-toggle:hover {
+    border-color: #00d4ff;
+    background: #0f3460;
+}
+
+.member-toggle.active {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-color: transparent;
+}
+
+/* ============================================
+   RADAR LEGEND
+   ============================================ */
+.radar-legend {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.legend-skill {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: #1a1a2e;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.legend-skill:hover {
+    background: #0f3460;
+    transform: translateX(5px);
+}
+
+.legend-color {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    flex-shrink: 0;
+}

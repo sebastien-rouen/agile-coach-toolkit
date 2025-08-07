@@ -1,0 +1,23 @@
+{
+  "category": "ressources-rex",
+  "title": "Ressources & REX",
+  "description": "Templates, checklists et retours d'expérience terrain",
+  "icon": "fas fa-folder-open",
+  "color": "#00BCD4",
+  "articles": [
+    {
+      "id": "templates-canvas",
+      "title": "Templates & Canvas",
+      "file": "templates-canvas.md",
+      "tags": ["template", "canvas", "outil", "prêt-à-utiliser", "facilitation"],
+      "order": 1
+    },
+    {
+      "id": "rex-terrain",
+      "title": "Retours d'Expérience Terrain",
+      "file": "rex-terrain.md",
+      "tags": ["REX", "étude-cas", "apprentissage", "échec", "succès"],
+      "order": 2
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "category": "developpement-coach",
+  "title": "Développement Coach",
+  "description": "Formation et montée en compétences du coach",
+  "icon": "fas fa-graduation-cap",
+  "color": "#3F51B5",
+  "articles": [
+    {
+      "id": "plan-developpement",
+      "title": "Plan de Développement",
+      "file": "plan-developpement.md",
+      "tags": ["développement", "compétences", "carrière", "formation"],
+      "order": 1
+    },
+    {
+      "id": "certifications",
+      "title": "Certifications",
+      "file": "certifications.md",
+      "tags": ["certification", "scrum", "safe", "reconnaissance"],
+      "order": 2
+    }
+  ]
+}

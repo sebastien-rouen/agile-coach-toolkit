@@ -1,0 +1,23 @@
+{
+  "category": "multi-equipes-scale",
+  "title": "Multi-équipes & Scale",
+  "description": "Coordination et scaling agile",
+  "icon": "fas fa-building",
+  "color": "#607D8B",
+  "articles": [
+    {
+      "id": "scaling-agile",
+      "title": "Scaling Agile",
+      "file": "scaling-agile.md",
+      "tags": ["scaling", "SAFe", "LeSS", "coordination"],
+      "order": 1
+    },
+    {
+      "id": "coordination-equipes",
+      "title": "Coordination d'Équipes",
+      "file": "coordination-equipes.md",
+      "tags": ["coordination", "synchronisation", "dépendances", "communication"],
+      "order": 2
+    }
+  ]
+}

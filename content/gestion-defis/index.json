@@ -1,0 +1,16 @@
+{
+  "category": "gestion-defis",
+  "title": "Gestion des Défis",
+  "description": "Gérer résistance, conflits et situations difficiles",
+  "icon": "fas fa-shield-alt",
+  "color": "#F44336",
+  "articles": [
+    {
+      "id": "resistance-changement",
+      "title": "Résistance au Changement",
+      "file": "resistance-changement.md",
+      "tags": ["résistance", "changement", "accompagnement", "adoption"],
+      "order": 1
+    }
+  ]
+}

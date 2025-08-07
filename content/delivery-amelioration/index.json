@@ -1,0 +1,23 @@
+{
+  "category": "delivery-amelioration",
+  "title": "Delivery & Amélioration",
+  "description": "Événements de livraison et amélioration continue",
+  "icon": "fas fa-rocket",
+  "color": "#FF9800",
+  "articles": [
+    {
+      "id": "sprint-review",
+      "title": "Sprint Review",
+      "file": "sprint-review.md",
+      "tags": ["review", "demo", "feedback", "stakeholders"],
+      "order": 1
+    },
+    {
+      "id": "metriques-kpi",
+      "title": "Métriques & KPI",
+      "file": "metriques-kpi.md",
+      "tags": ["métriques", "kpi", "mesure", "performance", "data"],
+      "order": 2
+    }
+  ]
+}

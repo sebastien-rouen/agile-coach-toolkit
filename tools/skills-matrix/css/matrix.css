@@ -1,0 +1,391 @@
+/**
+ * Skills Matrix - Styles de la matrice
+ */
+
+/* ============================================
+   MATRIX CONTAINER & TABLE
+   ============================================ */
+.matrix-container {
+  overflow-x: auto;
+  margin-bottom: 30px;
+  border-radius: 10px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Scrollbar personnalisée pour la matrice */
+.matrix-container::-webkit-scrollbar {
+  height: 12px;
+  background: #0f3460;
+  border-radius: 0 0 10px 10px;
+}
+
+.matrix-container::-webkit-scrollbar-track {
+  background: #0f3460;
+  border-radius: 0 0 10px 10px;
+}
+
+.matrix-container::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 6px;
+  border: 2px solid #0f3460;
+  transition: all 0.3s ease;
+}
+
+.matrix-container::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+  box-shadow: 0 0 10px rgba(102, 126, 234, 0.5);
+}
+
+.matrix-container::-webkit-scrollbar-thumb:active {
+  background: linear-gradient(135deg, #00d4ff 0%, #4facfe 100%);
+}
+
+/* Firefox scrollbar */
+.matrix-container {
+  scrollbar-width: thin;
+  scrollbar-color: #667eea #0f3460;
+}
+
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: #16213e;
+}
+
+th,
+td {
+  padding: 15px;
+  text-align: center;
+  border: 1px solid #0f3460;
+}
+
+th {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  font-weight: 600;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+th:first-child {
+  border-top-left-radius: 10px;
+}
+
+th:last-child {
+  border-top-right-radius: 10px;
+}
+
+/* ============================================
+   MEMBER & SKILL NAMES
+   ============================================ */
+.member-name {
+  font-weight: 600;
+  color: #FFFFFF;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.member-name:hover {
+  background: #0f3460;
+  transform: scale(1.02);
+}
+
+.skill-name {
+  background: #1a1a2e;
+  font-weight: 600;
+  color: #f093fb;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 150px;
+  max-width: 150px;
+  font-size: 0.85em;
+  word-wrap: break-word;
+}
+
+.skill-name:hover {
+  background: #0f3460;
+  transform: scale(1.02);
+}
+
+.editable {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 100px;
+}
+
+.editable:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* ============================================
+   SKILL LEVELS
+   ============================================ */
+select.skill-level {
+  width: 80px;
+  padding: 8px;
+  background: #1a1a2e;
+  color: white;
+  border: 2px solid transparent;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+select.skill-level:focus {
+  outline: none;
+  border-color: #00d4ff;
+}
+
+.level-4,
+select.skill-level.level-4 {
+  background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+  color: #333;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.level-3,
+select.skill-level.level-3 {
+  background: linear-gradient(135deg, #e2ce14 0%, rgb(179, 167, 9) 100%);
+  color: #333;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.level-2,
+select.skill-level.level-2 {
+  background: linear-gradient(135deg, #c2780a 0%, #df982d 100%);
+  color: #333;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.level-1,
+select.skill-level.level-1 {
+  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+  color: #333;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.level-0,
+select.skill-level.level-0 {
+  background: #2c3e50;
+  color: #95a5a6;
+}
+
+/* ============================================
+   TOTAL ROW
+   ============================================ */
+.total-row {
+  background: #1a1a2e;
+  font-weight: 700;
+}
+
+.total-row td {
+  padding: 15px;
+  text-align: center;
+  font-size: 1.1em;
+}
+
+.total-row td:first-child {
+  color: #00d4ff;
+  font-size: 1.2em;
+}
+
+.total-row .skill-total {
+  color: #fff;
+  font-weight: 700;
+  border-radius: 8px;
+  padding: 8px;
+}
+
+.total-row .skill-total.level-4 {
+  background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.total-row .skill-total.level-3 {
+  background: linear-gradient(135deg, #e2ce14 0%, rgb(179, 167, 9) 100%);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.total-row .skill-total.level-2 {
+  background: linear-gradient(135deg, #c2780a 0%, #df982d 100%);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.total-row .skill-total.level-1 {
+  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.total-row .skill-total.level-0 {
+  background: #2c3e50;
+  color: #95a5a6;
+}
+
+/* ============================================
+   APPETENCES & OWNERSHIPS COLUMNS
+   ============================================ */
+.appetences-header {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  color: white;
+  min-width: 150px;
+  max-width: 150px;
+  font-size: 0.85em;
+}
+
+.ownerships-header {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  color: white;
+  min-width: 150px;
+  max-width: 150px;
+  font-size: 0.85em;
+}
+
+.appetences-cell {
+  padding: 8px;
+  vertical-align: top;
+  background: rgba(79, 172, 254, 0.05);
+  min-width: 150px;
+  max-width: 150px;
+}
+
+.ownerships-cell {
+  padding: 8px;
+  vertical-align: top;
+  background: rgba(240, 147, 251, 0.05);
+  min-width: 150px;
+  max-width: 150px;
+}
+
+.badges-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.badge {
+  display: inline-block;
+  padding: 4px 10px;
+  color: white;
+  border-radius: 14px;
+  font-size: 0.8em;
+  font-weight: 600;
+  white-space: nowrap;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.badge-appetence {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  box-shadow: 0 2px 4px rgba(79, 172, 254, 0.3);
+}
+
+.badge-ownership {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  box-shadow: 0 2px 4px rgba(240, 147, 251, 0.3);
+}
+
+/* ============================================
+   LEGEND
+   ============================================ */
+.legend {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 25px;
+  padding: 16px;
+  background: rgba(26, 26, 46, 0.5);
+  border-radius: 12px;
+  border: 1px solid rgba(102, 126, 234, 0.2);
+}
+
+.legend-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+.legend-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+  border-color: var(--level-color-start);
+}
+
+.legend-item strong {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 6px;
+  color: #fff;
+  line-height: 1.2;
+}
+
+.legend-item br {
+  display: none;
+}
+
+/* Définition des couleurs par niveau */
+.legend-item.level-4 {
+  --level-color-start: #38ef7d;
+  --level-color-end: #11998e;
+  --level-bg-start: rgba(56, 239, 125, 0.15);
+  --level-bg-end: rgba(17, 153, 142, 0.15);
+  --level-border: rgba(56, 239, 125, 0.3);
+  --level-shadow: rgba(56, 239, 125, 0.4);
+}
+
+.legend-item.level-4:hover {
+  box-shadow: 0 6px 20px var(--level-shadow);
+}
+
+.legend-item.level-3 {
+  --level-color-start: #e2ce14;
+  --level-color-end: #b4a410;
+  --level-bg-start: rgba(226, 206, 20, 0.15);
+  --level-bg-end: rgba(180, 164, 16, 0.15);
+  --level-border: rgba(226, 206, 20, 0.3);
+  --level-shadow: rgba(226, 206, 20, 0.4);
+}
+
+.legend-item.level-3:hover {
+  box-shadow: 0 6px 20px var(--level-shadow);
+}
+
+.legend-item.level-2 {
+  --level-color-start: #df982d;
+  --level-color-end: #b27924;
+  --level-bg-start: rgba(223, 152, 45, 0.15);
+  --level-bg-end: rgba(178, 121, 36, 0.15);
+  --level-border: rgba(223, 152, 45, 0.3);
+  --level-shadow: rgba(223, 152, 45, 0.4);
+}
+
+.legend-item.level-2:hover {
+  box-shadow: 0 6px 20px var(--level-shadow);
+}
+
+.legend-item.level-1 {
+  --level-color-start: #ff6b6b;
+  --level-color-end: #cc5555;
+  --level-bg-start: rgba(255, 107, 107, 0.15);
+  --level-bg-end: rgba(204, 85, 85, 0.15);
+  --level-border: rgba(255, 107, 107, 0.3);
+  --level-shadow: rgba(255, 107, 107, 0.4);
+}
+
+.legend-item.level-1:hover {
+  box-shadow: 0 6px 20px var(--level-shadow);
+}

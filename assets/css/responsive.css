@@ -1,0 +1,412 @@
+/**
+ * responsive.css - Styles responsive
+ */
+
+/* ============================================
+   LARGE DESKTOP (> 1400px)
+   ============================================ */
+@media (min-width: 1400px) {
+  :root {
+    --font-size-base: 1.0625rem; /* 17px */
+  }
+  
+  .container {
+    padding: 0 var(--space-2xl);
+  }
+}
+
+/* ============================================
+   DESKTOP (992px - 1399px)
+   ============================================ */
+@media (max-width: 1399px) {
+  .grid-4 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ============================================
+   TABLET LANDSCAPE (768px - 991px)
+   ============================================ */
+@media (max-width: 991px) {
+  :root {
+    --header-height: 56px;
+    --sidebar-width: 240px;
+    --font-size-3xl: 1.75rem;
+    --font-size-4xl: 2rem;
+    --font-size-5xl: 2.5rem;
+  }
+  
+  /* Layout */
+  .main-content {
+    margin-left: 0;
+  }
+  
+  .sidebar {
+    transform: translateX(-100%);
+    box-shadow: var(--shadow-xl);
+  }
+  
+  .sidebar.active {
+    transform: translateX(0);
+  }
+  
+  /* Grilles */
+  .grid-3,
+  .grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .cards-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+  
+  /* Content */
+  .layout-with-sidebar {
+    grid-template-columns: 1fr;
+  }
+  
+  .layout-sidebar {
+    position: static;
+    max-height: none;
+  }
+  
+  .split-layout {
+    grid-template-columns: 1fr;
+  }
+  
+  /* Hero */
+  .hero-title {
+    font-size: var(--font-size-4xl);
+  }
+  
+  .hero-subtitle {
+    font-size: var(--font-size-lg);
+  }
+  
+  /* Header search */
+  .search-bar {
+    max-width: 300px;
+  }
+}
+
+/* ============================================
+   TABLET PORTRAIT (600px - 767px)
+   ============================================ */
+@media (max-width: 767px) {
+  :root {
+    --space-xl: 1.5rem;
+    --space-2xl: 2rem;
+    --space-3xl: 2.5rem;
+  }
+  
+  /* Header */
+  .site-header {
+    padding: 0 var(--space-md);
+  }
+  
+  .header-center {
+    display: none;
+  }
+  
+  .logo-text {
+    display: none;
+  }
+  
+  /* Grilles */
+  .grid-2,
+  .grid-3,
+  .grid-4 {
+    grid-template-columns: 1fr;
+  }
+  
+  /* Content */
+  .content-wrapper {
+    padding: var(--space-lg) var(--space-md);
+  }
+  
+  .content-title {
+    font-size: var(--font-size-3xl);
+  }
+  
+  .content-subtitle {
+    font-size: var(--font-size-lg);
+  }
+  
+  .content-body {
+    font-size: var(--font-size-base);
+  }
+  
+  /* Wizard */
+  .wizard-progress {
+    margin-bottom: var(--space-xl);
+  }
+  
+  .wizard-step {
+    width: 40px;
+    height: 40px;
+    font-size: var(--font-size-sm);
+  }
+  
+  .options-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  /* Cards */
+  .card {
+    padding: var(--space-lg);
+  }
+  
+  .card-footer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  /* Stats */
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  /* Footer */
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  /* Back to top */
+  .back-to-top {
+    bottom: var(--space-lg);
+    right: var(--space-lg);
+  }
+}
+
+/* ============================================
+   MOBILE (480px - 599px)
+   ============================================ */
+@media (max-width: 599px) {
+  /* Sidebar en plein écran sur mobile */
+  .sidebar {
+    width: 100%;
+  }
+  
+  /* Search bar mobile */
+  .search-bar {
+    max-width: none;
+  }
+  
+  /* Burger menu toujours visible */
+  .burger-btn {
+    display: flex;
+  }
+}
+
+/* ============================================
+   SMALL MOBILE (< 480px)
+   ============================================ */
+@media (max-width: 480px) {
+  :root {
+    --font-size-3xl: 1.5rem;
+    --font-size-4xl: 1.75rem;
+    --font-size-5xl: 2rem;
+    --space-lg: 1rem;
+    --space-xl: 1.25rem;
+    --space-2xl: 1.5rem;
+    --space-3xl: 2rem;
+  }
+  
+  /* Header */
+  .site-header {
+    padding: 0 var(--space-sm);
+  }
+  
+  .logo {
+    font-size: var(--font-size-lg);
+  }
+  
+  /* Content */
+  .content-wrapper {
+    padding: var(--space-md) var(--space-sm);
+  }
+  
+  .hero {
+    padding: var(--space-xl) var(--space-md);
+  }
+  
+  .hero-title {
+    font-size: var(--font-size-3xl);
+  }
+  
+  .hero-subtitle {
+    font-size: var(--font-size-base);
+  }
+  
+  /* Cards */
+  .card {
+    padding: var(--space-md);
+  }
+  
+  .card-item {
+    padding: var(--space-md);
+  }
+  
+  .card-item-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+  }
+  
+  /* Stats */
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  /* Features */
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  /* Wizard */
+  .wizard-content {
+    padding: var(--space-lg);
+  }
+  
+  .wizard-question {
+    font-size: var(--font-size-xl);
+  }
+  
+  .wizard-actions {
+    flex-direction: column;
+  }
+  
+  .wizard-actions .btn {
+    width: 100%;
+  }
+  
+  /* Buttons */
+  .btn {
+    padding: 0.75rem 1rem;
+  }
+  
+  /* Tags */
+  .tags {
+    gap: var(--space-xs);
+  }
+  
+  /* Breadcrumb */
+  .breadcrumb {
+    font-size: var(--font-size-xs);
+  }
+  
+  /* Footer */
+  .site-footer {
+    padding: var(--space-lg) var(--space-md);
+  }
+  
+  .footer-right {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* Back to top */
+  .back-to-top {
+    width: 40px;
+    height: 40px;
+    bottom: var(--space-md);
+    right: var(--space-md);
+  }
+}
+
+/* ============================================
+   LANDSCAPE ORIENTATION
+   ============================================ */
+@media (max-height: 600px) and (orientation: landscape) {
+  .sidebar {
+    height: 100vh;
+    top: 0;
+  }
+  
+  .wizard-content {
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+}
+
+/* ============================================
+   PRINT
+   ============================================ */
+@media print {
+  .site-header,
+  .sidebar,
+  .burger-btn,
+  .back-to-top,
+  .wizard-actions,
+  .btn,
+  .site-footer {
+    display: none !important;
+  }
+  
+  .main-content {
+    margin-left: 0;
+  }
+  
+  body {
+    background: white;
+    color: black;
+  }
+  
+  .card {
+    page-break-inside: avoid;
+    box-shadow: none;
+    border: 1px solid #ddd;
+  }
+}
+
+/* ============================================
+   HOVER SUPPORT (touch devices)
+   ============================================ */
+@media (hover: none) {
+  .card-item:hover,
+  .category-item:hover,
+  .btn:hover {
+    transform: none;
+  }
+  
+  [data-tooltip]::after {
+    display: none;
+  }
+}
+
+/* ============================================
+   FOOTER RESPONSIVE
+   ============================================ */
+@media (max-width: 991px) {
+  .wizard-progress::before {
+      height: 0;
+  }
+
+  .footer-content {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .footer-section:first-child {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 600px) {
+  .footer-content {
+    grid-template-columns: 1fr;
+  }
+  
+  .footer-section:first-child {
+    grid-column: 1;
+  }
+  
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .footer-social {
+    justify-content: center;
+  }
+}

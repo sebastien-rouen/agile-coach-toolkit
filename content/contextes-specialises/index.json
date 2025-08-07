@@ -1,0 +1,37 @@
+{
+  "category": "contextes-specialises",
+  "title": "Contextes Spécialisés",
+  "description": "Situations particulières et secteurs spécifiques",
+  "icon": "fas fa-bullseye",
+  "color": "#795548",
+  "articles": [
+    {
+      "id": "onboarding-agile",
+      "title": "Onboarding Agile",
+      "file": "onboarding-agile.md",
+      "tags": ["onboarding", "intégration", "formation", "accueil"],
+      "order": 1
+    },
+    {
+      "id": "gestion-crise",
+      "title": "Gestion de Crise",
+      "file": "gestion-crise.md",
+      "tags": ["crise", "urgence", "adaptation", "résilience"],
+      "order": 2
+    },
+    {
+      "id": "equipes-distribuees",
+      "title": "Équipes Distribuées",
+      "file": "equipes-distribuees.md",
+      "tags": ["remote", "distribué", "géographie", "communication"],
+      "order": 3
+    },
+    {
+      "id": "scrum-master-gen-ia",
+      "title": "Scrum Master et Génération IA",
+      "file": "scrum-master-gen-ia.md",
+      "tags": ["scrum-master", "IA", "génération", "intelligence-artificielle"],
+      "order": 4
+    }
+  ]
+}

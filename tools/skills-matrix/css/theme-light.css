@@ -1,0 +1,362 @@
+/**
+ * Skills Matrix - Thème Clair
+ * Appliqué avec data-theme="light" sur <body>
+ */
+
+[data-theme="light"] {
+    /* ============================================
+       COULEURS DE BASE
+       ============================================ */
+    --bg-primary: #f5f7fa;
+    --bg-secondary: #badbee;
+    --bg-tertiary: #e8ecf1;
+    --text-primary: #1a1a2e;
+    --text-secondary: #4a5568;
+    --text-muted: #718096;
+    --border-color: #051d36;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="light"] body {
+    background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+    color: var(--text-primary);
+}
+
+[data-theme="light"] .container {
+    background: #49aafb;
+    box-shadow: 0 10px 40px var(--shadow-color);
+}
+
+/* ============================================
+   TITRES
+   ============================================ */
+[data-theme="light"] h1 {
+    color: #080b16;
+    text-shadow: 0 0 10px rgba(102, 126, 234, 0.3);
+}
+
+[data-theme="light"] h2 {
+    color: #080b16;
+    text-shadow: 0 0 10px rgba(102, 126, 234, 0.3);
+}
+
+/* ============================================
+   CONTROLS
+   ============================================ */
+[data-theme="light"] .controls {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid var(--border-color);
+}
+
+[data-theme="light"] .controls.sticky {
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px var(--shadow-color);
+}
+
+[data-theme="light"] .controls-divider {
+    background: var(--border-color);
+}
+
+/* ============================================
+   BOUTONS
+   ============================================ */
+[data-theme="light"] .btn {
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.2);
+}
+
+[data-theme="light"] .btn:hover {
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+[data-theme="light"] select {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    border: 2px solid #080b16;
+}
+
+/* ============================================
+   STORAGE INFO
+   ============================================ */
+[data-theme="light"] .storage-info {
+    background: rgba(102, 126, 234, 0.1);
+    border: 1px solid rgba(102, 126, 234, 0.2);
+    color: var(--text-primary);
+}
+
+/* ============================================
+   LÉGENDE
+   ============================================ */
+[data-theme="light"] .legend {
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid var(--border-color);
+}
+
+[data-theme="light"] .legend-item {
+    box-shadow: 0 4px 10px var(--shadow-color);
+    color: var(--text-primary);
+}
+
+[data-theme="light"] .legend-item strong {
+    color: var(--text-primary);
+}
+
+/* ============================================
+   MATRICE
+   ============================================ */
+[data-theme="light"] .matrix-container {
+    box-shadow: 0 5px 20px var(--shadow-color);
+}
+
+[data-theme="light"] table {
+    background: var(--bg-secondary);
+}
+
+[data-theme="light"] th,
+[data-theme="light"] td {
+    border: 1px solid var(--border-color);
+}
+
+[data-theme="light"] .total-row td:first-child {
+    color: #000000;
+}
+
+[data-theme="light"] .member-name {
+    background: var(--bg-tertiary);
+    color: #080b16;
+}
+
+[data-theme="light"] .member-name:hover {
+    background: #e8ecf1;
+}
+
+[data-theme="light"] .skill-name {
+    background: var(--bg-tertiary);
+    color: #764ba2;
+}
+
+[data-theme="light"] .skill-name:hover {
+    background: #e8ecf1;
+}
+
+[data-theme="light"] .editable:hover {
+    background: rgba(102, 126, 234, 0.1);
+}
+
+[data-theme="light"] select.skill-level {
+    color: var(--text-primary);
+}
+
+[data-theme="light"] .level-0 {
+    background: #e2e8f0 !important;
+    color: #718096 !important;
+}
+
+[data-theme="light"] .total-row {
+    background: var(--bg-tertiary);
+}
+
+[data-theme="light"] .appetences-cell {
+    background: rgba(79, 172, 254, 0.10);
+}
+
+[data-theme="light"] .ownerships-cell {
+    background: rgba(240, 147, 251, 0.10);
+}
+
+/* ============================================
+   RADAR
+   ============================================ */
+[data-theme="light"] .radar-section {
+    background: var(--bg-secondary);
+    box-shadow: 0 5px 20px var(--shadow-color);
+}
+
+[data-theme="light"] .radar-canvas-wrapper {
+    background: var(--bg-tertiary);
+    box-shadow: 0 4px 15px var(--shadow-color);
+}
+
+[data-theme="light"] .member-toggle {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+    border: 2px solid #080b16;
+}
+
+[data-theme="light"] .member-toggle:hover {
+    background: #e8ecf1;
+}
+
+[data-theme="light"] .legend-skill {
+    background: var(--bg-tertiary);
+}
+
+[data-theme="light"] .legend-skill:hover {
+    background: #e8ecf1;
+}
+
+/* ============================================
+   CONSEILS
+   ============================================ */
+[data-theme="light"] .advice-section {
+    background: var(--bg-secondary);
+}
+
+[data-theme="light"] .advice-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 15px var(--shadow-color);
+}
+
+[data-theme="light"] .advice-card:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="light"] .filter-btn {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+    border: 2px solid var(--border-color);
+}
+
+[data-theme="light"] .filter-btn.active {
+    background: linear-gradient(135deg, #080b16 0%, #764ba2 100%);
+    color: white;
+}
+
+/* ============================================
+   MODAL
+   ============================================ */
+[data-theme="light"] .modal-overlay {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="light"] .modal-content {
+    background: var(--bg-secondary);
+    box-shadow: 0 10px 40px var(--shadow-color);
+}
+
+[data-theme="light"] .modal-header {
+    border-bottom: 1px solid var(--border-color);
+}
+
+[data-theme="light"] .modal-close {
+    color: var(--text-primary);
+}
+
+[data-theme="light"] .modal-close:hover {
+    color: #080b16;
+}
+
+[data-theme="light"] .member-section {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+}
+
+[data-theme="light"] .tag-input {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    border: 2px solid var(--border-color);
+}
+
+[data-theme="light"] .tag-input:focus {
+    border-color: #080b16;
+}
+
+/* ============================================
+   MOBILE
+   ============================================ */
+[data-theme="light"] .mobile-menu {
+    background: transparent;
+}
+
+[data-theme="light"] .mobile-menu.sticky {
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px var(--shadow-color);
+}
+
+[data-theme="light"] .mobile-menu-content {
+    background: var(--bg-secondary);
+    box-shadow: 0 10px 30px var(--shadow-color);
+}
+
+[data-theme="light"] .mobile-menu-item {
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--border-color);
+}
+
+[data-theme="light"] .mobile-menu-item:active {
+    background: var(--bg-tertiary);
+}
+
+[data-theme="light"] .mobile-member-selector-modal {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="light"] .mobile-member-selector-content {
+    background: var(--bg-secondary);
+    box-shadow: 0 10px 40px var(--shadow-color);
+}
+
+[data-theme="light"] .mobile-member-selector-header {
+    border-bottom: 1px solid var(--border-color);
+}
+
+[data-theme="light"] .mobile-member-selector-header h3 {
+    color: #080b16;
+}
+
+[data-theme="light"] .mobile-member-selector-header .close-btn {
+    color: var(--text-primary);
+}
+
+[data-theme="light"] .mobile-member-item {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+}
+
+[data-theme="light"] .mobile-member-separator {
+    background: var(--border-color);
+}
+
+[data-theme="light"] .mobile-member-selector-footer {
+    border-top: 1px solid var(--border-color);
+}
+
+/* ============================================
+   DROPDOWN MEMBRES
+   ============================================ */
+[data-theme="light"] .member-selector-dropdown {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 10px 30px var(--shadow-color);
+}
+
+[data-theme="light"] .member-selector-dropdown .member-toggle {
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--border-color);
+}
+
+[data-theme="light"] .member-selector-dropdown .member-toggle:hover {
+    background: var(--bg-tertiary);
+}
+
+[data-theme="light"] .member-selector-separator {
+    background: var(--border-color);
+}
+
+/* ============================================
+   SCROLLBAR
+   ============================================ */
+[data-theme="light"] .matrix-container::-webkit-scrollbar-track {
+    background: var(--bg-tertiary);
+}
+
+[data-theme="light"] .matrix-container::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #080b16 0%, #764ba2 100%);
+    border: 2px solid var(--bg-tertiary);
+}
+
+[data-theme="light"] .matrix-container {
+    scrollbar-color: #080b16 var(--bg-tertiary);
+}

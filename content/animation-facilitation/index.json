@@ -1,0 +1,23 @@
+{
+  "category": "animation-facilitation",
+  "title": "Animation & Facilitation",
+  "description": "Techniques d'animation et facilitation d'ateliers",
+  "icon": "fas fa-theater-masks",
+  "color": "#9C27B0",
+  "articles": [
+    {
+      "id": "icebreakers",
+      "title": "Icebreakers",
+      "file": "icebreakers.md",
+      "tags": ["icebreaker", "énergie", "cohésion", "démarrage"],
+      "order": 1
+    },
+    {
+      "id": "retrospectives",
+      "title": "Rétrospectives",
+      "file": "retrospectives.md",
+      "tags": ["rétrospective", "amélioration", "équipe", "feedback"],
+      "order": 2
+    }
+  ]
+}

@@ -1,0 +1,236 @@
+/**
+ * Skills Matrix - Styles des modales
+ */
+
+/* ============================================
+   MODAL OVERLAY
+   ============================================ */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-overlay.active {
+    display: flex;
+}
+
+.modal-content {
+    background: #0f3460;
+    border-radius: 15px;
+    padding: 30px;
+    max-width: 900px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #667eea;
+}
+
+.modal-title {
+    color: #00d4ff;
+    font-size: 1.8em;
+    text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+}
+
+.modal-close {
+    background: transparent;
+    border: none;
+    color: #e0e0e0;
+    font-size: 2em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.modal-close:hover {
+    color: #ff6b6b;
+    transform: rotate(90deg);
+}
+
+/* ============================================
+   MEMBER SECTIONS
+   ============================================ */
+.member-section {
+    margin-bottom: 30px;
+    padding: 20px;
+    background: #1a1a2e;
+    border-radius: 10px;
+    border: 2px solid #667eea;
+}
+
+.member-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.member-section-title {
+    color: #00d4ff;
+    font-size: 1.3em;
+    font-weight: 600;
+}
+
+.subsection {
+    margin-bottom: 20px;
+}
+
+.subsection-title {
+    color: #f093fb;
+    font-size: 1.1em;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* ============================================
+   TAGS
+   ============================================ */
+.tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 20px;
+    font-size: 0.9em;
+    font-weight: 500;
+}
+
+.tag.appetence {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+.tag.ownership {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.tag-remove {
+    background: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 1.1em;
+    padding: 0;
+    margin: 0;
+    line-height: 1;
+}
+
+.tag-remove:hover {
+    color: #ff6b6b;
+}
+
+/* ============================================
+   ADD TAG FORM
+   ============================================ */
+.add-tag-form {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+    position: relative;
+}
+
+.add-tag-input {
+    flex: 1;
+    padding: 10px;
+    background: #0f3460;
+    color: #e0e0e0;
+    border: 2px solid #667eea;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.add-tag-input:focus {
+    outline: none;
+    border-color: #00d4ff;
+}
+
+.info-text {
+    color: #95a5a6;
+    font-size: 0.85em;
+    font-style: italic;
+    margin-top: 5px;
+}
+
+/* ============================================
+   AUTOCOMPLETE
+   ============================================ */
+.autocomplete-items {
+    position: absolute;
+    border: 1px solid #667eea;
+    border-top: none;
+    z-index: 99;
+    top: 100%;
+    left: 0;
+    right: 0;
+    max-height: 200px;
+    overflow-y: auto;
+    background: #1a1a2e;
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.autocomplete-items div {
+    padding: 10px;
+    cursor: pointer;
+    background-color: #1a1a2e;
+    border-bottom: 1px solid #2d3142;
+    color: #e0e0e0;
+    font-size: 0.9em;
+}
+
+.autocomplete-items div:hover {
+    background-color: #0f3460;
+}
+
+.autocomplete-items div.autocomplete-active {
+    background-color: #667eea;
+    color: white;
+}
+
+.autocomplete-items div strong {
+    color: #00d4ff;
+    font-weight: 600;
+}
+
+.autocomplete-items::-webkit-scrollbar {
+    width: 8px;
+}
+
+.autocomplete-items::-webkit-scrollbar-track {
+    background: #0f3460;
+    border-radius: 4px;
+}
+
+.autocomplete-items::-webkit-scrollbar-thumb {
+    background: #667eea;
+    border-radius: 4px;
+}
+
+.autocomplete-items::-webkit-scrollbar-thumb:hover {
+    background: #764ba2;
+}

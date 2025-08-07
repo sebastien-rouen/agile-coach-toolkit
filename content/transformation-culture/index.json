@@ -1,0 +1,23 @@
+{
+  "category": "transformation-culture",
+  "title": "Transformation & Culture",
+  "description": "Conduite du changement organisationnel",
+  "icon": "fas fa-seedling",
+  "color": "#8BC34A",
+  "articles": [
+    {
+      "id": "conduite-changement",
+      "title": "Conduite du Changement",
+      "file": "conduite-changement.md",
+      "tags": ["changement", "transformation", "kotter", "accompagnement"],
+      "order": 1
+    },
+    {
+      "id": "culture-entreprise",
+      "title": "Culture d'Entreprise",
+      "file": "culture-entreprise.md",
+      "tags": ["culture", "valeurs", "comportements", "mindset"],
+      "order": 2
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "category": "product-design",
+  "title": "Product & Design",
+  "description": "Product management et design thinking",
+  "icon": "fas fa-palette",
+  "color": "#E91E63",
+  "articles": [
+    {
+      "id": "product-backlog-management",
+      "title": "Product Backlog Management",
+      "file": "product-backlog-management.md",
+      "tags": ["backlog", "priorisation", "user-stories", "valeur"],
+      "order": 1
+    }
+  ]
+}

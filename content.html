@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">Contenu | Coach Agile Toolkit</title>
+
+    <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+
+    <link rel="stylesheet" href="assets/css/variables.css">
+    <link rel="stylesheet" href="assets/themes/theme-light.css">
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/sidebar.css">
+    <link rel="stylesheet" href="assets/css/layout.css">
+    <link rel="stylesheet" href="assets/css/markdown.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+
+    <style>
+        /* Article Header */
+        .article-header {
+            text-align: center;
+            padding: var(--space-2xl) 0;
+            margin-bottom: var(--space-xl);
+            border-bottom: var(--border-width) solid var(--border-default);
+        }
+
+        #articleTitle {
+            font-size: var(--font-size-4xl);
+            font-weight: var(--font-weight-bold);
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+        }
+
+        .article-meta {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: var(--space-lg);
+            flex-wrap: wrap;
+            color: var(--text-secondary);
+            font-size: var(--font-size-sm);
+        }
+
+        .article-tags {
+            display: flex;
+            gap: var(--space-xs);
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: var(--space-md);
+        }
+
+        /* Styles markdown maintenant dans markdown.css */
+        .markdown-content strong {
+            color: var(--text-primary);
+            font-weight: var(--font-weight-bold);
+        }
+
+        .markdown-content em {
+            color: var(--text-secondary);
+        }
+
+        /* Table of Contents */
+        .toc {
+            background: var(--bg-secondary);
+            border: var(--border-width) solid var(--border-default);
+            border-radius: var(--radius-lg);
+            padding: var(--space-lg);
+            margin: 0 auto var(--space-2xl);
+            max-width: 800px;
+        }
+
+        .toc-title {
+            font-weight: var(--font-weight-bold);
+            font-size: var(--font-size-lg);
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+        }
+
+        .toc ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .toc li {
+            margin-bottom: var(--space-sm);
+        }
+
+        .toc a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            transition: all var(--transition-fast);
+            display: block;
+            padding: var(--space-xs) var(--space-sm);
+            border-radius: var(--radius-sm);
+        }
+
+        .toc a:hover {
+            color: var(--primary-color);
+            background: rgba(59, 130, 246, 0.1);
+            transform: translateX(4px);
+        }
+
+        /* Navigation Prev/Next */
+        .content-navigation {
+            display: flex;
+            justify-content: space-between;
+            gap: var(--space-md);
+            max-width: 800px;
+            margin: var(--space-2xl) auto 0;
+            padding-top: var(--space-xl);
+            border-top: var(--border-width) solid var(--border-default);
+        }
+
+        .nav-prev,
+        .nav-next {
+            flex: 1;
+            padding: var(--space-md) var(--space-lg);
+            background: var(--bg-secondary);
+            border: var(--border-width) solid var(--border-default);
+            border-radius: var(--radius-lg);
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: all var(--transition-fast);
+        }
+
+        .nav-prev:hover,
+        .nav-next:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER (chargé dynamiquement) -->
+    <div id="header-placeholder"></div>
+
+    <!-- SIDEBAR (chargé dynamiquement) -->
+    <div id="sidebar-placeholder"></div>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb">
+            <a href="index.html">Accueil</a>
+            <span class="breadcrumb-separator">/</span>
+            <a href="#" id="breadcrumbCategory">Catégorie</a>
+            <span class="breadcrumb-separator">/</span>
+            <span id="breadcrumbContent">Contenu</span>
+        </nav>
+
+        <!-- Article Header -->
+        <header class="article-header">
+            <h1 id="articleTitle">Chargement...</h1>
+            <div class="article-meta">
+                <span id="articleDate"></span>
+                <span id="articleReadTime"></span>
+            </div>
+        </header>
+
+        <!-- Table of Contents (optionnel) -->
+        <aside class="toc" id="toc" style="display: none;">
+            <div class="toc-title">📋 Table des matières</div>
+            <ul id="tocList"></ul>
+        </aside>
+
+        <!-- Markdown Content -->
+        <article class="markdown-content" id="markdownContent">
+            <p>Chargement du contenu...</p>
+        </article>
+
+        <!-- Navigation Prev/Next -->
+        <nav class="content-navigation">
+            <a href="#" class="nav-prev" id="navPrev" style="display: none;">
+                ← Article précédent
+            </a>
+            <a href="#" class="nav-next" id="navNext" style="display: none;">
+                Article suivant →
+            </a>
+        </nav>
+
+    </main>
+
+    <!-- FOOTER (chargé dynamiquement) -->
+    <div id="footer-placeholder"></div>
+
+    <!-- SCRIPTS -->
+    <!-- Bibliothèques externes pour le parsing Markdown -->
+    <script src="https://cdn.jsdelivr.net/npm/marked@11.1.1/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+    
+    <script src="assets/js/partials-loader.js"></script>
+    <script src="assets/js/utils.js"></script>
+    <script src="assets/js/navigation.js"></script>
+    <script src="assets/js/markdown-parser.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const categoryId = urlParams.get('cat');
+            const fileSlug = urlParams.get('file');
+
+            if (!categoryId || !fileSlug) {
+                window.location.href = 'index.html';
+                return;
+            }
+
+            // Charger la config pour le breadcrumb
+            const config = await fetch('config/config.json').then(r => r.json());
+            const category = config.categories.find(c => c.id === categoryId);
+
+            if (category) {
+                const breadcrumbCat = document.getElementById('breadcrumbCategory');
+                breadcrumbCat.textContent = category.title;
+                breadcrumbCat.href = `category.html?cat=${categoryId}`;
+            }
+
+            await loadMarkdownContent(categoryId, fileSlug);
+        });
+
+        async function loadMarkdownContent(categoryId, fileSlug) {
+            try {
+                // Charger le fichier Markdown
+                const response = await fetch(`content/${categoryId}/${fileSlug}.md`);
+                if (!response.ok) throw new Error('Fichier non trouvé');
+
+                const markdownText = await response.text();
+
+                // Extraire le front-matter YAML
+                let frontMatter = {};
+                let markdown = markdownText;
+
+                if (markdownText.startsWith('---')) {
+                    const endOfFrontMatter = markdownText.indexOf('---', 3);
+                    if (endOfFrontMatter !== -1) {
+                        const frontMatterText = markdownText.substring(3, endOfFrontMatter).trim();
+                        markdown = markdownText.substring(endOfFrontMatter + 3).trim();
+
+                        // Parser le front-matter (simple)
+                        frontMatterText.split('\n').forEach(line => {
+                            const colonIndex = line.indexOf(':');
+                            if (colonIndex > 0) {
+                                const key = line.substring(0, colonIndex).trim();
+                                const value = line.substring(colonIndex + 1).trim().replace(/^["']|["']$/g, '');
+                                frontMatter[key] = value;
+                            }
+                        });
+                    }
+                }
+
+                // Parser et afficher le markdown
+                let html;
+                if (typeof marked !== 'undefined') {
+                    // Utiliser marked.js si disponible
+                    html = marked.parse(markdown);
+                } else {
+                    // Fallback : parser maison
+                    html = parseMarkdown(markdown);
+                }
+                
+                document.getElementById('markdownContent').innerHTML = html;
+                
+                // Styliser les citations avec auteur
+                if (typeof styleBlockquotesWithAuthor === 'function') {
+                    styleBlockquotesWithAuthor();
+                }
+
+                // Utiliser le titre du front-matter ou extraire du H1
+                const title = frontMatter.title || document.querySelector('.markdown-content h1')?.textContent || fileSlug;
+
+                document.getElementById('articleTitle').textContent = title;
+                document.getElementById('pageTitle').textContent = `${title} | Coach Agile Toolkit`;
+                document.getElementById('breadcrumbContent').textContent = title;
+
+                // Enlever le premier H1 pour éviter doublon
+                const firstH1 = document.querySelector('.markdown-content h1');
+                if (firstH1) firstH1.remove();
+
+                // Afficher les tags si présents
+                if (frontMatter.tags) {
+                    const tagsArray = frontMatter.tags.replace(/[\[\]"]/g, '').split(',').map(t => t.trim());
+                    const tagsHtml = tagsArray.map(tag => `<span class="content-card-tag">#${tag}</span>`).join('');
+                    document.querySelector('.article-meta').innerHTML += `<div class="article-tags">${tagsHtml}</div>`;
+                }
+
+                // Générer la table des matières
+                generateTOC();
+
+                // Ajouter au historique
+                addToRecents('content', `${categoryId}/${fileSlug}`, title);
+
+            } catch (error) {
+                console.error('Erreur chargement Markdown:', error);
+                document.getElementById('markdownContent').innerHTML = `
+          <div class="error-state">
+            <h2>Contenu introuvable</h2>
+            <p>Le contenu demandé n'existe pas ou a été déplacé.</p>
+            <a href="category.html?cat=${categoryId}" class="btn btn-primary">Retour à la catégorie</a>
+          </div>
+        `;
+            }
+        }
+
+        function generateTOC() {
+            const headings = document.querySelectorAll('.markdown-content h2, .markdown-content h3');
+            if (headings.length === 0) return;
+
+            const toc = document.getElementById('toc');
+            const tocList = document.getElementById('tocList');
+
+            toc.style.display = 'block';
+            tocList.innerHTML = '';
+
+            headings.forEach((heading, index) => {
+                const id = `heading-${index}`;
+                heading.id = id;
+
+                const li = document.createElement('li');
+                li.style.paddingLeft = heading.tagName === 'H3' ? 'var(--space-md)' : '0';
+
+                const a = document.createElement('a');
+                a.href = `#${id}`;
+                a.textContent = heading.textContent;
+
+                li.appendChild(a);
+                tocList.appendChild(li);
+            });
+        }
+    </script>
+</body>
+
+</html>

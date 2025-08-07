@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test des couleurs des leviers Ikigai Engagement</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body { padding: 20px; font-family: Arial, sans-serif; }
+        .color-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; margin: 20px 0; }
+        .category-section { margin: 30px 0; }
+        .category-title { font-size: 1.2rem; font-weight: bold; margin-bottom: 15px; color: #2d3748; }
+        .lever { margin: 10px 0; }
+        .theme-toggle { margin: 20px 0; padding: 10px 20px; background: #667eea; color: white; border: none; border-radius: 5px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>🎨 Test des couleurs des leviers Ikigai Engagement</h1>
+    
+    <button class="theme-toggle" onclick="toggleTheme()">🌙 Basculer thème sombre</button>
+    
+    <div class="category-section">
+        <div class="category-title">🚀 Leviers d'engagement</div>
+        <div class="color-grid" id="engagement-levers"></div>
+    </div>
+
+    <script src="leviers.js"></script>
+    <script>
+        // Fonction pour créer un levier de test
+        function createLeverElement(lever, category) {
+            return `
+                <div class="lever lever-category-${category}">
+                    <div class="lever-icon">${lever.icon || '⚙️'}</div>
+                    <div class="lever-content">
+                        <div class="lever-title">${lever.title}</div>
+                        <div class="lever-desc">${lever.desc}</div>
+                        <div class="lever-examples">Catégorie: ${category}</div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        // Afficher les leviers d'engagement
+        const engagementContainer = document.getElementById('engagement-levers');
+        IKIGAI_LEVERS.forEach(lever => {
+            engagementContainer.innerHTML += createLeverElement(lever, lever.category);
+        });
+        
+        // Fonction pour basculer le thème
+        function toggleTheme() {
+            document.body.toggleAttribute('data-theme', 'dark');
+            const button = document.querySelector('.theme-toggle');
+            const isDark = document.body.hasAttribute('data-theme');
+            button.textContent = isDark ? '☀️ Basculer thème clair' : '🌙 Basculer thème sombre';
+        }
+    </script>
+</body>
+</html>

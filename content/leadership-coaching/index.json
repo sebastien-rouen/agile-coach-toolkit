@@ -1,0 +1,16 @@
+{
+  "category": "leadership-coaching",
+  "title": "Leadership & Coaching",
+  "description": "Postures de coaching et développement du leadership",
+  "icon": "fas fa-crown",
+  "color": "#FFC107",
+  "articles": [
+    {
+      "id": "postures-coaching",
+      "title": "Postures de Coaching",
+      "file": "postures-coaching.md",
+      "tags": ["posture", "coaching", "facilitation", "mentorat"],
+      "order": 1
+    }
+  ]
+}

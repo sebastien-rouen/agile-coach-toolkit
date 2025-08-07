@@ -1,0 +1,23 @@
+{
+  "category": "outils-technologies",
+  "title": "Outils & Technologies",
+  "description": "Applications et outils digitaux pour l'agilité",
+  "icon": "fas fa-tools",
+  "color": "#9E9E9E",
+  "articles": [
+    {
+      "id": "outils-collaboration",
+      "title": "Outils de Collaboration",
+      "file": "outils-collaboration.md",
+      "tags": ["collaboration", "communication", "remote", "partage"],
+      "order": 1
+    },
+    {
+      "id": "ia-automatisation",
+      "title": "IA & Automatisation",
+      "file": "ia-automatisation.md",
+      "tags": ["IA", "automatisation", "productivité", "innovation"],
+      "order": 2
+    }
+  ]
+}

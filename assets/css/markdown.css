@@ -1,0 +1,611 @@
+/**
+ * markdown.css - Styles pour le rendu du contenu Markdown
+ */
+
+/* ============================================
+   CONTENEUR PRINCIPAL
+   ============================================ */
+.markdown-content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 var(--space-lg) var(--space-xl);
+  color: var(--text-primary);
+}
+
+/* ============================================
+   TITRES
+   ============================================ */
+.markdown-content h1 {
+  font-size: var(--font-size-3xl);
+  margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-md);
+  border-bottom: 2px solid var(--border-default);
+  color: var(--text-primary);
+  font-weight: var(--font-weight-bold);
+}
+
+.markdown-content h2 {
+  font-size: var(--font-size-2xl);
+  margin-top: var(--space-xl);
+  margin-bottom: var(--space-sm);
+  padding-top: var(--space-md);
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-weight: var(--font-weight-bold);
+}
+
+.markdown-content h3 {
+  font-size: var(--font-size-xl);
+  margin-top: var(--space-lg);
+  margin-bottom: var(--space-xs);
+  color: var(--text-primary);
+  font-weight: var(--font-weight-semibold);
+}
+
+.markdown-content h4 {
+  font-size: var(--font-size-lg);
+  margin-top: var(--space-md);
+  margin-bottom: var(--space-xs);
+  color: var(--text-primary);
+  font-weight: var(--font-weight-semibold);
+}
+
+.markdown-content h5 {
+  font-size: var(--font-size-md);
+  margin-top: var(--space-md);
+  margin-bottom: var(--space-xs);
+  color: var(--text-secondary);
+  font-weight: var(--font-weight-medium);
+}
+
+.markdown-content h6 {
+  font-size: var(--font-size-sm);
+  margin-top: var(--space-sm);
+  margin-bottom: var(--space-xs);
+  color: var(--text-tertiary);
+  font-weight: var(--font-weight-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ============================================
+   PARAGRAPHES
+   ============================================ */
+.markdown-content p {
+  margin-bottom: var(--space-sm);
+  line-height: 1.6;
+  color: var(--text-primary);
+}
+
+.markdown-content p:last-child {
+  margin-bottom: 0;
+}
+
+/* ============================================
+   LISTES
+   ============================================ */
+.markdown-content ul,
+.markdown-content ol {
+  margin-bottom: var(--space-sm);
+  padding-left: var(--space-xl);
+}
+
+.markdown-content ul {
+  list-style: none;
+}
+
+.markdown-content ul li {
+  position: relative;
+  padding-left: var(--space-md);
+  margin-bottom: var(--space-xs);
+  line-height: 1.5;
+}
+
+/* Puces personnalisées */
+.markdown-content ul li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 6px;
+  height: 6px;
+  background: var(--primary-color);
+  border-radius: 50%;
+}
+
+/* Puces de niveau 2 */
+.markdown-content ul ul li::before {
+  background: transparent;
+  border: 2px solid var(--primary-color);
+}
+
+/* Puces de niveau 3 */
+.markdown-content ul ul ul li::before {
+  background: var(--text-tertiary);
+  width: 4px;
+  height: 4px;
+}
+
+.markdown-content ol {
+  list-style: decimal;
+}
+
+.markdown-content ol li {
+  margin-bottom: var(--space-xs);
+  line-height: 1.5;
+  padding-left: var(--space-xs);
+}
+
+.markdown-content li > ul,
+.markdown-content li > ol {
+  margin-top: var(--space-xs);
+  margin-bottom: var(--space-xs);
+}
+
+/* ============================================
+   CODE INLINE
+   ============================================ */
+.markdown-content code {
+  background: var(--bg-secondary);
+  color: var(--primary-color);
+  padding: 0.2em 0.5em;
+  border-radius: var(--radius-sm);
+  font-family: 'Fira Code', 'Courier New', monospace;
+  font-size: 0.9em;
+  border: 1px solid var(--border-default);
+}
+
+/* ============================================
+   BLOCS DE CODE
+   ============================================ */
+.markdown-content pre {
+  background: var(--bg-secondary);
+  padding: var(--space-md);
+  border-radius: var(--radius-md);
+  overflow-x: auto;
+  margin-bottom: var(--space-sm);
+  border: 1px solid var(--border-default);
+  position: relative;
+}
+
+.markdown-content pre code {
+  background: none;
+  padding: 0;
+  border: none;
+  color: var(--text-primary);
+  font-size: 0.9em;
+  line-height: 1.5;
+}
+
+/* Scrollbar pour les blocs de code */
+.markdown-content pre::-webkit-scrollbar {
+  height: 8px;
+}
+
+.markdown-content pre::-webkit-scrollbar-track {
+  background: var(--bg-tertiary);
+  border-radius: 4px;
+}
+
+.markdown-content pre::-webkit-scrollbar-thumb {
+  background: var(--border-default);
+  border-radius: 4px;
+}
+
+.markdown-content pre::-webkit-scrollbar-thumb:hover {
+  background: var(--text-tertiary);
+}
+
+/* ============================================
+   CITATIONS (BLOCKQUOTE)
+   ============================================ */
+.markdown-content blockquote {
+  position: relative;
+  border-left: 4px solid var(--primary-color);
+  background: rgba(59, 130, 246, 0.05);
+  padding: var(--space-lg) var(--space-md) var(--space-xl) var(--space-md);
+  margin: var(--space-md) 0;
+  border-radius: var(--radius-md);
+  font-style: italic;
+  color: var(--text-secondary);
+}
+
+.markdown-content blockquote::before {
+  content: '"';
+  position: absolute;
+  left: var(--space-sm);
+  top: var(--space-xs);
+  font-size: 2em;
+  color: var(--primary-color);
+  opacity: 0.3;
+  font-family: Georgia, serif;
+  line-height: 1;
+}
+
+.markdown-content blockquote::after {
+  content: '"';
+  font-size: 2em;
+  color: var(--primary-color);
+  opacity: 0.3;
+  position: absolute;
+  right: var(--space-sm);
+  font-family: Georgia, serif;
+  line-height: 1;
+}
+
+.markdown-content blockquote p {
+  margin-bottom: var(--space-xs);
+}
+
+.markdown-content blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+.markdown-content blockquote cite {
+  display: block;
+  margin-top: var(--space-sm);
+  font-size: var(--font-size-sm);
+  color: var(--text-tertiary);
+  font-style: normal;
+}
+
+.markdown-content blockquote cite::before {
+  content: '— ';
+}
+
+/* Citations avec auteur (format : — **Auteur**) */
+.markdown-content blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+.markdown-content blockquote em {
+  font-style: italic;
+  color: var(--text-primary);
+}
+
+/* Ligne d'auteur dans une citation (ajoutée par JS) */
+.markdown-content blockquote .blockquote-author {
+  margin-top: var(--space-sm);
+  padding-top: var(--space-sm);
+  font-size: var(--font-size-sm);
+  color: var(--text-tertiary);
+  font-style: normal;
+  text-align: right;
+  border-top: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.markdown-content blockquote .blockquote-author strong {
+  color: var(--text-secondary);
+  font-weight: var(--font-weight-semibold);
+}
+
+/* Citations de type warning/info/success */
+.markdown-content blockquote.warning {
+  border-left-color: var(--warning-color);
+  background: rgba(255, 193, 7, 0.05);
+}
+
+.markdown-content blockquote.info {
+  border-left-color: var(--info-color);
+  background: rgba(33, 150, 243, 0.05);
+}
+
+.markdown-content blockquote.success {
+  border-left-color: var(--success-color);
+  background: rgba(76, 175, 80, 0.05);
+}
+
+.markdown-content blockquote.error {
+  border-left-color: var(--error-color);
+  background: rgba(244, 67, 54, 0.05);
+}
+
+/* ============================================
+   TABLEAUX
+   ============================================ */
+.markdown-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: var(--space-sm);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.markdown-content th,
+.markdown-content td {
+  padding: var(--space-sm) var(--space-md);
+  border: 1px solid var(--border-default);
+  text-align: left;
+}
+
+.markdown-content th {
+  background: var(--bg-secondary);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  border-bottom: 2px solid var(--border-default);
+}
+
+.markdown-content tr:hover {
+  background: var(--bg-hover);
+}
+
+.markdown-content tbody tr {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+/* ============================================
+   LIENS
+   ============================================ */
+.markdown-content a {
+  color: var(--primary-color);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: all var(--transition-fast);
+}
+
+.markdown-content a:hover {
+  border-bottom-color: var(--primary-color);
+  color: #2563eb;
+}
+
+.markdown-content a:visited {
+  color: #7c3aed;
+}
+
+/* Liens externes */
+.markdown-content a[href^="http"]::after {
+  content: ' ↗';
+  font-size: 0.8em;
+  opacity: 0.6;
+}
+
+/* ============================================
+   IMAGES
+   ============================================ */
+.markdown-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-md);
+  margin: var(--space-md) 0;
+  border: 1px solid var(--border-default);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.markdown-content img[alt] {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ============================================
+   SÉPARATEURS
+   ============================================ */
+.markdown-content hr {
+  border: none;
+  border-top: 2px solid var(--border-default);
+  margin: var(--space-xl) 0;
+  opacity: 0.5;
+}
+
+/* ============================================
+   BADGES / TAGS
+   ============================================ */
+.markdown-content .badge,
+.markdown-content .tag {
+  display: inline-block;
+  padding: 0.25em 0.6em;
+  font-size: 0.85em;
+  font-weight: var(--font-weight-medium);
+  line-height: 1;
+  color: white;
+  background: var(--primary-color);
+  border-radius: var(--radius-full);
+  margin-right: var(--space-xs);
+  margin-bottom: var(--space-xs);
+  white-space: nowrap;
+}
+
+/* Variantes de badges */
+.markdown-content .badge.success,
+.markdown-content .tag.success {
+  background: var(--success-color);
+}
+
+.markdown-content .badge.warning,
+.markdown-content .tag.warning {
+  background: var(--warning-color);
+  color: var(--text-primary);
+}
+
+.markdown-content .badge.error,
+.markdown-content .tag.error {
+  background: var(--error-color);
+}
+
+.markdown-content .badge.info,
+.markdown-content .tag.info {
+  background: var(--info-color);
+}
+
+.markdown-content .badge.secondary,
+.markdown-content .tag.secondary {
+  background: var(--bg-tertiary);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-default);
+}
+
+/* Groupe de badges */
+.markdown-content .badges,
+.markdown-content .tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  margin: var(--space-sm) 0;
+}
+
+/* ============================================
+   NOTES / CALLOUTS
+   ============================================ */
+.markdown-content .note,
+.markdown-content .callout {
+  padding: var(--space-md);
+  margin: var(--space-md) 0;
+  border-radius: var(--radius-md);
+  border-left: 4px solid var(--primary-color);
+  background: var(--bg-secondary);
+}
+
+.markdown-content .note-title,
+.markdown-content .callout-title {
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: var(--space-xs);
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.markdown-content .note.warning,
+.markdown-content .callout.warning {
+  border-left-color: var(--warning-color);
+  background: rgba(255, 193, 7, 0.05);
+}
+
+.markdown-content .note.info,
+.markdown-content .callout.info {
+  border-left-color: var(--info-color);
+  background: rgba(33, 150, 243, 0.05);
+}
+
+.markdown-content .note.success,
+.markdown-content .callout.success {
+  border-left-color: var(--success-color);
+  background: rgba(76, 175, 80, 0.05);
+}
+
+.markdown-content .note.error,
+.markdown-content .callout.error {
+  border-left-color: var(--error-color);
+  background: rgba(244, 67, 54, 0.05);
+}
+
+/* ============================================
+   EMPHASE
+   ============================================ */
+.markdown-content strong,
+.markdown-content b {
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+}
+
+.markdown-content em,
+.markdown-content i {
+  font-style: italic;
+  color: var(--text-secondary);
+}
+
+.markdown-content mark {
+  background: rgba(255, 235, 59, 0.3);
+  padding: 0.1em 0.3em;
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+}
+
+.markdown-content del,
+.markdown-content s {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+.markdown-content u {
+  text-decoration: underline;
+  text-decoration-color: var(--primary-color);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 2px;
+}
+
+/* ============================================
+   DÉFINITIONS
+   ============================================ */
+.markdown-content dl {
+  margin-bottom: var(--space-md);
+}
+
+.markdown-content dt {
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  margin-top: var(--space-sm);
+}
+
+.markdown-content dd {
+  margin-left: var(--space-xl);
+  margin-bottom: var(--space-sm);
+  color: var(--text-secondary);
+}
+
+/* ============================================
+   DÉTAILS / ACCORDÉON
+   ============================================ */
+.markdown-content details {
+  margin: var(--space-md) 0;
+  padding: var(--space-md);
+  background: var(--bg-secondary);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-default);
+}
+
+.markdown-content summary {
+  cursor: pointer;
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  user-select: none;
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.markdown-content summary:hover {
+  color: var(--primary-color);
+}
+
+.markdown-content summary::marker {
+  color: var(--primary-color);
+}
+
+.markdown-content details[open] summary {
+  margin-bottom: var(--space-sm);
+  padding-bottom: var(--space-sm);
+  border-bottom: 1px solid var(--border-default);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 768px) {
+  .markdown-content {
+    padding: 0 var(--space-md) var(--space-lg);
+  }
+  
+  .markdown-content h1 {
+    font-size: var(--font-size-2xl);
+  }
+  
+  .markdown-content h2 {
+    font-size: var(--font-size-xl);
+  }
+  
+  .markdown-content pre {
+    font-size: 0.85em;
+  }
+  
+  .markdown-content table {
+    font-size: 0.9em;
+  }
+  
+  .markdown-content th,
+  .markdown-content td {
+    padding: var(--space-xs) var(--space-sm);
+  }
+}

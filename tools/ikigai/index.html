@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎯 Ikigai - BastaVerse</title>
+<link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2334d399'%3E%3Cpath d='M17 8C8 10 5.9 16.17 3.82 21.34l1.06.82C6.16 17.4 9 14.3 12 13.22c2.91-.83 5.83-1.32 8.93-1.32l.07-4.9c-1.33.1-2.67.2-4 .3z'/%3E%3Cpath d='M3.82 21.34C5.9 16.17 8 10 17 8c1.33-.1 2.67-.2 4-.3L21 2.8c-3.1 0-6.02.49-8.93 1.32C9 5.2 6.16 8.3 4.88 13.16l-1.06-.82z'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>🎯 Ikigai</h1>
+            <p class="subtitle">Découvrez votre raison de vivre</p>
+        </header>
+
+        <!-- Écran d'accueil -->
+        <div id="welcome-screen" class="screen active">
+            <div class="welcome-content">
+                <div class="welcome-layout">
+                    <div class="ikigai-intro">
+                        <h2>🌸 L'Ikigai, c'est quoi ?</h2>
+                        <p>L'Ikigai (生き甲斐) est une philosophie japonaise pour trouver sa <strong>raison de
+                                vivre</strong>.
+                        </p>
+                        <p>À travers 4 dimensions qui se croisent, explorez ce qui donne du sens à votre vie :</p>
+
+                        <div class="dimensions-preview">
+                            <span class="dim-preview" style="background: #ff9aa2">❤️ Ce que vous AIMEZ</span>
+                            <span class="dim-preview" style="background: #ffd3a5">💪 Ce pourquoi vous êtes DOUÉ</span>
+                            <span class="dim-preview" style="background: #a8e6cf">🌍 Ce dont le monde a BESOIN</span>
+                            <span class="dim-preview" style="background: #ffb7b2">💰 Ce pourquoi vous pourriez être
+                                PAYÉ</span>
+                        </div>
+
+                        <p class="method-info">
+                            🎯 <strong>La méthode :</strong> Positionnez des post-its colorés sur les dimensions,<br>
+                            puis
+                            identifiez vos leviers d'action !
+                        </p>
+                    </div>
+
+                    <div class="welcome-image">
+                        <img src="arbre.png" alt="Arbre Ikigai - Illustration des 4 dimensions" class="ikigai-tree">
+                    </div>
+                </div>
+
+                <!-- Options de démarrage -->
+                <div class="start-options">
+                    <div class="wizard-toggle">
+                        <label class="checkbox-container">
+                            <input type="checkbox" id="wizard-enabled" checked>
+                            <span class="checkmark"></span>
+                            <span class="label-text">🧙‍♂️ Avec Assistant guidé</span>
+                        </label>
+                        <p class="option-desc">L'assistant vous explique chaque étape progressivement</p>
+                    </div>
+
+                    <button id="start-btn" class="btn-primary">🍃 Commencer</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Écran principal -->
+        <div id="main-screen" class="screen">
+            <div class="workspace">
+                <!-- Zone de dessin des dimensions -->
+                <div class="ikigai-canvas">
+                    <svg id="ikigai-svg" viewBox="0 0 800 600">
+                        <!-- Les dimensions seront dessinées ici dynamiquement -->
+                    </svg>
+                </div>
+
+                <!-- Palette de post-its -->
+                <div class="postit-palette">
+                    <h3>📝 Mes Post-its</h3>
+                    <div class="palette-items">
+                        <div class="postit-template satisfied" data-type="satisfied" title="Besoin nourri">
+                            ✅ Besoin nourri<br />(clic sur moi)
+                        </div>
+                        <div class="postit-template neutral" data-type="neutral" title="Non nourri mais OK">
+                            ⚖️ Non nourri mais OK<br />(clic sur moi)
+                        </div>
+                        <div class="postit-template frustrated" data-type="frustrated" title="Besoin non nourri">
+                            ❌ Besoin non nourri<br />(clic sur moi)
+                        </div>
+                    </div>
+
+                    <!-- Leviers d'action -->
+                    <div class="levers-section">
+                        <h3>⚙️ Mes Leviers d'Action</h3>
+                        <div id="levers-container" class="levers-container">
+                            <!-- Les leviers seront générés ici -->
+                        </div>
+                        <div class="lever-controls">
+                            <button id="add-custom-lever" class="btn-info">➕ Ajouter un levier personnel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Actions principales -->
+            <div class="main-actions">
+                <button id="show-summary-btn" class="btn-success">📊 Voir le résumé en markdown</button>
+                <button id="export-btn" class="btn-info">📥 Exporter (JSON)</button>
+                <button id="import-btn" class="btn-info">📤 Importer</button>
+                <input type="file" id="import-file" accept=".json" style="display: none;">
+                <button id="reset-btn" class="btn-danger">🔄 Recommencer</button>
+            </div>
+        </div>
+
+        <!-- Modal de résumé -->
+        <div id="summary" class="modal hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>📊 Mon Ikigai - Résumé</h2>
+                    <button class="close-modal" onclick="app.closeSummary()">❌</button>
+                </div>
+                <div id="summary-content" class="modal-body">
+                    <!-- Contenu généré dynamiquement -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>Merci à la <strong>Tribu Engagement</strong> 💖<br />de OCTO Technology 🙏</p>
+        </div>
+    </footer>
+
+    <script src="leviers.js"></script>
+    <script src="wizard.js"></script>
+    <script src="app.js"></script>
+
+    <!-- Intégration Agile Coach Toolkit -->
+    <script src="../../assets/js/tool-integration.js"></script>
+    <script>
+        // Configuration spécifique à l'outil
+        window.TOOL_CONFIG = {
+            name: 'agile-fluency',
+            backUrl: '../../index.html#tools'
+        };
+    </script>
+</body>
+
+</html>

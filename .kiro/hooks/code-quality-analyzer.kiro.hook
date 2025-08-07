@@ -1,0 +1,23 @@
+{
+  "enabled": true,
+  "name": "Code Quality Analyzer",
+  "description": "Monitors source code files for changes and provides suggestions for code improvements including code smells, design patterns, best practices, readability, maintainability, and performance optimizations",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "**/*.js",
+      "**/*.html",
+      "**/*.css",
+      "**/*.json",
+      "!**/node_modules/**",
+      "!**/pb_data/**",
+      "!**/dist/**",
+      "!**/build/**"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Analyze the modified code files for potential improvements. Focus on:\n\n1. **Code Smells**: Identify duplicated code, long functions (>800 lines per file as per standards), complex conditionals, and poor naming conventions\n2. **Design Patterns**: Suggest appropriate design patterns that could improve the code structure\n3. **Best Practices**: Check adherence to the project standards including:\n   - French language for UI and comments\n   - camelCase for JavaScript, kebab-case for CSS/files\n   - 4 spaces for JavaScript, 2 spaces for HTML/CSS\n   - Separation of HTML/CSS/JS (no CSS in JS files)\n   - Component-based architecture (max 800 lines per file)\n4. **Security**: Identify potential security vulnerabilities (XSS, validation issues, exposed secrets)\n5. **Readability**: Suggest improvements for code clarity and documentation\n6. **Maintainability**: Recommend refactoring for better modularity and reusability\n7. **Performance**: Identify optimization opportunities (unnecessary loops, inefficient DOM manipulation, memory leaks)\n\nProvide actionable suggestions while maintaining existing functionality. Format your response with clear sections and prioritize critical issues first."
+  }
+}

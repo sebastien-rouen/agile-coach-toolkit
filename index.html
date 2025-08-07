@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Collection d'outils gratuits et open-source pour optimiser vos pratiques agiles et améliorer la collaboration d'équipe.">
+    <meta name="keywords" content="agile, scrum, kanban, coach, facilitation, retrospective, planning poker">
+    <meta name="author" content="Sébastien - Coach Sticko">
+
+    <title>Coach Agile Toolkit - Outils gratuits pour l'agilité</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/variables.css">
+    <link rel="stylesheet" href="assets/themes/theme-light.css">
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/sidebar.css">
+    <link rel="stylesheet" href="assets/css/layout.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <link rel="stylesheet" href="assets/css/modal.css">
+    <link rel="stylesheet" href="assets/css/wizard.css">
+
+    <!-- Preload -->
+    <link rel="preload" href="config/config.json" as="fetch" crossorigin>
+    
+    <style>
+        /* Cacher le bouton favori sur la page d'accueil */
+        #favoriteBtn {
+            display: none !important;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER (chargé dynamiquement) -->
+    <div id="header-placeholder"></div>
+
+    <!-- SIDEBAR (chargé dynamiquement) -->
+    <div id="sidebar-placeholder"></div>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content" id="mainContent">
+
+        <!-- WIZARD (affiché au premier chargement) -->
+        <div class="wizard-container">
+            <div class="wizard-card">
+                <!-- Header -->
+                <div class="wizard-header">
+                    <span class="wizard-icon">🎯</span>
+                    <h1 class="wizard-title">Trouvez les bons outils pour votre contexte</h1>
+                    <p class="wizard-subtitle">
+                        Répondez à quelques questions pour obtenir des recommandations personnalisées
+                    </p>
+                </div>
+
+                <!-- Progress bar -->
+                <div class="wizard-progress">
+                    <div class="progress-step active">
+                        <div class="progress-number">1</div>
+                        <span>Votre rôle</span>
+                    </div>
+                    <div class="progress-separator"></div>
+                    <div class="progress-step">
+                        <div class="progress-number">2</div>
+                        <span>Votre objectif</span>
+                    </div>
+                    <div class="progress-separator"></div>
+                    <div class="progress-step">
+                        <div class="progress-number">3</div>
+                        <span>Votre contexte</span>
+                    </div>
+                </div>
+
+                <!-- Contenu -->
+                <div class="wizard-content">
+                    <h2 class="wizard-question">Quel est votre rôle ?</h2>
+
+                    <div class="options-grid">
+                        <div class="option-card" data-value="scrum-master">
+                            <span class="option-icon">🏃</span>
+                            <div class="option-label">Scrum Master</div>
+                            <p class="option-description">Facilitateur d'équipe Scrum</p>
+                        </div>
+
+                        <div class="option-card" data-value="coach-agile">
+                            <span class="option-icon">🎓</span>
+                            <div class="option-label">Coach Agile</div>
+                            <p class="option-description">Coach de transformation</p>
+                        </div>
+
+                        <div class="option-card" data-value="product-owner">
+                            <span class="option-icon">📦</span>
+                            <div class="option-label">Product Owner</div>
+                            <p class="option-description">Responsable produit</p>
+                        </div>
+
+                        <div class="option-card" data-value="developpeur">
+                            <span class="option-icon">💻</span>
+                            <div class="option-label">Développeur</div>
+                            <p class="option-description">Membre de l'équipe de développement</p>
+                        </div>
+
+                        <div class="option-card" data-value="manager">
+                            <span class="option-icon">👔</span>
+                            <div class="option-label">Manager</div>
+                            <p class="option-description">Manager d'équipe ou de département</p>
+                        </div>
+
+                        <div class="option-card" data-value="curieux">
+                            <span class="option-icon">🌱</span>
+                            <div class="option-label">Curieux / Débutant</div>
+                            <p class="option-description">Je découvre l'agilité</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Actions -->
+                <div class="wizard-actions">
+                    <button class="btn-wizard btn-wizard-secondary" id="btnPrevious" disabled>
+                        ← Précédent
+                    </button>
+                    <button class="btn-wizard btn-wizard-primary" id="btnNext" disabled>
+                        Suivant →
+                    </button>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- HOMEPAGE (affichée après le wizard ou si déjà visité) -->
+        <div class="homepage-container" id="homepageContainer" style="display: none;">
+
+            <!-- Hero Section -->
+            <section class="hero-section">
+                <div class="hero-content">
+                    <h1 class="hero-title">
+                        Boostez vos pratiques agiles 🚀
+                    </h1>
+                    <p class="hero-description">
+                        Collection gratuite d'outils et ressources pour les coachs agiles,
+                        Scrum Masters, Product Owners et équipes qui veulent s'améliorer.
+                    </p>
+                    <div class="hero-actions">
+                        <button class="btn btn-primary" id="showWizardBtn">
+                            🧭 Lancer le guide interactif
+                        </button>
+                        <a href="#categories" class="btn btn-secondary">
+                            Voir toutes les catégories
+                        </a>
+                    </div>
+                </div>
+
+                <div class="hero-stats">
+                    <div class="stat-card">
+                        <div class="stat-number">14</div>
+                        <div class="stat-label">Catégories</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="toolsCount">50+</div>
+                        <div class="stat-label">Outils & Ressources</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Gratuit & Open-source</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Featured Categories -->
+            <section class="featured-section" id="categories">
+                <div class="section-header">
+                    <h2 class="section-title">📚 Explorez par thématique</h2>
+                    <p class="section-description">
+                        Choisissez une catégorie pour découvrir les outils et ressources adaptés
+                    </p>
+                </div>
+
+                <div class="categories-grid" id="categoriesGrid">
+                    <!-- Généré dynamiquement -->
+                </div>
+            </section>
+
+            <!-- Quick Access Tools -->
+            <section class="tools-section">
+                <div class="section-header">
+                    <h2 class="section-title">⚡ Accès rapide aux outils interactifs</h2>
+                </div>
+
+                <div class="tools-grid" id="quickToolsGrid">
+                    <!-- Généré dynamiquement depuis tools/ -->
+                </div>
+            </section>
+
+            <!-- Recent Activity (si applicable) -->
+            <section class="recents-section" id="recentsSection" style="display: none;">
+                <div class="section-header">
+                    <h2 class="section-title">🕐 Consultés récemment</h2>
+                </div>
+                <div class="recents-list" id="recentsList">
+                    <!-- Généré dynamiquement -->
+                </div>
+            </section>
+
+        </div>
+
+    </main>
+
+    <!-- FOOTER (chargé dynamiquement) -->
+    <div id="footer-placeholder"></div>
+
+    <!-- MODALS -->
+
+    <!-- Modal Aide -->
+    <div class="modal-overlay" id="helpModalOverlay">
+        <div class="modal active" id="helpModal">
+            <div class="modal-header">
+                <h2 class="modal-title">
+                    <span>💡</span>
+                    Guide d'utilisation
+                </h2>
+                <button class="modal-close" id="closeHelpModal" aria-label="Fermer">
+                    ×
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <div class="help-section">
+                    <h3 class="help-section-title">
+                        <span>🎯</span>
+                        Navigation
+                    </h3>
+                    <div class="help-content">
+                        <ul class="help-list">
+                            <li>Utilisez le menu latéral pour accéder aux catégories</li>
+                            <li>La barre de recherche permet de trouver rapidement un outil</li>
+                            <li>Cliquez sur une carte pour voir les détails</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="help-section">
+                    <h3 class="help-section-title">
+                        <span>⭐</span>
+                        Favoris
+                    </h3>
+                    <div class="help-content">
+                        <p>Cliquez sur l'étoile pour ajouter un outil à vos favoris.</p>
+                        <div class="help-tip">
+                            <div class="help-tip-title">
+                                <span>💡</span>
+                                Astuce
+                            </div>
+                            <p>Vos favoris sont sauvegardés localement dans votre navigateur.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="help-section">
+                    <h3 class="help-section-title">
+                        <span>⌨️</span>
+                        Raccourcis clavier
+                    </h3>
+                    <div class="help-content">
+                        <ul class="help-list">
+                            <li>
+                                <span class="help-shortcut">Ctrl + K</span>
+                                Ouvrir la recherche
+                            </li>
+                            <li>
+                                <span class="help-shortcut">Échap</span>
+                                Fermer les modales
+                            </li>
+                            <li>
+                                <span class="help-shortcut">Ctrl + B</span>
+                                Basculer le menu
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="help-section">
+                    <h3 class="help-section-title">
+                        <span>🌓</span>
+                        Thème
+                    </h3>
+                    <div class="help-content">
+                        <p>Cliquez sur l'icône soleil/lune pour changer entre le mode clair et sombre.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-primary" id="closeHelpModalBtn">
+                    Compris !
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- SCRIPTS -->
+    <script src="assets/js/partials-loader.js"></script>
+    <script src="assets/js/utils.js"></script>
+    <script src="assets/js/navigation.js"></script>
+    <script src="assets/js/wizard.js"></script>
+    <script src="assets/js/markdown-parser.js"></script>
+    <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
