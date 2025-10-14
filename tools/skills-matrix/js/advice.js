@@ -139,6 +139,40 @@ function renderAdvice() {
 }
 
 /**
+ * Trouver des mentors pour une appétence
+ */
+function findMentorsForAppetence(appetenceName, currentMemberName) {
+    const mentors = [];
+    
+    matrixData.members.forEach(member => {
+        // Ne pas suggérer le membre lui-même
+        if (member.name === currentMemberName) return;
+        
+        // Vérifier si le membre a cette compétence (skill)
+        const skillIndex = matrixData.skills.indexOf(appetenceName);
+        if (skillIndex !== -1 && member.levels[skillIndex] >= 3) {
+            mentors.push({
+                name: member.name,
+                type: 'skill',
+                level: member.levels[skillIndex]
+            });
+        }
+        
+        // Vérifier si le membre a un ownership sur ce sujet
+        if (member.ownerships && member.ownerships.some(own => own.toLowerCase().includes(appetenceName.toLowerCase()))) {
+            mentors.push({
+                name: member.name,
+                type: 'ownership',
+                level: 4 // Ownership = expertise
+            });
+        }
+    });
+    
+    // Trier par niveau (les plus experts en premier)
+    return mentors.sort((a, b) => b.level - a.level);
+}
+
+/**
  * Créer une carte de conseil
  */
 function createAdviceCard(memberName, skillData) {
@@ -152,7 +186,83 @@ function createAdviceCard(memberName, skillData) {
     const mentors = findMentors(skillData.skillIndex, skillData.level);
     const mentorSuggestions = mentors.length > 0 ? mentors.map(m => m.name) : [];
 
+    // Récupérer les infos du membre
+    const member = matrixData.members.find(m => m.name === memberName);
+    const hasAppetences = member?.appetences && member.appetences.length > 0;
+    const hasOwnerships = member?.ownerships && member.ownerships.length > 0;
+    
+    // Trouver des mentors pour les appétences
+    const appetenceMentors = {};
+    if (hasAppetences) {
+        member.appetences.forEach(appetence => {
+            const mentorsForAppetence = findMentorsForAppetence(appetence, memberName);
+            if (mentorsForAppetence.length > 0) {
+                appetenceMentors[appetence] = mentorsForAppetence;
+            }
+        });
+    }
+
     const skillsList = `<strong>${skillData.skill}</strong> (Niveau ${skillData.level}/4)`;
+
+    // Générer les sections supplémentaires
+    let appetencesSection = '';
+    if (hasAppetences) {
+        const appetencesWithMentors = member.appetences.map(app => {
+            const mentors = appetenceMentors[app] || [];
+            return { name: app, mentors };
+        });
+        
+        appetencesSection = `
+            <div class="advice-appetences-section">
+                <h4 class="advice-appetences-title">
+                    🎯 Appétences de ${memberName}
+                </h4>
+                <div class="advice-appetences-list">
+                    ${appetencesWithMentors.map(({ name, mentors }) => `
+                        <div class="advice-appetence-item">
+                            <div class="advice-appetence-header">
+                                <span class="advice-appetence-badge">${name}</span>
+                                ${mentors.length > 0 ? `
+                                    <span class="advice-appetence-mentors-label">→ Mentors disponibles</span>
+                                ` : ''}
+                            </div>
+                            ${mentors.length > 0 ? `
+                                <div class="advice-mentors-list">
+                                    ${mentors.map(mentor => `
+                                        <span class="advice-mentor-badge">
+                                            ${mentor.type === 'ownership' ? '🏆' : '⭐'} ${mentor.name}
+                                        </span>
+                                    `).join('')}
+                                </div>
+                            ` : ''}
+                        </div>
+                    `).join('')}
+                </div>
+                <p class="advice-appetences-note">
+                    💡 Ces sujets intéressent ${memberName}. ${Object.keys(appetenceMentors).length > 0 ? 'Contacte les mentors suggérés pour progresser !' : 'Pense à les intégrer dans ton plan de développement !'}
+                </p>
+            </div>
+        `;
+    }
+
+    let ownershipsSection = '';
+    if (hasOwnerships) {
+        ownershipsSection = `
+            <div class="advice-ownerships-section">
+                <h4 class="advice-ownerships-title">
+                    🏆 Responsabilités de ${memberName}
+                </h4>
+                <div class="advice-ownerships-list">
+                    ${member.ownerships.map(own => `
+                        <span class="advice-ownership-badge">${own}</span>
+                    `).join('')}
+                </div>
+                <p class="advice-ownerships-note">
+                    💪 ${memberName} est responsable de ces sujets. Développer cette compétence renforcera son expertise !
+                </p>
+            </div>
+        `;
+    }
 
     card.innerHTML = `
         <div class="advice-header">
@@ -167,10 +277,13 @@ function createAdviceCard(memberName, skillData) {
             ${message}
         </div>
 
-        <div style="margin: 15px 0; padding: 15px; background: rgba(0, 0, 0, 0.2); border-radius: 8px;">
-            <h4 style="color: #00d4ff; font-size: 0.9em; margin-bottom: 10px; text-transform: uppercase;">🎯 Compétence à développer</h4>
+        <div class="advice-skill-section">
+            <h4 class="advice-skill-title">🎯 Compétence à développer</h4>
             ${skillsList}
         </div>
+
+        ${appetencesSection}
+        ${ownershipsSection}
 
         <div class="advice-resources">
             <h4>📚 Ressources recommandées</h4>

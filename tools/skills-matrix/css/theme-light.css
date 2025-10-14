@@ -79,7 +79,7 @@
    STORAGE INFO
    ============================================ */
 [data-theme="light"] .storage-info {
-    background: rgba(102, 126, 234, 0.1);
+    background: rgba(255, 255, 255, 0.9);
     border: 1px solid rgba(102, 126, 234, 0.2);
     color: var(--text-primary);
 }
@@ -219,7 +219,7 @@
 }
 
 [data-theme="light"] .filter-btn.active {
-    background: linear-gradient(135deg, #080b16 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #080b16 0%, #471a75 100%);
     color: white;
 }
 
@@ -333,12 +333,13 @@
 }
 
 [data-theme="light"] .member-selector-dropdown .member-toggle {
-    color: var(--text-primary);
+    color: var(--bg-primary);
     border-bottom: 1px solid var(--border-color);
+    background: linear-gradient(135deg, #667eea 0%, #71239e 100%);
 }
 
 [data-theme="light"] .member-selector-dropdown .member-toggle:hover {
-    background: var(--bg-tertiary);
+    background: #006080;
 }
 
 [data-theme="light"] .member-selector-separator {
@@ -359,4 +360,81 @@
 
 [data-theme="light"] .matrix-container {
     scrollbar-color: #080b16 var(--bg-tertiary);
+}
+
+[data-theme="light"] .matrix-name-container {
+    background: linear-gradient(359deg, #072233 0%, #4e5575 100%);
+}
+
+[data-theme="light"] .template-selector::after {
+    color: #03021f;
+}
+
+/* ============================================
+   ADVICE - APPETENCES & OWNERSHIPS
+   ============================================ */
+[data-theme="light"] .advice-appetences-section {
+    background: rgba(0, 168, 204, 0.1);
+    border-left-color: #0088a8;
+}
+
+[data-theme="light"] .advice-appetences-title {
+    color: #006080;
+}
+
+[data-theme="light"] .advice-appetence-badge {
+    background: rgba(0, 168, 204, 0.25);
+    color: #004d60;
+}
+
+[data-theme="light"] .advice-appetence-mentors-label {
+    color: #004d60;
+}
+
+[data-theme="light"] .advice-mentor-badge {
+    background: rgba(16, 185, 129, 0.25);
+    color: #064e3b;
+}
+
+[data-theme="light"] .advice-appetences-note {
+    color: #004d60;
+}
+
+[data-theme="light"] .advice-ownerships-section {
+    background: rgba(192, 38, 211, 0.1);
+    border-left-color: #a020b0;
+}
+
+[data-theme="light"] .advice-ownerships-title {
+    color: #7e1891;
+}
+
+[data-theme="light"] .advice-ownership-badge {
+    background: rgba(192, 38, 211, 0.25);
+    color: #5a0f66;
+}
+
+[data-theme="light"] .advice-ownerships-note {
+    color: #5a0f66;
+}
+
+[data-theme="light"] .advice-skill-section {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="light"] .advice-skill-title {
+    color: #0088a8;
+}
+
+[data-theme="light"] .advice-message, [data-theme="light"] .advice-member {
+    color: #0f1213;
+}
+
+[data-theme="light"] .advice-title {
+    color: #0b495f;
+}
+
+[data-theme="light"] .add-tag-input {
+    background: #ddecff;
+    color: var(--text-primary);
 }

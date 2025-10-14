@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test PocketBase Data</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #1a1a2e;
+            color: #eee;
+        }
+
+        h1 {
+            color: #00d4ff;
+        }
+
+        .section {
+            background: #16213e;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            border-left: 4px solid #00d4ff;
+        }
+
+        .success {
+            color: #10b981;
+        }
+
+        .error {
+            color: #ef4444;
+        }
+
+        .warning {
+            color: #f59e0b;
+        }
+
+        button {
+            background: #00d4ff;
+            color: #1a1a2e;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            margin: 5px;
+        }
+
+        button:hover {
+            background: #00b8e6;
+        }
+
+        pre {
+            background: #0f1419;
+            padding: 15px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+
+        .count {
+            font-size: 24px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>🔍 Test PocketBase Data - Skills Matrix</h1>
+
+    <div class="section">
+        <h2>1. Test de Connexion</h2>
+        <button onclick="testConnection()">Tester la Connexion</button>
+        <div id="connectionResult"></div>
+    </div>
+
+    <div class="section">
+        <h2>2. Vérifier les Collections</h2>
+        <button onclick="checkCollections()">Vérifier</button>
+        <div id="collectionsResult"></div>
+    </div>
+
+    <div class="section">
+        <h2>3. Compter les Enregistrements</h2>
+        <button onclick="countRecords()">Compter</button>
+        <div id="countResult"></div>
+    </div>
+
+    <div class="section">
+        <h2>4. Afficher les Données</h2>
+        <button onclick="showData()">Afficher</button>
+        <div id="dataResult"></div>
+    </div>
+
+    <script src="../../assets/js/pocketbase-manager.js"></script>
+    <script>
+        const PB_CONFIG = {
+            baseUrl: '/pb',
+            collections: {
+                matrices: 'tools_skills_matrix_matrices',
+                members: 'tools_skills_matrix_members',
+                items: 'tools_skills_matrix_items',
+                memberItems: 'tools_skills_matrix_member_items',
+                templates: 'tools_skills_matrix_templates'
+            }
+        };
+
+        const pbManager = new PocketBaseManager(PB_CONFIG.baseUrl, PB_CONFIG.collections);
+
+        async function testConnection() {
+            const result = document.getElementById('connectionResult');
+            result.innerHTML = '<p>Test en cours...</p>';
+
+            try {
+                const isConnected = await pbManager.testConnection();
+                if (isConnected) {
+                    result.innerHTML = '<p class="success">✅ PocketBase connecté</p>';
+                } else {
+                    result.innerHTML = '<p class="error">❌ PocketBase non disponible</p>';
+                }
+            } catch (error) {
+                result.innerHTML = `<p class="error">❌ Erreur: ${error.message}</p>`;
+            }
+        }
+
+        async function checkCollections() {
+            const result = document.getElementById('collectionsResult');
+            result.innerHTML = '<p>Vérification en cours...</p>';
+
+            const collections = ['matrices', 'members', 'items', 'memberItems', 'templates'];
+            let html = '<ul>';
+
+            for (const col of collections) {
+                try {
+                    const records = await pbManager.getRecords(col, { perPage: 1 });
+                    html += `<li class="success">✅ ${PB_CONFIG.collections[col]}</li>`;
+                } catch (error) {
+                    html += `<li class="error">❌ ${PB_CONFIG.collections[col]} - ${error.message}</li>`;
+                }
+            }
+
+            html += '</ul>';
+            result.innerHTML = html;
+        }
+
+        async function countRecords() {
+            const result = document.getElementById('countResult');
+            result.innerHTML = '<p>Comptage en cours...</p>';
+
+            try {
+                const matrices = await pbManager.getRecords('matrices');
+                const members = await pbManager.getRecords('members');
+                const items = await pbManager.getRecords('items');
+                const memberItems = await pbManager.getRecords('memberItems');
+                const templates = await pbManager.getRecords('templates');
+
+                result.innerHTML = `
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                        <div>
+                            <div class="count">${matrices.length}</div>
+                            <div>Matrices</div>
+                        </div>
+                        <div>
+                            <div class="count">${members.length}</div>
+                            <div>Membres</div>
+                        </div>
+                        <div>
+                            <div class="count">${items.length}</div>
+                            <div>Items</div>
+                        </div>
+                        <div>
+                            <div class="count">${memberItems.length}</div>
+                            <div>Associations</div>
+                        </div>
+                        <div>
+                            <div class="count">${templates.length}</div>
+                            <div>Templates</div>
+                        </div>
+                    </div>
+                    ${matrices.length === 0 ? '<p class="warning">⚠️ Aucune matrice trouvée ! Exécutez les migrations.</p>' : ''}
+                `;
+            } catch (error) {
+                result.innerHTML = `<p class="error">❌ Erreur: ${error.message}</p>`;
+            }
+        }
+
+        async function showData() {
+            const result = document.getElementById('dataResult');
+            result.innerHTML = '<p>Chargement des données...</p>';
+
+            try {
+                const matrices = await pbManager.getRecords('matrices');
+                const members = await pbManager.getRecords('members');
+                const items = await pbManager.getRecords('items');
+
+                let html = '<h3>Matrices</h3><pre>' + JSON.stringify(matrices, null, 2) + '</pre>';
+                html += '<h3>Membres</h3><pre>' + JSON.stringify(members, null, 2) + '</pre>';
+                html += '<h3>Items</h3><pre>' + JSON.stringify(items, null, 2) + '</pre>';
+
+                result.innerHTML = html;
+            } catch (error) {
+                result.innerHTML = `<p class="error">❌ Erreur: ${error.message}</p>`;
+            }
+        }
+
+        // Test automatique au chargement
+        window.addEventListener('DOMContentLoaded', () => {
+            testConnection();
+        });
+    </script>
+</body>
+
+</html>

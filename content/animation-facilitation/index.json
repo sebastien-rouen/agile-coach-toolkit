@@ -18,6 +18,13 @@
       "file": "retrospectives.md",
       "tags": ["rétrospective", "amélioration", "équipe", "feedback"],
       "order": 2
+    },
+    {
+      "id": "open-space-liberating-structures",
+      "title": "Open Space & Liberating Structures",
+      "file": "open-space-liberating-structures.md",
+      "tags": ["open-space", "liberating-structures", "facilitation", "participation"],
+      "order": 3
     }
   ]
 }

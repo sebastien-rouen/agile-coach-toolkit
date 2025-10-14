@@ -63,6 +63,188 @@ Chaque site suit ce modèle dans `data/{nom-du-site}/` :
 ### Gestion des Services Centralisés
 
 - **PocketBase Manager** : Gestion automatisée des instances PocketBase par site
-- **Site Logger** : Logging centralisé avec séparation par site
+- **Site Logger** : Logging centralisé avec séparation par site (voir section dédiée ci-dessous)
 - **Config Manager** : Gestion centralisée des configurations multi-sites
 - **Health Checker** : Surveillance de l'état de tous les sites
+
+## Utilisation du Winston Logger dans les Routes
+
+Le système utilise **Winston** pour un logging centralisé et structuré. Chaque site dispose de son propre logger avec préfixage automatique et canaux séparés en développement.
+
+### Initialisation dans les Routes
+
+Dans vos fichiers `{site}/api/routes/routes-*.js`, récupérez le logger via le middleware :
+
+```javascript
+const express = require("express");
+const router = express.Router();
+
+// Le logger est automatiquement injecté par le middleware
+router.get("/exemple", (req, res) => {
+  const logger = req.siteLogger; // Logger spécifique au site
+
+  logger.info("Traitement de la requête exemple");
+
+  try {
+    // Votre logique métier
+    const result = { success: true };
+
+    logger.info("Requête traitée avec succès", { result });
+    res.json(result);
+  } catch (error) {
+    logger.error("Erreur lors du traitement", {
+      error: error.message,
+      stack: error.stack,
+    });
+    res.status(500).json({ error: "Erreur serveur" });
+  }
+});
+
+module.exports = router;
+```
+
+### Méthodes de Logging Disponibles
+
+#### Méthodes Standard
+
+```javascript
+// Logs d'information (niveau info)
+logger.info("Message informatif", { data: "optionnelle" });
+
+// Logs d'avertissement (niveau warn)
+logger.warn("Attention: ressource limitée", { remaining: 10 });
+
+// Logs d'erreur (niveau error)
+logger.error("Erreur critique", { error: error.message });
+
+// Logs de débogage (niveau debug, uniquement en développement)
+logger.debug("Détails de débogage", { variable: value });
+```
+
+#### Méthodes Spécialisées
+
+```javascript
+// Log automatique des requêtes HTTP
+logger.logRequest(req, res, responseTime);
+// Génère: "Request processed [site] GET /api/exemple 200 45ms"
+
+// Log structuré des erreurs
+logger.logError(error, {
+  context: "validation",
+  userId: req.user?.id,
+});
+
+// Log des problèmes d'architecture
+logger.logArchitecture("missing-config", {
+  file: "config.json",
+  expected: "pocketbaseUrl",
+});
+```
+
+### Exemple Complet dans une Route
+
+```javascript
+const express = require("express");
+const router = express.Router();
+
+router.post("/items", async (req, res) => {
+  const logger = req.siteLogger;
+  const startTime = Date.now();
+
+  logger.info("Création d'un nouvel item", {
+    body: req.body,
+  });
+
+  try {
+    // Validation
+    if (!req.body.name) {
+      logger.warn("Validation échouée: nom manquant");
+      return res.status(400).json({
+        error: "Le nom est requis",
+      });
+    }
+
+    // Logique métier
+    const item = await createItem(req.body);
+
+    logger.info("Item créé avec succès", {
+      itemId: item.id,
+      name: item.name,
+    });
+
+    // Log automatique de la requête
+    const responseTime = Date.now() - startTime;
+    logger.logRequest(req, res, responseTime);
+
+    res.status(201).json(item);
+  } catch (error) {
+    logger.logError(error, {
+      operation: "createItem",
+      input: req.body,
+    });
+
+    res.status(500).json({
+      error: "Erreur lors de la création",
+    });
+  }
+});
+
+module.exports = router;
+```
+
+### Configuration par Environnement
+
+Le logger s'adapte automatiquement selon l'environnement :
+
+**Développement (drafts)** :
+
+- Niveau de log : `debug` (tous les logs)
+- Sortie console : Activée avec couleurs
+- Fichiers séparés : `logs/sites/{site}/{site}.log`
+- Fichiers d'erreur : `logs/sites/{site}/{site}-error.log`
+
+**Production (prod)** :
+
+- Niveau de log : `warn` (warnings et erreurs uniquement)
+- Sortie console : Désactivée
+- Fichiers centralisés : `logs/combined.log` et `logs/error.log`
+- Préfixage automatique : `[{site}]` dans les logs
+
+### Bonnes Pratiques
+
+1. **Toujours utiliser le logger** au lieu de `console.log()`
+2. **Ajouter du contexte** avec les métadonnées (second paramètre)
+3. **Logger les erreurs** avec `logger.logError()` pour capturer la stack trace
+4. **Éviter les logs sensibles** (mots de passe, tokens, données personnelles)
+5. **Utiliser les niveaux appropriés** :
+   - `debug` : Informations de débogage détaillées
+   - `info` : Événements normaux de l'application
+   - `warn` : Situations anormales mais gérables
+   - `error` : Erreurs nécessitant une attention
+
+### Accès aux Logs
+
+```bash
+# Voir tous les logs en temps réel
+pm2 logs
+
+# Logs d'un site spécifique en développement
+cat logs/sites/carnet-animaux/carnet-animaux.log
+
+# Logs d'erreur uniquement
+cat logs/error.log
+
+# Logs combinés en production
+cat logs/combined.log
+
+# Filtrer par site en production
+grep "\[carnet-animaux\]" logs/combined.log
+```
+
+### Rotation Automatique
+
+Les logs sont automatiquement gérés avec rotation :
+
+- **Taille maximale** : 5 MB par fichier
+- **Fichiers conservés** : 5 versions
+- **Nettoyage** : Automatique par Winston

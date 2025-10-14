@@ -9,6 +9,155 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### ✨ Ajouté - 2025-01-14
+
+#### Intégration PocketBase - Skills Matrix v2.0
+- **Stockage cloud fonctionnel** : Données synchronisées avec PocketBase
+  - Adaptation aux nouvelles collections (migrations v1.0.1)
+  - Chargement automatique depuis PocketBase au démarrage
+  - Création automatique d'une matrice par défaut si inexistante
+  - Conversion intelligente des données PocketBase → Application
+  - Fallback automatique vers localStorage si PocketBase indisponible
+  
+- **Fonctions de sauvegarde complètes**
+  - Sauvegarde membres avec email et rôle
+  - Sauvegarde skills (niveau + appétence) et ownerships (rôle)
+  - Création automatique des items manquants
+  - Synchronisation complète de toutes les données
+  - Synchronisation automatique toutes les 5 minutes
+
+- **Gestion des templates PocketBase**
+  - Chargement des 5 templates prédéfinis
+  - Application d'un template avec création de matrice
+  - Support complet des templates avec skills, ownerships et membres
+
+- **Interface utilisateur améliorée**
+  - Badge de stockage dynamique : Local (navigateur) ↔ Cloud (actif)
+  - Mise à jour visuelle du mode de stockage
+  - Indication claire du statut de connexion PocketBase
+
+- **PocketBase Manager réutilisable** (`/assets/js/pocketbase-manager.js`)
+  - Gestionnaire centralisé pour tous les outils
+  - API complète : getRecords, getRecord, createRecord, updateRecord, deleteRecord
+  - Système de cache intelligent
+  - Synchronisation automatique configurable
+  - Documentation complète avec exemples (Planning Poker, Ikigai)
+
+- **Documentation complète**
+  - `POCKETBASE-MANAGER-GUIDE.md` : Guide complet du gestionnaire
+  - `POCKETBASE-INTEGRATION-V2.md` : Intégration Skills Matrix détaillée
+  - `INTEGRATION-POCKETBASE-COMPLETE.md` : Synthèse complète
+  - `AUTO-SYNC-GUIDE.md` : Guide de synchronisation automatique
+
+#### Synchronisation Automatique en Temps Réel
+- **Auto-sync sur toutes les modifications** : Synchronisation immédiate avec PocketBase
+  - ✅ Ajout/modification/suppression de membres
+  - ✅ Ajout/modification de compétences
+  - ✅ Changement de niveaux (0-4)
+  - ✅ Ajout/suppression d'appétences
+  - ✅ Ajout/suppression d'ownerships
+  
+- **Override intelligent des fonctions**
+  - Interception de `addMember()`, `editMemberName()`, `deleteMember()`
+  - Interception de `addSkill()`, `editSkillName()`
+  - Interception de `addAppetence()`, `removeAppetence()`
+  - Interception de `addOwnership()`, `removeOwnership()`
+  - Sauvegarde automatique via `saveData()` pour les changements de niveau
+  
+- **Synchronisation périodique**
+  - Sync complète toutes les 5 minutes
+  - Garantit la cohérence des données
+  - Logs de confirmation dans la console
+  
+- **Expérience utilisateur améliorée**
+  - Aucune action manuelle requise
+  - Feedback visuel dans la console (✅ logs)
+  - Transparente et instantanée
+
+### ✨ Ajouté - 2025-01-14
+
+#### Migrations PocketBase - Skills Matrix (Version Finale)
+- **Architecture optimisée en 5 tables** : Fusion skills + ownerships pour simplifier
+- **Organisation par collection** : Un fichier de migration par collection pour meilleure maintenabilité
+  - `tools_skills_matrix_matrices` : Contexte des matrices (équipe, projet)
+  - `tools_skills_matrix_members` : Membres/personnes de l'équipe
+  - `tools_skills_matrix_items` : Skills ET Ownerships fusionnés (type discriminant)
+  - `tools_skills_matrix_member_items` : Associations membres ↔ items (pivot)
+  - `tools_skills_matrix_templates` : Templates prédéfinis pour création rapide
+- **11 fichiers de migration créés** (1247 lignes de code) :
+  - **Création des collections** (5 fichiers) :
+    - `1757700001_create_matrices.js` : Collection matrices (contexte)
+    - `1757700002_create_members.js` : Collection members (membres)
+    - `1757700003_create_items.js` : Collection items (skills + ownerships)
+    - `1757700004_create_member_items.js` : Collection member_items (associations)
+    - `1757700005_create_templates.js` : Collection templates
+  - **Seed data matrice demo** (4 fichiers) :
+    - `1757700020_seed_matrices.js` : 1 matrice "Équipe Demo"
+    - `1757700021_seed_members.js` : 2 membres (Alice, Bob)
+    - `1757700022_seed_items.js` : 4 items (2 skills + 2 ownerships)
+    - `1757700023_seed_member_items.js` : 5 associations
+  - **Seed data templates** (2 fichiers) :
+    - `1757700030_seed_templates_part1.js` : Templates Authentification + Tribu VALUE
+    - `1757700031_seed_templates_part2.js` : Templates E-commerce + Recherche + Paiement
+- **5 templates prédéfinis** :
+  - 🔐 Authentification (Tech) : 6 skills sécurité + 2 ownerships + 3 membres
+  - 🎯 Tribu VALUE (Agile) : 17 skills coaching + 2 ownerships + 14 membres
+  - 🛒 Panier e-commerce (Business) : 6 skills e-commerce + 3 ownerships + 3 membres
+  - 🔍 Recherche (Tech) : 6 skills search + 2 ownerships + 3 membres
+  - 💳 Paiement (Business) : 6 skills paiement + 3 ownerships + 3 membres
+- **Documentation complète** (8 fichiers) :
+  - `bdd/pb_migrations/README.md` : Documentation des migrations
+  - `bdd/pb_migrations/STRUCTURE.md` : Organisation des fichiers
+  - `bdd/ARCHITECTURE.md` : Schéma de base de données
+  - `bdd/COMMANDS.md` : Guide des commandes PocketBase/PM2
+  - `bdd/WORKFLOW.md` : Workflows d'utilisation
+  - `bdd/validate-migrations.js` : Script de validation automatique
+  - `MIGRATIONS-SKILLS-MATRIX.md` : Récapitulatif et guide
+  - `MIGRATIONS-FINALES.md` : Version finale avec corrections
+- **Avantages de l'architecture** :
+  - Réduction de 28% du nombre de tables (7 → 5)
+  - Organisation par collection (un fichier = une collection)
+  - Requêtes simplifiées avec moins de jointures
+  - Extensibilité facilitée (ajout de types : certification, tool, etc.)
+  - Templates pour création rapide de matrices
+  - Relations avec cascade delete automatique
+  - Index optimisés pour les performances
+  - Validation automatique (0 erreur, 0 avertissement)
+
+### 🔧 Corrigé - 2025-10-14
+
+#### Migrations PocketBase - Corrections Complètes (v1.0.1)
+- **Fix 1 : Relations entre collections** - Utilisation des IDs au lieu des noms
+  - Correction de `1757700002_create_members.js` : Récupération de l'ID de matrices
+  - Correction de `1757700003_create_items.js` : Récupération de l'ID de matrices
+  - Correction de `1757700004_create_member_items.js` : Récupération des IDs (3 collections)
+  - Résolution de l'erreur "The relation collection doesn't exist"
+  - Pattern appliqué : `app.findCollectionByNameOrId()` avant création des relations
+
+- **Fix 2 : ID de collection manquant** - Ajout de l'attribut `id` dans toutes les collections
+  - Correction de `1757700001_create_matrices.js` : Ajout de `id: "tools_skills_matrix_matrices"`
+  - Correction de `1757700002_create_members.js` : Ajout de `id: "tools_skills_matrix_members"`
+  - Correction de `1757700003_create_items.js` : Ajout de `id: "tools_skills_matrix_items"`
+  - Correction de `1757700004_create_member_items.js` : Ajout de `id: "tools_skills_matrix_member_items"`
+  - Correction de `1757700005_create_templates.js` : Ajout de `id: "tools_skills_matrix_templates"`
+
+- **Fix 3 : Utilisation incorrecte de Dao** - Remplacement par l'API directe de `app`
+  - Correction de tous les fichiers de seed (6 fichiers)
+  - Remplacement de `new Dao(app)` par utilisation directe de `app`
+  - Remplacement de `dao.saveRecord()` par `app.save()`
+  - Remplacement de `dao.findFirstRecordByData()` par `app.findRecordsByFilter()`
+  - Résolution de l'erreur "ReferenceError: Dao is not defined"
+
+- **Fix 4 : Méthodes de recherche** - Utilisation correcte de l'API PocketBase
+  - Remplacement de `findFirstRecordByData()` par `findRecordsByFilter()`
+  - Pattern appliqué : `app.findRecordsByFilter(collection.id, "filter", "sort", limit)`
+  - Ajout de vérifications d'existence des records avant utilisation
+
+- **Documentation des corrections** :
+  - `CORRECTIONS-FINALES.md` : Guide complet des corrections appliquées
+  - Patterns de code validés et documentés
+  - Validation finale : 0 erreur, 0 avertissement
+
 ### 🔧 Corrigé - 2025-10-07
 
 #### Markdown - Phase 3 : Parser professionnel

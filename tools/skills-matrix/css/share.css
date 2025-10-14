@@ -1,0 +1,310 @@
+/**
+ * Skills Matrix - Styles du partage
+ */
+
+/* ============================================
+   BOUTON DE PARTAGE
+   ============================================ */
+.share-control {
+    position: relative;
+}
+
+.btn-shared {
+    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%) !important;
+    box-shadow: 0 2px 8px rgba(56, 239, 125, 0.3) !important;
+}
+
+.btn-shared:hover {
+    box-shadow: 0 4px 12px rgba(56, 239, 125, 0.5) !important;
+}
+
+.share-dropdown {
+    display: none;
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    min-width: 250px;
+    background: #16213e;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    border: 1px solid rgba(102, 126, 234, 0.3);
+}
+
+.share-dropdown.active {
+    display: block;
+    animation: slideDown 0.3s ease;
+}
+
+.share-dropdown-item {
+    width: 100%;
+    padding: 12px 16px;
+    background: transparent;
+    color: #e0e0e0;
+    border: none;
+    border-bottom: 1px solid #0f3460;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    text-align: left;
+}
+
+.share-dropdown-item:last-child {
+    border-bottom: none;
+}
+
+.share-dropdown-item:hover {
+    background: #0f3460;
+}
+
+.share-dropdown-item .icon {
+    font-size: 16px;
+}
+
+/* ============================================
+   STATUT DE PARTAGE
+   ============================================ */
+.share-status {
+    display: none;
+    align-items: center;
+    gap: 4px;
+}
+
+.share-status .sync-icon {
+    animation: rotate 2s linear infinite;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ============================================
+   MODAL DE PARTAGE
+   ============================================ */
+.share-modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 2000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    align-items: center;
+    justify-content: center;
+}
+
+.share-modal-overlay.active {
+    display: flex;
+    opacity: 1;
+}
+
+.share-modal-content {
+    background: #16213e;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.share-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    border-bottom: 1px solid #0f3460;
+}
+
+.share-modal-header h3 {
+    margin: 0;
+    color: #00d4ff;
+    font-size: 1.3em;
+}
+
+.share-modal-body {
+    padding: 20px;
+}
+
+.share-modal-body p {
+    margin-bottom: 15px;
+    color: #e0e0e0;
+}
+
+.share-url-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.share-url-input {
+    flex: 1;
+    padding: 12px;
+    background: #1a1a2e;
+    color: #e0e0e0;
+    border: 2px solid #667eea;
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: monospace;
+}
+
+.share-url-input:focus {
+    outline: none;
+    border-color: #00d4ff;
+}
+
+.share-info {
+    background: rgba(102, 126, 234, 0.1);
+    border: 1px solid rgba(102, 126, 234, 0.3);
+    border-radius: 8px;
+    padding: 15px;
+}
+
+.share-info p {
+    margin: 8px 0;
+    font-size: 13px;
+    color: #e0e0e0;
+}
+
+.share-info strong {
+    color: #00d4ff;
+}
+
+/* ============================================
+   THÈME CLAIR
+   ============================================ */
+[data-theme="light"] .share-dropdown {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 10px 30px var(--shadow-color);
+}
+
+[data-theme="light"] .share-dropdown-item {
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--border-color);
+}
+
+[data-theme="light"] .share-dropdown-item:hover {
+    background: var(--bg-tertiary);
+}
+
+[data-theme="light"] .share-status {
+    background: rgba(56, 239, 125, 0.1);
+    border: 1px solid rgba(56, 239, 125, 0.3);
+    color: #11998e;
+}
+
+[data-theme="light"] .share-modal-content {
+    background: var(--bg-secondary);
+    box-shadow: 0 10px 40px var(--shadow-color);
+}
+
+[data-theme="light"] .share-modal-header {
+    border-bottom: 1px solid var(--border-color);
+}
+
+[data-theme="light"] .share-modal-header h3 {
+    color: #667eea;
+}
+
+[data-theme="light"] .share-modal-body p {
+    color: var(--text-primary);
+}
+
+[data-theme="light"] .share-url-input {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+    border: 2px solid var(--border-color);
+}
+
+[data-theme="light"] .share-info {
+    background: rgba(102, 126, 234, 0.08);
+    border: 1px solid rgba(102, 126, 234, 0.2);
+}
+
+[data-theme="light"] .share-info p {
+    color: var(--text-primary);
+}
+
+[data-theme="light"] .share-info strong {
+    color: #667eea;
+}
+
+/* ============================================
+   MOBILE
+   ============================================ */
+@media (max-width: 768px) {
+    .share-dropdown {
+        right: auto;
+        left: 0;
+        min-width: 200px;
+    }
+
+    .share-modal-content {
+        width: 95%;
+        margin: 10px;
+    }
+
+    .share-url-container {
+        flex-direction: column;
+    }
+
+    .share-info p {
+        font-size: 12px;
+    }
+}
+
+
+/* Amélioration de l'intégration du share-status avec le bouton */
+#shareBtn {
+    position: relative;
+}
+
+.share-status {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    font-size: 10px;
+    padding: 3px 8px;
+    background: rgba(56, 239, 125, 0.9);
+    border: 1px solid rgba(56, 239, 125, 1);
+    border-radius: 12px;
+    color: white;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(56, 239, 125, 0.4);
+    z-index: 10;
+}
+
+.share-status .sync-icon {
+    font-size: 10px;
+}
+
+/* Alternative: share-status à côté du bouton (commenté par défaut) */
+/*
+.share-status {
+    display: inline-flex;
+    margin-left: 10px;
+}
+*/

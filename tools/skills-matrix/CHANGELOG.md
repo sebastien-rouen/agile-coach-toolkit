@@ -5,6 +5,177 @@ Toutes les modifications notables de cet outil seront documentées dans ce fichi
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/),
 et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
+## [3.1.0] - 2025-01-14
+
+### 🔒 Sécurité - Renforcement API Backend
+
+#### Validation des Entrées
+- **Protection Path Traversal** : Validation stricte du format sessionId (regex)
+- **Validation des données** : Vérification de structure et taille (max 5MB)
+- **Prévention XSS** : Échappement et validation des données matrice
+- **Limite de taille** : Protection contre les attaques DoS par données volumineuses
+
+#### Logging Centralisé Winston
+- **Remplacement console.log** : Migration vers Winston logger
+- **Logs structurés** : Contexte et métadonnées pour chaque opération
+- **Métriques de performance** : Mesure du temps de réponse des requêtes
+- **Traçabilité complète** : Logs séparés par environnement (dev/prod)
+- **Rotation automatique** : Gestion automatique des fichiers de logs
+
+#### Gestion d'Erreurs Améliorée
+- **Codes HTTP appropriés** : 400, 404, 410, 500 selon le contexte
+- **Messages explicites** : Erreurs claires pour le débogage
+- **Logging des erreurs** : Stack traces et contexte complet
+- **Validation précoce** : Vérifications avant traitement
+
+#### Fichiers Modifiés
+- `api/routes/routes-skills-matrix.js` - Ajout validations et Winston logger
+- `tools/skills-matrix/js/.gitignore` - Ajout logs et fichiers temporaires
+- `tools/skills-matrix/SECURITY-IMPROVEMENTS.md` - Documentation complète
+
+### 📚 Documentation
+- **Guide de sécurité** : Document détaillé des améliorations
+- **Checklist de sécurité** : Points de contrôle pour audit
+- **Métriques d'amélioration** : Tableau comparatif avant/après
+- **Recommandations futures** : Rate limiting, authentification, backup
+
+### 🎯 Impact
+- ✅ Protection contre Path Traversal
+- ✅ Prévention des attaques DoS
+- ✅ Traçabilité complète des opérations
+- ✅ Monitoring des performances
+- ✅ Conformité aux standards BastaVerse
+
+---
+
+## [3.0.0] - 2025-10-14
+
+### 🗄️ Ajouté - Intégration PocketBase
+
+#### Structure de Base de Données
+- **3 tables PocketBase** avec préfixe `skills_matrix_` :
+  - `skills_matrix_members` : Membres de l'équipe
+  - `skills_matrix_skills` : Compétences disponibles
+  - `skills_matrix_member_skills` : Table pivot membre ↔ compétence
+
+#### Migrations PocketBase
+- **6 fichiers de migration** dans `bdd/pb_migrations/` :
+  - `1757700001_create_members.js` - Création table members
+  - `1757700002_create_skills.js` - Création table skills
+  - `1757700003_create_member_skills.js` - Création table pivot
+  - `1757700010_seed_members.js` - Jeu de données membres (5 membres)
+  - `1757700011_seed_skills.js` - Jeu de données compétences (10 compétences)
+  - `1757700012_seed_member_skills.js` - Associations membres/compétences
+
+#### Jeu de Données de Test
+- **5 membres** : Alice Martin, Bob Dupont, Claire Rousseau, David Leroy, Emma Bernard
+- **10 compétences** : JavaScript, React, Node.js, Docker, Git, Communication, Leadership, Scrum, TDD, CI/CD
+- **Niveaux variés** : Profils juniors, intermédiaires et seniors
+- **Relations réalistes** : 30+ associations membres/compétences avec notes
+
+#### Gestionnaire PocketBase Centralisé
+- **Fichier réutilisable** : `/assets/js/pocketbase-manager.js`
+- **Classe PocketBaseManager** : Gestion CRUD complète
+- **Fallback automatique** : Bascule vers localStorage si PocketBase indisponible
+- **Synchronisation auto** : Toutes les 5 minutes
+- **Cache intelligent** : Optimisation des requêtes
+
+#### Convention de Préfixage
+- **Pattern standardisé** : `{outil}_{table}` (ex: `skills_matrix_members`)
+- **Documentation complète** : Guide de reproduction pour autres outils
+- **Fichier POCKETBASE-PATTERN.md** : Template et bonnes pratiques (voir fichier à la racine de l'outil)
+
+### 📚 Documentation
+- **Section PocketBase** ajoutée au README.md
+- **Architecture des tables** : Schémas et relations détaillés
+- **Guide de démarrage** : Instructions pour appliquer les migrations
+- **Pattern de reproduction** : Documentation pour autres outils `/tools/`
+
+### 🎯 Avantages
+- ✅ Stockage permanent des données
+- ✅ Structure normalisée et évolutive
+- ✅ Relations Many-to-Many optimisées
+- ✅ Historique de progression (via `updated`)
+- ✅ Catégorisation des compétences
+- ✅ Gestion des avatars membres
+- ✅ Statut actif/inactif pour archivage
+
+### ⚠️ Migration depuis v2.x
+- **Compatibilité** : Les données localStorage existantes restent fonctionnelles
+- **Fallback automatique** : L'outil utilise localStorage si PocketBase n'est pas disponible
+- **Migration manuelle** : Pour migrer vers PocketBase, exporter en JSON puis importer via l'admin PocketBase
+- **Pas de perte de données** : Les deux systèmes cohabitent sans conflit
+
+---
+
+## [2.3.0] - 2025-01-09
+
+### 🚀 Fonctionnalité Majeure - Partage et Collaboration en Temps Réel
+
+#### Système de partage
+- **Création de lien** : Bouton "🔗 Partager" dans les controls
+- **URL unique** : Format `YYYYMMDD-{rand}.json` (ex: 20250109-a3f2b8c1)
+- **Conservation** : 48 heures automatique
+- **Nettoyage auto** : Suppression des fichiers expirés toutes les heures
+
+#### Collaboration en temps réel
+- **Synchronisation automatique** : Toutes les 5 secondes
+- **Modifications partagées** : Tous les membres voient les changements instantanément
+- **Indicateur visuel** : Badge "🔄 Synchronisation active" quand connecté
+- **Statut du bouton** : Passe en vert quand une session est active
+
+#### Interface de partage
+- **Modal d'information** : Affiche l'URL, date d'expiration, infos de sync
+- **Copie automatique** : Lien copié dans le presse-papier
+- **Menu déroulant** :
+  - "➕ Créer un lien de partage"
+  - "🚪 Quitter la session" (visible uniquement en session)
+- **Mobile** : Bouton "🔗 Partager avec l'équipe" dans le menu actions
+
+#### API Backend
+- **Fichier** : `api/routes/routes-skills-matrix.js`
+- **Endpoints** :
+  - `POST /api/skills-matrix/share` - Créer une session
+  - `GET /api/skills-matrix/session/:id` - Récupérer les données
+  - `PUT /api/skills-matrix/session/:id` - Mettre à jour
+  - `DELETE /api/skills-matrix/session/:id` - Supprimer
+  - `GET /api/skills-matrix/health` - Vérifier l'état
+- **Stockage** : `tools/skills-matrix/data/` (créé automatiquement)
+- **Sécurité** : Validation des données, gestion des erreurs
+
+#### Fonctionnalités techniques
+- **Détection d'URL** : Paramètre `?session=ID` détecté au chargement
+- **Sauvegarde auto** : Modifications envoyées automatiquement à l'API
+- **Gestion d'erreurs** : Messages clairs (session expirée, introuvable, etc.)
+- **Déconnexion propre** : Arrêt de la sync et retour au mode local
+
+### 🎨 Styles
+- **Nouveau fichier** : `css/share.css`
+- **Bouton vert** : Gradient #11998e → #38ef7d quand partagé
+- **Modal moderne** : Design cohérent avec l'interface
+- **Thème clair** : Support complet du thème light
+- **Responsive** : Adapté mobile et desktop
+
+### 🎯 UX Simplifiée
+- **Bouton direct** : Clic sur "🔗 Partager" crée et copie le lien immédiatement
+- **Pas de menu** : Plus de liste déroulante, action directe
+- **Bouton intelligent** :
+  - "Partager" → Crée une session et copie le lien
+  - "Quitter" → Quitte la session (avec confirmation)
+- **Feedback visuel** : Bouton vert quand en session
+
+### 📁 Fichiers créés
+- `api/routes/routes-skills-matrix.js` - Routes API Express (racine du projet)
+- `api/README.md` - Documentation de l'API
+- `package.json` - Configuration npm du projet API
+- `.gitignore` - Fichiers à ignorer par Git
+- `.env.example` - Exemple de configuration
+- `js/share.js` - Logique de partage côté client
+- `css/share.css` - Styles du système de partage
+- `data/` - Répertoire de stockage (créé automatiquement)
+
+---
+
 ## [2.2.6] - 2025-10-09
 
 ### ✨ Fonctionnalités

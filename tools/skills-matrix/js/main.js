@@ -38,6 +38,9 @@ function initApp() {
     // Initialiser le comportement sticky des controls
     initStickyControls();
 
+    // Initialiser le partage
+    initShare();
+
     console.log('✅ Skills Matrix initialisée');
 }
 
@@ -111,8 +114,7 @@ function initEventListeners() {
         // Ctrl/Cmd + S pour sauvegarder
         if ((e.ctrlKey || e.metaKey) && e.key === 's') {
             e.preventDefault();
-            saveData();
-            showNotification('💾 Données sauvegardées');
+            saveData(true); // Synchronisation complète (notification gérée par pocketbase-integration.js)
         }
 
         // Échap pour fermer les modales
@@ -140,6 +142,10 @@ function initMobileMenu() {
             <span>Sélectionner les membres</span>
             <span class="arrow">▼</span>
         </button>
+        <button class="mobile-menu-item" onclick="createSharedSession(); closeMobileMenu();">
+            <span class="icon">🔗</span>
+            <span>Partager avec l'équipe</span>
+        </button>
         <button class="mobile-menu-item" onclick="addMember(); closeMobileMenu();">
             <span class="icon">👤</span>
             <span>Ajouter Membre</span>
@@ -153,7 +159,7 @@ function initMobileMenu() {
             <span>Gérer Appétences & Ownerships</span>
             <span class="arrow">▼</span>
         </button>
-        <button class="mobile-menu-item" onclick="saveData(); closeMobileMenu();">
+        <button class="mobile-menu-item" onclick="saveData(true); closeMobileMenu();">
             <span class="icon">💾</span>
             <span>Sauvegarder</span>
         </button>
@@ -161,9 +167,9 @@ function initMobileMenu() {
             <span class="icon">📥</span>
             <span>Exporter JSON</span>
         </button>
-        <button class="mobile-menu-item" onclick="exportToCSV(); closeMobileMenu();">
+        <button class="mobile-menu-item" onclick="exportToXLSX(); closeMobileMenu();">
             <span class="icon">📊</span>
-            <span>Exporter CSV</span>
+            <span>Exporter Excel</span>
         </button>
         <button class="mobile-menu-item" onclick="resetMatrix(); closeMobileMenu();">
             <span class="icon">🔄</span>

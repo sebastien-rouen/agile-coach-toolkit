@@ -40,10 +40,10 @@ function renderMatrix() {
     headerRow.appendChild(deleteTh);
 
     // Rows (members) - Filtrer selon visibleMembers
-    const membersToDisplay = visibleMembers.length > 0 
+    const membersToDisplay = visibleMembers.length > 0
         ? matrixData.members.filter((_, idx) => visibleMembers.includes(idx))
         : matrixData.members;
-    
+
     membersToDisplay.forEach((member, displayIndex) => {
         const memberIndex = matrixData.members.indexOf(member);
         const tr = document.createElement('tr');
@@ -54,14 +54,17 @@ function renderMatrix() {
 
         const nameSpan = document.createElement('span');
         nameSpan.textContent = member.name;
-        nameSpan.onclick = () => editMemberName(memberIndex);
+        nameTd.onclick = () => editMemberName(memberIndex);
         nameTd.appendChild(nameSpan);
 
         tr.appendChild(nameTd);
 
         // Appétences column
         const appetencesTd = document.createElement('td');
-        appetencesTd.className = 'appetences-cell';
+        appetencesTd.className = 'appetences-cell clickable-cell';
+        appetencesTd.title = 'Cliquer pour modifier les appétences';
+        appetencesTd.onclick = () => editMemberAppetences(memberIndex);
+
         if (member.appetences && member.appetences.length > 0) {
             const badgesContainer = document.createElement('div');
             badgesContainer.className = 'badges-container';
@@ -72,12 +75,17 @@ function renderMatrix() {
                 badgesContainer.appendChild(badge);
             });
             appetencesTd.appendChild(badgesContainer);
+        } else {
+            appetencesTd.innerHTML = '<span style="opacity: 0.5; font-size: 0.9em;">✏️ Cliquer</span>';
         }
         tr.appendChild(appetencesTd);
 
         // Ownerships column
         const ownershipsTd = document.createElement('td');
-        ownershipsTd.className = 'ownerships-cell';
+        ownershipsTd.className = 'ownerships-cell clickable-cell';
+        ownershipsTd.title = 'Cliquer pour modifier les ownerships';
+        ownershipsTd.onclick = () => editMemberOwnerships(memberIndex);
+
         if (member.ownerships && member.ownerships.length > 0) {
             const badgesContainer = document.createElement('div');
             badgesContainer.className = 'badges-container';
@@ -88,6 +96,8 @@ function renderMatrix() {
                 badgesContainer.appendChild(badge);
             });
             ownershipsTd.appendChild(badgesContainer);
+        } else {
+            ownershipsTd.innerHTML = '<span style="opacity: 0.5; font-size: 0.9em;">✏️ Cliquer</span>';
         }
         tr.appendChild(ownershipsTd);
 
@@ -108,7 +118,7 @@ function renderMatrix() {
                 select.appendChild(option);
             }
 
-            select.onchange = (e) => {
+            select.onchange = async (e) => {
                 const newLevel = parseInt(e.target.value);
                 member.levels[skillIndex] = newLevel;
                 e.target.className = `skill-level level-${newLevel}`;
@@ -116,6 +126,11 @@ function renderMatrix() {
                 saveData();
                 renderRadar();
                 renderAdvice();
+                
+                // Sauvegarder dans PocketBase si disponible
+                if (typeof saveMemberToPocketBase === 'function' && member.pbId) {
+                    await saveMemberToPocketBase(member, memberIndex);
+                }
             };
 
             td.appendChild(select);
@@ -145,7 +160,7 @@ function renderMatrix() {
     // Empty cells for Appétences and Ownerships columns
     const emptyAppetencesTd = document.createElement('td');
     totalRow.appendChild(emptyAppetencesTd);
-    
+
     const emptyOwnershipsTd = document.createElement('td');
     totalRow.appendChild(emptyOwnershipsTd);
 
@@ -232,23 +247,23 @@ function addMember() {
     const name = prompt('Nom du nouveau membre:', `Membre ${matrixData.members.length + 1}`);
     if (name && name.trim()) {
         const trimmedName = name.trim();
-        
+
         // Validation : vérifier si le nom existe déjà
-        const nameExists = matrixData.members.some(member => 
+        const nameExists = matrixData.members.some(member =>
             member.name.toLowerCase() === trimmedName.toLowerCase()
         );
-        
+
         if (nameExists) {
             alert('⚠️ Un membre avec ce nom existe déjà.');
             return;
         }
-        
+
         // Validation : longueur du nom
         if (trimmedName.length > 50) {
             alert('⚠️ Le nom est trop long (maximum 50 caractères).');
             return;
         }
-        
+
         const newMemberIndex = matrixData.members.length;
         matrixData.members.push({
             name: trimmedName,
@@ -274,23 +289,23 @@ function addSkill() {
     const name = prompt('Nom de la nouvelle compétence:', `Compétence ${matrixData.skills.length + 1}`);
     if (name && name.trim()) {
         const trimmedName = name.trim();
-        
+
         // Validation : vérifier si la compétence existe déjà
-        const skillExists = matrixData.skills.some(skill => 
+        const skillExists = matrixData.skills.some(skill =>
             skill.toLowerCase() === trimmedName.toLowerCase()
         );
-        
+
         if (skillExists) {
             alert('⚠️ Une compétence avec ce nom existe déjà.');
             return;
         }
-        
+
         // Validation : longueur du nom
         if (trimmedName.length > 50) {
             alert('⚠️ Le nom est trop long (maximum 50 caractères).');
             return;
         }
-        
+
         matrixData.skills.push(trimmedName);
         matrixData.members.forEach(member => {
             member.levels.push(0);

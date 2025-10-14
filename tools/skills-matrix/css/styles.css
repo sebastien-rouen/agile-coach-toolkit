@@ -89,7 +89,7 @@ h2 {
    ============================================ */
 .controls {
     display: flex;
-    gap: 8px;
+    gap: 6px;
     margin-bottom: 20px;
     margin-top: 20px;
     flex-wrap: nowrap;
@@ -140,7 +140,7 @@ h2 {
 
 .controls-group {
     display: flex;
-    gap: 8px;
+    gap: 6px;
     align-items: center;
     flex-wrap: nowrap;
 }
@@ -170,20 +170,20 @@ h2 {
 }
 
 .btn {
-    padding: 10px 16px;
+    padding: 8px 12px;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
     border: none;
-    border-radius: 8px;
+    border-radius: 6px;
     cursor: pointer;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 600;
     transition: all 0.3s ease;
     box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
     white-space: nowrap;
     display: inline-flex;
     align-items: center;
-    gap: 6px;
+    gap: 4px;
 }
 
 .btn:hover {
@@ -205,7 +205,7 @@ h2 {
 }
 
 .btn-success {
-    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    background: linear-gradient(135deg, #154c7d 0%, #00f2fe 100%);
     box-shadow: 0 2px 8px rgba(79, 172, 254, 0.3);
 }
 
@@ -214,7 +214,7 @@ h2 {
 }
 
 .btn-icon {
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .btn-arrow {
@@ -476,4 +476,125 @@ select:focus + .template-selector::after {
     height: 1px;
     background: rgba(102, 126, 234, 0.3);
     margin: 4px 0;
+}
+
+
+/* ============================================
+   MATRIX HEADER & NAME
+   ============================================ */
+.matrix-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin: 10px 0 30px 0;
+    flex-wrap: wrap;
+}
+
+.matrix-name-container {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(0, 212, 255, 0.1);
+    border: 2px solid #00d4ff;
+    border-radius: 12px;
+    padding: 12px 20px;
+    box-shadow: 0 4px 15px rgba(0, 212, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.matrix-name-container:hover {
+    background: rgba(0, 212, 255, 0.15);
+    box-shadow: 0 6px 20px rgba(0, 212, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.matrix-name {
+    color: #00d4ff;
+    font-size: 1.2em;
+    font-weight: 600;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.btn-icon-small {
+    background: rgba(0, 212, 255, 0.2);
+    border: 1px solid #00d4ff;
+    border-radius: 6px;
+    padding: 6px 10px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: all 0.2s ease;
+    color: #00d4ff;
+}
+
+.btn-icon-small:hover {
+    background: #00d4ff;
+    color: #0f3460;
+    transform: scale(1.1);
+}
+
+.btn-new-matrix {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    border: none;
+    border-radius: 10px;
+    padding: 12px 24px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+    color: white;
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+    transition: all 0.3s ease;
+}
+
+.btn-new-matrix:hover {
+    background: linear-gradient(135deg, #059669 0%, #047857 100%);
+    box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+    transform: translateY(-2px);
+}
+
+.btn-new-matrix:active {
+    transform: translateY(0);
+}
+
+.btn-new-matrix .btn-icon {
+    font-size: 1.2em;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .matrix-header {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .matrix-name-container {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .btn-new-matrix {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+
+/* Cellules cliquables (Appétences et Ownerships) */
+.clickable-cell {
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.clickable-cell:hover {
+    background-color: rgba(0, 212, 255, 0.1) !important;
+    box-shadow: inset 0 0 0 2px rgba(0, 212, 255, 0.3);
+}
+
+.clickable-cell:active {
+    background-color: rgba(0, 212, 255, 0.2) !important;
 }

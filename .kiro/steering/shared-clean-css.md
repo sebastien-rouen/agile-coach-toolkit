@@ -1,6 +1,5 @@
 ---
-inclusion: manual
-contextKey: clean|CSS|JS
+inclusion: always
 ---
 
 # Guide de Nettoyage CSS - Bonnes Pratiques

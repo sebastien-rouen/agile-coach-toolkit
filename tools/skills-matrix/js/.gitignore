@@ -1,0 +1,13 @@
+# Configuration PocketBase locale (ne pas versionner)
+pocketbase-config.js
+
+# Fichiers de backup
+*.backup
+*.bak
+
+# Logs de développement
+*.log
+
+# Fichiers temporaires
+*.tmp
+*.temp

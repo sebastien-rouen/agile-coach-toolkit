@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="css/advice.css">
     <link rel="stylesheet" href="css/mobile.css">
     <link rel="stylesheet" href="css/notifications.css">
+    <link rel="stylesheet" href="css/share.css">
     
     <!-- Theme Light (optionnel) -->
     <link rel="stylesheet" href="css/theme-light.css">
@@ -22,18 +23,15 @@
 <body>
     <div class="container">
         <h1>📊 Skills Matrix</h1>
-
-        <!-- Bulle d'information stockage -->
-        <div class="storage-info">
-            <span class="storage-text">💾 Stockage :</span>
-            <div class="storage-badge active" title="Données sauvegardées dans votre navigateur">
-                <span class="storage-icon">🖥️</span>
-                <span>Local (navigateur)</span>
+        <div class="matrix-header">
+            <div class="matrix-name-container">
+                <span id="matrixName" class="matrix-name"></span>
+                <button id="editMatrixName" onclick="editMatrixName()" class="btn-icon-small" title="Modifier le nom de la matrice">✏️</button>
             </div>
-            <div class="storage-badge coming" title="Fonctionnalité à venir">
-                <span class="storage-icon">☁️</span>
-                <span>Cloud (bientôt)</span>
-            </div>
+            <button id="newMatrixBtn" onclick="createNewMatrix()" class="btn-new-matrix" title="Créer une nouvelle matrice">
+                <span class="btn-icon">➕</span>
+                <span>Nouvelle matrice</span>
+            </button>
         </div>
 
         <!-- Menu Mobile Compact -->
@@ -67,7 +65,7 @@
 
             <div class="controls-divider"></div>
 
-            <!-- Groupe 2: Sélection -->
+            <!-- Groupe 2: Sélection & Partage -->
             <div class="controls-group">
                 <div class="member-selector-control" id="memberSelectorControl">
                     <button class="btn btn-selector" id="memberSelectorBtn">
@@ -75,6 +73,10 @@
                     </button>
                     <div class="member-selector-dropdown" id="memberSelectorDropdown"></div>
                 </div>
+                
+                <button class="btn" id="shareBtn" onclick="handleShareClick()">
+                    <span class="btn-icon">🔗</span> <span id="shareBtnText">Partager</span>
+                </button>
             </div>
 
             <div class="controls-divider"></div>
@@ -96,14 +98,14 @@
 
             <!-- Groupe 4: Actions -->
             <div class="controls-group">
-                <button class="btn btn-success" onclick="saveData()">
+                <button class="btn btn-success" onclick="saveData(true)">
                     <span class="btn-icon">💾</span> Sauvegarder
                 </button>
                 <button class="btn btn-success" onclick="exportToJSON()">
                     <span class="btn-icon">📥</span> JSON
                 </button>
-                <button class="btn btn-success" onclick="exportToCSV()">
-                    <span class="btn-icon">📊</span> CSV
+                <button class="btn btn-success" onclick="exportToXLSX()">
+                    <span class="btn-icon">📊</span> Excel
                 </button>
             </div>
 
@@ -196,7 +198,13 @@
     <script src="js/radar.js"></script>
     <script src="js/advice.js"></script>
     <script src="js/modal.js"></script>
+    <script src="js/modal-single-member.js"></script>
+    <script src="js/share.js"></script>
     <script src="js/main.js"></script>
+
+    <!-- PocketBase Integration -->
+    <script src="../../assets/js/pocketbase-manager.js"></script>
+    <script src="js/pocketbase-integration.js"></script>
 
     <!-- Intégration Agile Coach Toolkit -->
     <script src="../../assets/js/tool-integration.js"></script>

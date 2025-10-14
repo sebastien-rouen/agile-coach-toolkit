@@ -8,6 +8,73 @@ inclusion: always
 
 L'**API Multi-Sites** (`api-multi-sites`) est le backend centralisé qui gère toutes les applications du BastaVerse. Cette API unique expose des endpoints spécifiques pour chaque site via des routes préfixées (ex: `/api/carnet-animaux/`, `/api/maison/` mais simplifiée depuis le {site A} par `/api/`), permettant une architecture modulaire et une maintenance simplifiée. Elle centralise l'authentification, les utilitaires partagés, et la logique métier commune tout en gardant une séparation claire entre les différents projets.
 
+### 🚀 Fonctionnement Rapide avec PM2
+
+L'API Multi-Sites utilise **PM2** pour une gestion centralisée et optimisée des processus :
+
+#### Architecture PM2
+- **Point d'entrée unique** : `server.js` lance l'API Express centralisée
+- **Configuration** : `pm2.ecosystem.js` définit les environnements drafts et production
+- **Ports** : Drafts (3002), Production (3001)
+- **Instances multiples** : Gestion automatique des instances PocketBase par site
+
+#### Commandes Essentielles
+
+```bash
+# Démarrage de l'écosystème complet
+pm2 start pm2.ecosystem.js
+
+# Gestion des processus API
+pm2 restart "drafts.api"        # Redémarrer l'API drafts
+pm2 restart "api"                # Redémarrer l'API production
+pm2 restart all                  # Redémarrer tous les processus
+
+# Monitoring et logs
+pm2 logs                         # Voir tous les logs en temps réel
+pm2 logs "drafts.api"            # Logs spécifiques à drafts
+pm2 monit                        # Monitoring interactif
+pm2 status                       # État de tous les processus
+
+# Gestion avancée
+pm2 reload all                   # Rechargement sans downtime
+pm2 stop all                     # Arrêter tous les processus
+pm2 delete all                   # Supprimer tous les processus
+pm2 save                         # Sauvegarder la configuration
+pm2 startup                      # Démarrage automatique au boot
+```
+
+#### Avantages de la Centralisation
+
+- **Réduction des ressources** : ~88% d'économie mémoire (1 API au lieu de 20+)
+- **Hot-reload intelligent** : Rechargement automatique en développement via Chokidar
+- **Détection automatique** : Scan des sites dans `/sites/drafts/` et `/sites/prod/`
+- **Cache optimisé** : Routes mises en cache en production pour performances maximales
+- **Logs centralisés** : Winston pour traçabilité complète
+- **Haute disponibilité** : Redémarrage automatique en cas d'erreur
+
+#### Workflow de Développement
+
+1. **Modifier les routes** dans `data/{site}/api/routes/`
+2. **Redémarrer l'API** : `pm2 restart "drafts.api"`
+3. **Vérifier les logs** : `pm2 logs "drafts.api"`
+4. **Tester** : Les routes sont automatiquement rechargées
+
+#### Endpoints de Gestion
+
+```bash
+# Recharger la détection des sites
+curl http://localhost:3002/api/reload-sites
+
+# Recharger les routes d'un site spécifique
+curl http://localhost:3002/api/{site}/reload
+
+# Vérifier la santé de l'API
+curl http://localhost:3002/api/health
+
+# Lister tous les sites détectés
+curl http://localhost:3002/api/sites
+```
+
 
 ## 🌐 Sites Locaux
 

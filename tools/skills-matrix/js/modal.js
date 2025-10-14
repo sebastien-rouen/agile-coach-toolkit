@@ -8,15 +8,15 @@
 function manageAppetencesOwnerships() {
     const modal = document.getElementById('appetencesModal');
     const content = document.getElementById('modalMembersContent');
-    
+
     if (!modal || !content) return;
-    
+
     content.innerHTML = '';
-    
+
     matrixData.members.forEach((member, memberIndex) => {
         const section = document.createElement('div');
         section.className = 'member-section';
-        
+
         section.innerHTML = `
             <div class="member-section-header">
                 <h3 class="member-section-title">👤 ${member.name}</h3>
@@ -60,10 +60,10 @@ function manageAppetencesOwnerships() {
                 </div>
             </div>
         `;
-        
+
         content.appendChild(section);
     });
-    
+
     modal.classList.add('active');
 }
 
@@ -83,9 +83,9 @@ function closeAppetencesModal() {
 function addAppetence(memberIndex) {
     const input = document.getElementById(`appetence-input-${memberIndex}`);
     if (!input) return;
-    
+
     const value = input.value.trim();
-    
+
     if (value) {
         if (!matrixData.members[memberIndex].appetences) {
             matrixData.members[memberIndex].appetences = [];
@@ -93,7 +93,19 @@ function addAppetence(memberIndex) {
         matrixData.members[memberIndex].appetences.push(value);
         input.value = '';
         saveData();
-        manageAppetencesOwnerships(); // Refresh
+        
+        // Détecter si on est en mode "un seul membre" ou "tous les membres"
+        const content = document.getElementById('modalMembersContent');
+        const isSingleMember = content && content.querySelectorAll('.member-section').length === 1;
+        
+        if (isSingleMember && typeof editMemberAppetences === 'function') {
+            // Rafraîchir uniquement ce membre
+            editMemberAppetences(memberIndex);
+        } else {
+            // Rafraîchir tous les membres
+            manageAppetencesOwnerships();
+        }
+        
         renderMatrix(); // Update matrix display
     }
 }
@@ -105,7 +117,19 @@ function removeAppetence(memberIndex, appetenceIndex) {
     if (matrixData.members[memberIndex].appetences) {
         matrixData.members[memberIndex].appetences.splice(appetenceIndex, 1);
         saveData();
-        manageAppetencesOwnerships(); // Refresh
+        
+        // Détecter si on est en mode "un seul membre" ou "tous les membres"
+        const content = document.getElementById('modalMembersContent');
+        const isSingleMember = content && content.querySelectorAll('.member-section').length === 1;
+        
+        if (isSingleMember && typeof editMemberAppetences === 'function') {
+            // Rafraîchir uniquement ce membre
+            editMemberAppetences(memberIndex);
+        } else {
+            // Rafraîchir tous les membres
+            manageAppetencesOwnerships();
+        }
+        
         renderMatrix(); // Update matrix display
     }
 }
@@ -116,9 +140,9 @@ function removeAppetence(memberIndex, appetenceIndex) {
 function addOwnership(memberIndex) {
     const input = document.getElementById(`ownership-input-${memberIndex}`);
     if (!input) return;
-    
+
     const value = input.value.trim();
-    
+
     if (value) {
         if (!matrixData.members[memberIndex].ownerships) {
             matrixData.members[memberIndex].ownerships = [];
@@ -126,7 +150,19 @@ function addOwnership(memberIndex) {
         matrixData.members[memberIndex].ownerships.push(value);
         input.value = '';
         saveData();
-        manageAppetencesOwnerships(); // Refresh
+        
+        // Détecter si on est en mode "un seul membre" ou "tous les membres"
+        const content = document.getElementById('modalMembersContent');
+        const isSingleMember = content && content.querySelectorAll('.member-section').length === 1;
+        
+        if (isSingleMember && typeof editMemberOwnerships === 'function') {
+            // Rafraîchir uniquement ce membre
+            editMemberOwnerships(memberIndex);
+        } else {
+            // Rafraîchir tous les membres
+            manageAppetencesOwnerships();
+        }
+        
         renderMatrix(); // Update matrix display
     }
 }
@@ -138,7 +174,19 @@ function removeOwnership(memberIndex, ownershipIndex) {
     if (matrixData.members[memberIndex].ownerships) {
         matrixData.members[memberIndex].ownerships.splice(ownershipIndex, 1);
         saveData();
-        manageAppetencesOwnerships(); // Refresh
+        
+        // Détecter si on est en mode "un seul membre" ou "tous les membres"
+        const content = document.getElementById('modalMembersContent');
+        const isSingleMember = content && content.querySelectorAll('.member-section').length === 1;
+        
+        if (isSingleMember && typeof editMemberOwnerships === 'function') {
+            // Rafraîchir uniquement ce membre
+            editMemberOwnerships(memberIndex);
+        } else {
+            // Rafraîchir tous les membres
+            manageAppetencesOwnerships();
+        }
+        
         renderMatrix(); // Update matrix display
     }
 }
@@ -151,3 +199,5 @@ document.addEventListener('click', (e) => {
 });
 
 console.log('✅ modal.js chargé');
+
+

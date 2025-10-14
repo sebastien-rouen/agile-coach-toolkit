@@ -107,7 +107,7 @@
 .markdown-content ul li::before {
   content: '';
   position: absolute;
-  left: 0;
+  left: -8px;
   top: 0.6em;
   width: 6px;
   height: 6px;

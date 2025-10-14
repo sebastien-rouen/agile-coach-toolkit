@@ -139,6 +139,131 @@ Le système analyse automatiquement les niveaux de compétence et génère des c
 - **Pratique** : Focus sur l'action et l'expérimentation
 - **Inclusif** : Tout le monde peut progresser
 
+## 🗄️ Base de Données PocketBase
+
+### Architecture des Tables
+
+Le Skills Matrix utilise **3 tables PocketBase** avec préfixe `skills_matrix_` ::
+
+#### 📋 Table `skills_matrix_members` (Membres de l'équipe)
+```
+- id (auto)              : Identifiant unique
+- name (text, required)  : Nom du membre
+- email (email)          : Email du membre
+- role (text)            : Rôle (Developer, PO, SM...)
+- avatar (file)          : Photo de profil (max 2MB)
+- active (bool)          : Statut actif/inactif
+- created/updated (auto) : Dates de gestion
+```
+
+#### 🎯 Table `skills_matrix_skills` (Compétences disponibles)
+```
+- id (auto)                : Identifiant unique
+- name (text, required)    : Nom de la compétence (unique)
+- category (select)        : Catégorie (Tech, Soft Skills, Domain, Agile, DevOps...)
+- description (text)       : Description détaillée
+- active (bool)            : Statut actif/inactif
+- created/updated (auto)   : Dates de gestion
+```
+
+#### 🔗 Table `skills_matrix_member_skills` (Lien membre ↔ compétence)
+```
+- id (auto)                     : Identifiant unique
+- member (relation, required)   : Relation vers skills_matrix_members
+- skill (relation, required)    : Relation vers skills_matrix_skills
+- level (number, 0-4, required) : Niveau de compétence
+- notes (text)                  : Commentaire libre
+- last_assessed (date)          : Date de dernière évaluation
+- created/updated (auto)        : Dates de gestion
+```
+
+### Relations
+```
+skills_matrix_members (1) ──→ (N) skills_matrix_member_skills (N) ←── (1) skills_matrix_skills
+```
+
+### Migrations PocketBase
+
+Les migrations sont situées dans `bdd/pb_migrations/` :
+
+1. **1757700001_create_members.js** - Création table members
+2. **1757700002_create_skills.js** - Création table skills
+3. **1757700003_create_member_skills.js** - Création table pivot member_skills
+4. **1757700010_seed_members.js** - Jeu de données membres (5 membres)
+5. **1757700011_seed_skills.js** - Jeu de données compétences (10 compétences)
+6. **1757700012_seed_member_skills.js** - Associations membres/compétences
+
+### Démarrage PocketBase
+
+```bash
+# Redémarrer PocketBase pour appliquer les migrations
+pm2 restart pb-agile-drafts
+
+# Voir les logs
+pm2 logs pb-agile-drafts
+
+# Accès admin PocketBase
+http://localhost:8XXX/_/
+```
+
+### Jeu de Données de Test
+
+**5 Membres** :
+- Alice Martin (Developer) - Junior
+- Bob Dupont (Tech Lead) - Senior expert
+- Claire Rousseau (Product Owner) - Expert Scrum
+- David Leroy (Scrum Master) - Coach agile
+- Emma Bernard (Developer) - Intermédiaire
+
+**10 Compétences** :
+- Tech : JavaScript, React, Node.js, Git, TDD
+- DevOps : Docker, CI/CD
+- Agile : Scrum
+- Soft Skills : Communication, Leadership
+
+**Niveaux** : 0=Non évalué, 1=Débutant, 2=En apprentissage, 3=Compétent, 4=Expert
+
+### Convention de Préfixage
+
+**Règle** : Toutes les tables d'un outil doivent être préfixées par `{outil}_`
+
+**Exemples** :
+- Skills Matrix : `skills_matrix_members`, `skills_matrix_skills`, `skills_matrix_member_skills`
+- Planning Poker : `planning_poker_sessions`, `planning_poker_votes`
+- Ikigai : `ikigai_profiles`, `ikigai_elements`
+
+**Avantages** :
+- ✅ Évite les conflits de noms entre outils
+- ✅ Facilite l'identification des tables par outil
+- ✅ Permet la cohabitation de plusieurs outils dans la même base
+- ✅ Simplifie la maintenance et les migrations
+
+### Reproduction pour Autres Outils
+
+Pour créer la même structure dans un autre outil `/tools/{nom-outil}/` :
+
+1. **Créer le dossier** : `bdd/pb_migrations/`
+
+2. **Créer les migrations de création** (timestamp croissant) :
+   ```
+   1757700001_create_{table1}.js
+   1757700002_create_{table2}.js
+   1757700003_create_{table3}.js
+   ```
+
+3. **Créer les migrations de seed** (timestamp +10) :
+   ```
+   1757700010_seed_{table1}.js
+   1757700011_seed_{table2}.js
+   1757700012_seed_{table3}.js
+   ```
+
+4. **Respecter le préfixage** : `{outil}_{table}`
+
+5. **Documenter dans README.md** : Section "Base de Données PocketBase"
+
+6. **Tester** : Redémarrer PocketBase et vérifier les tables
+
 ## 🔧 Fonctionnalités Techniques
 
 ### Mise à Jour en Temps Réel
@@ -147,7 +272,10 @@ Le système analyse automatiquement les niveaux de compétence et génère des c
 - Régénération des recommandations à chaque modification
 
 ### Persistance des Données
-- Sauvegarde automatique dans localStorage
+- **Backend PocketBase** : Stockage permanent des données (prioritaire)
+- **Fallback localStorage** : Sauvegarde locale automatique si PocketBase indisponible
+- **Synchronisation automatique** : Toutes les 5 minutes avec PocketBase
+- **Gestionnaire centralisé** : `pocketbase-manager.js` réutilisable par tous les outils
 - Chargement automatique au démarrage
 - Export/Import JSON et CSV
 
@@ -206,6 +334,11 @@ myTemplate: {
 - [ ] Gamification avec badges et récompenses
 - [ ] Export PDF avec graphiques
 - [ ] Mode collaboratif temps réel
+
+## 📚 Documentation
+
+- **[DOCUMENTATION.md](./DOCUMENTATION.md)** - Documentation complète consolidée
+- **[CHANGELOG.md](./CHANGELOG.md)** - Historique des versions et modifications
 
 ## 📝 Licence
 

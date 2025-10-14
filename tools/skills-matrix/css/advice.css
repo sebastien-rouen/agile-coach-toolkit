@@ -91,6 +91,141 @@
     text-transform: uppercase;
 }
 
+/* ============================================
+   APPETENCES & OWNERSHIPS SECTIONS
+   ============================================ */
+.advice-appetences-section {
+    margin: 15px 0;
+    padding: 15px;
+    background: rgba(0, 212, 255, 0.15);
+    border-left: 3px solid #00d4ff;
+    border-radius: 8px;
+}
+
+.advice-appetences-title {
+    color: #00a8cc;
+    font-size: 0.9em;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+}
+
+.advice-appetences-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.advice-appetence-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.advice-appetence-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-primary);
+}
+
+.advice-appetence-badge {
+    background: rgba(0, 168, 204, 0.3);
+    color: #FFF;
+    padding: 4px 12px;
+    border-radius: 16px;
+    font-size: 0.85em;
+    font-weight: 600;
+}
+
+.advice-appetence-mentors-label {
+    font-size: 0.75em;
+    color: #FFF;
+    opacity: 0.8;
+}
+
+.advice-mentors-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-left: 12px;
+}
+
+.advice-mentor-badge {
+    background: rgba(16, 185, 129, 0.3);
+    color: #adc7c0;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 0.75em;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-weight: 500;
+}
+
+.advice-appetences-note {
+    margin-top: 12px;
+    font-size: 0.85em;
+    color: #FFF;
+    opacity: 0.9;
+}
+
+.advice-ownerships-section {
+    margin: 15px 0;
+    padding: 15px;
+    background: rgba(255, 107, 237, 0.15);
+    border-left: 3px solid #ff6bed;
+    border-radius: 8px;
+}
+
+.advice-ownerships-title {
+    color: #c026d3;
+    font-size: 0.9em;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+}
+
+.advice-ownerships-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.advice-ownership-badge {
+    background: rgba(192, 38, 211, 0.3);
+    color: #baaebb;
+    padding: 4px 12px;
+    border-radius: 16px;
+    font-size: 0.85em;
+    font-weight: 600;
+}
+
+.advice-ownerships-note {
+    margin-top: 10px;
+    font-size: 0.85em;
+    color: #baaebb;
+    opacity: 0.9;
+}
+
+.advice-skill-section {
+    margin: 15px 0;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+}
+
+.advice-skill-title {
+    color: #00d4ff;
+    font-size: 0.9em;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
 .resource-item {
     display: flex;
     align-items: center;
