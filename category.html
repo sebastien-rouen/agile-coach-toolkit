@@ -11,13 +11,7 @@
     <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
 
     <!-- CSS -->
-    <link rel="stylesheet" href="assets/css/variables.css">
-    <link rel="stylesheet" href="assets/themes/theme-light.css">
-    <link rel="stylesheet" href="assets/css/base.css">
-    <link rel="stylesheet" href="assets/css/components.css">
-    <link rel="stylesheet" href="assets/css/sidebar.css">
-    <link rel="stylesheet" href="assets/css/layout.css">
-    <link rel="stylesheet" href="assets/css/responsive.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
@@ -25,115 +19,83 @@
     <!-- HEADER (chargé dynamiquement) -->
     <div id="header-placeholder"></div>
 
-    <!-- SIDEBAR (chargé dynamiquement) -->
-    <div id="sidebar-placeholder"></div>
+    <!-- PAGE CONTAINER -->
+    <div class="page-container">
+        <!-- SIDEBAR (chargé dynamiquement) -->
+        <div id="sidebar-placeholder"></div>
 
-    <!-- MAIN CONTENT -->
-    <main class="main-content">
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
 
-        <!-- Breadcrumb -->
-        <nav class="breadcrumb" aria-label="Fil d'Ariane">
-            <a href="index.html">Accueil</a>
-            <span class="breadcrumb-separator">/</span>
-            <span id="breadcrumbCategory">Catégorie</span>
-        </nav>
+            <!-- Breadcrumb -->
+            <nav class="breadcrumb" aria-label="Fil d'Ariane">
+                <a href="index.html">Accueil</a>
+                <span class="breadcrumb-separator">/</span>
+                <span id="breadcrumbCategory">Catégorie</span>
+            </nav>
 
-        <!-- Category Header -->
-        <header class="category-header" id="categoryHeader">
-            <div class="category-header-content">
-                <div class="category-icon-large" id="categoryIcon">🎯</div>
-                <div>
-                    <h1 class="category-title" id="categoryTitle">Chargement...</h1>
-                    <p class="category-subtitle" id="categorySubtitle"></p>
+            <!-- Category Header -->
+            <header class="category-header" id="categoryHeader">
+                <div class="category-header-content">
+                    <div class="category-icon-large" id="categoryIcon">🎯</div>
+                    <div>
+                        <h1 class="category-title" id="categoryTitle">Chargement...</h1>
+                        <p class="category-subtitle" id="categorySubtitle"></p>
+                    </div>
                 </div>
-            </div>
-            <div class="category-meta">
-                <span class="badge" id="contentCount">0 ressources</span>
-            </div>
-        </header>
+                <div class="category-meta">
+                    <span class="badge" id="contentCount">0 ressources</span>
+                </div>
+            </header>
 
-        <!-- Tabs : Articles / Outils / Templates -->
-        <div class="content-tabs">
-            <button class="content-tab active" data-type="all">Tout</button>
-            <button class="content-tab" data-type="articles">Articles</button>
-            <button class="content-tab" data-type="tools">Outils</button>
-            <button class="content-tab" data-type="templates">Templates</button>
-        </div>
-
-        <!-- Content List -->
-        <div class="content-list" id="contentList">
-            <!-- Généré dynamiquement depuis content/{category}/ -->
-        </div>
-
-    </main>
-
-    <!-- FOOTER -->
-    <footer class="site-footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3 class="footer-title">Coach Agile Toolkit</h3>
-                <p class="footer-description">
-                    Collection gratuite et open-source d'outils pour optimiser vos pratiques agiles.
-                </p>
-                <div class="footer-social">
-                    <a href="https://github.com/sebastien-rouen" target="_blank" rel="noopener" aria-label="GitHub">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                            <path
-                                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+            <!-- Tabs : Articles / Outils / Templates -->
+            <div class="content-tabs-wrapper">
+                <div class="content-tabs">
+                    <button class="content-tab active" data-type="all">Tout</button>
+                    <button class="content-tab" data-type="articles">Articles</button>
+                    <button class="content-tab" data-type="tools">Outils</button>
+                    <button class="content-tab" data-type="templates">Templates</button>
+                </div>
+                
+                <!-- View Switcher -->
+                <div class="view-switcher">
+                    <button class="view-btn" data-view="grid" title="Vue grille">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="7" height="7"></rect>
+                            <rect x="14" y="3" width="7" height="7"></rect>
+                            <rect x="14" y="14" width="7" height="7"></rect>
+                            <rect x="3" y="14" width="7" height="7"></rect>
                         </svg>
-                    </a>
-                    <a href="https://buymeacoffee.com/sebastien.rouen" target="_blank" rel="noopener"
-                        aria-label="Buy me a coffee">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                            <path
-                                d="M20.216 6.415l-.132-.666c-.119-.598-.388-1.163-1.001-1.379-.197-.069-.42-.098-.57-.241-.152-.143-.196-.366-.231-.572-.065-.378-.125-.756-.192-1.133-.057-.325-.102-.69-.25-.987-.195-.4-.597-.634-.996-.788a5.723 5.723 0 00-.626-.194c-1-.263-2.05-.36-3.077-.416a25.834 25.834 0 00-3.7.062c-.915.083-1.88.184-2.75.5-.318.116-.646.256-.888.501-.297.302-.393.77-.177 1.146.154.267.415.456.692.58.36.162.737.284 1.123.366 1.075.238 2.189.331 3.287.37 1.218.05 2.437.01 3.65-.118.299-.033.598-.073.896-.119.352-.054.578-.513.474-.834-.124-.383-.457-.531-.834-.473-.466.074-.96.108-1.382.146-1.177.08-2.358.082-3.536.006a22.228 22.228 0 01-1.157-.107c-.086-.01-.18-.025-.258-.036-.243-.036-.484-.08-.724-.13-.111-.027-.111-.185 0-.212h.005c.277-.06.557-.108.838-.147h.002c.131-.009.263-.032.394-.048a25.076 25.076 0 013.426-.12c.674.019 1.347.067 2.017.144l.228.031c.267.04.533.088.798.145.392.085.895.113 1.07.542.055.137.08.288.111.431l.319 1.484a.237.237 0 01-.199.284h-.003c-.037.006-.075.01-.112.015a36.704 36.704 0 01-4.743.295 37.059 37.059 0 01-4.699-.304c-.14-.017-.293-.042-.417-.06-.326-.048-.649-.108-.973-.161-.393-.065-.768-.032-1.123.161-.29.16-.527.404-.675.701-.154.316-.199.66-.267 1-.069.34-.176.707-.135 1.056.087.753.613 1.365 1.37 1.502a39.69 39.69 0 0011.343.376.483.483 0 01.535.53l-.071.697-1.018 9.907c-.041.41-.047.832-.125 1.237-.122.637-.553 1.028-1.182 1.171-.577.131-1.165.2-1.756.205-.656.004-1.31-.025-1.966-.022-.699.004-1.556-.06-2.095-.58-.475-.458-.54-1.174-.605-1.793l-.731-7.013-.322-3.094c-.037-.351-.286-.695-.678-.678-.336.015-.718.3-.678.679l.228 2.185.949 9.112c.147 1.344 1.174 2.068 2.446 2.272.742.12 1.503.144 2.257.156.966.016 1.942.053 2.892-.122 1.408-.258 2.465-1.198 2.616-2.657.34-3.332.683-6.663 1.024-9.995l.215-2.087a.484.484 0 01.39-.426c.402-.078.787-.212 1.074-.518.455-.488.546-1.124.385-1.766zm-1.478.772c-.145.137-.363.201-.578.233-2.416.359-4.866.54-7.308.46-1.748-.06-3.477-.254-5.207-.498-.17-.024-.353-.055-.47-.18-.22-.236-.111-.71-.054-.995.052-.26.152-.609.463-.646.484-.057 1.046.148 1.526.22.577.088 1.156.159 1.737.212 2.48.226 5.002.19 7.472-.14.45-.06.899-.13 1.345-.21.399-.072.84-.206 1.08.206.166.281.188.657.162.974a.544.544 0 01-.169.364zm-6.159 3.9c-.862.37-1.84.788-3.109.788a5.884 5.884 0 01-1.569-.217l.877 9.004c.065.78.717 1.38 1.5 1.38 0 0 1.243.065 1.658.065.447 0 1.786-.065 1.786-.065.783 0 1.434-.6 1.499-1.38l.94-9.95a3.996 3.996 0 00-1.322-.238c-.826 0-1.491.284-2.26.613z" />
+                    </button>
+                    <button class="view-btn active" data-view="list" title="Vue liste">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="8" y1="6" x2="21" y2="6"></line>
+                            <line x1="8" y1="12" x2="21" y2="12"></line>
+                            <line x1="8" y1="18" x2="21" y2="18"></line>
+                            <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                            <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                            <line x1="3" y1="18" x2="3.01" y2="18"></line>
                         </svg>
-                    </a>
+                    </button>
                 </div>
             </div>
 
-            <div class="footer-section">
-                <h4 class="footer-section-title">Navigation</h4>
-                <ul class="footer-links">
-                    <li><a href="index.html">Accueil</a></li>
-                    <li><a href="index.html#categories">Catégories</a></li>
-                    <li><a href="index.html#tools">Outils interactifs</a></li>
-                </ul>
+            <!-- Content List -->
+            <div class="content-list" id="contentList" data-view="list">
+                <!-- Généré dynamiquement depuis content/{category}/ -->
             </div>
 
-            <div class="footer-section">
-                <h4 class="footer-section-title">Ressources</h4>
-                <ul class="footer-links">
-                    <li><a href="https://github.com/sebastien-rouen" target="_blank" rel="noopener">Code source</a></li>
-                    <li><a href="https://github.com/sebastien-rouen" target="_blank" rel="noopener">Contribuer</a></li>
-                    <li><a href="#" id="helpFooterBtn">Documentation</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-section">
-                <h4 class="footer-section-title">Légal</h4>
-                <ul class="footer-links">
-                    <li><a href="#">Licence MIT</a></li>
-                    <li><a href="#">Mentions légales</a></li>
-                    <li><a href="#">Confidentialité</a></li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="footer-bottom">
-            <p>
-                Créé avec ❤️ par <a href="https://github.com/sebastien-rouen" target="_blank" rel="noopener">Sébastien
-                    ROUEN</a>
-            </p>
-            <p class="footer-version">v1.0.0 - Open Source</p>
-        </div>
-    </footer>
+            <!-- FOOTER (chargé dynamiquement) -->
+            <div id="footer-placeholder"></div>
+        </main>
+    </div>
 
     <!-- SCRIPTS -->
     <script src="assets/js/partials-loader.js"></script>
     <script src="assets/js/utils.js"></script>
     <script src="assets/js/navigation.js"></script>
     <script src="assets/js/markdown-parser.js"></script>
+    <script src="assets/js/search.js"></script>
     <script src="assets/js/main.js"></script>
     <script>
         // Logique spécifique à la page catégorie
@@ -197,6 +159,9 @@
             return result ? `${parseInt(result[1], 16)}, ${parseInt(result[2], 16)}, ${parseInt(result[3], 16)}` : '59, 130, 246';
         }
 
+        let allContents = [];
+        let currentFilter = 'all';
+
         async function loadCategoryContents(categoryId) {
             const contentList = document.getElementById('contentList');
 
@@ -205,10 +170,19 @@
                 const response = await fetch(`content/${categoryId}/index.json`);
                 const data = await response.json();
 
-                // Extraire le tableau d'articles depuis l'objet
+                // Extraire les différents types de contenus
                 const articles = data.articles || [];
+                const tools = data.tools || [];
+                const templates = data.templates || [];
 
-                if (articles.length === 0) {
+                // Stocker tous les contenus avec leur type
+                allContents = [
+                    ...articles.map(item => ({ ...item, type: 'article' })),
+                    ...tools.map(item => ({ ...item, type: 'tool' })),
+                    ...templates.map(item => ({ ...item, type: 'template' }))
+                ];
+
+                if (allContents.length === 0) {
                     contentList.innerHTML = `
             <div class="empty-state">
               <p>Aucun contenu disponible pour le moment.</p>
@@ -218,32 +192,19 @@
                     return;
                 }
 
-                document.getElementById('contentCount').textContent = `${articles.length} ressource${articles.length > 1 ? 's' : ''}`;
+                // Mettre à jour le compteur
+                updateContentCount();
 
                 // Récupérer la couleur de la catégorie depuis config
                 const config = await fetch('config/config.json').then(r => r.json());
                 const category = config.categories.find(c => c.id === categoryId);
                 const categoryColor = category?.color || '#3b82f6';
 
-                contentList.innerHTML = articles.map(article => `
-          <article class="content-card" style="--category-color: ${categoryColor}; --category-color-rgb: ${hexToRgb(categoryColor)}">
-            <div class="content-card-header">
-              <span class="content-type-badge">article</span>
-              <h3 class="content-card-title">
-                <a href="content.html?cat=${categoryId}&file=${article.id}">${article.title}</a>
-              </h3>
-            </div>
-            <div class="content-card-excerpt">
-              ${article.tags.slice(0, 4).map(tag => `<span class="content-card-tag">#${tag}</span>`).join('')}
-            </div>
-            <div class="content-card-footer">
-              <span class="content-meta">5 min de lecture</span>
-              <a href="content.html?cat=${categoryId}&file=${article.id}" class="content-link">
-                Lire la suite
-              </a>
-            </div>
-          </article>
-        `).join('');
+                // Afficher les contenus
+                renderContents(categoryId, categoryColor);
+
+                // Gérer les onglets
+                setupTabs(categoryId, categoryColor);
 
             } catch (error) {
                 console.error('Erreur chargement contenus:', error);
@@ -253,6 +214,280 @@
           </div>
         `;
             }
+        }
+
+        let currentView = 'list';
+
+        function setupTabs(categoryId, categoryColor) {
+            const tabs = document.querySelectorAll('.content-tab');
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    // Retirer la classe active de tous les onglets
+                    tabs.forEach(t => t.classList.remove('active'));
+                    // Ajouter la classe active à l'onglet cliqué
+                    tab.classList.add('active');
+                    
+                    // Filtrer les contenus
+                    currentFilter = tab.dataset.type;
+                    
+                    // Mettre à jour l'attribut data-active-tab sur le body
+                    document.body.setAttribute('data-active-tab', currentFilter);
+                    
+                    renderContents(categoryId, categoryColor);
+                    updateContentCount();
+                });
+            });
+            
+            // Setup view switcher
+            const viewBtns = document.querySelectorAll('.view-btn');
+            viewBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    viewBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    currentView = btn.dataset.view;
+                    
+                    const contentList = document.getElementById('contentList');
+                    contentList.setAttribute('data-view', currentView);
+                    
+                    renderContents(categoryId, categoryColor);
+                });
+            });
+        }
+
+        function updateContentCount() {
+            const filtered = getFilteredContents();
+            const countEl = document.getElementById('contentCount');
+            
+            if (currentFilter === 'all') {
+                countEl.textContent = `${allContents.length} ressource${allContents.length > 1 ? 's' : ''}`;
+            } else {
+                const typeLabel = {
+                    'articles': 'article',
+                    'tools': 'outil',
+                    'templates': 'template'
+                }[currentFilter] || 'ressource';
+                countEl.textContent = `${filtered.length} ${typeLabel}${filtered.length > 1 ? 's' : ''}`;
+            }
+        }
+
+        function getFilteredContents() {
+            if (currentFilter === 'all') {
+                return allContents;
+            }
+            
+            const typeMap = {
+                'articles': 'article',
+                'tools': 'tool',
+                'templates': 'template'
+            };
+            
+            return allContents.filter(item => item.type === typeMap[currentFilter]);
+        }
+
+        function renderContents(categoryId, categoryColor) {
+            const contentList = document.getElementById('contentList');
+            const filtered = getFilteredContents();
+
+            if (filtered.length === 0) {
+                const emptyMessages = {
+                    'articles': {
+                        title: 'Aucun article disponible',
+                        message: 'Cette catégorie ne contient pas encore d\'articles. Revenez bientôt !'
+                    },
+                    'tools': {
+                        title: 'Aucun outil disponible',
+                        message: 'Nous n\'avons pas encore référencé d\'outils pour cette catégorie.'
+                    },
+                    'templates': {
+                        title: 'Aucun template disponible',
+                        message: 'Nous n\'avons pas encore de templates pour cette catégorie.'
+                    }
+                };
+                
+                const message = emptyMessages[currentFilter] || {
+                    title: 'Aucun contenu disponible',
+                    message: 'Cette catégorie ne contient pas encore de contenu.'
+                };
+                
+                contentList.innerHTML = `
+                    <div class="empty-state">
+                        <p>${message.title}</p>
+                        <span style="font-size: var(--font-size-sm); color: var(--text-secondary);">${message.message}</span>
+                    </div>
+                `;
+                return;
+            }
+
+            // Vue liste groupée par type (sauf pour "Tout")
+            if (currentView === 'list' && currentFilter !== 'all') {
+                renderListView(filtered, categoryId, categoryColor);
+                return;
+            }
+            
+            // Vue grille ou vue liste pour "Tout"
+            if (currentView === 'list' && currentFilter === 'all') {
+                renderGroupedListView(filtered, categoryId, categoryColor);
+                return;
+            }
+
+            // Vue grille par défaut
+            contentList.innerHTML = filtered.map(item => {
+                // Déterminer le fichier à utiliser (file ou id comme fallback)
+                const fileName = item.file ? item.file.replace('.md', '') : item.id;
+                
+                const typeConfig = {
+                    'article': {
+                        badge: 'article',
+                        icon: '📄',
+                        linkText: 'Lire la suite',
+                        url: `content.html?cat=${categoryId}&file=${fileName}`
+                    },
+                    'tool': {
+                        badge: 'outil',
+                        icon: '🔧',
+                        linkText: item.external ? 'Accéder à l\'outil' : 'Voir l\'outil',
+                        url: item.external ? item.url : `tools/${categoryId}/${item.id}/index.html`
+                    },
+                    'template': {
+                        badge: 'template',
+                        icon: '📋',
+                        linkText: 'Télécharger',
+                        url: item.downloadUrl || `templates/${categoryId}/${item.file || item.id}`
+                    }
+                };
+
+                const config = typeConfig[item.type];
+                const isExternal = item.type === 'tool' && item.external;
+                const isDownload = item.type === 'template';
+                
+                // Mapper les types vers les noms des tabs
+                const dataTypeMap = {
+                    'article': 'articles',
+                    'tool': 'tools', 
+                    'template': 'templates'
+                };
+
+                return `
+                    <article class="content-card" data-type="${dataTypeMap[item.type]}" style="--category-color: ${categoryColor}; --category-color-rgb: ${hexToRgb(categoryColor)}">
+                        <div class="content-card-header">
+                            <span class="content-type-badge ${item.type}">${config.icon} ${config.badge}</span>
+                            <h3 class="content-card-title">
+                                <a href="${config.url}" ${isExternal ? 'target="_blank" rel="noopener"' : ''} ${isDownload ? 'download' : ''}>${item.title}</a>
+                            </h3>
+                        </div>
+                        ${item.description ? `<p class="content-card-description">${item.description}</p>` : ''}
+                        <div class="content-card-excerpt">
+                            ${item.tags.slice(0, 4).map(tag => `<span class="content-card-tag">#${tag}</span>`).join('')}
+                        </div>
+                        <div class="content-card-footer">
+                            ${item.type === 'article' ? '<span class="content-meta">5 min de lecture</span>' : ''}
+                            ${item.type === 'tool' && item.platform ? `<span class="content-meta">${item.platform}</span>` : ''}
+                            ${item.type === 'template' && item.format ? `<span class="content-meta">${item.format}</span>` : ''}
+                            <a href="${config.url}" class="content-link" ${isExternal ? 'target="_blank" rel="noopener"' : ''} ${isDownload ? 'download' : ''}>
+                                ${config.linkText} ${isExternal ? '↗' : ''}
+                            </a>
+                        </div>
+                    </article>
+                `;
+            }).join('');
+        }
+
+        function renderListView(items, categoryId, categoryColor) {
+            const contentList = document.getElementById('contentList');
+            contentList.innerHTML = items.map(item => renderListItem(item, categoryId, categoryColor)).join('');
+        }
+
+        function renderGroupedListView(items, categoryId, categoryColor) {
+            const contentList = document.getElementById('contentList');
+            
+            // Grouper par type
+            const grouped = {
+                article: items.filter(i => i.type === 'article'),
+                tool: items.filter(i => i.type === 'tool'),
+                template: items.filter(i => i.type === 'template')
+            };
+            
+            const typeLabels = {
+                article: { title: '📄 Articles', icon: '📄' },
+                tool: { title: '🔧 Outils', icon: '🔧' },
+                template: { title: '📋 Templates', icon: '📋' }
+            };
+            
+            let html = '';
+            
+            Object.entries(grouped).forEach(([type, typeItems]) => {
+                if (typeItems.length > 0) {
+                    // Mapper les types vers les noms des tabs
+                    const dataTypeMap = {
+                        'article': 'articles',
+                        'tool': 'tools', 
+                        'template': 'templates'
+                    };
+                    
+                    html += `
+                        <div class="content-group" data-type="${dataTypeMap[type]}">
+                            <h2 class="content-group-title">${typeLabels[type].title} <span class="content-group-count">(${typeItems.length})</span></h2>
+                            <div class="content-group-items">
+                                ${typeItems.map(item => renderListItem(item, categoryId, categoryColor)).join('')}
+                            </div>
+                        </div>
+                    `;
+                }
+            });
+            
+            contentList.innerHTML = html;
+        }
+
+        function renderListItem(item, categoryId, categoryColor) {
+            // Déterminer le fichier à utiliser (file ou id comme fallback)
+            const fileName = item.file ? item.file.replace('.md', '') : item.id;
+            
+            const typeConfig = {
+                'article': {
+                    badge: 'article',
+                    icon: '📄',
+                    linkText: 'Lire',
+                    url: `content.html?cat=${categoryId}&file=${fileName}`
+                },
+                'tool': {
+                    badge: 'outil',
+                    icon: '🔧',
+                    linkText: item.external ? 'Accéder' : 'Voir',
+                    url: item.external ? item.url : `tools/${categoryId}/${item.id}/index.html`
+                },
+                'template': {
+                    badge: 'template',
+                    icon: '📋',
+                    linkText: 'Télécharger',
+                    url: item.downloadUrl || `templates/${categoryId}/${item.file || item.id}`
+                }
+            };
+
+            const config = typeConfig[item.type];
+            const isExternal = item.type === 'tool' && item.external;
+            const isDownload = item.type === 'template';
+
+            return `
+                <div class="content-list-item" style="--category-color: ${categoryColor}">
+                    <div class="content-list-item-main">
+                        <span class="content-type-badge ${item.type}">${config.icon}</span>
+                        <div class="content-list-item-content">
+                            <h3 class="content-list-item-title">
+                                <a href="${config.url}" ${isExternal ? 'target="_blank" rel="noopener"' : ''} ${isDownload ? 'download' : ''}>${item.title}</a>
+                            </h3>
+                            ${item.description ? `<p class="content-list-item-description">${item.description}</p>` : ''}
+                            <div class="content-list-item-tags">
+                                ${item.tags.slice(0, 5).map(tag => `<span class="content-card-tag">#${tag}</span>`).join('')}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content-list-item-actions">
+                        <a href="${config.url}" class="btn btn-secondary btn-sm" ${isExternal ? 'target="_blank" rel="noopener"' : ''} ${isDownload ? 'download' : ''}>
+                            ${config.linkText} ${isExternal ? '↗' : ''}
+                        </a>
+                    </div>
+                </div>
+            `;
         }
 
         function updateFavoriteButton() {

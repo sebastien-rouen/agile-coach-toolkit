@@ -216,7 +216,7 @@ async function renderCategoriesNav() {
     const response = await fetch('config/config.json');
     const config = await response.json();
     
-    // Charger le nombre d'articles pour chaque catégorie
+    // Charger le nombre d'articles et l'ordre pour chaque catégorie
     const categoriesWithCounts = await Promise.all(
       config.categories.map(async (cat) => {
         try {
@@ -225,25 +225,24 @@ async function renderCategoriesNav() {
           
           if (indexResponse.ok) {
             const indexData = await indexResponse.json();
-            return { ...cat, count: indexData.articles ? indexData.articles.length : 0 };
+            return { 
+              ...cat, 
+              count: indexData.articles ? indexData.articles.length : 0,
+              order: indexData.order || 999 // Utiliser l'ordre du fichier index.json, ou 999 par défaut
+            };
           }
         } catch (err) {
           console.warn(`Impossible de charger le count pour ${cat.id}:`, err);
         }
-        return { ...cat, count: 0 };
+        return { ...cat, count: 0, order: 999 };
       })
     );
     
-    // Liste des outils interactifs
-    const tools = [
-      { id: 'planning-poker', name: 'Planning Poker', icon: '🎴', path: 'tools/planning-poker/' },
-      { id: 'velocity-squad', name: 'Velocity Squad', icon: '📈', path: 'tools/velocity-squad/' },
-      { id: 'skills-matrix', name: 'Skills Matrix', icon: '🎓', path: 'tools/skills-matrix/' },
-      { id: 'ikigai', name: 'Ikigai', icon: '🎯', path: 'tools/ikigai/' },
-      { id: 'ikigai-engagement', name: 'Ikigai Engagement', icon: '💫', path: 'tools/ikigai-engagement/' },
-      { id: 'example-mapping', name: 'Example Mapping', icon: '🗺️', path: 'tools/example-mapping/' },
-      { id: 'agile-fluency', name: 'Agile Fluency', icon: '🎯', path: 'tools/agile-fluency/' }
-    ];
+    // Trier les catégories par ordre
+    categoriesWithCounts.sort((a, b) => (a.order || 999) - (b.order || 999));
+    
+    // Charger les outils depuis config.json et les trier par ordre
+    const tools = config.tools ? [...config.tools].sort((a, b) => (a.order || 999) - (b.order || 999)) : [];
     
     // Générer le HTML : Outils en premier, puis catégories
     let html = '';
@@ -316,7 +315,16 @@ async function renderCategoriesNav() {
         const type = btn.dataset.type;
         const id = btn.dataset.id;
         toggleFavorite(type, id);
-        renderCategoriesNav(); // Re-render pour mettre à jour l'état
+        
+        // Mémoriser l'onglet actif avant le re-render
+        const activeTab = document.querySelector('.tab.active');
+        const activeTabType = activeTab ? activeTab.dataset.tab : 'all';
+        
+        // Re-render pour mettre à jour l'état
+        renderCategoriesNav().then(() => {
+          // Réappliquer le filtre de l'onglet actif
+          filterSidebarCategories(activeTabType);
+        });
       });
     });
     
@@ -425,8 +433,11 @@ function initNavigationButtons() {
     });
   });
   
-  // Charger les catégories dans la sidebar
-  renderCategoriesNav();
+  // Charger les catégories dans la sidebar puis activer l'onglet par défaut
+  renderCategoriesNav().then(() => {
+    // Activer l'onglet Favoris par défaut s'il existe des favoris
+    activateDefaultTab();
+  });
 }
 
 /**
@@ -440,15 +451,35 @@ function filterSidebarCategories(type) {
   
   items.forEach(item => {
     const catId = item.dataset.category;
+    const itemType = item.dataset.type; // 'tool' ou undefined (catégorie)
     
     switch (type) {
       case 'favorites':
-        // Afficher seulement les favoris
-        item.style.display = AppState.favorites.categories.includes(catId) ? 'flex' : 'none';
+        // Afficher seulement les favoris (catégories ET outils)
+        let isFavorite = false;
+        if (itemType === 'tool') {
+          // Extraire l'ID de l'outil depuis data-category (format: "tool-{id}")
+          const toolId = catId.replace('tool-', '');
+          isFavorite = AppState.favorites.tools && AppState.favorites.tools.includes(toolId);
+        } else {
+          isFavorite = AppState.favorites.categories.includes(catId);
+        }
+        item.style.display = isFavorite ? 'flex' : 'none';
         break;
       case 'recents':
-        // Afficher seulement les récents
-        const isRecent = AppState.recents.some(r => r.url && r.url.includes(catId));
+        // Afficher seulement les récents (catégories ET outils)
+        let isRecent = false;
+        if (itemType === 'tool') {
+          // Pour les outils, extraire l'ID et vérifier dans les récents
+          const toolId = catId.replace('tool-', '');
+          isRecent = AppState.recents.some(r => r.type === 'tool' && r.id === toolId);
+        } else {
+          // Pour les catégories, vérifier si l'URL contient le catId
+          isRecent = AppState.recents.some(r => 
+            (r.type === 'category' && r.id === catId) || 
+            (r.url && r.url.includes(catId))
+          );
+        }
         item.style.display = isRecent ? 'flex' : 'none';
         break;
       default: // 'all'
@@ -456,6 +487,36 @@ function filterSidebarCategories(type) {
         item.style.display = 'flex';
     }
   });
+}
+
+/**
+ * Activer l'onglet par défaut selon le contexte
+ * Si des favoris existent, activer l'onglet Favoris
+ * Sinon, garder l'onglet "Tout voir" actif
+ */
+function activateDefaultTab() {
+  const categoriesCount = AppState.favorites.categories ? AppState.favorites.categories.length : 0;
+  const toolsCount = AppState.favorites.tools ? AppState.favorites.tools.length : 0;
+  const totalFavorites = categoriesCount + toolsCount;
+  
+  // S'il y a des favoris, activer l'onglet Favoris
+  if (totalFavorites > 0) {
+    const tabs = document.querySelectorAll('.tab');
+    const favoritesTab = document.querySelector('.tab[data-tab="favorites"]');
+    
+    if (favoritesTab) {
+      // Retirer la classe active de tous les tabs
+      tabs.forEach(t => t.classList.remove('active'));
+      
+      // Activer l'onglet Favoris
+      favoritesTab.classList.add('active');
+      
+      // Filtrer pour afficher seulement les favoris
+      filterSidebarCategories('favorites');
+      
+      console.log('✨ Onglet Favoris activé par défaut');
+    }
+  }
 }
 
 // Attendre que les partiels soient chargés

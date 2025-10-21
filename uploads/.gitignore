@@ -1,0 +1,8 @@
+# Ignorer toutes les images uploadées
+*
+
+# Sauf ce fichier .gitignore
+!.gitignore
+
+# Sauf le fichier README
+!README.md

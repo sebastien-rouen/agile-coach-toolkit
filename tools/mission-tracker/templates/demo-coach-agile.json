@@ -1,0 +1,424 @@
+{
+  "name": "Démo Coach Agile",
+  "description": "Exemple de mission Coach Agile avec transformation organisationnelle",
+  "data": {
+    "missions": [
+      {
+        "id": "demo-ca-001",
+        "title": "Transformation Agile à l'échelle - Assurance",
+        "client": "AssurPlus Group",
+        "role": "coach-agile",
+        "start_date": "2024-06-01",
+        "end_date": null,
+        "status": "active",
+        "objectives": [
+          {
+            "id": "obj-1",
+            "title": "Former 5 équipes aux pratiques Scrum",
+            "completed": true
+          },
+          {
+            "id": "obj-2",
+            "title": "Mettre en place un framework SAFe",
+            "completed": false
+          },
+          {
+            "id": "obj-3",
+            "title": "Créer une communauté de pratique",
+            "completed": true
+          },
+          {
+            "id": "obj-4",
+            "title": "Améliorer le time-to-market de 40%",
+            "completed": false
+          },
+          {
+            "id": "obj-5",
+            "title": "Accompagner 3 Product Owners",
+            "completed": true
+          }
+        ],
+        "metrics": [],
+        "context": {
+          "team_size": 45,
+          "technologies": ["Java", "Angular", "Microservices"],
+          "challenges": ["Culture hiérarchique", "Silos organisationnels", "Processus rigides"]
+        },
+        "createdAt": "2024-06-01T08:00:00.000Z",
+        "updatedAt": "2024-11-24T10:00:00.000Z"
+      },
+      {
+        "id": "demo-ca-002",
+        "title": "Coaching Agile - Startup HealthTech",
+        "client": "MediCare Plus",
+        "role": "coach-agile",
+        "start_date": "2024-01-15",
+        "end_date": "2024-05-31",
+        "status": "completed",
+        "objectives": [
+          {
+            "id": "obj-6",
+            "title": "Structurer les pratiques agiles",
+            "completed": true
+          },
+          {
+            "id": "obj-7",
+            "title": "Former 2 Scrum Masters internes",
+            "completed": true
+          },
+          {
+            "id": "obj-8",
+            "title": "Mettre en place les OKR",
+            "completed": true
+          }
+        ],
+        "metrics": [],
+        "context": {
+          "team_size": 15,
+          "technologies": ["Vue.js", "Python", "PostgreSQL"],
+          "challenges": ["Croissance rapide", "Manque de structure"]
+        },
+        "createdAt": "2024-01-15T08:00:00.000Z",
+        "updatedAt": "2024-05-31T18:00:00.000Z"
+      },
+      {
+        "id": "demo-ca-003",
+        "title": "Transformation Lean - Industrie",
+        "client": "ManufacTech Industries",
+        "role": "coach-agile",
+        "start_date": "2023-09-01",
+        "end_date": "2024-02-29",
+        "status": "completed",
+        "objectives": [
+          {
+            "id": "obj-9",
+            "title": "Implémenter Lean Manufacturing",
+            "completed": true
+          },
+          {
+            "id": "obj-10",
+            "title": "Réduire les délais de production de 40%",
+            "completed": true
+          },
+          {
+            "id": "obj-11",
+            "title": "Former les managers au Lean",
+            "completed": true
+          }
+        ],
+        "metrics": [],
+        "context": {
+          "team_size": 60,
+          "technologies": ["ERP SAP", "MES"],
+          "challenges": ["Culture traditionnelle", "Résistance au changement"]
+        },
+        "createdAt": "2023-09-01T08:00:00.000Z",
+        "updatedAt": "2024-02-29T18:00:00.000Z"
+      }
+    ],
+    "events": [
+      {
+        "id": "event-1",
+        "mission_id": "demo-ca-001",
+        "type": "milestone",
+        "title": "Lancement du premier PI Planning",
+        "description": "90 personnes réunies pour planifier le trimestre",
+        "date": "2024-07-15",
+        "tags": ["safe", "pi-planning"],
+        "impact": "high"
+      },
+      {
+        "id": "event-2",
+        "mission_id": "demo-ca-001",
+        "type": "achievement",
+        "title": "Création de la communauté Agile",
+        "description": "25 membres actifs, 2 meetups par mois",
+        "date": "2024-08-01",
+        "tags": ["community", "learning"],
+        "impact": "high"
+      },
+      {
+        "id": "event-3",
+        "mission_id": "demo-ca-001",
+        "type": "meeting",
+        "title": "Atelier Lean Portfolio Management",
+        "description": "Formation des managers à la priorisation Lean",
+        "date": "2024-09-10",
+        "tags": ["lean", "portfolio"],
+        "impact": "high"
+      },
+      {
+        "id": "event-4",
+        "mission_id": "demo-ca-001",
+        "type": "achievement",
+        "title": "Réduction du lead time de 35%",
+        "description": "Passage de 45 jours à 29 jours en moyenne",
+        "date": "2024-10-01",
+        "tags": ["metrics", "improvement"],
+        "impact": "high"
+      },
+      {
+        "id": "event-5",
+        "mission_id": "demo-ca-001",
+        "type": "delivery",
+        "title": "Première release multi-équipes",
+        "description": "Coordination de 5 équipes pour une release commune",
+        "date": "2024-11-15",
+        "tags": ["release", "coordination"],
+        "impact": "high"
+      },
+      {
+        "id": "event-6",
+        "mission_id": "demo-ca-001",
+        "type": "issue",
+        "title": "Conflit entre équipes sur les dépendances",
+        "description": "Nécessité de mettre en place un Scrum of Scrums",
+        "date": "2024-09-20",
+        "tags": ["conflict", "dependencies"],
+        "impact": "medium"
+      }
+    ],
+    "achievements": [
+      {
+        "id": "ach-1",
+        "mission_id": "demo-ca-001",
+        "title": "Certification de 3 Scrum Masters",
+        "description": "3 membres de l'équipe ont obtenu leur PSM I",
+        "date": "2024-08-15",
+        "impact": "medium"
+      },
+      {
+        "id": "ach-2",
+        "mission_id": "demo-ca-001",
+        "title": "Adoption du Definition of Done",
+        "description": "DoD partagé et appliqué par toutes les équipes",
+        "date": "2024-09-01",
+        "impact": "high"
+      }
+    ],
+    "challenges": [
+      {
+        "id": "chal-1",
+        "mission_id": "demo-ca-001",
+        "title": "Résistance des middle managers",
+        "description": "Peur de perdre le contrôle avec l'auto-organisation",
+        "date": "2024-07-01",
+        "status": "in_progress",
+        "severity": "high"
+      },
+      {
+        "id": "chal-2",
+        "mission_id": "demo-ca-001",
+        "title": "Silos techniques persistants",
+        "description": "Difficulté à créer des équipes cross-fonctionnelles",
+        "date": "2024-08-10",
+        "status": "resolved",
+        "severity": "medium"
+      }
+    ],
+    "experiments": [
+      {
+        "id": "exp-1",
+        "mission_id": "demo-ca-001",
+        "title": "Mob Programming hebdomadaire",
+        "hypothesis": "Le mob programming améliore le partage de connaissances",
+        "status": "completed",
+        "outcome": "success",
+        "start_date": "2024-10-01",
+        "end_date": "2024-10-31",
+        "results": "Amélioration significative du partage de connaissances"
+      },
+      {
+        "id": "exp-2",
+        "mission_id": "demo-ca-002",
+        "title": "OKR trimestriels",
+        "hypothesis": "Les OKR améliorent l'alignement stratégique",
+        "status": "completed",
+        "outcome": "success",
+        "start_date": "2024-02-01",
+        "end_date": "2024-05-31",
+        "results": "Meilleur alignement et transparence sur les objectifs"
+      }
+    ],
+    "reports": [
+      {
+        "id": "report-ca-1",
+        "mission_id": "demo-ca-001",
+        "type": "initial",
+        "title": "Rapport d'étonnement - AssurPlus",
+        "date": "2024-06-15",
+        "content": {
+          "first_impressions": "Organisation mature mais silos importants entre équipes",
+          "context": "Transformation SAFe avec 5 équipes et 45 personnes",
+          "strengths": ["Expertise métier forte", "Budget conséquent", "Support du management"],
+          "challenges": ["Silos organisationnels", "Culture hiérarchique", "Processus rigides"],
+          "quick_wins": ["Lancement communauté agile", "Premier PI Planning", "Formation Product Owners"],
+          "recommendations": ["Casser les silos", "Autonomiser les équipes", "Simplifier les processus"]
+        }
+      },
+      {
+        "id": "report-ca-2",
+        "mission_id": "demo-ca-001",
+        "type": "checkpoint",
+        "title": "Checkpoint Q3 2024",
+        "date": "2024-09-30",
+        "content": {
+          "period": "Q3 2024",
+          "highlights": ["PI Planning réussi", "Communauté de 25 membres", "Lead time réduit de 35%"],
+          "lowlights": ["Résistance middle management", "Dépendances entre équipes"],
+          "metrics": {
+            "lead_time": 29,
+            "team_satisfaction": "4.2/5",
+            "release_frequency": "Bi-mensuelle"
+          },
+          "next_actions": ["Scrum of Scrums", "Formation managers", "Améliorer coordination"]
+        }
+      },
+      {
+        "id": "report-ca-3",
+        "mission_id": "demo-ca-002",
+        "type": "final",
+        "title": "Bilan Final - MediCare Plus",
+        "date": "2024-05-31",
+        "content": {
+          "summary": "Structuration réussie des pratiques agiles dans une startup en croissance",
+          "objectives_achieved": ["Pratiques agiles structurées", "2 Scrum Masters formés", "OKR implémentés"],
+          "key_achievements": ["Autonomie des équipes", "Transparence accrue", "Meilleure priorisation"],
+          "lessons_learned": ["La simplicité est clé en startup", "Former en interne crée l'autonomie", "Les OKR clarifient la vision"],
+          "recommendations": ["Maintenir les rétrospectives", "Continuer les OKR", "Développer le coaching interne"]
+        }
+      },
+      {
+        "id": "report-ca-4",
+        "mission_id": "demo-ca-003",
+        "type": "final",
+        "title": "Bilan Final - ManufacTech",
+        "date": "2024-02-29",
+        "content": {
+          "summary": "Transformation Lean réussie avec réduction significative des délais",
+          "objectives_achieved": ["Lean Manufacturing implanté", "Délais réduits de 45%", "Managers formés"],
+          "key_achievements": ["Culture d'amélioration continue", "Réduction gaspillages", "Engagement équipes"],
+          "lessons_learned": ["Le Lean s'applique partout", "La visualisation est puissante", "Le changement prend du temps"],
+          "recommendations": ["Poursuivre les Kaizen", "Étendre à d'autres sites", "Mesurer en continu"]
+        }
+      }
+    ],
+    "roadmap": [
+      {
+        "id": "road-ca-1",
+        "type": "skill",
+        "title": "Certification SAFe SPC",
+        "description": "Devenir SAFe Program Consultant",
+        "status": "in_progress",
+        "priority": "high",
+        "due_date": "2025-02-01"
+      },
+      {
+        "id": "road-ca-2",
+        "type": "learn",
+        "title": "Approfondir le Lean",
+        "description": "Formation Lean Six Sigma Green Belt",
+        "status": "planned",
+        "priority": "medium",
+        "due_date": "2025-06-01"
+      },
+      {
+        "id": "road-ca-3",
+        "type": "create",
+        "title": "Créer un blog sur le coaching",
+        "description": "Partager mes apprentissages et retours d'expérience",
+        "status": "in_progress",
+        "priority": "medium",
+        "due_date": "2025-03-01"
+      },
+      {
+        "id": "road-ca-4",
+        "type": "network",
+        "title": "Rejoindre Agile Alliance",
+        "description": "Participer à la communauté internationale",
+        "status": "done",
+        "priority": "low",
+        "completion_date": "2024-08-15"
+      }
+    ],
+    "vision": {
+      "statement": "Accompagner les organisations dans leur transformation agile et devenir un leader d'opinion reconnu",
+      "goals": [
+        "Coacher 20+ équipes sur 3 ans",
+        "Obtenir les certifications SAFe SPC et Lean Six Sigma",
+        "Créer du contenu (blog, conférences)",
+        "Développer un réseau international",
+        "Contribuer à la communauté agile"
+      ]
+    },
+    "skills": [
+      {
+        "name": "Coaching d'équipe",
+        "level": 5,
+        "category": "soft-skills"
+      },
+      {
+        "name": "SAFe",
+        "level": 4,
+        "category": "frameworks"
+      },
+      {
+        "name": "Scrum",
+        "level": 5,
+        "category": "frameworks"
+      },
+      {
+        "name": "Lean",
+        "level": 4,
+        "category": "frameworks"
+      },
+      {
+        "name": "Facilitation",
+        "level": 5,
+        "category": "soft-skills"
+      },
+      {
+        "name": "Change Management",
+        "level": 4,
+        "category": "soft-skills"
+      }
+    ],
+    "skills_to_develop": [
+      {
+        "name": "OKR",
+        "reason": "Pour aider les organisations à définir leur stratégie",
+        "priority": "high"
+      },
+      {
+        "name": "Design Thinking",
+        "reason": "Pour faciliter l'innovation",
+        "priority": "medium"
+      },
+      {
+        "name": "Data Analytics",
+        "reason": "Pour mieux mesurer l'impact des transformations",
+        "priority": "low"
+      }
+    ],
+    "learning_goals": [
+      {
+        "title": "Certification SAFe SPC",
+        "type": "certification",
+        "deadline": "2025-02-01",
+        "status": "in_progress"
+      },
+      {
+        "title": "Lire 'Accelerate' de Nicole Forsgren",
+        "type": "reading",
+        "deadline": "2024-12-31",
+        "status": "in_progress"
+      },
+      {
+        "title": "Participer à Agile France 2025",
+        "type": "conference",
+        "deadline": "2025-05-15",
+        "status": "planned"
+      }
+    ]
+  }
+}

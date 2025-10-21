@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rapport d'Étonnement - {{mission.title}}</title>
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/report-templates.css">
+</head>
+<body>
+  <div class="report-container">
+    <!-- En-tête -->
+    <header class="report-header">
+      <div class="report-logo">
+        <img src="../assets/images/logo.svg" alt="Logo">
+      </div>
+      <div class="report-header-content">
+        <h1 class="report-title">Rapport d'Étonnement</h1>
+        <h2 class="report-subtitle">{{mission.title}}</h2>
+        <div class="report-meta">
+          <span class="report-meta-item">
+            <sl-icon name="calendar"></sl-icon>
+            {{mission.startDate | formatDate}}
+          </span>
+          <span class="report-meta-item">
+            <sl-icon name="person"></sl-icon>
+            {{author}}
+          </span>
+          <span class="report-meta-item">
+            <sl-icon name="building"></sl-icon>
+            {{mission.client}}
+          </span>
+          <span class="report-meta-item">
+            <sl-icon name="briefcase"></sl-icon>
+            {{role.name}}
+          </span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Synthèse Exécutive -->
+    <section class="report-section executive-summary">
+      <div class="report-section-header">
+        <h2 class="report-section-title">
+          <span class="report-section-icon">📋</span>
+          Synthèse Exécutive
+        </h2>
+      </div>
+      <div class="report-section-content">
+        <div class="summary-grid">
+          <div class="summary-card">
+            <div class="summary-card-icon">🎯</div>
+            <h3>Contexte</h3>
+            <p>{{summary.context}}</p>
+          </div>
+          <div class="summary-card">
+            <div class="summary-card-icon">✅</div>
+            <h3>Points Forts</h3>
+            <p>{{summary.strengths}}</p>
+          </div>
+          <div class="summary-card">
+            <div class="summary-card-icon">⚠️</div>
+            <h3>Défis</h3>
+            <p>{{summary.challenges}}</p>
+          </div>
+          <div class="summary-card">
+            <div class="summary-card-icon">🚀</div>
+            <h3>Opportunités</h3>
+            <p>{{summary.opportunities}}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 1. Contexte de la Mission -->
+    <section class="report-section">
+      <div class="report-section-header">
+        <h2 class="report-section-title">
+          <span class="report-section-icon">🎯</span>
+          1. Contexte de la Mission
+        </h2>
+      </div>
+      <div class="report-section-content">
+        <div class="context-grid">
+          <div class="context-item">
+            <strong>Client</strong>
+            <p>{{mission.client}}</p>
+          </div>
+          <div class="context-item">
+            <strong>Rôle</strong>
+            <p>{{role.name}}</p>
+          </div>
+          <div class="context-item">
+            <strong>Date de début</strong>
+            <p>{{mission.startDate | formatDate}}</p>
+          </div>
+          <div class="context-item">
+            <strong>Durée prévue</strong>
+            <p>{{mission.duration}} mois</p>
+          </div>
+          <div class="context-item">
+            <strong>Équipe</strong>
+            <p>{{mission.teamSize}} personnes</p>
+          </div>
+          <div class="context-item">
+            <strong>Maturité Agile</strong>
+            <p>{{mission.maturity}}/5</p>
+          </div>
+        </div>
+
+        <div class="context-description">
+          <h3>Description du contexte</h3>
+          <p>{{mission.description}}</p>
+        </div>
+
+        <div class="context-objectives">
+          <h3>Objectifs de la mission</h3>
+          <ul>
+            {{#each mission.objectives}}
+            <li>{{this}}</li>
+            {{/each}}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Ce qui Fonctionne Bien -->
+    <section class="report-section">
+      <div class="report-section-header">
+        <h2 class="report-section-title">
+          <span class="report-section-icon">✅</span>
+          2. Ce qui Fonctionne Bien
+        </h2>
+      </div>
+      <div class="report-section-content">
+        {{#if whatWorks.length}}
+        <div class="observations-list success">
+          {{#each whatWorks}}
+          <div class="observation-item">
+            <div class="observation-icon">{{icon}}</div>
+            <div class="observation-content">
+              <h4>{{title}}</h4>
+              <p>{{description}}</p>
+              {{#if tags}}
+              <div class="observation-tags">
+                {{#each tags}}
+                <span class="observation-tag">{{this}}</span>
+                {{/each}}
+              </div>
+              {{/if}}
+            </div>
+          </div>
+          {{/each}}
+        </div>
+        {{else}}
+        <p class="text-muted">Aucune observation positive pour le moment.</p>
+        {{/if}}
+      </div>
+    </section>
+
+    <!-- 3. Points de Douleur -->
+    <section class="report-section">
+      <div class="report-section-header">
+        <h2 class="report-section-title">
+          <span class="report-section-icon">⚠️</span>
+          3. Points de Douleur et Défis
+        </h2>
+      </div>
+      <div class="report-section-content">
+        {{#if painPoints.length}}
+        <div class="observations-list warning">
+          {{#each painPoints}}
+          <div class="observation-item">
+            <div class="observation-icon">{{icon}}</div>
+            <div class="observation-content">
+              <h4>{{title}}</h4>
+              <p>{{description}}</p>
+              {{#if impact}}
+              <div class="observation-impact impact-{{impact}}">
+                Impact : {{impact}}
+              </div>
+              {{/if}}
+              {{#if tags}}
+              <div class="observation-tags">
+                {{#each tags}}
+                <span class="observation-tag">{{this}}</span>
+                {{/each}}
+              </div>
+              {{/if}}
+            </div>
+          </div>
+          {{/each}}
+        </div>
+        {{else}}
+        <p class="text-muted">Aucun point de douleur identifié pour le moment.</p>
+        {{/if}}
+      </div>
+    </section>
+
+    <!-- 4. Opportunités d'Amélioration -->
+    <section class="report-section">
+      <div class="report-section-header">
+        <h2 class="report-section-title">
+          <span class="report-section-icon">🚀</span>
+          4. Opportunités d'Amélioration
+        </h2>
+      </div>
+      <div class="report-section-content">
+        {{#if opportunities.length}}
+        <div class="opportunities-list">
+          {{#each opportunities}}
+          <div class="opportunity-item priority-{{priority}}">
+            <div class="opportunity-header">
+              <h4>{{title}}</h4>
+              <span class="opportunity-priority">{{priority}}</span>
+            </div>
+            <p>{{description}}</p>
+            {{#if quickWin}}
+            <div class="opportunity-badge">⚡ Quick Win</div>
+            {{/if}}
+          </div>
+          {{/each}}
+        </div>
+        {{else}}
+        <p class="text-muted">Aucune opportunité identifiée pour le moment.</p>
+        {{/if}}
+      </div>
+    </section>
+
+    <!-- 5. Recommandations -->
+    <section class="report-section">
+      <div class="report-section-header">
+        <h2 class="report-section-title">
+          <span class="report-section-icon">💡</span>
+          5. Recommandations
+        </h2>
+      </div>
+      <div class="report-section-content">
+        {{#if recommendations.length}}
+        <ol class="recommendations-list">
+          {{#each recommendations}}
+          <li class="recommendation-item">
+            <h4>{{title}}</h4>
+            <p>{{description}}</p>
+            <div class="recommendation-meta">
+              <span class="recommendation-priority priority-{{priority}}">
+                Priorité : {{priority}}
+              </span>
+              {{#if timeline}}
+              <span class="recommendation-timeline">
+                Timeline : {{timeline}}
+              </span>
+              {{/if}}
+            </div>
+          </li>
+          {{/each}}
+        </ol>
+        {{else}}
+        <p class="text-muted">Aucune recommandation pour le moment.</p>
+        {{/if}}
+      </div>
+    </section>
+
+    <!-- 6. Objectifs des 3 Prochains Mois -->
+    <section class="report-section">
+      <div class="report-section-header">
+        <h2 class="report-section-title">
+          <span class="report-section-icon">🎯</span>
+          6. Objectifs des 3 Prochains Mois
+        </h2>
+      </div>
+      <div class="report-section-content">
+        {{#if objectives.length}}
+        <div class="objectives-grid">
+          {{#each objectives}}
+          <div class="objective-card">
+            <h4>{{title}}</h4>
+            <p>{{description}}</p>
+            {{#if metrics}}
+            <div class="objective-metrics">
+              <strong>Métriques :</strong>
+              <ul>
+                {{#each metrics}}
+                <li>{{this}}</li>
+                {{/each}}
+              </ul>
+            </div>
+            {{/if}}
+          </div>
+          {{/each}}
+        </div>
+        {{else}}
+        <p class="text-muted">Aucun objectif défini pour le moment.</p>
+        {{/if}}
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="report-footer">
+      <div class="report-footer-signature">
+        <p>Rédigé par <strong>{{author}}</strong></p>
+        <p class="text-muted">{{mission.startDate | formatDate}}</p>
+      </div>
+      <div class="report-footer-logo">
+        <img src="../assets/images/logo-small.svg" alt="Logo">
+      </div>
+    </footer>
+  </div>
+
+  <!-- Print Styles -->
+  <style media="print">
+    @page {
+      margin: 2cm;
+      size: A4;
+    }
+
+    body {
+      background: white;
+      color: black;
+    }
+
+    .report-section {
+      page-break-inside: avoid;
+      background: white !important;
+    }
+
+    .no-print {
+      display: none !important;
+    }
+  </style>
+</body>
+</html>

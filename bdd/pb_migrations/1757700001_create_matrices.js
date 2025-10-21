@@ -59,6 +59,12 @@ migrate((app) => {
         presentable: false
       },
       {
+        name: "keepData",
+        type: "bool",
+        required: false,
+        presentable: false
+      },
+      {
         name: "created",
         type: "autodate",
         onCreate: true,

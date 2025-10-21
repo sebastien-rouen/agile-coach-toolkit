@@ -129,6 +129,32 @@
     background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
 }
 
+.tag.skill-tag {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 8px 12px;
+    gap: 8px;
+}
+
+.skill-name-display {
+    font-weight: 600;
+}
+
+.tag-action {
+    background: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 1em;
+    padding: 0;
+    margin: 0;
+    line-height: 1;
+    transition: transform 0.2s ease;
+}
+
+.tag-action:hover {
+    transform: scale(1.2);
+}
+
 .tag-remove {
     background: transparent;
     border: none;
@@ -138,10 +164,12 @@
     padding: 0;
     margin: 0;
     line-height: 1;
+    transition: transform 0.2s ease;
 }
 
 .tag-remove:hover {
     color: #ff6b6b;
+    transform: scale(1.2);
 }
 
 /* ============================================

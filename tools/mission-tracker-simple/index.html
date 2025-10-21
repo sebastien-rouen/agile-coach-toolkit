@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mission Tracker - Agile Coach Toolkit</title>
+    
+    <!-- Shoelace Web Components -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.15.0/cdn/themes/dark.css" />
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.15.0/cdn/shoelace-autoloader.js"></script>
+    
+    <!-- PocketBase SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/pocketbase@0.21.1/dist/pocketbase.umd.js"></script>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="../../assets/css/base.css">
+    <link rel="stylesheet" href="css/mission-tracker.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="mission-tracker-header">
+        <div class="header-content">
+            <div class="header-left">
+                <a href="../../index.html#tools" class="back-btn" aria-label="Retour au toolkit">
+                    <sl-icon name="arrow-left"></sl-icon>
+                </a>
+                <h1>🎯 Mission Tracker</h1>
+            </div>
+            <div class="header-right">
+                <sl-button id="auth-btn" variant="default" size="small">
+                    <sl-icon slot="prefix" name="person-circle"></sl-icon>
+                    <span id="auth-label">Se connecter</span>
+                </sl-button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="mission-tracker-main">
+        <!-- Dashboard View -->
+        <div id="dashboard-view" class="view active">
+            <div class="dashboard-header">
+                <h2>Mes Missions</h2>
+                <sl-button id="new-mission-btn" variant="primary">
+                    <sl-icon slot="prefix" name="plus-circle"></sl-icon>
+                    Nouvelle Mission
+                </sl-button>
+            </div>
+
+            <!-- Filters -->
+            <div class="filters">
+                <sl-select id="status-filter" placeholder="Statut" clearable size="small">
+                    <sl-option value="active">Active</sl-option>
+                    <sl-option value="completed">Terminée</sl-option>
+                    <sl-option value="paused">En pause</sl-option>
+                    <sl-option value="cancelled">Annulée</sl-option>
+                </sl-select>
+                
+                <sl-select id="role-filter" placeholder="Rôle" clearable size="small">
+                    <sl-option value="coach-agile">Coach Agile</sl-option>
+                    <sl-option value="scrum-master">Scrum Master</sl-option>
+                    <sl-option value="product-owner">Product Owner</sl-option>
+                    <sl-option value="rte">RTE</sl-option>
+                </sl-select>
+            </div>
+
+            <!-- Missions Grid -->
+            <div id="missions-grid" class="missions-grid">
+                <!-- Missions will be rendered here -->
+            </div>
+
+            <!-- Empty State -->
+            <div id="empty-state" class="empty-state" style="display: none;">
+                <sl-icon name="inbox" style="font-size: 4rem; color: var(--text-tertiary);"></sl-icon>
+                <h3>Aucune mission</h3>
+                <p>Créez votre première mission pour commencer</p>
+                <sl-button variant="primary" id="empty-new-mission-btn">
+                    <sl-icon slot="prefix" name="plus-circle"></sl-icon>
+                    Nouvelle Mission
+                </sl-button>
+            </div>
+        </div>
+
+        <!-- Mission Detail View -->
+        <div id="mission-detail-view" class="view">
+            <div class="detail-header">
+                <sl-button id="back-to-dashboard-btn" variant="text" size="small">
+                    <sl-icon slot="prefix" name="arrow-left"></sl-icon>
+                    Retour
+                </sl-button>
+                <div class="detail-actions">
+                    <sl-button id="edit-mission-btn" variant="default" size="small">
+                        <sl-icon slot="prefix" name="pencil"></sl-icon>
+                        Éditer
+                    </sl-button>
+                </div>
+            </div>
+
+            <div id="mission-detail-content">
+                <!-- Mission details will be rendered here -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Mission Form Dialog -->
+    <sl-dialog id="mission-form-dialog" label="Nouvelle Mission" class="dialog-large">
+        <form id="mission-form">
+            <sl-input name="title" label="Titre de la mission" required></sl-input>
+            
+            <sl-input name="client" label="Client" required></sl-input>
+            
+            <sl-select name="role" label="Votre rôle" required>
+                <sl-option value="coach-agile">🎓 Coach Agile</sl-option>
+                <sl-option value="scrum-master">🎯 Scrum Master</sl-option>
+                <sl-option value="product-owner">👨‍💼 Product Owner</sl-option>
+                <sl-option value="designer">🎨 Designer</sl-option>
+                <sl-option value="dev">💻 Développeur</sl-option>
+                <sl-option value="architecte">🏗️ Architecte</sl-option>
+                <sl-option value="devops">⚙️ DevOps</sl-option>
+                <sl-option value="rte">🚢 RTE</sl-option>
+            </sl-select>
+            
+            <sl-input name="start_date" label="Date de début" type="date" required></sl-input>
+            
+            <sl-input name="end_date" label="Date de fin (optionnel)" type="date"></sl-input>
+            
+            <sl-textarea name="context" label="Contexte" rows="4"></sl-textarea>
+            
+            <sl-input name="team_size" label="Taille de l'équipe" type="number" min="1"></sl-input>
+            
+            <div class="form-actions">
+                <sl-button type="button" variant="default" id="cancel-mission-btn">Annuler</sl-button>
+                <sl-button type="submit" variant="primary">Créer</sl-button>
+            </div>
+        </form>
+    </sl-dialog>
+
+    <!-- Auth Dialog -->
+    <sl-dialog id="auth-dialog" label="Connexion PocketBase">
+        <sl-tab-group>
+            <sl-tab slot="nav" panel="login">Connexion</sl-tab>
+            <sl-tab slot="nav" panel="register">Inscription</sl-tab>
+
+            <sl-tab-panel name="login">
+                <form id="login-form">
+                    <sl-input name="email" type="email" label="Email" required></sl-input>
+                    <sl-input name="password" type="password" label="Mot de passe" required password-toggle></sl-input>
+                    <sl-button type="submit" variant="primary" style="width: 100%; margin-top: 1rem;">
+                        Se connecter
+                    </sl-button>
+                </form>
+            </sl-tab-panel>
+
+            <sl-tab-panel name="register">
+                <form id="register-form">
+                    <sl-input name="name" label="Nom" required></sl-input>
+                    <sl-input name="email" type="email" label="Email" required></sl-input>
+                    <sl-input name="password" type="password" label="Mot de passe" required password-toggle></sl-input>
+                    <sl-input name="passwordConfirm" type="password" label="Confirmer le mot de passe" required password-toggle></sl-input>
+                    <sl-button type="submit" variant="primary" style="width: 100%; margin-top: 1rem;">
+                        S'inscrire
+                    </sl-button>
+                </form>
+            </sl-tab-panel>
+        </sl-tab-group>
+    </sl-dialog>
+
+    <!-- Scripts -->
+    <script type="module" src="js/mission-tracker.js"></script>
+    
+    <!-- Intégration Agile Coach Toolkit (gestion thème, navigation) -->
+    <script src="../../assets/js/tool-integration.js"></script>
+    <script>
+        // Configuration spécifique à l'outil
+        window.TOOL_CONFIG = {
+            name: "mission-tracker",
+            backUrl: "../../index.html#tools"
+        };
+    </script>
+</body>
+</html>

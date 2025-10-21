@@ -1,0 +1,250 @@
+/* ===================================
+   MATRIX VIEW (Power/Interest Grid)
+   =================================== */
+
+.matrix-container {
+    background: var(--bg-card);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-lg);
+    box-shadow: var(--shadow);
+    position: relative;
+}
+
+.matrix-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 2px;
+    background: var(--border-color);
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    min-height: 600px;
+}
+
+.matrix-quadrant {
+    padding: var(--spacing-lg);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.matrix-quadrant h3 {
+    font-size: 1.2rem;
+    margin-bottom: var(--spacing-xs);
+    font-weight: 700;
+}
+
+.matrix-quadrant p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-md);
+}
+
+/* Quadrant Colors */
+.high-power-low-interest {
+    background: rgba(245, 158, 11, 0.1);
+    border-top: 4px solid var(--color-high-low);
+}
+
+.high-power-high-interest {
+    background: rgba(220, 38, 38, 0.1);
+    border-top: 4px solid var(--color-high-high);
+}
+
+.low-power-low-interest {
+    background: rgba(16, 185, 129, 0.1);
+    border-top: 4px solid var(--color-low-low);
+}
+
+.low-power-high-interest {
+    background: rgba(234, 179, 8, 0.1);
+    border-top: 4px solid var(--color-low-high);
+}
+
+/* Stakeholder Cards in Quadrants */
+.quadrant-stakeholders {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    flex: 1;
+}
+
+.matrix-stakeholder-card {
+    background: var(--bg-tertiary);
+    padding: var(--spacing-sm);
+    border-radius: var(--border-radius);
+    border-left: 4px solid;
+    cursor: move;
+    transition: var(--transition);
+    position: relative;
+}
+
+.matrix-stakeholder-card:hover {
+    background: var(--bg-secondary);
+    transform: translateX(4px);
+}
+
+.matrix-stakeholder-card.dragging {
+    opacity: 0.5;
+    transform: scale(0.95);
+}
+
+.quadrant-stakeholders.drag-over {
+    background: rgba(59, 130, 246, 0.1);
+    border: 2px dashed #3b82f6;
+    border-radius: var(--border-radius);
+}
+
+.matrix-stakeholder-card.governance {
+    border-color: var(--color-governance);
+    background: linear-gradient(90deg, rgba(139, 92, 246, 0.15) 0%, var(--bg-tertiary) 100%);
+}
+
+.matrix-stakeholder-card.governance::before {
+    content: '👑';
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    font-size: 1.2rem;
+    opacity: 0.3;
+}
+
+.matrix-stakeholder-card.customer {
+    border-color: var(--color-customer);
+    background: linear-gradient(90deg, rgba(6, 182, 212, 0.15) 0%, var(--bg-tertiary) 100%);
+}
+
+.matrix-stakeholder-card.customer::before {
+    content: '👥';
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    font-size: 1.2rem;
+    opacity: 0.3;
+}
+
+.matrix-stakeholder-card.provider {
+    border-color: var(--color-provider);
+    background: linear-gradient(90deg, rgba(249, 115, 22, 0.15) 0%, var(--bg-tertiary) 100%);
+}
+
+.matrix-stakeholder-card.provider::before {
+    content: '🤝';
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    font-size: 1.2rem;
+    opacity: 0.3;
+}
+
+.matrix-stakeholder-card.influencer {
+    border-color: var(--color-influencer);
+    background: linear-gradient(90deg, rgba(236, 72, 153, 0.15) 0%, var(--bg-tertiary) 100%);
+}
+
+.matrix-stakeholder-card.influencer::before {
+    content: '💡';
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    font-size: 1.2rem;
+    opacity: 0.3;
+}
+
+.matrix-card-name {
+    font-weight: 600;
+    margin-bottom: 2px;
+}
+
+.matrix-card-role {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.matrix-card-metrics {
+    display: flex;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-xs);
+    font-size: 0.8rem;
+}
+
+.matrix-card-metric {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* Axes Labels */
+.matrix-axes {
+    position: relative;
+    margin-top: var(--spacing-md);
+}
+
+.axis-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-align: center;
+}
+
+.axis-x {
+    margin-top: var(--spacing-sm);
+}
+
+.axis-y {
+    position: absolute;
+    left: -40px;
+    top: 50%;
+    transform: rotate(-90deg) translateX(-50%);
+    transform-origin: left center;
+    white-space: nowrap;
+}
+
+/* Empty State */
+.quadrant-empty {
+    color: var(--text-tertiary);
+    font-size: 0.9rem;
+    font-style: italic;
+    text-align: center;
+    padding: var(--spacing-md);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .matrix-grid {
+        min-height: 500px;
+    }
+
+    .matrix-quadrant {
+        padding: var(--spacing-md);
+    }
+
+    .matrix-quadrant h3 {
+        font-size: 1rem;
+    }
+
+    .matrix-quadrant p {
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .matrix-container {
+        padding: var(--spacing-md);
+    }
+
+    .matrix-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        min-height: auto;
+    }
+
+    .matrix-quadrant {
+        min-height: 200px;
+    }
+
+    .axis-y {
+        display: none;
+    }
+}

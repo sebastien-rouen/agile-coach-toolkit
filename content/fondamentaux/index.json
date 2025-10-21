@@ -2,36 +2,218 @@
   "category": "fondamentaux",
   "title": "Fondamentaux",
   "description": "Les bases essentielles du coaching agile",
-  "icon": "fas fa-foundation",
-  "color": "#2196F3",
+  "icon": "fas fa-database",
+  "color": "#2196f3",
   "articles": [
+    {
+      "id": "manifeste-agile",
+      "title": "Le Manifeste Agile",
+      "file": "manifeste-agile.md",
+      "tags": [
+        "manifeste",
+        "valeurs",
+        "principes",
+        "histoire"
+      ],
+      "order": 1
+    },
+    {
+      "id": "agile-fondamentaux-modernagile",
+      "title": "Agile Fondamentaux Modern Agile",
+      "file": "agile-fondamentaux-modernagile.md",
+      "tags": [
+        "fondamentaux",
+        "modern agile",
+        "principes",
+        "valeurs",
+        "pratiques"
+      ],
+      "order": 2
+    },
     {
       "id": "cadrage-intervention",
       "title": "Cadrage d'Intervention",
       "file": "cadrage-intervention.md",
-      "tags": ["cadrage", "contrat", "objectifs", "périmètre"],
-      "order": 1
+      "tags": [
+        "cadrage",
+        "contrat",
+        "objectifs",
+        "périmètre"
+      ],
+      "order": 3
     },
     {
       "id": "vision-strategie",
       "title": "Vision & Stratégie",
       "file": "vision-strategie.md",
-      "tags": ["vision", "stratégie", "alignement", "communication"],
-      "order": 2
+      "tags": [
+        "vision",
+        "stratégie",
+        "alignement",
+        "communication"
+      ],
+      "order": 4
     },
     {
       "id": "formations-frameworks",
       "title": "Formations Frameworks",
       "file": "formations-frameworks.md",
-      "tags": ["formation", "apprentissage", "certification", "compétences"],
-      "order": 3
+      "tags": [
+        "formation",
+        "apprentissage",
+        "certification",
+        "compétences"
+      ],
+      "order": 5
     },
     {
       "id": "assessment-diagnostic",
       "title": "Assessment & Diagnostic",
       "file": "assessment-diagnostic.md",
-      "tags": ["assessment", "maturité", "diagnostic", "amélioration"],
+      "tags": [
+        "assessment",
+        "maturité",
+        "diagnostic",
+        "amélioration"
+      ],
+      "order": 6
+    },
+    {
+      "id": "user-stories",
+      "title": "User Stories : Écrire des Besoins Utilisateur (TO REVIEW)",
+      "file": "user-stories.md",
+      "tags": [
+        "user-stories",
+        "backlog",
+        "product-owner",
+        "besoins"
+      ],
+      "order": 7
+    }
+  ],
+  "tools": [
+    {
+      "id": "agile-fluency-model",
+      "title": "Agile Fluency Model",
+      "description": "Outil d'évaluation de la maturité agile des équipes",
+      "tags": [
+        "maturité",
+        "assessment",
+        "diagnostic",
+        "amélioration"
+      ],
+      "platform": "Web",
+      "external": true,
+      "url": "https://www.agilefluency.org",
+      "order": 1
+    },
+    {
+      "id": "comparative-agility",
+      "title": "Comparative Agility",
+      "description": "Assessment complet pour mesurer la maturité agile organisationnelle",
+      "tags": [
+        "assessment",
+        "maturité",
+        "diagnostic",
+        "benchmark"
+      ],
+      "platform": "Web",
+      "external": true,
+      "url": "https://www.comparativeagility.com",
+      "order": 2
+    },
+    {
+      "id": "scrum-guide",
+      "title": "Scrum Guide Officiel",
+      "description": "Le guide officiel de Scrum par Ken Schwaber et Jeff Sutherland",
+      "tags": [
+        "scrum",
+        "guide",
+        "référence",
+        "framework"
+      ],
+      "platform": "Web, PDF",
+      "external": true,
+      "url": "https://scrumguides.org",
+      "order": 3
+    },
+    {
+      "id": "agile-manifesto",
+      "title": "Site du Manifeste Agile",
+      "description": "Le site officiel du Manifeste Agile avec les 4 valeurs et 12 principes",
+      "tags": [
+        "manifeste",
+        "valeurs",
+        "principes",
+        "référence"
+      ],
+      "platform": "Web",
+      "external": true,
+      "url": "https://agilemanifesto.org",
       "order": 4
     }
-  ]
+  ],
+  "templates": [
+    {
+      "id": "canvas-cadrage",
+      "title": "Canvas de Cadrage d'Intervention",
+      "description": "Template pour structurer et formaliser le cadrage d'une mission de coaching agile",
+      "tags": [
+        "cadrage",
+        "contrat",
+        "objectifs",
+        "périmètre"
+      ],
+      "format": "PDF",
+      "file": "canvas-cadrage.pdf",
+      "downloadUrl": "templates/fondamentaux/canvas-cadrage.pdf",
+      "order": 1
+    },
+    {
+      "id": "assessment-checklist",
+      "title": "Checklist d'Assessment Agile",
+      "description": "Grille d'évaluation complète pour diagnostiquer la maturité agile d'une équipe",
+      "tags": [
+        "assessment",
+        "diagnostic",
+        "maturité",
+        "checklist"
+      ],
+      "format": "Excel",
+      "file": "assessment-checklist.xlsx",
+      "downloadUrl": "templates/fondamentaux/assessment-checklist.xlsx",
+      "order": 2
+    },
+    {
+      "id": "vision-canvas",
+      "title": "Canvas Vision Produit",
+      "description": "Template pour définir et communiquer la vision d'un produit",
+      "tags": [
+        "vision",
+        "stratégie",
+        "produit",
+        "alignement"
+      ],
+      "format": "PDF",
+      "file": "vision-canvas.pdf",
+      "downloadUrl": "templates/fondamentaux/vision-canvas.pdf",
+      "order": 3
+    },
+    {
+      "id": "user-story-template",
+      "title": "Template User Stories",
+      "description": "Modèle de user stories avec critères INVEST et critères d'acceptation",
+      "tags": [
+        "user-stories",
+        "backlog",
+        "invest",
+        "critères-acceptation"
+      ],
+      "format": "Word",
+      "file": "user-story-template.docx",
+      "downloadUrl": "templates/fondamentaux/user-story-template.docx",
+      "order": 4
+    }
+  ],
+  "order": 1
 }

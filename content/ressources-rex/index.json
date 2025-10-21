@@ -9,15 +9,228 @@
       "id": "templates-canvas",
       "title": "Templates & Canvas",
       "file": "templates-canvas.md",
-      "tags": ["template", "canvas", "outil", "prêt-à-utiliser", "facilitation"],
+      "tags": [
+        "template",
+        "canvas",
+        "outil",
+        "prêt-à-utiliser",
+        "facilitation"
+      ],
+      "order": 1
+    },
+    {
+      "id": "cadrage-intervention",
+      "title": "Les lois de la facilitation : Conway, Brooks, Parkinson et autres",
+      "file": "facilitation-laws.md",
+      "tags": [
+        "lois",
+        "conway",
+        "brooks",
+        "parkinson",
+        "facilitation",
+        "feature-team",
+        "ops",
+        "rh",
+        "safe"
+      ],
       "order": 1
     },
     {
       "id": "rex-terrain",
       "title": "Retours d'Expérience Terrain",
       "file": "rex-terrain.md",
-      "tags": ["REX", "étude-cas", "apprentissage", "échec", "succès"],
+      "tags": [
+        "REX",
+        "étude-cas",
+        "apprentissage",
+        "échec",
+        "succès"
+      ],
       "order": 2
+    },
+    {
+      "id": "lois",
+      "title": "Lois",
+      "file": "lois.md",
+      "tags": [
+        "loi",
+        "conway",
+        "parkinson",
+        "organisation",
+        "théorie"
+      ],
+      "order": 3
+    },
+    {
+      "id": "anti-patterns-agile",
+      "title": "Anti-Patterns Agiles à Éviter (TO REVIEW)",
+      "file": "anti-patterns-agile.md",
+      "tags": [
+        "anti-patterns",
+        "erreurs",
+        "bonnes-pratiques",
+        "rex",
+        "agile-in-name-only",
+        "scrum-master",
+        "product-owner",
+        "definition-of-done",
+        "retrospective",
+        "sprint-goal",
+        "daily",
+        "tests",
+        "refactoring",
+        "vélocité-kpi",
+        "scaling"
+      ],
+      "order": 4
+    },
+    {
+      "id": "wiki-structures-guide",
+      "title": "Wikis d'équipe : 7 modèles adaptés à votre maturité et vos rôles",
+      "file": "wiki-structures-guide.md",
+      "tags": [
+        "wiki",
+        "structure",
+        "outils",
+        "pratiques",
+        "agile-in-name-only",
+        "scrum-master",
+        "product-owner",
+        "definition-of-done",
+        "retrospective",
+        "sprint-goal",
+        "daily",
+        "tests",
+        "refactoring",
+        "vélocité-kpi",
+        "scaling"
+      ],
+      "order": 5
     }
-  ]
+  ],
+  "tools": [
+    {
+      "id": "agile-alliance",
+      "title": "Agile Alliance Resources",
+      "description": "Bibliothèque de ressources, articles et REX de la communauté agile",
+      "tags": [
+        "ressources",
+        "communauté",
+        "rex",
+        "articles"
+      ],
+      "platform": "Web",
+      "external": true,
+      "url": "https://www.agilealliance.org/resources",
+      "order": 1
+    },
+    {
+      "id": "scrum-patterns",
+      "title": "Scrum Patterns Group",
+      "description": "Collection de patterns et anti-patterns Scrum documentés",
+      "tags": [
+        "patterns",
+        "anti-patterns",
+        "scrum",
+        "bonnes-pratiques"
+      ],
+      "platform": "Web",
+      "external": true,
+      "url": "https://sites.google.com/a/scrumplop.org/published-patterns",
+      "order": 2
+    },
+    {
+      "id": "retromat",
+      "title": "Retromat",
+      "description": "Générateur d'activités pour rétrospectives avec 100+ exercices",
+      "tags": [
+        "retrospective",
+        "activités",
+        "facilitation",
+        "générateur"
+      ],
+      "platform": "Web",
+      "external": true,
+      "url": "https://retromat.org",
+      "order": 3
+    },
+    {
+      "id": "management-30-tools",
+      "title": "Management 3.0 Tools",
+      "description": "Collection d'outils et pratiques Management 3.0",
+      "tags": [
+        "management-30",
+        "outils",
+        "pratiques",
+        "leadership"
+      ],
+      "platform": "Web",
+      "external": true,
+      "url": "https://management30.com/practice",
+      "order": 4
+    }
+  ],
+  "templates": [
+    {
+      "id": "canvas-collection",
+      "title": "Collection de Canvas Agiles",
+      "description": "Pack de 15 canvas essentiels pour coachs agiles (Lean, Business Model, etc.)",
+      "tags": [
+        "canvas",
+        "collection",
+        "facilitation",
+        "outils"
+      ],
+      "format": "PDF",
+      "file": "canvas-collection.pdf",
+      "downloadUrl": "templates/ressources-rex/canvas-collection.pdf",
+      "order": 1
+    },
+    {
+      "id": "rex-template",
+      "title": "Template Retour d'Expérience",
+      "description": "Structure pour documenter et partager vos REX de missions",
+      "tags": [
+        "rex",
+        "documentation",
+        "apprentissage",
+        "partage"
+      ],
+      "format": "Word",
+      "file": "rex-template.docx",
+      "downloadUrl": "templates/ressources-rex/rex-template.docx",
+      "order": 2
+    },
+    {
+      "id": "anti-patterns-checklist",
+      "title": "Checklist Anti-Patterns",
+      "description": "Liste de vérification des anti-patterns agiles courants à éviter",
+      "tags": [
+        "anti-patterns",
+        "checklist",
+        "bonnes-pratiques",
+        "audit"
+      ],
+      "format": "PDF",
+      "file": "anti-patterns-checklist.pdf",
+      "downloadUrl": "templates/ressources-rex/anti-patterns-checklist.pdf",
+      "order": 3
+    },
+    {
+      "id": "facilitation-toolkit",
+      "title": "Toolkit de Facilitation",
+      "description": "Boîte à outils complète avec 50+ techniques de facilitation",
+      "tags": [
+        "facilitation",
+        "toolkit",
+        "techniques",
+        "atelier"
+      ],
+      "format": "PDF",
+      "file": "facilitation-toolkit.pdf",
+      "downloadUrl": "templates/ressources-rex/facilitation-toolkit.pdf",
+      "order": 4
+    }
+  ],
+  "order": 12
 }

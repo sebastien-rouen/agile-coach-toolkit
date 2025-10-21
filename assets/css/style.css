@@ -1,0 +1,39 @@
+/**
+ * style.css - Point d'entrée CSS (imports uniquement)
+ * Architecture modulaire selon shared-css-architecture.md
+ */
+
+/* 1. Base et variables */
+@import url('variables.css');
+@import url('../themes/theme-light.css');
+@import url('base.css');
+
+/* 2. Layout */
+@import url('layout.css');
+@import url('sidebar.css');
+
+/* 3. Composants */
+@import url('components/header.css');
+@import url('components/buttons.css');
+@import url('components/badges.css');
+@import url('components/tabs.css');
+@import url('components/categories.css');
+@import url('components/breadcrumb.css');
+@import url('components/favorites.css');
+@import url('components/cards.css');
+@import url('components/states.css');
+
+/* 4. Modules */
+@import url('modules/homepage.css');
+@import url('modules/category-page.css');
+@import url('modules/content-page.css');
+@import url('modules/category-colors.css');
+@import url('wizard.css');
+@import url('markdown.css');
+
+/* 5. Fonctionnalités */
+@import url('modal.css');
+@import url('search.css');
+
+/* 6. Responsive */
+@import url('responsive.css');

@@ -9,15 +9,170 @@
       "id": "scaling-agile",
       "title": "Scaling Agile",
       "file": "scaling-agile.md",
-      "tags": ["scaling", "SAFe", "LeSS", "coordination"],
+      "tags": [
+        "scaling",
+        "SAFe",
+        "LeSS",
+        "coordination"
+      ],
       "order": 1
     },
     {
       "id": "coordination-equipes",
       "title": "Coordination d'Équipes",
       "file": "coordination-equipes.md",
-      "tags": ["coordination", "synchronisation", "dépendances", "communication"],
+      "tags": [
+        "coordination",
+        "synchronisation",
+        "dépendances",
+        "communication"
+      ],
       "order": 2
+    },
+    {
+      "id": "scrum-of-scrums",
+      "title": "Scrum of Scrums (TO REVIEW)",
+      "file": "scrum-of-scrums.md",
+      "tags": [
+        "scrum-of-scrums",
+        "coordination",
+        "scaling",
+        "multi-équipes",
+        "dépendances",
+        "synchronisation",
+        "blocages",
+        "safe",
+        "less",
+        "nexus",
+        "dependency-board",
+        "facilitation"
+      ],
+      "order": 3
     }
-  ]
+  ],
+  "tools": [
+    {
+      "id": "safe-configurator",
+      "title": "SAFe Configurator",
+      "description": "Outil pour configurer et personnaliser votre implémentation SAFe",
+      "tags": [
+        "safe",
+        "scaling",
+        "configuration",
+        "portfolio"
+      ],
+      "platform": "Web",
+      "external": true,
+      "url": "https://www.scaledagileframework.com",
+      "order": 1
+    },
+    {
+      "id": "less-framework",
+      "title": "LeSS Framework Guide",
+      "description": "Guide complet du framework Large-Scale Scrum",
+      "tags": [
+        "less",
+        "scaling",
+        "scrum",
+        "multi-équipes"
+      ],
+      "platform": "Web",
+      "external": true,
+      "url": "https://less.works",
+      "order": 2
+    },
+    {
+      "id": "nexus-guide",
+      "title": "Nexus Guide",
+      "description": "Framework de scaling Scrum pour 3-9 équipes",
+      "tags": [
+        "nexus",
+        "scaling",
+        "scrum",
+        "coordination"
+      ],
+      "platform": "Web, PDF",
+      "external": true,
+      "url": "https://www.scrum.org/resources/nexus-guide",
+      "order": 3
+    },
+    {
+      "id": "dependency-tracker",
+      "title": "Dependency Tracker",
+      "description": "Outil pour visualiser et gérer les dépendances inter-équipes",
+      "tags": [
+        "dépendances",
+        "coordination",
+        "tracking",
+        "visualisation"
+      ],
+      "platform": "Web",
+      "external": true,
+      "url": "https://www.atlassian.com/software/jira/features/roadmaps",
+      "order": 4
+    }
+  ],
+  "templates": [
+    {
+      "id": "scrum-of-scrums-board",
+      "title": "Board Scrum of Scrums",
+      "description": "Template Miro pour faciliter vos Scrum of Scrums avec dependency board",
+      "tags": [
+        "scrum-of-scrums",
+        "coordination",
+        "dépendances",
+        "miro"
+      ],
+      "format": "Miro Board",
+      "file": "scrum-of-scrums.rtb",
+      "downloadUrl": "templates/multi-equipes-scale/scrum-of-scrums.rtb",
+      "order": 1
+    },
+    {
+      "id": "dependency-matrix",
+      "title": "Matrice de Dépendances",
+      "description": "Excel pour cartographier et suivre les dépendances entre équipes",
+      "tags": [
+        "dépendances",
+        "coordination",
+        "tracking",
+        "matrice"
+      ],
+      "format": "Excel",
+      "file": "dependency-matrix.xlsx",
+      "downloadUrl": "templates/multi-equipes-scale/dependency-matrix.xlsx",
+      "order": 2
+    },
+    {
+      "id": "safe-pi-board",
+      "title": "SAFe Program Board",
+      "description": "Template de Program Board pour PI Planning avec features et dépendances",
+      "tags": [
+        "safe",
+        "pi-planning",
+        "program-board",
+        "art"
+      ],
+      "format": "Miro Board",
+      "file": "safe-program-board.rtb",
+      "downloadUrl": "templates/multi-equipes-scale/safe-program-board.rtb",
+      "order": 3
+    },
+    {
+      "id": "team-sync-calendar",
+      "title": "Calendrier de Synchronisation",
+      "description": "Template pour planifier les événements de synchronisation inter-équipes",
+      "tags": [
+        "synchronisation",
+        "calendrier",
+        "coordination",
+        "planning"
+      ],
+      "format": "Excel",
+      "file": "team-sync-calendar.xlsx",
+      "downloadUrl": "templates/multi-equipes-scale/team-sync-calendar.xlsx",
+      "order": 4
+    }
+  ],
+  "order": 8
 }

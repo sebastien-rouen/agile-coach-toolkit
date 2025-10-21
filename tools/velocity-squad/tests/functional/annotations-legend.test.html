@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test - Légende des Annotations</title>
+    <link rel="stylesheet" href="../../css/styles-new.css">
+    <style>
+        body {
+            padding: 2rem;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+        }
+        .test-section {
+            margin-bottom: 3rem;
+            padding: 1.5rem;
+            background: var(--bg-card);
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+        .test-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        .test-description {
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+        }
+        .chart-header {
+            margin-bottom: 1rem;
+        }
+        .test-result {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: var(--bg-secondary);
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧪 Tests - Légende des Annotations</h1>
+    <p style="color: var(--text-secondary); margin-bottom: 2rem;">
+        Tests fonctionnels de la légende des annotations du graphique de vélocité
+    </p>
+
+    <!-- Test 1: Affichage basique -->
+    <div class="test-section">
+        <h2 class="test-title">Test 1: Affichage Basique</h2>
+        <p class="test-description">
+            Vérifie que la légende s'affiche correctement avec plusieurs types d'annotations
+        </p>
+        <div class="chart-header" id="test1-container">
+            <h3>📊 Graphique de Test</h3>
+        </div>
+        <div class="test-result" id="test1-result">En attente...</div>
+    </div>
+
+    <!-- Test 2: Compteurs -->
+    <div class="test-section">
+        <h2 class="test-title">Test 2: Compteurs d'Annotations</h2>
+        <p class="test-description">
+            Vérifie que les compteurs affichent le bon nombre d'annotations par type
+        </p>
+        <div class="chart-header" id="test2-container">
+            <h3>📊 Graphique de Test</h3>
+        </div>
+        <div class="test-result" id="test2-result">En attente...</div>
+    </div>
+
+    <!-- Test 3: Interactivité -->
+    <div class="test-section">
+        <h2 class="test-title">Test 3: Interactivité</h2>
+        <p class="test-description">
+            Vérifie que les clics sur les items de la légende fonctionnent
+        </p>
+        <div class="chart-header" id="test3-container">
+            <h3>📊 Graphique de Test</h3>
+        </div>
+        <div class="test-result" id="test3-result">Cliquez sur un item de la légende...</div>
+    </div>
+
+    <!-- Test 4: Aucune annotation -->
+    <div class="test-section">
+        <h2 class="test-title">Test 4: Aucune Annotation</h2>
+        <p class="test-description">
+            Vérifie que la légende ne s'affiche pas quand il n'y a pas d'annotations
+        </p>
+        <div class="chart-header" id="test4-container">
+            <h3>📊 Graphique de Test</h3>
+        </div>
+        <div class="test-result" id="test4-result">En attente...</div>
+    </div>
+
+    <!-- Test 5: Accessibilité -->
+    <div class="test-section">
+        <h2 class="test-title">Test 5: Accessibilité</h2>
+        <p class="test-description">
+            Vérifie les attributs ARIA et la navigation au clavier
+        </p>
+        <div class="chart-header" id="test5-container">
+            <h3>📊 Graphique de Test</h3>
+        </div>
+        <div class="test-result" id="test5-result">En attente...</div>
+    </div>
+
+    <script type="module">
+        import { ChartsRenderer } from '../../js/ui/charts-renderer.js';
+
+        // Données de test
+        const testData1 = {
+            sprints: [
+                { id: 1, name: 'Sprint 1', velocity: 45 },
+                { id: 2, name: 'Sprint 2', velocity: 50 },
+                { id: 3, name: 'Sprint 3', velocity: 42 }
+            ],
+            annotations: [
+                { type: 'team', sprintId: 1, text: 'Arrivée de Marie' },
+                { type: 'vacation', sprintId: 2, text: 'Congés d\'été' },
+                { type: 'incident', sprintId: 2, text: 'Panne serveur' },
+                { type: 'release', sprintId: 3, text: 'Release v2.0' }
+            ]
+        };
+
+        const testData2 = {
+            sprints: [
+                { id: 1, name: 'Sprint 1', velocity: 45 },
+                { id: 2, name: 'Sprint 2', velocity: 50 }
+            ],
+            annotations: [
+                { type: 'team', sprintId: 1, text: 'Arrivée de Marie' },
+                { type: 'team', sprintId: 1, text: 'Départ de Paul' },
+                { type: 'team', sprintId: 2, text: 'Arrivée de Sophie' },
+                { type: 'vacation', sprintId: 2, text: 'Congés' },
+                { type: 'vacation', sprintId: 2, text: 'Congés' }
+            ]
+        };
+
+        const testData3 = testData1;
+
+        const testData4 = {
+            sprints: [
+                { id: 1, name: 'Sprint 1', velocity: 45 }
+            ],
+            annotations: []
+        };
+
+        const testData5 = testData1;
+
+        // Test 1: Affichage basique
+        function test1() {
+            const renderer = new ChartsRenderer(testData1);
+            const container = document.querySelector('#test1-container');
+            
+            // Simuler le rendu de la légende
+            renderer.renderAnnotationLegend();
+            
+            const legend = container.querySelector('.annotation-legend');
+            const items = legend ? legend.querySelectorAll('.annotation-legend-item') : [];
+            
+            const result = document.getElementById('test1-result');
+            if (legend && items.length === 4) {
+                result.innerHTML = `✅ SUCCÈS: Légende affichée avec ${items.length} types d'annotations`;
+                result.style.color = '#4CAF50';
+            } else {
+                result.innerHTML = `❌ ÉCHEC: Légende non affichée ou nombre d'items incorrect (${items.length})`;
+                result.style.color = '#F44336';
+            }
+        }
+
+        // Test 2: Compteurs
+        function test2() {
+            const renderer = new ChartsRenderer(testData2);
+            const container = document.querySelector('#test2-container');
+            
+            renderer.renderAnnotationLegend();
+            
+            const legend = container.querySelector('.annotation-legend');
+            const teamItem = legend ? legend.querySelector('[data-type="team"]') : null;
+            const vacationItem = legend ? legend.querySelector('[data-type="vacation"]') : null;
+            
+            const teamCount = teamItem ? teamItem.querySelector('.annotation-count').textContent : '0';
+            const vacationCount = vacationItem ? vacationItem.querySelector('.annotation-count').textContent : '0';
+            
+            const result = document.getElementById('test2-result');
+            if (teamCount === '3' && vacationCount === '2') {
+                result.innerHTML = `✅ SUCCÈS: Compteurs corrects (Équipe: ${teamCount}, Congés: ${vacationCount})`;
+                result.style.color = '#4CAF50';
+            } else {
+                result.innerHTML = `❌ ÉCHEC: Compteurs incorrects (Équipe: ${teamCount}, Congés: ${vacationCount})`;
+                result.style.color = '#F44336';
+            }
+        }
+
+        // Test 3: Interactivité
+        function test3() {
+            const renderer = new ChartsRenderer(testData3);
+            const container = document.querySelector('#test3-container');
+            
+            renderer.renderAnnotationLegend();
+            
+            const legend = container.querySelector('.annotation-legend');
+            const items = legend ? legend.querySelectorAll('.annotation-legend-item') : [];
+            
+            const result = document.getElementById('test3-result');
+            
+            if (items.length > 0) {
+                items.forEach(item => {
+                    item.addEventListener('click', () => {
+                        const type = item.getAttribute('data-type');
+                        result.innerHTML = `✅ SUCCÈS: Clic détecté sur "${type}"`;
+                        result.style.color = '#4CAF50';
+                    });
+                });
+                result.innerHTML = `⏳ En attente: Cliquez sur un item de la légende...`;
+                result.style.color = '#FF9800';
+            } else {
+                result.innerHTML = `❌ ÉCHEC: Aucun item cliquable trouvé`;
+                result.style.color = '#F44336';
+            }
+        }
+
+        // Test 4: Aucune annotation
+        function test4() {
+            const renderer = new ChartsRenderer(testData4);
+            const container = document.querySelector('#test4-container');
+            
+            renderer.renderAnnotationLegend();
+            
+            const legend = container.querySelector('.annotation-legend');
+            
+            const result = document.getElementById('test4-result');
+            if (!legend) {
+                result.innerHTML = `✅ SUCCÈS: Légende non affichée (comportement attendu)`;
+                result.style.color = '#4CAF50';
+            } else {
+                result.innerHTML = `❌ ÉCHEC: Légende affichée alors qu'il n'y a pas d'annotations`;
+                result.style.color = '#F44336';
+            }
+        }
+
+        // Test 5: Accessibilité
+        function test5() {
+            const renderer = new ChartsRenderer(testData5);
+            const container = document.querySelector('#test5-container');
+            
+            renderer.renderAnnotationLegend();
+            
+            const legend = container.querySelector('.annotation-legend');
+            const items = legend ? legend.querySelectorAll('.annotation-legend-item') : [];
+            
+            const result = document.getElementById('test5-result');
+            
+            if (!legend) {
+                result.innerHTML = `❌ ÉCHEC: Légende non trouvée`;
+                result.style.color = '#F44336';
+                return;
+            }
+            
+            const hasRole = legend.getAttribute('role') === 'list';
+            const hasAriaLabel = legend.hasAttribute('aria-label');
+            const allItemsHaveRole = Array.from(items).every(item => item.getAttribute('role') === 'listitem');
+            const allItemsHaveTabindex = Array.from(items).every(item => item.hasAttribute('tabindex'));
+            
+            if (hasRole && hasAriaLabel && allItemsHaveRole && allItemsHaveTabindex) {
+                result.innerHTML = `✅ SUCCÈS: Tous les attributs ARIA sont présents
+                <br>- role="list": ${hasRole}
+                <br>- aria-label: ${hasAriaLabel}
+                <br>- role="listitem": ${allItemsHaveRole}
+                <br>- tabindex: ${allItemsHaveTabindex}`;
+                result.style.color = '#4CAF50';
+            } else {
+                result.innerHTML = `❌ ÉCHEC: Attributs ARIA manquants
+                <br>- role="list": ${hasRole}
+                <br>- aria-label: ${hasAriaLabel}
+                <br>- role="listitem": ${allItemsHaveRole}
+                <br>- tabindex: ${allItemsHaveTabindex}`;
+                result.style.color = '#F44336';
+            }
+        }
+
+        // Exécuter tous les tests
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                test1();
+                test2();
+                test3();
+                test4();
+                test5();
+            }, 100);
+        });
+    </script>
+</body>
+</html>

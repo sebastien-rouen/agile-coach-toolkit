@@ -15,7 +15,8 @@
     <link rel="stylesheet" href="css/mobile.css">
     <link rel="stylesheet" href="css/notifications.css">
     <link rel="stylesheet" href="css/share.css">
-    
+    <link rel="stylesheet" href="css/import-prompt.css">
+
     <!-- Theme Light (optionnel) -->
     <link rel="stylesheet" href="css/theme-light.css">
 </head>
@@ -26,16 +27,23 @@
         <div class="matrix-header">
             <div class="matrix-name-container">
                 <span id="matrixName" class="matrix-name"></span>
-                <button id="editMatrixName" onclick="editMatrixName()" class="btn-icon-small" title="Modifier le nom de la matrice">✏️</button>
+                <button id="editMatrixName" onclick="editMatrixName()" class="btn-icon-small"
+                    title="Modifier le nom de la matrice">✏️</button>
             </div>
-            <button id="newMatrixBtn" onclick="createNewMatrix()" class="btn-new-matrix" title="Créer une nouvelle matrice">
+            <button id="newMatrixBtn" onclick="createNewMatrix()" class="btn-new-matrix"
+                title="Créer une nouvelle matrice">
                 <span class="btn-icon">➕</span>
-                <span>Nouvelle matrice</span>
+                <span>Matrice</span>
             </button>
         </div>
 
         <!-- Menu Mobile Compact -->
         <div class="mobile-menu">
+            <!-- Loader Mobile -->
+            <div class="mobile-menu-loader" id="mobileMenuLoader">
+                <div class="mobile-menu-loader-spinner"></div>
+                <div class="mobile-menu-loader-text" id="mobileMenuLoaderText">Chargement...</div>
+            </div>
             <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
                 <span>☰</span>
                 <span>Menu Actions</span>
@@ -53,6 +61,11 @@
 
         <!-- Contrôles Desktop -->
         <div class="controls">
+            <!-- Loader -->
+            <div class="controls-loader" id="controlsLoader">
+                <div class="controls-loader-spinner"></div>
+                <div class="controls-loader-text" id="controlsLoaderText">Chargement...</div>
+            </div>
             <!-- Groupe 1: Template -->
             <div class="controls-group">
                 <div class="template-selector">
@@ -69,13 +82,13 @@
             <div class="controls-group">
                 <div class="member-selector-control" id="memberSelectorControl">
                     <button class="btn btn-selector" id="memberSelectorBtn">
-                        <span class="btn-icon">👥</span> Membres <span class="btn-arrow">▼</span>
+                        <span class="btn-icon">👥</span> Filtrer par membre <span class="btn-arrow">▼</span>
                     </button>
                     <div class="member-selector-dropdown" id="memberSelectorDropdown"></div>
                 </div>
-                
+
                 <button class="btn" id="shareBtn" onclick="handleShareClick()">
-                    <span class="btn-icon">🔗</span> <span id="shareBtnText">Partager</span>
+                    <span class="btn-icon">🔗</span> Partager
                 </button>
             </div>
 
@@ -84,13 +97,13 @@
             <!-- Groupe 3: Ajout -->
             <div class="controls-group">
                 <button class="btn" onclick="addMember()">
-                    <span class="btn-icon">👤</span> Membre
+                    <span class="btn-icon">👤</span> + Membre
                 </button>
-                <button class="btn" onclick="addSkill()">
-                    <span class="btn-icon">🎯</span> Compétence
+                <button class="btn" onclick="manageSkills()">
+                    <span class="btn-icon">🎯</span> Compétences
                 </button>
                 <button class="btn" onclick="manageAppetencesOwnerships()">
-                    <span class="btn-icon">⚡</span> Appétences <span class="btn-arrow">▼</span>
+                    <span class="btn-icon">⚡</span> Appétences
                 </button>
             </div>
 
@@ -98,15 +111,30 @@
 
             <!-- Groupe 4: Actions -->
             <div class="controls-group">
-                <button class="btn btn-success" onclick="saveData(true)">
-                    <span class="btn-icon">💾</span> Sauvegarder
-                </button>
-                <button class="btn btn-success" onclick="exportToJSON()">
-                    <span class="btn-icon">📥</span> JSON
-                </button>
-                <button class="btn btn-success" onclick="exportToXLSX()">
-                    <span class="btn-icon">📊</span> Excel
-                </button>
+                <div class="actions-dropdown-control" id="actionsDropdownControl">
+                    <button class="btn btn-success" id="actionsDropdownBtn">
+                        <span class="btn-icon">💾</span> Actions <span class="btn-arrow">▼</span>
+                    </button>
+                    <div class="actions-dropdown" id="actionsDropdown">
+                        <button class="dropdown-item" onclick="saveData(true); closeActionsDropdown()">
+                            <span class="btn-icon">💾</span> Sauvegarder
+                        </button>
+                        <div class="dropdown-separator"></div>
+                        <button class="dropdown-item" onclick="exportToJSON(); closeActionsDropdown()">
+                            <span class="btn-icon">📥</span> Export JSON
+                        </button>
+                        <button class="dropdown-item" onclick="exportToXLSX(); closeActionsDropdown()">
+                            <span class="btn-icon">📊</span> Export Excel
+                        </button>
+                        <div class="dropdown-separator"></div>
+                        <button class="dropdown-item" onclick="importFromJSON(); closeActionsDropdown()">
+                            <span class="btn-icon">📤</span> Import JSON
+                        </button>
+                        <button class="dropdown-item" onclick="importFromXLSX(); closeActionsDropdown()">
+                            <span class="btn-icon">📈</span> Import Excel
+                        </button>
+                    </div>
+                </div>
             </div>
 
             <div class="controls-divider"></div>
@@ -167,14 +195,35 @@
 
         <!-- Advice Section -->
         <div class="advice-section">
-            <h2>💡 Conseils Personnalisés Coach Sticko</h2>
-            <div class="advice-filter">
-                <button class="filter-btn active" onclick="filterAdvice('all', this)">Tous</button>
-                <button class="filter-btn" onclick="filterAdvice('beginner', this)">Débutants</button>
-                <button class="filter-btn" onclick="filterAdvice('learning', this)">En apprentissage</button>
-                <button class="filter-btn" onclick="filterAdvice('competent', this)">Compétents</button>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h2 style="margin: 0;">💡 Conseils Personnalisés - Coach Sticko</h2>
+                <button class="btn" onclick="exportAdviceToMarkdown()" title="Exporter les conseils en Markdown">
+                    <span class="btn-icon">📝</span> Export Markdown
+                </button>
+            </div>
+            <div class="advice-controls">
+                <div class="advice-view-toggle">
+                    <button class="view-btn active" onclick="switchAdviceView('member', this)">
+                        <span class="btn-icon">👤</span> Par Membre
+                    </button>
+                    <button class="view-btn" onclick="switchAdviceView('skill', this)">
+                        <span class="btn-icon">🎯</span> Par Compétence
+                    </button>
+                </div>
+                <div class="advice-filter">
+                    <button class="filter-btn active" onclick="filterAdvice('all', this)">Tous</button>
+                    <button class="filter-btn" onclick="filterAdvice('beginner', this)">Débutants</button>
+                    <button class="filter-btn" onclick="filterAdvice('learning', this)">En apprentissage</button>
+                    <button class="filter-btn" onclick="filterAdvice('competent', this)">Compétents</button>
+                </div>
             </div>
             <div class="advice-cards" id="adviceCards"></div>
+        </div>
+
+        <!-- Strategic Advice Section -->
+        <div class="advice-section strategic-advice-section">
+            <h2>📊 Conseils Stratégiques d'Équipe</h2>
+            <div class="strategic-advice-cards" id="strategicAdviceCards"></div>
         </div>
     </div>
 
@@ -189,17 +238,32 @@
         </div>
     </div>
 
+    <!-- Modal Gestion des Compétences -->
+    <div class="modal-overlay" id="skillsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">🎯 Gérer les Compétences</h2>
+                <button class="modal-close" onclick="closeSkillsModal()">×</button>
+            </div>
+            <div id="modalSkillsContent"></div>
+        </div>
+    </div>
+
     <!-- JavaScript Files -->
     <script src="js/config.js"></script>
     <script src="js/utils.js"></script>
+    <script src="js/loader.js"></script>
+    <script src="js/import-prompt.js"></script>
     <script src="js/templates.js"></script>
     <script src="js/data.js"></script>
     <script src="js/matrix.js"></script>
     <script src="js/radar.js"></script>
     <script src="js/advice.js"></script>
+    <script src="js/strategic-advice.js"></script>
     <script src="js/modal.js"></script>
     <script src="js/modal-single-member.js"></script>
     <script src="js/share.js"></script>
+    <script src="js/autocomplete.js"></script>
     <script src="js/main.js"></script>
 
     <!-- PocketBase Integration -->

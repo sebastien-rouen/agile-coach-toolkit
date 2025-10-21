@@ -1,0 +1,116 @@
+/* ====================================
+   MODAL EXPORT
+   ==================================== */
+
+.export-info {
+  background: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.export-field {
+  background: white;
+  padding: 1rem;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  border-left: 3px solid var(--primary);
+}
+
+.export-field strong {
+  display: block;
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.export-field p {
+  margin: 0.5rem 0;
+  color: #666;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.export-field code {
+  display: block;
+  background: #f8f9fa;
+  padding: 0.5rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  color: #495057;
+  margin-top: 0.5rem;
+  font-family: 'Courier New', monospace;
+}
+
+.export-metadata {
+  background: rgba(33, 150, 243, 0.1);
+  padding: 1rem;
+  border-radius: 6px;
+  margin-top: 1rem;
+}
+
+.export-metadata p {
+  margin: 0 0 0.5rem 0;
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.export-metadata ul {
+  margin: 0.5rem 0 0 1.5rem;
+  color: #666;
+}
+
+.export-metadata li {
+  margin: 0.25rem 0;
+  font-size: 0.9rem;
+}
+
+.export-metadata code {
+  background: white;
+  padding: 0.2rem 0.4rem;
+  border-radius: 3px;
+  font-size: 0.85rem;
+}
+
+/* Style amélioré pour URL result */
+#urlResult {
+  background: #f8f9fa;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+}
+
+#publicUrl {
+  font-family: monospace;
+  font-size: 0.9rem;
+  background: white;
+}
+
+/* Options d'import */
+.import-options {
+  display: grid;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.import-option {
+  border: 2px dashed #ddd;
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: var(--transition);
+  background: #fafafa;
+}
+
+.import-option:hover {
+  border-color: var(--primary);
+  background: rgba(33, 150, 243, 0.05);
+  transform: translateY(-2px);
+}
+
+.import-option h3 {
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+}

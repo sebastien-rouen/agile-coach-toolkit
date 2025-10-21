@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test des Corrections - Hospital Flow Master</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .test-result {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+        .success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧪 Test des Corrections - Hospital Flow Master</h1>
+    
+    <div class="test-section">
+        <h2>📋 Résumé des Corrections Implémentées</h2>
+        <div class="test-result success">
+            ✅ <strong>Drag & Drop depuis le couloir d'urgence</strong><br>
+            Les patients urgents peuvent maintenant être déplacés vers n'importe quelle colonne du flux normal
+        </div>
+        <div class="test-result success">
+            ✅ <strong>Timers d'urgence proportionnels</strong><br>
+            Les timers d'urgence sont maintenant calculés proportionnellement à la durée de jeu choisie
+        </div>
+        <div class="test-result success">
+            ✅ <strong>Effets des événements réels</strong><br>
+            Les choix d'événements ont maintenant un impact visible sur le tableau (WIP limits, temps de traitement, etc.)
+        </div>
+        <div class="test-result success">
+            ✅ <strong>Arrêt des timers en fin de jeu</strong><br>
+            Tous les timers d'urgence et transferts du parking s'arrêtent automatiquement à la fin du jeu
+        </div>
+        <div class="test-result success">
+            ✅ <strong>Feedback visuel drag & drop</strong><br>
+            Surbrillance verte/rouge pour indiquer les zones de drop valides/invalides
+        </div>
+        <div class="test-result success">
+            ✅ <strong>Restriction patients standard</strong><br>
+            Les patients standard ne peuvent plus bouger quand des urgences attendent
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>🎮 Test du Jeu</h2>
+        <p>Pour tester les corrections, lancez le jeu principal :</p>
+        <button onclick="window.open('index.html', '_blank')">🏥 Lancer Hospital Flow Master</button>
+        
+        <h3>🔍 Points à vérifier :</h3>
+        <ul>
+            <li><strong>Couloir d'urgence :</strong> Glissez un patient urgent vers n'importe quelle colonne</li>
+            <li><strong>Timers proportionnels :</strong> Choisissez différentes durées et vérifiez les timers d'urgence</li>
+            <li><strong>Événements :</strong> Répondez aux événements et observez les changements sur le tableau</li>
+            <li><strong>Fin de jeu :</strong> Vérifiez que tous les timers s'arrêtent à la fin</li>
+            <li><strong>Feedback visuel :</strong> Observez les couleurs lors du drag & drop</li>
+            <li><strong>Priorité urgence :</strong> Essayez de bouger un patient standard avec des urgences en attente</li>
+        </ul>
+    </div>
+
+    <div class="test-section">
+        <h2>🐛 Tests Spécifiques</h2>
+        
+        <div class="test-result info">
+            <strong>Test 1 - Drag & Drop Urgence :</strong><br>
+            1. Attendez qu'un patient urgent arrive dans le couloir d'urgence<br>
+            2. Glissez-le directement vers "Examens" ou "Traitement"<br>
+            3. ✅ Devrait fonctionner (avant ça ne marchait pas)
+        </div>
+        
+        <div class="test-result info">
+            <strong>Test 2 - Effets d'Événements :</strong><br>
+            1. Attendez qu'un événement apparaisse<br>
+            2. Choisissez une option (ex: augmenter WIP limit)<br>
+            3. ✅ Observez le changement immédiat sur le tableau et la notification centrale
+        </div>
+        
+        <div class="test-result info">
+            <strong>Test 3 - Fin de Jeu :</strong><br>
+            1. Choisissez une session courte (2-3 minutes)<br>
+            2. Attendez la fin du timer<br>
+            3. ✅ Vérifiez que tous les timers d'urgence s'arrêtent et les résultats s'affichent
+        </div>
+        
+        <div class="test-result info">
+            <strong>Test 4 - Priorité Urgence :</strong><br>
+            1. Attendez qu'il y ait des patients urgents en attente<br>
+            2. Essayez de déplacer un patient standard<br>
+            3. ✅ Devrait afficher un message d'avertissement et empêcher le mouvement
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>📊 Métriques de Performance</h2>
+        <p>Les corrections apportées améliorent :</p>
+        <ul>
+            <li><strong>Jouabilité :</strong> Drag & drop plus fluide et intuitif</li>
+            <li><strong>Réalisme :</strong> Effets d'événements visibles et impactants</li>
+            <li><strong>Stabilité :</strong> Pas de timers qui continuent après la fin</li>
+            <li><strong>Feedback :</strong> Indications visuelles claires pour les actions</li>
+            <li><strong>Logique métier :</strong> Respect des priorités médicales</li>
+        </ul>
+    </div>
+
+    <div class="test-section">
+        <h2>🚀 Prochaines Améliorations Possibles</h2>
+        <div class="test-result info">
+            <strong>Suggestions pour l'avenir :</strong><br>
+            • Ajouter des animations plus fluides pour les déplacements<br>
+            • Implémenter un système de sauvegarde/reprise de partie<br>
+            • Ajouter plus de types d'événements avec des effets variés<br>
+            • Créer un mode multijoueur collaboratif<br>
+            • Intégrer des statistiques détaillées et des graphiques
+        </div>
+    </div>
+
+    <script>
+        // Vérification que les fichiers JS sont accessibles
+        window.addEventListener('load', function() {
+            const scripts = ['js/game-engine.js', 'js/kanban-board.js', 'js/event-system.js'];
+            const results = document.createElement('div');
+            results.className = 'test-section';
+            results.innerHTML = '<h2>🔧 Vérification des Fichiers</h2>';
+            
+            scripts.forEach(script => {
+                fetch(script)
+                    .then(response => {
+                        const div = document.createElement('div');
+                        div.className = response.ok ? 'test-result success' : 'test-result error';
+                        div.innerHTML = `${response.ok ? '✅' : '❌'} ${script} - ${response.ok ? 'OK' : 'Erreur'}`;
+                        results.appendChild(div);
+                    })
+                    .catch(error => {
+                        const div = document.createElement('div');
+                        div.className = 'test-result error';
+                        div.innerHTML = `❌ ${script} - Erreur: ${error.message}`;
+                        results.appendChild(div);
+                    });
+            });
+            
+            document.body.appendChild(results);
+        });
+    </script>
+</body>
+</html>

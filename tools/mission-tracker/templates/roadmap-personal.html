@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ma Roadmap de Coach Agile</title>
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/report-templates.css">
+</head>
+<body>
+  <div class="report-container roadmap-personal">
+    <!-- En-tête -->
+    <header class="report-header roadmap-header">
+      <div class="report-header-content">
+        <h1 class="report-title">Ma Roadmap de Coach Agile</h1>
+        <h2 class="report-subtitle">Vision et Parcours de Développement</h2>
+        <div class="report-meta">
+          <span class="report-meta-item">
+            <sl-icon name="person-circle"></sl-icon>
+            {{coachName}}
+          </span>
+          <span class="report-meta-item">
+            <sl-icon name="calendar"></sl-icon>
+            {{currentDate | formatDate}}
+          </span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Vision et Objectifs -->
+    <section class="report-section vision-section">
+      <div class="report-section-header">
+        <h2 class="report-section-title">
+          <span class="report-section-icon">🎯</span>
+          Ma Vision de Coach
+        </h2>
+      </div>
+      <div class="report-section-content">
+        <div class="vision-statement">
+          <div class="vision-text">
+            {{visionStatement}}
+          </div>
+          
+          <div class="vision-pillars">
+            <h3>Mes Piliers</h3>
+            <div class="pillars-grid">
+              {{#each pillars}}
+              <div class="pillar-card">
+                <div class="pillar-icon">{{icon}}</div>
+                <h4>{{title}}</h4>
+                <p>{{description}}</p>
+              </div>
+              {{/each}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bilan de Compétences -->
+    <section class="report-section skills-assessment">
+      <div class="report-section-header">
+        <h2 class="report-section-title">
+          <span class="report-section-icon">📊</span>
+          Bilan de Compétences
+        </h2>
+      </div>
+      <div class="report-section-content">
+        <div class="skills-radar">
+          <h3>Radar de Compétences</h3>
+          <div class="radar-chart-placeholder">
+            <!-- Graphique radar généré dynamiquement -->
+            <canvas id="skillsRadarChart"></canvas>
+          </div>
+        </div>
+        
+        <div class="skills-detailed">
+          <h3>Compétences Détaillées</h3>
+          {{#each skillsCategories}}
+          <div class="skills-category">
+            <h4>{{category}}</h4>
+            <div class="skills-list">
+              {{#each skills}}
+              <div class="skill-item">
+                <div class="skill-header">
+                  <span class="skill-name">{{name}}</span>
+                  <span class="skill-level level-{{level}}">{{levelLabel}}</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-bar-fill" style="width: {{levelPercent}}%;"></div>
+                </div>
+                {{#if notes}}
+                <p class="skill-notes">{{notes}}</p>
+                {{/if}}
+              </div>
+              {{/each}}
+            </div>
+          </div>
+          {{/each}}
+        </div>
+      </div>
+    </section>
+
+    <!-- Forces et Axes d'Amélioration -->
+    <section class="report-section strengths-improvements">
+      <div class="report-section-header">
+        <h2 class="report-section-title">
+          <span class="report-section-icon">⚡</span>
+          Forces et Axes d'Amélioration
+        </h2>
+      </div>
+      <div class="report-section-content">
+        <div class="two-columns">
+          <div class="strengths-column">
+            <h3>💪 Mes Forces</h3>
+            <div class="strengths-list">
+              {{#each strengths}}
+              <div class="strength-card">
+                <h4>{{title}}</h4>
+                <p>{{description}}</p>
+                {{#if examples}}
+                <div class="strength-examples">
+                  <strong>Exemples :</strong>
+                  <ul>
+                    {{#each examples}}
+                    <li>{{this}}</li>
+                    {{/each}}
+                  </ul>
+                </div>
+                {{/if}}
+              </div>
+              {{/each}}
+            </div>
+          </div>
+          
+          <div class="improvements-column">
+            <h3>🎯 Axes d'Amélioration</h3>
+            <div class="improvements-list">
+              {{#each improvements}}
+              <div class="improvement-card">
+                <h4>{{title}}</h4>
+                <p>{{description}}</p>
+                {{#if actions}}
+                <div class="improvement-actions">
+                  <strong>Actions prévues :</strong>
+                  <ul>
+                    {{#each actions}}
+                    <li>{{this}}</li>
+                    {{/each}}
+                  </ul>
+                </div>
+                {{/if}}
+                {{#if timeline}}
+                <div class="improvement-timeline">
+                  <strong>Timeline :</strong> {{timeline}}
+                </div>
+                {{/if}}
+              </div>
+              {{/each}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Plan de Développement -->
+    <section class="report-section development-plan">
+      <div class="report-section-header">
+        <h2 class="report-section-title">
+          <span class="report-section-icon">🚀</span>
+          Plan de Développement
+        </h2>
+      </div>
+      <div class="report-section-content">
+        <div class="development-timeline">
+          <div class="timeline-phase">
+            <h3>📅 Court Terme (0-3 mois)</h3>
+            <div class="development-goals">
+              {{#each developmentPlan.shortTerm}}
+              <div class="development-goal">
+                <div class="goal-header">
+                  <h4>{{title}}</h4>
+                  <span class="goal-status status-{{status}}">{{statusLabel}}</span>
+                </div>
+                <p>{{description}}</p>
+                {{#if milestones}}
+                <div class="goal-milestones">
+                  <strong>Jalons :</strong>
+                  <ul>
+                    {{#each milestones}}
+                    <li class="{{#if completed}}completed{{/if}}">
+                      {{label}}
+                      {{#if date}}<span class="milestone-date">({{date | formatDate}})</span>{{/if}}
+                    </li>
+                    {{/each}}
+                  </ul>
+                </div>
+                {{/if}}
+                {{#if resources}}
+                <div class="goal-resources">
+                  <strong>Ressources :</strong>
+                  <ul>
+                    {{#each resources}}
+                    <li><a href="{{url}}" target="_blank">{{title}}</a></li>
+                    {{/each}}
+                  </ul>
+                </div>
+                {{/if}}
+              </div>
+              {{/each}}
+            </div>
+          </div>
+          
+          <div class="timeline-phase">
+            <h3>📅 Moyen Terme (3-6 mois)</h3>
+            <div class="development-goals">
+              {{#each developmentPlan.mediumTerm}}
+              <div class="development-goal">
+                <div class="goal-header">
+                  <h4>{{title}}</h4>
+                </div>
+                <p>{{description}}</p>
+                {{#if prerequisites}}
+                <div class="goal-prerequisites">
+                  <strong>Prérequis :</strong> {{prerequisites}}
+                </div>
+                {{/if}}
+              </div>
+              {{/each}}
+            </div>
+          </div>
+          
+          <div class="timeline-phase">
+            <h3>📅 Long Terme (6-12 mois)</h3>
+            <div class="development-goals">
+              {{#each developmentPlan.longTerm}}
+              <div class="development-goal">
+                <div class="goal-header">
+                  <h4>{{title}}</h4>
+                </div>
+                <p>{{description}}</p>
+              </div>
+              {{/each}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Formations et Certifications -->
+    <section class="report-section training-certifications">
+      <div class="report-section-header">
+        <h2 class="report-section-title">
+          <span class="report-section-icon">🎓</span>
+          Formations et Certifications
+        </h2>
+      </div>
+      <div class="report-section-content">
+        <div class="certifications-grid">
+          <div class="certifications-obtained">
+            <h3>✅ Certifications Obtenues</h3>
+            <div class="certifications-list">
+              {{#each certifications.obtained}}
+              <div class="certification-card obtained">
+                <div class="certification-badge">{{badge}}</div>
+                <div class="certification-info">
+                  <h4>{{name}}</h4>
+                  <p class="certification-org">{{organization}}</p>
+                  <p class="certification-date">Obtenue le {{date | formatDate}}</p>
+                  {{#if validUntil}}
+                  <p class="certification-validity">Valide jusqu'au {{validUntil | formatDate}}</p>
+                  {{/if}}
+                </div>
+              </div>
+              {{/each}}
+            </div>
+          </div>
+          
+          <div class="certifications-planned">
+            <h3>🎯 Certifications Visées</h3>
+            <div class="certifications-list">
+              {{#each certifications.planned}}
+              <div class="certification-card planned">
+                <div class="certification-badge">{{badge}}</div>
+                <div class="certification-info">
+                  <h4>{{name}}</h4>
+                  <p class="certification-org">{{organization}}</p>
+                  <p class="certification-timeline">Prévu : {{timeline}}</p>
+                  {{#if reason}}
+                  <p class="certification-reason">{{reason}}</p>
+                  {{/if}}
+                </div>
+              </div>
+              {{/each}}
+            </div>
+          </div>
+        </div>
+        
+        <div class="trainings-list">
+          <h3>📚 Formations Suivies/Prévues</h3>
+          <div class="trainings-timeline">
+            {{#each trainings}}
+            <div class="training-item status-{{status}}">
+              <div class="training-date">{{date | formatDate}}</div>
+              <div class="training-content">
+                <h4>{{title}}</h4>
+                <p class="training-org">{{organization}}</p>
+                <p class="training-duration">Durée : {{duration}}</p>
+                {{#if keyLearnings}}
+                <div class="training-learnings">
+                  <strong>Principaux apprentissages :</strong>
+                  <ul>
+                    {{#each keyLearnings}}
+                    <li>{{this}}</li>
+                    {{/each}}
+                  </ul>
+                </div>
+                {{/if}}
+              </div>
+            </div>
+            {{/each}}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Expériences et Missions -->
+    <section class="report-section experiences">
+      <div class="report-section-header">
+        <h2 class="report-section-title">
+          <span class="report-section-icon">💼</span>
+          Expériences Clés
+        </h2>
+      </div>
+      <div class="report-section-content">
+        {{#if experiences.length}}
+        <div class="experiences-timeline">
+          {{#each experiences}}
+          <div class="experience-card">
+            <div class="experience-period">
+              <span class="experience-start">{{startDate | formatDate}}</span>
+              <span class="experience-arrow">→</span>
+              <span class="experience-end">{{#if endDate}}{{endDate | formatDate}}{{else}}En cours{{/if}}</span>
+            </div>
+            <div class="experience-content">
+              <h3>{{title}}</h3>
+              <p class="experience-client">{{client}} - {{context}}</p>
+              <p class="experience-description">{{description}}</p>
+              
+              {{#if achievements}}
+              <div class="experience-achievements">
+                <strong>Réalisations :</strong>
+                <ul>
+                  {{#each achievements}}
+                  <li>{{this}}</li>
+                  {{/each}}
+                </ul>
+              </div>
+              {{/if}}
+              
+              {{#if skillsUsed}}
+              <div class="experience-skills">
+                <strong>Compétences mobilisées :</strong>
+                <div class="skills-tags">
+                  {{#each skillsUsed}}
+                  <span class="skill-tag">{{this}}</span>
+                  {{/each}}
+                </div>
+              </div>
+              {{/if}}
+              
+              {{#if learnings}}
+              <div class="experience-learnings">
+                <strong>Apprentissages :</strong>
+                <ul>
+                  {{#each learnings}}
+                  <li>{{this}}</li>
+                  {{/each}}
+                </ul>
+              </div>
+              {{/if}}
+            </div>
+          </div>
+          {{/each}}
+        </div>
+        {{else}}
+        <p class="text-muted">Aucune expérience documentée.</p>
+        {{/if}}
+      </div>
+    </section>
+
+    <!-- Réseau et Communauté -->
+    <section class="report-section network-community">
+      <div class="report-section-header">
+        <h2 class="report-section-title">
+          <span class="report-section-icon">🤝</span>
+          Réseau et Communauté
+        </h2>
+      </div>
+      <div class="report-section-content">
+        <div class="network-activities">
+          <div class="community-involvement">
+            <h3>Implication Communautaire</h3>
+            <div class="involvement-list">
+              {{#each communityInvolvement}}
+              <div class="involvement-card">
+                <h4>{{community}}</h4>
+                <p class="involvement-role">{{role}}</p>
+                <p class="involvement-description">{{description}}</p>
+                {{#if contributions}}
+                <div class="involvement-contributions">
+                  <strong>Contributions :</strong>
+                  <ul>
+                    {{#each contributions}}
+                    <li>{{this}}</li>
+                    {{/each}}
+                  </ul>
+                </div>
+                {{/if}}
+              </div>
+              {{/each}}
+            </div>
+          </div>
+          
+          <div class="speaking-writing">
+            <h3>Conférences et Publications</h3>
+            <div class="speaking-list">
+              <h4>🎤 Conférences</h4>
+              {{#each conferences}}
+              <div class="speaking-item">
+                <p class="speaking-title"><strong>{{title}}</strong></p>
+                <p class="speaking-event">{{event}} - {{date | formatDate}}</p>
+                {{#if recording}}<p class="speaking-link"><a href="{{recording}}" target="_blank">🎥 Voir l'enregistrement</a></p>{{/if}}
+              </div>
+              {{/each}}
+            </div>
+            
+            <div class="writing-list">
+              <h4>✍️ Publications</h4>
+              {{#each publications}}
+              <div class="writing-item">
+                <p class="writing-title"><strong>{{title}}</strong></p>
+                <p class="writing-platform">{{platform}} - {{date | formatDate}}</p>
+                {{#if url}}<p class="writing-link"><a href="{{url}}" target="_blank">📖 Lire l'article</a></p>{{/if}}
+              </div>
+              {{/each}}
+            </div>
+          </div>
+          
+          <div class="mentoring">
+            <h3>Mentorat</h3>
+            <div class="mentoring-stats">
+              <div class="mentor-stat">
+                <span class="stat-value">{{mentoringStats.mentees}}</span>
+                <span class="stat-label">Personnes accompagnées</span>
+              </div>
+              <div class="mentor-stat">
+                <span class="stat-value">{{mentoringStats.hours}}</span>
+                <span class="stat-label">Heures de mentorat</span>
+              </div>
+            </div>
+            {{#if mentoringFeedback}}
+            <div class="mentoring-feedback">
+              <h4>Témoignages</h4>
+              {{#each mentoringFeedback}}
+              <blockquote class="feedback-quote">
+                "{{quote}}"
+                <footer>— {{author}}, {{context}}</footer>
+              </blockquote>
+              {{/each}}
+            </div>
+            {{/if}}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Réflexions Personnelles -->
+    <section class="report-section personal-reflections">
+      <div class="report-section-header">
+        <h2 class="report-section-title">
+          <span class="report-section-icon">💭</span>
+          Réflexions Personnelles
+        </h2>
+      </div>
+      <div class="report-section-content">
+        <div class="reflections-content">
+          {{personalReflections}}
+        </div>
+        
+        {{#if inspirations}}
+        <div class="inspirations">
+          <h3>Sources d'Inspiration</h3>
+          <div class="inspirations-list">
+            {{#each inspirations}}
+            <div class="inspiration-card">
+              <h4>{{title}}</h4>
+              <p>{{description}}</p>
+              {{#if quote}}
+              <blockquote>"{{quote}}"</blockquote>
+              {{/if}}
+            </div>
+            {{/each}}
+          </div>
+        </div>
+        {{/if}}
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="report-footer">
+      <div class="report-footer-signature">
+        <p><strong>{{coachName}}</strong></p>
+        <p class="text-muted">Coach Agile</p>
+        <p class="text-muted">Dernière mise à jour : {{currentDate | formatDate}}</p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Chart.js pour radar -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
+  <script>
+    // Générer le radar de compétences
+    const ctx = document.getElementById('skillsRadarChart');
+    if (ctx) {
+      new Chart(ctx, {
+        type: 'radar',
+        data: {
+          labels: {{{skillsLabelsJSON}}},
+          datasets: [{
+            label: 'Niveau actuel',
+            data: {{{skillsValuesJSON}}},
+            fill: true,
+            backgroundColor: 'rgba(99, 102, 241, 0.2)',
+            borderColor: 'rgb(99, 102, 241)',
+            pointBackgroundColor: 'rgb(99, 102, 241)',
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: 'rgb(99, 102, 241)'
+          }]
+        },
+        options: {
+          elements: {
+            line: {
+              borderWidth: 3
+            }
+          },
+          scales: {
+            r: {
+              angleLines: {
+                display: true
+              },
+              suggestedMin: 0,
+              suggestedMax: 5
+            }
+          }
+        }
+      });
+    }
+  </script>
+
+  <!-- Print Styles -->
+  <style media="print">
+    @page {
+      margin: 2cm;
+      size: A4;
+    }
+
+    body {
+      background: white;
+      color: black;
+    }
+
+    .report-section {
+      page-break-inside: avoid;
+    }
+  </style>
+</body>
+</html>

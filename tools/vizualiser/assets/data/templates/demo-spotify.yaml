@@ -1,0 +1,200 @@
+# Démo Spotify Model - Squads & Guilds
+# Contexte : 5 squads, 3 guilds, 60 personnes
+
+teams:
+  - id: squad_search
+    name: "Squad Search"
+    members: 6
+    color: "#1db954"
+    icon: "🔍"
+    
+  - id: squad_player
+    name: "Squad Player"
+    members: 7
+    color: "#1ed760"
+    icon: "▶️"
+    
+  - id: squad_discovery
+    name: "Squad Discovery"
+    members: 6
+    color: "#2e77d0"
+    icon: "🎵"
+    
+  - id: squad_social
+    name: "Squad Social"
+    members: 5
+    color: "#f037a5"
+    icon: "👥"
+    
+  - id: squad_platform
+    name: "Squad Platform"
+    members: 8
+    color: "#ff6f00"
+    icon: "🏗️"
+
+subjects:
+  # Squad Search
+  - title: "Recherche Sémantique avec IA"
+    type: team
+    teams: [squad_search]
+    status: in-progress
+    priority: critical
+    deadline: "2025-01-20"
+    description: "Amélioration de la recherche avec NLP"
+    guild: "data"
+    dependencies: []
+    
+  - title: "Indexation Temps Réel"
+    type: team
+    teams: [squad_search]
+    status: in-progress
+    priority: high
+    deadline: "2025-02-05"
+    description: "Elasticsearch avec indexation instantanée"
+    guild: "backend"
+    dependencies: []
+
+  # Squad Player
+  - title: "Lecteur Audio WebAssembly"
+    type: team
+    teams: [squad_player]
+    status: in-progress
+    priority: high
+    deadline: "2025-01-25"
+    description: "Nouveau lecteur haute performance en WASM"
+    guild: "frontend"
+    dependencies: []
+    
+  - title: "Gapless Playback"
+    type: team
+    teams: [squad_player]
+    status: blocked
+    priority: critical
+    deadline: "2025-01-10"
+    description: "Lecture sans coupure entre pistes"
+    guild: "backend"
+    dependencies: []
+    
+  - title: "Equalizer Personnalisé"
+    type: team
+    teams: [squad_player]
+    status: planned
+    priority: medium
+    deadline: "2025-02-15"
+    description: "Égaliseur audio avec presets utilisateur"
+    guild: "frontend"
+    dependencies: ["Lecteur Audio WebAssembly"]
+
+  # Squad Discovery
+  - title: "Algorithme de Recommandation v3"
+    type: cross-team
+    teams: [squad_discovery, squad_search]
+    status: in-progress
+    priority: critical
+    deadline: "2025-01-18"
+    description: "ML pour recommandations personnalisées"
+    guild: "data"
+    dependencies: []
+    
+  - title: "Playlists Collaboratives"
+    type: team
+    teams: [squad_discovery]
+    status: in-progress
+    priority: medium
+    deadline: "2025-02-10"
+    description: "Création de playlists à plusieurs"
+    guild: "frontend"
+    dependencies: []
+    
+  - title: "Radio Personnalisée"
+    type: team
+    teams: [squad_discovery]
+    status: planned
+    priority: low
+    deadline: "2025-03-01"
+    description: "Radio basée sur les goûts utilisateur"
+    guild: "data"
+    dependencies: ["Algorithme de Recommandation v3"]
+
+  # Squad Social
+  - title: "Partage sur Réseaux Sociaux"
+    type: team
+    teams: [squad_social]
+    status: in-progress
+    priority: medium
+    deadline: "2025-01-30"
+    description: "Intégration Instagram, TikTok, Twitter"
+    guild: "frontend"
+    dependencies: []
+    
+  - title: "Profils Publics Améliorés"
+    type: team
+    teams: [squad_social]
+    status: in-progress
+    priority: high
+    deadline: "2025-01-22"
+    description: "Refonte des profils utilisateurs"
+    guild: "frontend"
+    dependencies: []
+    
+  - title: "Messagerie Instantanée"
+    type: cross-team
+    teams: [squad_social, squad_platform]
+    status: planned
+    priority: medium
+    deadline: "2025-02-20"
+    description: "Chat en temps réel entre utilisateurs"
+    guild: "backend"
+    dependencies: []
+
+  # Squad Platform
+  - title: "Migration Kubernetes"
+    type: team
+    teams: [squad_platform]
+    status: in-progress
+    priority: critical
+    deadline: "2025-01-15"
+    description: "Migration complète vers K8s"
+    guild: "backend"
+    dependencies: []
+    
+  - title: "API GraphQL v2"
+    type: cross-team
+    teams: [squad_platform, squad_search, squad_player]
+    status: in-progress
+    priority: high
+    deadline: "2025-01-28"
+    description: "Nouvelle API GraphQL unifiée"
+    guild: "backend"
+    dependencies: []
+    
+  - title: "Service Mesh avec Istio"
+    type: team
+    teams: [squad_platform]
+    status: planned
+    priority: medium
+    deadline: "2025-02-25"
+    description: "Implémentation service mesh"
+    guild: "backend"
+    dependencies: ["Migration Kubernetes"]
+
+  # Initiatives Guild
+  - title: "Design System v2"
+    type: individual
+    teams: []
+    status: in-progress
+    priority: high
+    deadline: "2025-01-20"
+    description: "Nouveau design system cross-squads"
+    guild: "frontend"
+    dependencies: []
+    
+  - title: "Standards de Code Backend"
+    type: individual
+    teams: []
+    status: completed
+    priority: medium
+    deadline: "2024-12-15"
+    description: "Guidelines de code pour tous les squads"
+    guild: "backend"
+    dependencies: []

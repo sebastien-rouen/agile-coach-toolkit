@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎯 Mission Tracker | Agile Coach Toolkit</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/img/logo.svg">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/mission-tracker.css">
+  <link rel="stylesheet" href="assets/css/timeline.css">
+  <link rel="stylesheet" href="assets/css/report-templates.css">
+  
+  <!-- Shoelace (Web Components) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.19.1/cdn/themes/dark.css" />
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.19.1/cdn/shoelace-autoloader.js"></script>
+  
+  <!-- PocketBase SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/pocketbase@0.21.5/dist/pocketbase.umd.js"></script>
+  
+  <!-- Handlebars (Templates) -->
+  <script src="https://cdn.jsdelivr.net/npm/handlebars@4.7.8/dist/handlebars.min.js"></script>
+  
+  <!-- jsPDF (Export PDF) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.2/jspdf.umd.min.js"></script>
+  
+  <!-- Marked (Markdown parser) -->
+  <script src="https://cdn.jsdelivr.net/npm/marked@14.1.3/marked.min.js"></script>
+</head>
+<body>
+
+  <!-- ========================================
+       HEADER
+  ======================================== -->
+  
+  <header class="mission-tracker-header">
+    <div class="container">
+      <div class="header-content">
+        <!-- Logo et titre -->
+        <div class="header-brand">
+          <img src="assets/img/logo.svg" alt="Mission Tracker" class="header-logo">
+          <div>
+            <h1>Mission Tracker</h1>
+            <p class="header-subtitle">Suivez vos missions, documentez vos apprentissages</p>
+          </div>
+        </div>
+
+        <!-- Actions header -->
+        <div class="header-actions">
+          <button class="btn btn-primary" id="btn-new-mission">
+            <sl-icon name="plus-circle"></sl-icon>
+            Nouvelle mission
+          </button>
+          
+          <sl-dropdown>
+            <button slot="trigger" class="btn btn-icon" title="Actions">
+              <sl-icon name="three-dots-vertical"></sl-icon>
+            </button>
+            <sl-menu>
+              <sl-menu-item id="menu-load-demo">
+                <sl-icon slot="prefix" name="play-circle"></sl-icon>
+                Charger une démo
+              </sl-menu-item>
+              <sl-divider></sl-divider>
+              <sl-menu-item id="menu-export-all">
+                <sl-icon slot="prefix" name="download"></sl-icon>
+                Exporter toutes les données
+              </sl-menu-item>
+              <sl-menu-item id="menu-import">
+                <sl-icon slot="prefix" name="upload"></sl-icon>
+                Importer des données
+              </sl-menu-item>
+              <sl-divider></sl-divider>
+              <sl-menu-item id="menu-settings">
+                <sl-icon slot="prefix" name="gear"></sl-icon>
+                Paramètres
+              </sl-menu-item>
+              <sl-menu-item id="menu-help">
+                <sl-icon slot="prefix" name="question-circle"></sl-icon>
+                Aide & Documentation
+              </sl-menu-item>
+            </sl-menu>
+          </sl-dropdown>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================
+       NAVIGATION TABS
+  ======================================== -->
+  
+  <nav class="mission-tracker-nav">
+    <div class="container">
+      <sl-tab-group id="main-tabs">
+        <sl-tab slot="nav" panel="dashboard" active>
+          <sl-icon name="grid"></sl-icon>
+          Dashboard
+        </sl-tab>
+        <sl-tab slot="nav" panel="missions">
+          <sl-icon name="briefcase"></sl-icon>
+          Mes missions
+          <sl-badge variant="primary" pill id="missions-count">0</sl-badge>
+        </sl-tab>
+        <sl-tab slot="nav" panel="timeline">
+          <sl-icon name="calendar-event"></sl-icon>
+          Timeline
+        </sl-tab>
+        <sl-tab slot="nav" panel="reports">
+          <sl-icon name="file-text"></sl-icon>
+          Rapports
+        </sl-tab>
+        <sl-tab slot="nav" panel="roadmap">
+          <sl-icon name="signpost"></sl-icon>
+          Roadmap perso
+        </sl-tab>
+        <sl-tab slot="nav" panel="analytics">
+          <sl-icon name="bar-chart"></sl-icon>
+          Analytics
+        </sl-tab>
+
+        <!-- ========================================
+             TAB PANEL: DASHBOARD
+        ======================================== -->
+        
+        <sl-tab-panel name="dashboard">
+          <div class="dashboard-container">
+
+            <!-- Actions rapides -->
+            <section class="dashboard-section">
+              <div class="section-header">
+                <h2>⚡ Actions rapides</h2>
+              </div>
+
+              <div class="quick-actions-grid">
+                <button class="quick-action-card" id="quick-initial-report">
+                  <sl-icon name="file-earmark-text"></sl-icon>
+                  <span>Rapport d'étonnement</span>
+                </button>
+
+                <button class="quick-action-card" id="quick-weekly-checkpoint">
+                  <sl-icon name="calendar-week"></sl-icon>
+                  <span>Checkpoint hebdo</span>
+                </button>
+
+                <button class="quick-action-card" id="quick-add-achievement">
+                  <sl-icon name="trophy"></sl-icon>
+                  <span>Ajouter une réalisation</span>
+                </button>
+
+                <button class="quick-action-card" id="quick-add-challenge">
+                  <sl-icon name="exclamation-triangle"></sl-icon>
+                  <span>Noter un défi</span>
+                </button>
+
+                <button class="quick-action-card" id="quick-experiment">
+                  <sl-icon name="lightbulb"></sl-icon>
+                  <span>Lancer une expérimentation</span>
+                </button>
+
+                <button class="quick-action-card" id="quick-final-report">
+                  <sl-icon name="file-check"></sl-icon>
+                  <span>Bilan final</span>
+                </button>
+              </div>
+            </section>
+            
+            <!-- KPI Cards -->
+            <div class="dashboard-kpis">
+              <div class="kpi-card">
+                <sl-icon name="briefcase" class="kpi-icon"></sl-icon>
+                <div class="kpi-content">
+                  <div class="kpi-value" id="kpi-total-missions">0</div>
+                  <div class="kpi-label">Missions totales</div>
+                </div>
+              </div>
+
+              <div class="kpi-card">
+                <sl-icon name="play-circle" class="kpi-icon active"></sl-icon>
+                <div class="kpi-content">
+                  <div class="kpi-value" id="kpi-active-missions">0</div>
+                  <div class="kpi-label">Missions actives</div>
+                </div>
+              </div>
+
+              <div class="kpi-card">
+                <sl-icon name="calendar-check" class="kpi-icon"></sl-icon>
+                <div class="kpi-content">
+                  <div class="kpi-value" id="kpi-checkpoints">0</div>
+                  <div class="kpi-label">Checkpoints cette semaine</div>
+                </div>
+              </div>
+
+              <div class="kpi-card">
+                <sl-icon name="trophy" class="kpi-icon success"></sl-icon>
+                <div class="kpi-content">
+                  <div class="kpi-value" id="kpi-achievements">0</div>
+                  <div class="kpi-label">Réalisations</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Mission active en cours -->
+            <section class="dashboard-section">
+              <div class="section-header">
+                <h2>🎯 Mission en cours</h2>
+                <button class="btn btn-sm btn-ghost" id="btn-view-all-missions">
+                  Voir toutes les missions
+                  <sl-icon name="arrow-right"></sl-icon>
+                </button>
+              </div>
+
+              <div id="current-mission-card">
+                <!-- Dynamiquement chargé via JS -->
+              </div>
+            </section>
+
+            <!-- Prochains checkpoints -->
+            <section class="dashboard-section">
+              <div class="section-header">
+                <h2>📅 Prochains checkpoints</h2>
+                <button class="btn btn-sm btn-primary" id="btn-new-checkpoint">
+                  <sl-icon name="plus"></sl-icon>
+                  Nouveau checkpoint
+                </button>
+              </div>
+
+              <div id="upcoming-checkpoints" class="checkpoints-list">
+                <!-- Dynamiquement chargé via JS -->
+              </div>
+            </section>
+
+            <!-- Dernières réalisations -->
+            <section class="dashboard-section">
+              <div class="section-header">
+                <h2>🏆 Dernières réalisations</h2>
+                <button class="btn btn-sm btn-ghost" id="btn-view-all-achievements">
+                  Voir toutes les réalisations
+                  <sl-icon name="arrow-right"></sl-icon>
+                </button>
+              </div>
+
+              <div id="recent-achievements" class="achievements-grid">
+                <!-- Dynamiquement chargé via JS -->
+              </div>
+            </section>
+
+          </div>
+        </sl-tab-panel>
+
+        <!-- ========================================
+             TAB PANEL: MES MISSIONS
+        ======================================== -->
+        
+        <sl-tab-panel name="missions">
+          <div class="missions-container">
+            
+            <!-- Filtres et recherche -->
+            <div class="missions-toolbar">
+              <div class="search-box">
+                <sl-input placeholder="Rechercher une mission..." id="search-missions">
+                  <sl-icon name="search" slot="prefix"></sl-icon>
+                </sl-input>
+              </div>
+
+              <div class="filters">
+                <sl-select placeholder="Statut" id="filter-status" clearable>
+                  <sl-option value="active">Actives</sl-option>
+                  <sl-option value="completed">Terminées</sl-option>
+                  <sl-option value="paused">En pause</sl-option>
+                </sl-select>
+
+                <sl-select placeholder="Rôle" id="filter-role" clearable>
+                  <sl-option value="coach-agile">Coach Agile</sl-option>
+                  <sl-option value="scrum-master">Scrum Master</sl-option>
+                  <sl-option value="coach-organisationnel">Coach Organisationnel</sl-option>
+                  <sl-option value="product-owner">Product Owner</sl-option>
+                  <sl-option value="product-manager">Product Manager</sl-option>
+                  <sl-option value="designer">Designer</sl-option>
+                  <sl-option value="rte">RTE</sl-option>
+                  <sl-option value="dev">Développeur</sl-option>
+                  <sl-option value="architecte">Architecte</sl-option>
+                  <sl-option value="devops">DevOps</sl-option>
+                </sl-select>
+
+                <sl-select placeholder="Trier par" id="sort-missions">
+                  <sl-option value="date-desc">Plus récentes</sl-option>
+                  <sl-option value="date-asc">Plus anciennes</sl-option>
+                  <sl-option value="title-asc">Titre (A-Z)</sl-option>
+                  <sl-option value="client-asc">Client (A-Z)</sl-option>
+                </sl-select>
+              </div>
+
+              <button class="btn btn-primary" id="btn-new-mission-2">
+                <sl-icon name="plus-circle"></sl-icon>
+                Nouvelle mission
+              </button>
+            </div>
+
+            <!-- Liste des missions -->
+            <div id="missions-list" class="missions-grid">
+              <!-- Dynamiquement chargé via JS -->
+            </div>
+
+            <!-- Empty state -->
+            <div id="missions-empty-state" class="empty-state" style="display: none;">
+              <sl-icon name="inbox"></sl-icon>
+              <h3>Aucune mission pour le moment</h3>
+              <p>Créez votre première mission pour commencer à documenter vos apprentissages.</p>
+              <button class="btn btn-primary" id="btn-new-mission-empty">
+                <sl-icon name="plus-circle"></sl-icon>
+                Créer ma première mission
+              </button>
+            </div>
+
+          </div>
+        </sl-tab-panel>
+
+        <!-- ========================================
+             TAB PANEL: TIMELINE
+        ======================================== -->
+        
+        <sl-tab-panel name="timeline">
+          <div class="timeline-container" id="timeline-container">
+            
+            <!-- Filtres timeline -->
+            <div class="timeline-toolbar">
+              <sl-select placeholder="Mission" id="timeline-filter-mission" clearable>
+                <!-- Dynamiquement chargé via JS -->
+              </sl-select>
+
+              <sl-button-group>
+                <button class="btn btn-sm" data-view="month" id="timeline-view-month">Mois</button>
+                <button class="btn btn-sm active" data-view="quarter" id="timeline-view-quarter">Trimestre</button>
+                <button class="btn btn-sm" data-view="year" id="timeline-view-year">Année</button>
+              </sl-button-group>
+
+              <button class="btn btn-sm btn-ghost" id="timeline-today">
+                <sl-icon name="calendar-event"></sl-icon>
+                Aujourd'hui
+              </button>
+            </div>
+
+            <!-- Timeline visuelle -->
+            <div id="timeline-content" class="timeline-visual">
+              <!-- Dynamiquement chargé via timeline-manager.js -->
+            </div>
+
+          </div>
+        </sl-tab-panel>
+
+        <!-- ========================================
+             TAB PANEL: RAPPORTS
+        ======================================== -->
+        
+        <sl-tab-panel name="reports">
+          <div class="reports-container">
+            
+            <!-- Sélection du type de rapport -->
+            <div class="reports-toolbar">
+              <div class="report-types">
+                <button class="report-type-card active" data-report-type="initial">
+                  <sl-icon name="file-earmark-text"></sl-icon>
+                  <span>Rapport d'étonnement</span>
+                  <sl-badge variant="primary" id="initial-reports-count">0</sl-badge>
+                </button>
+
+                <button class="report-type-card" data-report-type="checkpoint">
+                  <sl-icon name="calendar-check"></sl-icon>
+                  <span>Checkpoints</span>
+                  <sl-badge variant="primary" id="checkpoints-count">0</sl-badge>
+                </button>
+
+                <button class="report-type-card" data-report-type="final">
+                  <sl-icon name="file-check"></sl-icon>
+                  <span>Bilans finaux</span>
+                  <sl-badge variant="primary" id="final-reports-count">0</sl-badge>
+                </button>
+              </div>
+
+              <button class="btn btn-primary" id="btn-new-report">
+                <sl-icon name="plus-circle"></sl-icon>
+                Nouveau rapport
+              </button>
+            </div>
+
+            <!-- Liste des rapports -->
+            <div id="reports-list" class="reports-list">
+              <!-- Dynamiquement chargé via JS -->
+            </div>
+
+          </div>
+        </sl-tab-panel>
+
+        <!-- ========================================
+             TAB PANEL: ROADMAP PERSONNELLE
+        ======================================== -->
+        
+        <sl-tab-panel name="roadmap">
+          <div class="roadmap-container">
+            
+            <!-- Vision -->
+            <section class="roadmap-section">
+              <div class="section-header">
+                <h2>🎯 Ma vision</h2>
+                <button class="btn btn-sm btn-ghost" id="btn-edit-vision">
+                  <sl-icon name="pencil"></sl-icon>
+                  Éditer
+                </button>
+              </div>
+
+              <div id="roadmap-vision" class="roadmap-vision-card">
+                <!-- Dynamiquement chargé via JS -->
+              </div>
+            </section>
+
+            <!-- Compétences actuelles -->
+            <section class="roadmap-section">
+              <div class="section-header">
+                <h2>💪 Mes compétences actuelles</h2>
+                <button class="btn btn-sm btn-primary" id="btn-add-skill">
+                  <sl-icon name="plus"></sl-icon>
+                  Ajouter une compétence
+                </button>
+              </div>
+
+              <div id="current-skills" class="skills-grid">
+                <!-- Dynamiquement chargé via JS -->
+              </div>
+            </section>
+
+            <!-- Compétences à développer -->
+            <section class="roadmap-section">
+              <div class="section-header">
+                <h2>🚀 Compétences à développer</h2>
+                <button class="btn btn-sm btn-primary" id="btn-add-skill-to-develop">
+                  <sl-icon name="plus"></sl-icon>
+                  Ajouter
+                </button>
+              </div>
+
+              <div id="skills-to-develop" class="skills-to-develop-list">
+                <!-- Dynamiquement chargé via JS -->
+              </div>
+            </section>
+
+            <!-- Objectifs d'apprentissage -->
+            <section class="roadmap-section">
+              <div class="section-header">
+                <h2>📚 Objectifs d'apprentissage</h2>
+                <button class="btn btn-sm btn-primary" id="btn-add-learning-goal">
+                  <sl-icon name="plus"></sl-icon>
+                  Ajouter un objectif
+                </button>
+              </div>
+
+              <div id="learning-goals" class="learning-goals-list">
+                <!-- Dynamiquement chargé via JS -->
+              </div>
+            </section>
+
+            <!-- Expérimentations planifiées -->
+            <section class="roadmap-section">
+              <div class="section-header">
+                <h2>🧪 Expérimentations planifiées</h2>
+                <button class="btn btn-sm btn-primary" id="btn-add-planned-experiment">
+                  <sl-icon name="plus"></sl-icon>
+                  Ajouter
+                </button>
+              </div>
+
+              <div id="experiments-planned" class="experiments-planned-list">
+                <!-- Dynamiquement chargé via JS -->
+              </div>
+            </section>
+
+          </div>
+        </sl-tab-panel>
+
+        <!-- ========================================
+             TAB PANEL: ANALYTICS
+        ======================================== -->
+        
+        <sl-tab-panel name="analytics">
+          <div class="analytics-container">
+            
+            <!-- Période d'analyse -->
+            <div class="analytics-toolbar">
+              <sl-select placeholder="Mission" id="analytics-filter-mission" clearable>
+                <sl-option value="all">Toutes les missions</sl-option>
+                <!-- Dynamiquement chargé via JS -->
+              </sl-select>
+
+              <sl-select placeholder="Période" id="analytics-period">
+                <sl-option value="1m">1 mois</sl-option>
+                <sl-option value="3m">3 mois</sl-option>
+                <sl-option value="6m">6 mois</sl-option>
+                <sl-option value="1y" selected>1 an</sl-option>
+                <sl-option value="all">Tout</sl-option>
+              </sl-select>
+
+              <button class="btn btn-sm btn-ghost" id="btn-export-analytics">
+                <sl-icon name="download"></sl-icon>
+                Exporter
+              </button>
+            </div>
+
+            <!-- Graphiques et stats -->
+            <div class="analytics-grid">
+              
+              <!-- Répartition par rôle -->
+              <div class="analytics-card">
+                <h3>📊 Répartition par rôle</h3>
+                <canvas id="chart-roles"></canvas>
+              </div>
+
+              <!-- Évolution des compétences -->
+              <div class="analytics-card">
+                <h3>📈 Évolution des compétences</h3>
+                <canvas id="chart-skills"></canvas>
+              </div>
+
+              <!-- Mood tracker -->
+              <div class="analytics-card">
+                <h3>😊 Mood tracker</h3>
+                <canvas id="chart-mood"></canvas>
+              </div>
+
+              <!-- Réalisations par catégorie -->
+              <div class="analytics-card">
+                <h3>🏆 Réalisations par catégorie</h3>
+                <canvas id="chart-achievements"></canvas>
+              </div>
+
+              <!-- Défis résolus vs en cours -->
+              <div class="analytics-card">
+                <h3>🛡️ Défis résolus vs en cours</h3>
+                <canvas id="chart-challenges"></canvas>
+              </div>
+
+              <!-- Expérimentations -->
+              <div class="analytics-card">
+                <h3>🧪 Expérimentations</h3>
+                <div id="experiments-stats">
+                  <!-- Stats textuelles -->
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </sl-tab-panel>
+
+      </sl-tab-group>
+    </div>
+  </nav>
+
+  <!-- ========================================
+       MODALS
+  ======================================== -->
+
+  <!-- Modal: Nouvelle mission -->
+  <sl-dialog id="modal-new-mission" label="🎯 Nouvelle mission" class="mission-tracker-modal" no-header>
+    <div slot="label">🎯 Nouvelle mission</div>
+    <form id="form-new-mission">
+      <div style="display: flex; flex-direction: column; gap: 1rem;">
+        <sl-input name="title" label="Titre de la mission" placeholder="Ex: Transformation Agile Équipe X" required></sl-input>
+        
+        <sl-input name="client" label="Client / Entreprise" placeholder="Ex: Entreprise ABC" required></sl-input>
+        
+        <sl-select name="role" label="Votre rôle" placeholder="Sélectionnez votre rôle" id="mission-role" required>
+          <!-- Options chargées dynamiquement -->
+        </sl-select>
+        
+        <sl-input name="start_date" label="Date de début" type="date" required></sl-input>
+      </div>
+
+      <div slot="footer">
+        <sl-button variant="default" id="btn-cancel-mission">Annuler</sl-button>
+        <sl-button variant="primary" type="submit">Créer la mission</sl-button>
+      </div>
+    </form>
+  </sl-dialog>
+
+  <!-- Modal: Édition mission -->
+  <sl-dialog id="modal-edit-mission" label="✏️ Éditer la mission" class="mission-tracker-modal" no-header>
+    <div slot="label">✏️ Éditer la mission</div>
+    <form id="form-edit-mission">
+      <!-- Formulaire dynamique -->
+      
+      <div slot="footer">
+        <sl-button variant="default" id="btn-cancel-edit-mission">Annuler</sl-button>
+        <sl-button variant="primary" type="submit">Enregistrer</sl-button>
+      </div>
+    </form>
+  </sl-dialog>
+
+  <!-- Modal: Rapport d'étonnement -->
+  <sl-dialog id="modal-initial-report" label="📝 Rapport d'étonnement (J+15)" class="mission-tracker-modal modal-lg" no-header>
+    <div slot="label">📝 Rapport d'étonnement (J+15)</div>
+    <div id="initial-report-content">
+      <!-- Contenu chargé dynamiquement -->
+    </div>
+  </sl-dialog>
+
+  <!-- Modal: Checkpoint -->
+  <sl-dialog id="modal-checkpoint" label="📅 Checkpoint" class="mission-tracker-modal modal-lg" no-header>
+    <div slot="label">📅 Checkpoint</div>
+    <div id="checkpoint-content">
+      <!-- Contenu chargé dynamiquement -->
+    </div>
+  </sl-dialog>
+
+  <!-- Modal: Bilan final -->
+  <sl-dialog id="modal-final-report" label="🏁 Bilan final de mission" class="mission-tracker-modal modal-lg" no-header>
+    <div slot="label">🏁 Bilan final de mission</div>
+    <div id="final-report-content">
+      <!-- Contenu chargé dynamiquement -->
+    </div>
+  </sl-dialog>
+
+  <!-- Modal: Import -->
+  <sl-dialog id="modal-import" label="📤 Importer des données" class="mission-tracker-modal" no-header>
+    <div slot="label">📤 Importer des données</div>
+    <div style="display: flex; flex-direction: column; gap: 1rem;">
+      <div class="alert info">
+        <sl-icon name="info-circle"></sl-icon>
+        <div>
+          <strong>Import de données</strong>
+          <p>Importez un fichier JSON exporté précédemment. Les données seront fusionnées avec vos données existantes.</p>
+        </div>
+      </div>
+      
+      <sl-input type="file" id="import-file-input" accept=".json">
+        <sl-icon slot="prefix" name="file-earmark-arrow-up"></sl-icon>
+      </sl-input>
+      
+      <div id="import-preview" style="display: none;">
+        <h4>Aperçu des données</h4>
+        <div id="import-preview-content"></div>
+      </div>
+    </div>
+
+    <div slot="footer">
+      <sl-button variant="default" id="btn-cancel-import">Annuler</sl-button>
+      <sl-button variant="primary" id="btn-confirm-import" disabled>
+        <sl-icon name="upload"></sl-icon>
+        Importer
+      </sl-button>
+    </div>
+  </sl-dialog>
+
+  <!-- Modal: Settings -->
+  <sl-dialog id="modal-settings" label="⚙️ Paramètres" class="mission-tracker-modal modal-lg" no-header>
+    <div slot="label">⚙️ Paramètres</div>
+    <div style="display: flex; flex-direction: column; gap: 1rem;">
+      
+      <section>
+        <h3>🎨 Préférences d'affichage</h3>
+        <div class="settings-group">
+          <sl-switch id="setting-dark-mode" checked>
+            <span style="font-weight: 500;">Mode sombre</span>
+            <span style="font-size: 0.85rem; color: var(--text-muted); display: block;">Interface sombre pour réduire la fatigue oculaire</span>
+          </sl-switch>
+          <sl-switch id="setting-animations" checked>
+            <span style="font-weight: 500;">Animations</span>
+            <span style="font-size: 0.85rem; color: var(--text-muted); display: block;">Transitions et effets visuels</span>
+          </sl-switch>
+        </div>
+      </section>
+      
+      <section>
+        <h3>🔔 Notifications</h3>
+        <div class="settings-group">
+          <sl-switch id="setting-notifications" checked>
+            <span style="font-weight: 500;">Activer les notifications</span>
+            <span style="font-size: 0.85rem; color: var(--text-muted); display: block;">Recevoir des alertes pour les actions importantes</span>
+          </sl-switch>
+          <sl-switch id="setting-sound">
+            <span style="font-weight: 500;">Sons</span>
+            <span style="font-size: 0.85rem; color: var(--text-muted); display: block;">Sons lors des notifications</span>
+          </sl-switch>
+        </div>
+      </section>
+      
+      <section>
+        <h3>💾 Gestion des données</h3>
+        <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+          <sl-button variant="default" id="btn-clear-cache" size="medium">
+            <sl-icon slot="prefix" name="trash"></sl-icon>
+            Vider le cache
+          </sl-button>
+          <sl-button variant="danger" id="btn-reset-data" size="medium">
+            <sl-icon slot="prefix" name="exclamation-triangle"></sl-icon>
+            Réinitialiser toutes les données
+          </sl-button>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0.5rem 0 0 0;">
+            ⚠️ La réinitialisation supprimera définitivement toutes vos missions et rapports.
+          </p>
+        </div>
+      </section>
+      
+      <section>
+        <h3>ℹ️ À propos</h3>
+        <div style="display: grid; grid-template-columns: auto 1fr; gap: 0.5rem 1rem; font-size: 0.9rem;">
+          <strong>Version :</strong> <span>1.4.0</span>
+          <strong>Auteur :</strong> <span>Sébastien ROUEN</span>
+          <strong>License :</strong> <span>MIT</span>
+          <strong>GitHub :</strong> <span><a href="https://github.com/sebastien-rouen/agile-coach-toolkit" target="_blank">agile-coach-toolkit</a></span>
+        </div>
+      </section>
+    </div>
+
+    <div slot="footer">
+      <sl-button variant="default" id="btn-close-settings">Fermer</sl-button>
+      <sl-button variant="primary" id="btn-save-settings">
+        <sl-icon name="check"></sl-icon>
+        Enregistrer
+      </sl-button>
+    </div>
+  </sl-dialog>
+
+  <!-- Modal: Help -->
+  <sl-dialog id="modal-help" label="❓ Aide & Documentation" class="mission-tracker-modal modal-lg" no-header>
+    <div slot="label">❓ Aide & Documentation</div>
+    <div style="display: flex; flex-direction: column; gap: 1rem;">
+      
+      <section>
+        <h3>🚀 Démarrage rapide</h3>
+        <ol>
+          <li>Créez votre première mission</li>
+          <li>Documentez avec un rapport d'étonnement (J+15)</li>
+          <li>Ajoutez des checkpoints réguliers</li>
+          <li>Finalisez avec un bilan complet</li>
+        </ol>
+      </section>
+      
+      <section>
+        <h3>💡 Conseils pratiques</h3>
+        <div class="help-tip">
+          <strong>📝 Rapport d'étonnement :</strong> Notez vos premières impressions après 15 jours. C'est le moment où vous avez le plus de recul sans avoir perdu votre regard neuf.
+        </div>
+        <div class="help-tip">
+          <strong>📅 Checkpoints :</strong> Faites un point hebdomadaire ou mensuel. La régularité est clé pour suivre votre progression.
+        </div>
+        <div class="help-tip">
+          <strong>🎯 Roadmap :</strong> Définissez votre vision et vos objectifs d'apprentissage. Cela vous aidera à rester focalisé sur votre développement.
+        </div>
+      </section>
+      
+      <section>
+        <h3>⌨️ Raccourcis</h3>
+        <p><kbd>Escape</kbd> Fermer une modal • <kbd>Tab</kbd> Navigation • <kbd>Enter</kbd> Valider</p>
+      </section>
+      
+      <section>
+        <h3>💾 Vos données</h3>
+        <p>Stockées localement dans votre navigateur. <strong>Pensez à exporter régulièrement</strong> (Menu → Exporter) pour sauvegarder vos missions.</p>
+      </section>
+      
+      <section>
+        <h3>📞 Besoin d'aide ?</h3>
+        <p>
+          <a href="https://github.com/sebastien-rouen/agile-coach-toolkit" target="_blank">📚 Documentation</a> • 
+          <a href="https://github.com/sebastien-rouen/agile-coach-toolkit/issues" target="_blank">🐛 Signaler un bug</a> • 
+          <a href="mailto:rouen.sebastien@gmail.com">✉️ Contact</a>
+        </p>
+      </section>
+    </div>
+
+    <div slot="footer">
+      <sl-button variant="primary" id="btn-close-help">Fermer</sl-button>
+    </div>
+  </sl-dialog>
+
+  <!-- Modal: Export -->
+  <sl-dialog id="modal-export" label="📥 Exporter les données" class="mission-tracker-modal" no-header>
+    <div slot="label">📥 Exporter les données</div>
+    <div class="export-options" style="display: flex; flex-direction: column; gap: 1rem;">
+      <sl-radio-group name="export-format" value="pdf">
+        <sl-radio value="pdf">PDF (avec mise en forme)</sl-radio>
+        <sl-radio value="markdown">Markdown (brut)</sl-radio>
+        <sl-radio value="json">JSON (données structurées)</sl-radio>
+      </sl-radio-group>
+
+      <sl-select placeholder="Que voulez-vous exporter ?" id="export-scope" multiple>
+        <sl-option value="missions">Missions</sl-option>
+        <sl-option value="reports">Rapports</sl-option>
+        <sl-option value="checkpoints">Checkpoints</sl-option>
+        <sl-option value="achievements">Réalisations</sl-option>
+        <sl-option value="challenges">Défis</sl-option>
+        <sl-option value="experiments">Expérimentations</sl-option>
+        <sl-option value="roadmap">Roadmap personnelle</sl-option>
+      </sl-select>
+    </div>
+
+    <div slot="footer">
+      <sl-button variant="default" id="btn-cancel-export">Annuler</sl-button>
+      <sl-button variant="primary" id="btn-confirm-export">
+        <sl-icon name="download"></sl-icon>
+        Exporter
+      </sl-button>
+    </div>
+  </sl-dialog>
+
+  <!-- Modal: Ajouter Réalisation -->
+  <sl-dialog id="modal-add-achievement" label="🏆 Ajouter une réalisation" class="mission-tracker-modal" no-header>
+    <div slot="label">🏆 Ajouter une réalisation</div>
+    <form id="form-add-achievement">
+      <div style="display: flex; flex-direction: column; gap: 1rem;">
+        <sl-input name="achievement_title" label="Titre de la réalisation" placeholder="Ex: Mise en place des daily meetings" required
+          help-text="Décrivez brièvement votre réalisation"></sl-input>
+        
+        <sl-select name="achievement_category" label="Catégorie" required
+          help-text="Type de réalisation">
+          <sl-option value="team">👥 Équipe</sl-option>
+          <sl-option value="process">⚙️ Processus</sl-option>
+          <sl-option value="delivery">🚀 Livraison</sl-option>
+          <sl-option value="coaching">🎯 Coaching</sl-option>
+          <sl-option value="innovation">💡 Innovation</sl-option>
+        </sl-select>
+        
+        <sl-textarea name="achievement_description" label="Description" rows="4" required
+          help-text="Décrivez ce que vous avez accompli et l'impact"></sl-textarea>
+        
+        <sl-input name="achievement_date" label="Date" type="date" required></sl-input>
+        
+        <sl-textarea name="achievement_impact" label="Impact" rows="3"
+          help-text="Quel a été l'impact de cette réalisation ?"></sl-textarea>
+      </div>
+
+      <div slot="footer">
+        <sl-button variant="default" id="btn-cancel-achievement">Annuler</sl-button>
+        <sl-button variant="primary" type="submit">Ajouter</sl-button>
+      </div>
+    </form>
+  </sl-dialog>
+
+  <!-- Modal: Noter un Défi -->
+  <sl-dialog id="modal-add-challenge" label="⚠️ Noter un défi" class="mission-tracker-modal" no-header>
+    <div slot="label">⚠️ Noter un défi</div>
+    <form id="form-add-challenge">
+      <div style="display: flex; flex-direction: column; gap: 1rem;">
+        <sl-input name="challenge_title" label="Titre du défi" placeholder="Ex: Résistance au changement" required
+          help-text="Nommez le défi rencontré"></sl-input>
+        
+        <sl-select name="challenge_severity" label="Sévérité" required
+          help-text="Niveau d'impact du défi">
+          <sl-option value="low">🟢 Faible</sl-option>
+          <sl-option value="medium">🟡 Moyenne</sl-option>
+          <sl-option value="high">🔴 Élevée</sl-option>
+        </sl-select>
+        
+        <sl-textarea name="challenge_description" label="Description du défi" rows="4" required
+          help-text="Décrivez le défi et son contexte"></sl-textarea>
+        
+        <sl-textarea name="challenge_actions" label="Actions envisagées" rows="3"
+          help-text="Quelles actions comptez-vous mettre en place ?"></sl-textarea>
+        
+        <sl-input name="challenge_date" label="Date" type="date" required></sl-input>
+        
+        <sl-select name="challenge_status" label="Statut" value="open" required>
+          <sl-option value="open">🔓 Ouvert</sl-option>
+          <sl-option value="in-progress">🔄 En cours</sl-option>
+          <sl-option value="resolved">✅ Résolu</sl-option>
+        </sl-select>
+      </div>
+
+      <div slot="footer">
+        <sl-button variant="default" id="btn-cancel-challenge">Annuler</sl-button>
+        <sl-button variant="primary" type="submit">Ajouter</sl-button>
+      </div>
+    </form>
+  </sl-dialog>
+
+  <!-- Modal: Lancer Expérimentation (Quick) -->
+  <sl-dialog id="modal-quick-experiment" label="🧪 Lancer une expérimentation" class="mission-tracker-modal" no-header>
+    <div slot="label">🧪 Lancer une expérimentation</div>
+    <form id="form-quick-experiment">
+      <div style="display: flex; flex-direction: column; gap: 1rem;">
+        <sl-input name="experiment_title" label="Titre de l'expérimentation" placeholder="Ex: Tester les OKR avec l'équipe" required
+          help-text="Nommez votre expérimentation"></sl-input>
+        
+        <sl-textarea name="experiment_hypothesis" label="Hypothèse" rows="3" required
+          help-text="Qu'est-ce que vous voulez tester ?"></sl-textarea>
+        
+        <sl-textarea name="experiment_method" label="Méthode" rows="4" required
+          help-text="Comment allez-vous procéder ?"></sl-textarea>
+        
+        <sl-textarea name="experiment_success" label="Critères de succès" rows="3" required
+          help-text="Comment saurez-vous que ça fonctionne ?"></sl-textarea>
+        
+        <sl-input name="experiment_start" label="Date de début" type="date" required></sl-input>
+        
+        <sl-input name="experiment_duration" label="Durée (en jours)" type="number" value="30" required
+          help-text="Durée prévue de l'expérimentation"></sl-input>
+      </div>
+
+      <div slot="footer">
+        <sl-button variant="default" id="btn-cancel-quick-experiment">Annuler</sl-button>
+        <sl-button variant="primary" type="submit">Lancer</sl-button>
+      </div>
+    </form>
+  </sl-dialog>
+
+  <!-- Modal: Éditer Vision -->
+  <sl-dialog id="modal-edit-vision" label="🎯 Ma vision" class="mission-tracker-modal modal-lg" no-header>
+    <div slot="label">🎯 Éditer ma vision</div>
+    <form id="form-edit-vision">
+      <div style="display: flex; flex-direction: column; gap: 1rem;">
+        <sl-textarea name="vision" label="Ma vision professionnelle" rows="6" required
+          help-text="Décrivez votre vision à moyen/long terme"></sl-textarea>
+        <sl-textarea name="values" label="Mes valeurs" rows="4"
+          help-text="Quelles sont vos valeurs professionnelles ?"></sl-textarea>
+        <sl-textarea name="goals" label="Mes objectifs principaux" rows="4"
+          help-text="Quels sont vos grands objectifs ?"></sl-textarea>
+      </div>
+
+      <div slot="footer">
+        <sl-button variant="default" id="btn-cancel-vision">Annuler</sl-button>
+        <sl-button variant="primary" type="submit">Enregistrer</sl-button>
+      </div>
+    </form>
+  </sl-dialog>
+
+  <!-- Modal: Ajouter Compétence -->
+  <sl-dialog id="modal-add-skill" label="💪 Ajouter une compétence" class="mission-tracker-modal" no-header>
+    <div slot="label">💪 Ajouter une compétence</div>
+    <form id="form-add-skill">
+      <div style="display: flex; flex-direction: column; gap: 1rem;">
+        <sl-input name="skill_name" label="Nom de la compétence" placeholder="Ex: Facilitation d'ateliers" required></sl-input>
+        <sl-select name="skill_level" label="Niveau de maîtrise" required>
+          <sl-option value="beginner">🌱 Débutant</sl-option>
+          <sl-option value="intermediate">🌿 Intermédiaire</sl-option>
+          <sl-option value="advanced">🌳 Avancé</sl-option>
+          <sl-option value="expert">🏆 Expert</sl-option>
+        </sl-select>
+        <sl-select name="skill_category" label="Catégorie" required>
+          <sl-option value="facilitation">Facilitation</sl-option>
+          <sl-option value="coaching">Coaching</sl-option>
+          <sl-option value="technique">Technique</sl-option>
+          <sl-option value="leadership">Leadership</sl-option>
+          <sl-option value="communication">Communication</sl-option>
+          <sl-option value="autre">Autre</sl-option>
+        </sl-select>
+        <sl-textarea name="skill_description" label="Description" rows="3"
+          help-text="Décrivez votre expérience avec cette compétence"></sl-textarea>
+      </div>
+
+      <div slot="footer">
+        <sl-button variant="default" id="btn-cancel-skill">Annuler</sl-button>
+        <sl-button variant="primary" type="submit">Ajouter</sl-button>
+      </div>
+    </form>
+  </sl-dialog>
+
+  <!-- Modal: Ajouter Compétence à Développer -->
+  <sl-dialog id="modal-add-skill-to-develop" label="🚀 Compétence à développer" class="mission-tracker-modal" no-header>
+    <div slot="label">🚀 Ajouter une compétence à développer</div>
+    <form id="form-add-skill-to-develop">
+      <div style="display: flex; flex-direction: column; gap: 1rem;">
+        <sl-input name="skill_name" label="Nom de la compétence" placeholder="Ex: Coaching d'équipe" required></sl-input>
+        <sl-select name="priority" label="Priorité" required>
+          <sl-option value="high">🔴 Haute</sl-option>
+          <sl-option value="medium">🟡 Moyenne</sl-option>
+          <sl-option value="low">🟢 Basse</sl-option>
+        </sl-select>
+        <sl-textarea name="why" label="Pourquoi cette compétence ?" rows="3" required
+          help-text="Quelle est votre motivation ?"></sl-textarea>
+        <sl-textarea name="how" label="Comment la développer ?" rows="3"
+          help-text="Quelles actions envisagez-vous ?"></sl-textarea>
+        <sl-input name="target_date" label="Date cible" type="date"></sl-input>
+      </div>
+
+      <div slot="footer">
+        <sl-button variant="default" id="btn-cancel-skill-to-develop">Annuler</sl-button>
+        <sl-button variant="primary" type="submit">Ajouter</sl-button>
+      </div>
+    </form>
+  </sl-dialog>
+
+  <!-- Modal: Ajouter Objectif d'Apprentissage -->
+  <sl-dialog id="modal-add-learning-goal" label="📚 Objectif d'apprentissage" class="mission-tracker-modal" no-header>
+    <div slot="label">📚 Ajouter un objectif d'apprentissage</div>
+    <form id="form-add-learning-goal">
+      <div style="display: flex; flex-direction: column; gap: 1rem;">
+        <sl-input name="goal_title" label="Titre de l'objectif" placeholder="Ex: Maîtriser le framework SAFe" required></sl-input>
+        <sl-select name="goal_type" label="Type d'apprentissage" required>
+          <sl-option value="certification">🎓 Certification</sl-option>
+          <sl-option value="formation">📖 Formation</sl-option>
+          <sl-option value="pratique">🛠️ Pratique</sl-option>
+          <sl-option value="lecture">📚 Lecture</sl-option>
+          <sl-option value="mentorat">👥 Mentorat</sl-option>
+        </sl-select>
+        <sl-textarea name="goal_description" label="Description" rows="4" required
+          help-text="Décrivez ce que vous voulez apprendre"></sl-textarea>
+        <sl-input name="goal_deadline" label="Date limite" type="date"></sl-input>
+        <sl-textarea name="goal_resources" label="Ressources nécessaires" rows="3"
+          help-text="Livres, formations, budget, temps..."></sl-textarea>
+      </div>
+
+      <div slot="footer">
+        <sl-button variant="default" id="btn-cancel-learning-goal">Annuler</sl-button>
+        <sl-button variant="primary" type="submit">Ajouter</sl-button>
+      </div>
+    </form>
+  </sl-dialog>
+
+  <!-- Modal: Ajouter Expérimentation -->
+  <sl-dialog id="modal-add-experiment" label="🧪 Expérimentation" class="mission-tracker-modal" no-header>
+    <div slot="label">🧪 Ajouter une expérimentation</div>
+    <form id="form-add-experiment">
+      <div style="display: flex; flex-direction: column; gap: 1rem;">
+        <sl-input name="experiment_title" label="Titre de l'expérimentation" placeholder="Ex: Tester les OKR avec l'équipe" required></sl-input>
+        <sl-textarea name="experiment_hypothesis" label="Hypothèse" rows="3" required
+          help-text="Qu'est-ce que vous voulez tester ?"></sl-textarea>
+        <sl-textarea name="experiment_method" label="Méthode" rows="4" required
+          help-text="Comment allez-vous procéder ?"></sl-textarea>
+        <sl-textarea name="experiment_success" label="Critères de succès" rows="3" required
+          help-text="Comment saurez-vous que ça fonctionne ?"></sl-textarea>
+        <sl-input name="experiment_start" label="Date de début" type="date" required></sl-input>
+        <sl-input name="experiment_duration" label="Durée (en jours)" type="number" value="30" required></sl-input>
+      </div>
+
+      <div slot="footer">
+        <sl-button variant="default" id="btn-cancel-experiment">Annuler</sl-button>
+        <sl-button variant="primary" type="submit">Ajouter</sl-button>
+      </div>
+    </form>
+  </sl-dialog>
+
+  <!-- Modal: Charger une démo -->
+  <sl-dialog id="modal-load-demo" label="🎬 Charger une démo" class="mission-tracker-modal modal-lg" no-header>
+    <div slot="label">🎬 Charger une démo</div>
+    
+    <div class="demo-intro">
+      <p>Découvrez Mission Tracker avec des exemples concrets de missions. Choisissez un template pour voir comment l'outil fonctionne avec des données réalistes.</p>
+      <sl-alert variant="warning" open>
+        <sl-icon slot="icon" name="exclamation-triangle"></sl-icon>
+        <strong>Attention :</strong> Charger une démo remplacera vos données actuelles. Pensez à exporter vos données avant si nécessaire.
+      </sl-alert>
+    </div>
+
+    <div class="demo-templates">
+      <div class="demo-card" data-template="demo-scrum-master">
+        <div class="demo-card-icon">🏃</div>
+        <div class="demo-card-content">
+          <h3>Scrum Master</h3>
+          <p>Mission de transformation agile dans une banque digitale</p>
+          <ul class="demo-card-features">
+            <li>✅ 4 objectifs définis</li>
+            <li>📅 5 événements clés</li>
+            <li>🏆 2 réalisations majeures</li>
+            <li>⚠️ 1 défi résolu</li>
+          </ul>
+        </div>
+        <sl-button variant="primary" class="btn-load-template">
+          <sl-icon name="play-circle"></sl-icon>
+          Charger
+        </sl-button>
+      </div>
+
+      <div class="demo-card" data-template="demo-coach-agile">
+        <div class="demo-card-icon">🎯</div>
+        <div class="demo-card-content">
+          <h3>Coach Agile</h3>
+          <p>Transformation à l'échelle avec framework SAFe dans une assurance</p>
+          <ul class="demo-card-features">
+            <li>✅ 5 objectifs (3 complétés)</li>
+            <li>📅 6 événements majeurs</li>
+            <li>🏆 2 certifications obtenues</li>
+            <li>⚠️ 2 défis organisationnels</li>
+            <li>🧪 1 expérimentation réussie</li>
+          </ul>
+        </div>
+        <sl-button variant="primary" class="btn-load-template">
+          <sl-icon name="play-circle"></sl-icon>
+          Charger
+        </sl-button>
+      </div>
+
+      <div class="demo-card" data-template="demo-product-owner">
+        <div class="demo-card-icon">📱</div>
+        <div class="demo-card-content">
+          <h3>Product Owner</h3>
+          <p>Refonte d'application mobile e-commerce avec focus metrics</p>
+          <ul class="demo-card-features">
+            <li>✅ 4 objectifs business</li>
+            <li>📅 5 événements produit</li>
+            <li>📈 Amélioration NPS +17 points</li>
+            <li>🚀 Conversion +18%</li>
+          </ul>
+        </div>
+        <sl-button variant="primary" class="btn-load-template">
+          <sl-icon name="play-circle"></sl-icon>
+          Charger
+        </sl-button>
+      </div>
+    </div>
+
+    <div slot="footer">
+      <sl-button variant="default" id="btn-cancel-demo">Annuler</sl-button>
+    </div>
+  </sl-dialog>
+
+  <!-- Modal: Détail Rapport/Checkpoint -->
+  <sl-dialog id="modal-report-detail" label="📄 Détail du rapport" class="mission-tracker-modal modal-xl" no-header>
+    <div slot="label" id="report-detail-title">📄 Détail du rapport</div>
+    
+    <div id="report-detail-content" class="report-detail-content">
+      <!-- Contenu chargé dynamiquement -->
+    </div>
+
+    <div slot="footer">
+      <sl-button variant="default" id="btn-close-report-detail">Fermer</sl-button>
+      <sl-button variant="primary" id="btn-edit-report-detail">
+        <sl-icon name="pencil"></sl-icon>
+        Modifier
+      </sl-button>
+    </div>
+  </sl-dialog>
+
+  <!-- Toast notifications (Shoelace) -->
+  <div id="toast-container"></div>
+
+  <!-- ========================================
+       SCRIPTS
+  ======================================== -->
+
+  <!-- PocketBase Integration -->
+  <script src="../../assets/js/pocketbase-manager.js"></script>
+
+  <!-- Intégration Agile Coach Toolkit -->
+  <script src="../../assets/js/tool-integration.js"></script>
+  <script>
+      window.TOOL_CONFIG = {
+          name: 'mission-tracker',
+          backUrl: '../../index.html#tools'
+      };
+  </script>
+
+  <!-- Templates config (modules ES6) -->
+  <script type="module" src="assets/js/templates/roles-config.js"></script>
+  <script type="module" src="assets/js/templates/questions-bank.js"></script>
+
+  <!-- Core modules -->
+  <script type="module" src="assets/js/data-manager.js"></script>
+  <script type="module" src="assets/js/mission-tracker.js"></script>
+  <script type="module" src="assets/js/timeline-manager.js"></script>
+  <script type="module" src="assets/js/report-generator.js"></script>
+  <script type="module" src="assets/js/export-manager.js"></script>
+
+  <!-- Init -->
+  <script type="module">
+    // L'initialisation se fait automatiquement dans mission-tracker.js
+    console.log('🎯 Mission Tracker - Scripts chargés');
+  </script>
+
+</body>
+</html>

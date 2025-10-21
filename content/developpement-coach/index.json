@@ -9,15 +9,187 @@
       "id": "plan-developpement",
       "title": "Plan de Développement",
       "file": "plan-developpement.md",
-      "tags": ["développement", "compétences", "carrière", "formation"],
+      "tags": [
+        "développement",
+        "compétences",
+        "carrière",
+        "formation"
+      ],
       "order": 1
     },
     {
       "id": "certifications",
       "title": "Certifications",
       "file": "certifications.md",
-      "tags": ["certification", "scrum", "safe", "reconnaissance"],
+      "tags": [
+        "certification",
+        "scrum",
+        "safe",
+        "reconnaissance"
+      ],
       "order": 2
+    },
+    {
+      "id": "feedback-360",
+      "title": "Feedback 360° pour Coachs Agiles (TO REVIEW)",
+      "file": "feedback-360.md",
+      "tags": [
+        "feedback",
+        "développement",
+        "coaching",
+        "amélioration",
+        "évaluation",
+        "compétences",
+        "facilitation",
+        "questionnaire",
+        "plan-action",
+        "icf",
+        "agile-coaching-competency",
+        "auto-évaluation",
+        "pairs"
+      ],
+      "order": 3
+    },
+    {
+      "id": "enneagramme-utilisation",
+      "title": "Enneagramme Utilisation",
+      "file": "enneagramme-utilisation.md",
+      "tags": [
+        "enneagramme",
+        "utilisation",
+        "coach",
+        "agile",
+        "développement",
+        "compétences",
+        "carrière",
+        "formation"
+      ],
+      "order": 4
     }
-  ]
+  ],
+  "tools": [
+    {
+      "id": "scrum-org-learning",
+      "title": "Scrum.org Learning Paths",
+      "description": "Parcours de formation et certifications Scrum officiels",
+      "tags": [
+        "formation",
+        "certification",
+        "scrum",
+        "apprentissage"
+      ],
+      "platform": "Web",
+      "external": true,
+      "url": "https://www.scrum.org/pathway",
+      "order": 1
+    },
+    {
+      "id": "icf-coaching",
+      "title": "ICF Coaching Competencies",
+      "description": "Référentiel de compétences de coaching de l'International Coach Federation",
+      "tags": [
+        "coaching",
+        "compétences",
+        "icf",
+        "référentiel"
+      ],
+      "platform": "Web",
+      "external": true,
+      "url": "https://coachingfederation.org/credentials-and-standards/core-competencies",
+      "order": 2
+    },
+    {
+      "id": "agile-coaching-institute",
+      "title": "Agile Coaching Institute",
+      "description": "Ressources et formations pour coachs agiles",
+      "tags": [
+        "coaching",
+        "formation",
+        "agile",
+        "développement"
+      ],
+      "platform": "Web",
+      "external": true,
+      "url": "https://agilecoachinginstitute.com",
+      "order": 3
+    },
+    {
+      "id": "coursera-agile",
+      "title": "Coursera - Agile Courses",
+      "description": "Cours en ligne sur l'agilité et le coaching agile",
+      "tags": [
+        "formation",
+        "mooc",
+        "apprentissage",
+        "en-ligne"
+      ],
+      "platform": "Web",
+      "external": true,
+      "url": "https://www.coursera.org/courses?query=agile",
+      "order": 4
+    }
+  ],
+  "templates": [
+    {
+      "id": "development-plan",
+      "title": "Plan de Développement Personnel",
+      "description": "Template pour structurer votre plan de développement de compétences",
+      "tags": [
+        "développement",
+        "compétences",
+        "plan",
+        "carrière"
+      ],
+      "format": "Word",
+      "file": "development-plan.docx",
+      "downloadUrl": "templates/developpement-coach/development-plan.docx",
+      "order": 1
+    },
+    {
+      "id": "feedback-360-questionnaire",
+      "title": "Questionnaire Feedback 360°",
+      "description": "Formulaire complet pour recueillir du feedback multi-sources",
+      "tags": [
+        "feedback",
+        "360",
+        "évaluation",
+        "développement"
+      ],
+      "format": "Excel",
+      "file": "feedback-360.xlsx",
+      "downloadUrl": "templates/developpement-coach/feedback-360.xlsx",
+      "order": 2
+    },
+    {
+      "id": "coaching-competency-matrix",
+      "title": "Matrice de Compétences Coaching",
+      "description": "Grille d'auto-évaluation des compétences de coach agile",
+      "tags": [
+        "compétences",
+        "auto-évaluation",
+        "coaching",
+        "matrice"
+      ],
+      "format": "Excel",
+      "file": "coaching-competency-matrix.xlsx",
+      "downloadUrl": "templates/developpement-coach/coaching-competency-matrix.xlsx",
+      "order": 3
+    },
+    {
+      "id": "certification-roadmap",
+      "title": "Roadmap de Certifications",
+      "description": "Parcours de certifications recommandé pour coachs agiles",
+      "tags": [
+        "certification",
+        "roadmap",
+        "parcours",
+        "formation"
+      ],
+      "format": "PDF",
+      "file": "certification-roadmap.pdf",
+      "downloadUrl": "templates/developpement-coach/certification-roadmap.pdf",
+      "order": 4
+    }
+  ],
+  "order": 11
 }

@@ -1,0 +1,67 @@
+# Exemple de User Stories pour import multiple
+# Format: Titre | Description
+# Vous pouvez copier-coller ce contenu dans le textarea "Plusieurs Stories"
+
+# Authentification
+Login social OAuth | Intégration Google, GitHub et LinkedIn pour connexion rapide
+Mot de passe oublié | Système de réinitialisation par email avec token sécurisé
+Authentification 2FA | Double authentification par SMS ou application mobile
+Gestion des sessions | Déconnexion automatique après 30 minutes d'inactivité
+
+# Dashboard
+Dashboard analytics | Métriques temps réel avec Chart.js et mise à jour automatique
+Widgets personnalisables | Drag & drop pour réorganiser les widgets du dashboard
+Export PDF dashboard | Génération de rapports PDF avec graphiques et métriques
+Filtres avancés | Filtrage par date, équipe, projet avec sauvegarde des préférences
+
+# Notifications
+Notifications push | Alerts mobiles et desktop pour événements importants
+Centre de notifications | Historique complet avec marquage lu/non lu
+Préférences notifications | Configuration granulaire par type d'événement
+Notifications email | Digest quotidien ou hebdomadaire configurable
+
+# API & Intégrations
+API REST complète | Documentation Swagger avec tous les endpoints
+Webhooks | Système de callbacks pour événements externes
+Intégration Slack | Notifications et commandes dans les channels Slack
+Intégration JIRA | Synchronisation bidirectionnelle des issues
+
+# Performance & Qualité
+Optimisation performances | Réduction temps de chargement de 50%
+Tests automatisés | Couverture de 80% avec Jest et Cypress
+Monitoring erreurs | Intégration Sentry pour tracking des bugs
+Cache intelligent | Mise en cache des requêtes fréquentes
+
+# Mobile
+Application mobile | Version iOS et Android avec React Native
+Mode hors-ligne | Synchronisation différée des données
+Notifications mobiles | Push notifications natives
+Géolocalisation | Fonctionnalités basées sur la position
+
+# Sécurité
+Audit de sécurité | Scan automatique des vulnérabilités
+Chiffrement données | Chiffrement end-to-end des données sensibles
+Logs d'audit | Traçabilité complète des actions utilisateurs
+RGPD compliance | Conformité totale avec export et suppression données
+
+# UX/UI
+Design system | Composants réutilisables avec Storybook
+Mode sombre | Thème dark avec switch automatique
+Accessibilité | Conformité WCAG 2.1 niveau AA
+Responsive design | Adaptation parfaite mobile, tablette, desktop
+
+# Administration
+Gestion utilisateurs | CRUD complet avec rôles et permissions
+Tableau de bord admin | Vue d'ensemble système et statistiques
+Logs système | Consultation et recherche dans les logs
+Backup automatique | Sauvegarde quotidienne avec restauration
+
+# Exemples sans description (titre uniquement)
+Recherche globale
+Favoris et bookmarks
+Partage de contenu
+Commentaires et discussions
+Tags et catégories
+Historique des modifications
+Versionning des documents
+Corbeille avec restauration

@@ -1,0 +1,91 @@
+/* ====================================
+   ACHIEVEMENTS/NOTIFICATIONS
+   ==================================== */
+
+.achievement-notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: linear-gradient(135deg, var(--success), #45a049);
+  color: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  transform: translateX(400px);
+  transition: transform 0.5s ease;
+  z-index: 2000;
+  max-width: 400px;
+}
+
+.achievement-notification.show {
+  transform: translateX(0);
+}
+
+.achievement-content {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.achievement-icon {
+  font-size: 2.5rem;
+  animation: bounce 0.6s ease;
+}
+
+/* Alertes coaching */
+.alerts-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.alert {
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  border-left: 4px solid;
+  animation: slideIn 0.5s ease;
+}
+
+.alert-info {
+  background: #e3f2fd;
+  border-color: var(--primary);
+  color: #1565c0;
+}
+
+.alert-success {
+  background: #e8f5e8;
+  border-color: var(--success);
+  color: #2e7d32;
+}
+
+.alert-warning {
+  background: #fff3e0;
+  border-color: var(--warning);
+  color: #ef6c00;
+}
+
+.alert-danger {
+  background: #ffebee;
+  border-color: var(--danger);
+  color: #c62828;
+}
+
+.alert-details {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.alert-details strong {
+  color: inherit;
+  font-weight: 600;
+}
+
+.alert-details small {
+  display: block;
+  margin-top: 0.5rem;
+  opacity: 0.9;
+}

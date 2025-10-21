@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Mermaid.js Integration</title>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="../assets/css/variables.css">
+    <link rel="stylesheet" href="../assets/themes/theme-light.css">
+    <link rel="stylesheet" href="../assets/css/base.css">
+    <link rel="stylesheet" href="../assets/css/markdown.css">
+    
+    <style>
+        body {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .test-section {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: var(--bg-secondary);
+            border-radius: var(--radius-lg);
+        }
+        
+        .test-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .test-description {
+            margin-bottom: 1.5rem;
+            color: var(--text-secondary);
+        }
+        
+        .theme-toggle {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.5rem 1rem;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()">🌓 Changer de thème</button>
+    
+    <h1>🧪 Test d'Intégration Mermaid.js</h1>
+    <p>Cette page teste le rendu des diagrammes Mermaid dans différents contextes.</p>
+    
+    <!-- Test 1: Impact Mapping -->
+    <div class="test-section">
+        <h2 class="test-title">Test 1: Impact Mapping (Horizontal)</h2>
+        <p class="test-description">Diagramme de flux horizontal avec sauts de ligne</p>
+        <div class="markdown-content">
+            <div class="mermaid">
+graph LR
+    A[Pourquoi ?\nObjectif] --> B[Qui ?\nActeurs]
+    B --> C[Comment ?\nImpacts]
+    C --> D[Quoi ?\nLivrables]
+            </div>
+        </div>
+    </div>
+    
+    <!-- Test 2: Cycle Scrum -->
+    <div class="test-section">
+        <h2 class="test-title">Test 2: Cycle Scrum (Vertical)</h2>
+        <p class="test-description">Diagramme de flux vertical avec styles personnalisés</p>
+        <div class="markdown-content">
+            <div class="mermaid">
+graph TD
+    A[Product Backlog] --> B[Sprint Planning]
+    B --> C[Sprint Backlog]
+    C --> D[Daily Scrum]
+    D --> E[Sprint Review]
+    E --> F[Sprint Retrospective]
+    F --> A
+    
+    D --> D
+    
+    style A fill:#3b82f6,stroke:#1e40af,color:#fff
+    style B fill:#10b981,stroke:#059669,color:#fff
+    style C fill:#f59e0b,stroke:#d97706,color:#fff
+    style D fill:#ef4444,stroke:#dc2626,color:#fff
+    style E fill:#8b5cf6,stroke:#7c3aed,color:#fff
+    style F fill:#ec4899,stroke:#db2777,color:#fff
+            </div>
+        </div>
+    </div>
+    
+    <!-- Test 3: Diagramme de Séquence -->
+    <div class="test-section">
+        <h2 class="test-title">Test 3: Diagramme de Séquence</h2>
+        <p class="test-description">Interaction entre utilisateur et système</p>
+        <div class="markdown-content">
+            <div class="mermaid">
+sequenceDiagram
+    participant U as Utilisateur
+    participant S as Système
+    participant DB as Base de données
+    
+    U->>S: Demande de connexion
+    S->>DB: Vérifier identifiants
+    DB-->>S: Identifiants valides
+    S-->>U: Connexion réussie
+            </div>
+        </div>
+    </div>
+    
+    <!-- Test 4: Diagramme d'État -->
+    <div class="test-section">
+        <h2 class="test-title">Test 4: Diagramme d'État</h2>
+        <p class="test-description">États d'un processus</p>
+        <div class="markdown-content">
+            <div class="mermaid">
+stateDiagram-v2
+    [*] --> Inactif
+    Inactif --> Actif: Démarrer
+    Actif --> EnPause: Pause
+    EnPause --> Actif: Reprendre
+    Actif --> Terminé: Terminer
+    Terminé --> [*]
+            </div>
+        </div>
+    </div>
+    
+    <!-- Test 5: Diagramme Circulaire -->
+    <div class="test-section">
+        <h2 class="test-title">Test 5: Diagramme Circulaire</h2>
+        <p class="test-description">Répartition du temps</p>
+        <div class="markdown-content">
+            <div class="mermaid">
+pie title Répartition du temps
+    "Développement" : 45
+    "Tests" : 20
+    "Documentation" : 15
+    "Réunions" : 20
+            </div>
+        </div>
+    </div>
+    
+    <!-- Test 6: Flux Kanban -->
+    <div class="test-section">
+        <h2 class="test-title">Test 6: Flux de Travail Kanban</h2>
+        <p class="test-description">Workflow avec styles de couleur</p>
+        <div class="markdown-content">
+            <div class="mermaid">
+graph LR
+    A[Backlog] --> B[À faire]
+    B --> C[En cours]
+    C --> D[En revue]
+    D --> E[Terminé]
+    
+    style A fill:#94a3b8
+    style B fill:#3b82f6
+    style C fill:#f59e0b
+    style D fill:#8b5cf6
+    style E fill:#10b981
+            </div>
+        </div>
+    </div>
+    
+    <!-- Test 7: Diagramme de Décision -->
+    <div class="test-section">
+        <h2 class="test-title">Test 7: Diagramme de Décision</h2>
+        <p class="test-description">Arbre de décision avec conditions</p>
+        <div class="markdown-content">
+            <div class="mermaid">
+graph TD
+    A[Problème détecté] --> B{Urgent ?}
+    B -->|Oui| C[Hotfix immédiat]
+    B -->|Non| D{Impact élevé ?}
+    D -->|Oui| E[Prioriser dans le sprint]
+    D -->|Non| F[Ajouter au backlog]
+    
+    C --> G[Déploiement]
+    E --> G
+    F --> H[Prochaine planification]
+            </div>
+        </div>
+    </div>
+    
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js"></script>
+    <script src="../assets/js/markdown-parser.js"></script>
+    
+    <script>
+        // Initialiser Mermaid
+        if (typeof mermaid !== 'undefined') {
+            mermaid.initialize({
+                startOnLoad: true,
+                theme: document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default',
+                securityLevel: 'loose',
+                fontFamily: 'inherit',
+                flowchart: {
+                    useMaxWidth: true,
+                    htmlLabels: true,
+                    curve: 'basis'
+                }
+            });
+            
+            // Forcer le rendu
+            setTimeout(() => {
+                mermaid.contentLoaded();
+            }, 100);
+        }
+        
+        // Fonction pour changer de thème
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            html.setAttribute('data-theme', newTheme);
+            
+            // Changer le fichier CSS du thème
+            const themeLink = document.querySelector('link[href*="theme-"]');
+            if (themeLink) {
+                themeLink.href = `../assets/themes/theme-${newTheme}.css`;
+            }
+            
+            // Recharger les diagrammes Mermaid avec le nouveau thème
+            if (typeof mermaid !== 'undefined') {
+                const theme = newTheme === 'dark' ? 'dark' : 'default';
+                mermaid.initialize({ theme });
+                
+                // Re-render tous les diagrammes
+                document.querySelectorAll('.mermaid').forEach((element) => {
+                    const graphDefinition = element.textContent;
+                    element.removeAttribute('data-processed');
+                    element.innerHTML = graphDefinition;
+                });
+                
+                mermaid.contentLoaded();
+            }
+        }
+    </script>
+</body>
+</html>

@@ -9,8 +9,159 @@
       "id": "postures-coaching",
       "title": "Postures de Coaching",
       "file": "postures-coaching.md",
-      "tags": ["posture", "coaching", "facilitation", "mentorat"],
+      "tags": [
+        "posture",
+        "coaching",
+        "facilitation",
+        "mentorat"
+      ],
       "order": 1
+    },
+    {
+      "id": "servant-leadership",
+      "title": "Servant Leadership : Le Leadership au Service de l'Équipe",
+      "file": "servant-leadership.md",
+      "tags": [
+        "servant-leadership",
+        "management",
+        "leadership",
+        "transformation",
+        "robert-greenleaf",
+        "empathie",
+        "écoute-active",
+        "autonomie",
+        "delegation-poker",
+        "sécurité-psychologique",
+        "questions-puissantes",
+        "manager",
+        "coach"
+      ],
+      "order": 2
     }
-  ]
+  ],
+  "tools": [
+    {
+      "id": "delegation-poker",
+      "title": "Delegation Poker",
+      "description": "Jeu de cartes pour clarifier les niveaux de délégation dans l'équipe",
+      "tags": [
+        "delegation",
+        "autonomie",
+        "management",
+        "jeu"
+      ],
+      "platform": "Web, Cartes",
+      "external": true,
+      "url": "https://management30.com/practice/delegation-poker",
+      "order": 1
+    },
+    {
+      "id": "moving-motivators",
+      "title": "Moving Motivators",
+      "description": "Outil pour identifier et comprendre les motivations individuelles",
+      "tags": [
+        "motivation",
+        "engagement",
+        "management-30",
+        "équipe"
+      ],
+      "platform": "Web, Cartes",
+      "external": true,
+      "url": "https://management30.com/practice/moving-motivators",
+      "order": 2
+    },
+    {
+      "id": "coaching-cards",
+      "title": "Coaching Cards",
+      "description": "Cartes de questions puissantes pour coaching et facilitation",
+      "tags": [
+        "coaching",
+        "questions",
+        "facilitation",
+        "développement"
+      ],
+      "platform": "Cartes",
+      "external": true,
+      "url": "https://www.coachingcards.com",
+      "order": 3
+    },
+    {
+      "id": "feedback-wrap",
+      "title": "Feedback Wrap",
+      "description": "Méthode structurée pour donner et recevoir du feedback constructif",
+      "tags": [
+        "feedback",
+        "communication",
+        "management-30",
+        "amélioration"
+      ],
+      "platform": "Web",
+      "external": true,
+      "url": "https://management30.com/practice/feedback-wrap",
+      "order": 4
+    }
+  ],
+  "templates": [
+    {
+      "id": "coaching-canvas",
+      "title": "Canvas de Coaching",
+      "description": "Template pour structurer une session de coaching individuel ou d'équipe",
+      "tags": [
+        "coaching",
+        "session",
+        "structure",
+        "développement"
+      ],
+      "format": "PDF",
+      "file": "coaching-canvas.pdf",
+      "downloadUrl": "templates/leadership-coaching/coaching-canvas.pdf",
+      "order": 1
+    },
+    {
+      "id": "delegation-board",
+      "title": "Delegation Board",
+      "description": "Tableau de délégation pour clarifier les responsabilités et l'autonomie",
+      "tags": [
+        "delegation",
+        "autonomie",
+        "responsabilités",
+        "management"
+      ],
+      "format": "PDF",
+      "file": "delegation-board.pdf",
+      "downloadUrl": "templates/leadership-coaching/delegation-board.pdf",
+      "order": 2
+    },
+    {
+      "id": "one-on-one-template",
+      "title": "Template One-on-One",
+      "description": "Structure de réunion individuelle pour managers et coachs",
+      "tags": [
+        "one-on-one",
+        "management",
+        "coaching",
+        "développement"
+      ],
+      "format": "Word",
+      "file": "one-on-one.docx",
+      "downloadUrl": "templates/leadership-coaching/one-on-one.docx",
+      "order": 3
+    },
+    {
+      "id": "feedback-template",
+      "title": "Template Feedback Constructif",
+      "description": "Guide pour structurer un feedback avec méthode DESC et SBI",
+      "tags": [
+        "feedback",
+        "communication",
+        "desc",
+        "sbi"
+      ],
+      "format": "PDF",
+      "file": "feedback-template.pdf",
+      "downloadUrl": "templates/leadership-coaching/feedback-template.pdf",
+      "order": 4
+    }
+  ],
+  "order": 7
 }

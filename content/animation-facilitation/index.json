@@ -9,22 +9,281 @@
       "id": "icebreakers",
       "title": "Icebreakers",
       "file": "icebreakers.md",
-      "tags": ["icebreaker", "énergie", "cohésion", "démarrage"],
+      "tags": [
+        "icebreaker",
+        "énergie",
+        "cohésion",
+        "démarrage"
+      ],
       "order": 1
     },
     {
       "id": "retrospectives",
       "title": "Rétrospectives",
       "file": "retrospectives.md",
-      "tags": ["rétrospective", "amélioration", "équipe", "feedback"],
+      "tags": [
+        "rétrospective",
+        "amélioration",
+        "équipe",
+        "feedback"
+      ],
       "order": 2
     },
     {
       "id": "open-space-liberating-structures",
       "title": "Open Space & Liberating Structures",
       "file": "open-space-liberating-structures.md",
-      "tags": ["open-space", "liberating-structures", "facilitation", "participation"],
+      "tags": [
+        "open-space",
+        "liberating-structures",
+        "facilitation",
+        "participation"
+      ],
       "order": 3
+    },
+    {
+      "id": "impact-mapping",
+      "title": "Impact Mapping - Facilitation",
+      "file": "impact-mapping.md",
+      "tags": [
+        "impact-mapping",
+        "facilitation",
+        "stratégie",
+        "objectifs"
+      ],
+      "order": 4
+    },
+    {
+      "id": "example-mapping",
+      "title": "Example Mapping",
+      "file": "example-mapping.md",
+      "tags": [
+        "example-mapping",
+        "facilitation",
+        "spécification",
+        "collaboration"
+      ],
+      "order": 5
+    },
+    {
+      "id": "roles-responsabilites",
+      "title": "Rôles et Responsabilités",
+      "file": "roles-responsabilites.md",
+      "tags": [
+        "rôles",
+        "responsabilités",
+        "équipe",
+        "organisation"
+      ],
+      "order": 6
+    },
+    {
+      "id": "facilitation-remote",
+      "title": "Facilitation d'Événements Agiles en Remote",
+      "file": "facilitation-remote.md",
+      "tags": [
+        "remote",
+        "facilitation",
+        "rituels",
+        "engagement",
+        "miro",
+        "zoom",
+        "daily",
+        "retrospective",
+        "sprint-planning",
+        "sprint-review",
+        "outils-collaboration",
+        "hybride",
+        "full-remote"
+      ],
+      "order": 7
+    },
+    {
+      "id": "les-differents-types-de-vote-decisions-collectives",
+      "title": "🗳️ Les différents types de vote : décisions collectives",
+      "file": "types-de-vote.md",
+      "tags": [
+        "vote",
+        "décision collective",
+        "intelligence collective",
+        "fouloscopie",
+        "facilitation"
+      ],
+      "order": 9
     }
-  ]
+  ],
+  "tools": [
+    {
+      "id": "miro",
+      "title": "Miro - Facilitation Visuelle",
+      "description": "Tableau blanc collaboratif pour animer des ateliers et rétrospectives à distance",
+      "tags": [
+        "facilitation",
+        "remote",
+        "atelier",
+        "retrospective",
+        "brainstorming"
+      ],
+      "platform": "Web, Desktop, Mobile",
+      "external": true,
+      "url": "https://miro.com",
+      "order": 1
+    },
+    {
+      "id": "mural",
+      "title": "Mural - Collaboration Visuelle",
+      "description": "Espace de travail visuel pour facilitation et design thinking",
+      "tags": [
+        "facilitation",
+        "design-thinking",
+        "atelier",
+        "collaboration"
+      ],
+      "platform": "Web, Desktop",
+      "external": true,
+      "url": "https://www.mural.co",
+      "order": 2
+    },
+    {
+      "id": "draft-io",
+      "title": "Draft.io - Tableau Blanc Français",
+      "description": "Outil français de tableau blanc collaboratif, fluide et simple d'utilisation",
+      "tags": [
+        "facilitation",
+        "français",
+        "tableau-blanc",
+        "collaboration",
+        "simple"
+      ],
+      "platform": "Web",
+      "external": true,
+      "url": "https://draft.io",
+      "order": 3
+    },
+    {
+      "id": "mentimeter",
+      "title": "Mentimeter - Sondages Interactifs",
+      "description": "Créer des sondages, quiz et nuages de mots en temps réel",
+      "tags": [
+        "sondage",
+        "engagement",
+        "interactif",
+        "vote"
+      ],
+      "platform": "Web, Mobile",
+      "external": true,
+      "url": "https://www.mentimeter.com",
+      "order": 4
+    },
+    {
+      "id": "kahoot",
+      "title": "Kahoot - Quiz Interactifs",
+      "description": "Plateforme de quiz interactifs pour engager et dynamiser vos ateliers",
+      "tags": [
+        "quiz",
+        "engagement",
+        "interactif",
+        "gamification",
+        "apprentissage"
+      ],
+      "platform": "Web, Mobile",
+      "external": true,
+      "url": "https://kahoot.com",
+      "order": 5
+    },
+    {
+      "id": "notion",
+      "title": "Notion - Documentation Collaborative",
+      "description": "Espace de travail tout-en-un pour créer et partager la documentation d'équipe",
+      "tags": [
+        "documentation",
+        "collaboration",
+        "wiki",
+        "notes",
+        "organisation"
+      ],
+      "platform": "Web, Desktop, Mobile",
+      "external": true,
+      "url": "https://www.notion.so",
+      "order": 6
+    },
+    {
+      "id": "liberating-structures",
+      "title": "Liberating Structures Menu",
+      "description": "33 microstructures pour libérer et impliquer tout le monde",
+      "tags": [
+        "facilitation",
+        "liberating-structures",
+        "atelier",
+        "participation"
+      ],
+      "platform": "Web",
+      "external": true,
+      "url": "https://www.liberatingstructures.com",
+      "order": 7
+    }
+  ],
+  "templates": [
+    {
+      "id": "retrospective-starfish",
+      "title": "Template Rétrospective Starfish",
+      "description": "Board Miro pour rétrospective au format Starfish (Start/Stop/Continue/More/Less)",
+      "tags": [
+        "retrospective",
+        "miro",
+        "starfish",
+        "amélioration-continue"
+      ],
+      "format": "Miro Board",
+      "file": "retro-starfish.rtb",
+      "downloadUrl": "templates/animation-facilitation/retro-starfish.rtb",
+      "order": 1
+    },
+    {
+      "id": "planning-poker",
+      "title": "Cartes Planning Poker Imprimables",
+      "description": "Jeu de cartes Planning Poker à imprimer (Fibonacci + T-Shirt sizes)",
+      "tags": [
+        "estimation",
+        "planning-poker",
+        "scrum",
+        "sprint-planning"
+      ],
+      "format": "PDF",
+      "file": "planning-poker-cards.pdf",
+      "downloadUrl": "templates/animation-facilitation/planning-poker-cards.pdf",
+      "order": 2
+    },
+    {
+      "id": "icebreaker-collection",
+      "title": "Collection de 20 Icebreakers",
+      "description": "Fiches pratiques avec 20 icebreakers pour démarrer vos ateliers",
+      "tags": [
+        "icebreaker",
+        "énergie",
+        "cohésion",
+        "atelier"
+      ],
+      "format": "PDF",
+      "file": "icebreakers-collection.pdf",
+      "downloadUrl": "templates/animation-facilitation/icebreakers-collection.pdf",
+      "order": 3
+    },
+    {
+      "id": "canvas-user-story-mapping",
+      "title": "Canvas User Story Mapping",
+      "description": "Template Miro pour créer votre story map collaborative",
+      "tags": [
+        "story-mapping",
+        "product-owner",
+        "backlog",
+        "miro"
+      ],
+      "format": "Miro Board",
+      "file": "story-mapping-canvas.rtb",
+      "downloadUrl": "templates/animation-facilitation/story-mapping-canvas.rtb",
+      "order": 4
+    }
+  ],
+  "order": 3
 }

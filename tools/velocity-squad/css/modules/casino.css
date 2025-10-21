@@ -1,0 +1,229 @@
+/* ====================================
+   CASINO/GAMIFICATION
+   ==================================== */
+
+.casino-main-container {
+  min-height: 400px;
+  padding: 1rem;
+}
+
+.casino-container-full {
+  background: linear-gradient(135deg, #0f3443, #1a5f3e, #2d1b4e);
+  background-image:
+    radial-gradient(circle at 20% 50%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 50%, rgba(220, 20, 60, 0.1) 0%, transparent 50%),
+    linear-gradient(135deg, #0f3443, #1a5f3e, #2d1b4e);
+  color: white;
+  padding: 2rem;
+  border-radius: 12px;
+  border: 2px solid rgba(255, 215, 0, 0.3);
+  box-shadow:
+    0 0 30px rgba(255, 215, 0, 0.2),
+    inset 0 0 50px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.casino-container-full::before {
+  content: '♠ ♥ ♦ ♣';
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.5rem;
+  opacity: 0.3;
+  letter-spacing: 1rem;
+  color: gold;
+}
+
+.casino-header-full {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.casino-progress {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: gold;
+}
+
+.casino-user {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.casino-controls-full {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.casino-navigation {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.casino-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.casino-empty {
+  text-align: center;
+  padding: 3rem;
+  color: #666;
+}
+
+.casino-empty h3 {
+  color: var(--text-dark);
+  margin-bottom: 1rem;
+}
+
+.casino-container {
+  background: linear-gradient(135deg, #1a1a2e, #16213e);
+  color: white;
+  padding: 2rem;
+  border-radius: 12px;
+  margin-top: 1rem;
+}
+
+.casino-header h3 {
+  color: gold;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+/* Cartes Fibonacci */
+.fibonacci-cards,
+.estimation-wheel {
+  display: flex;
+  gap: 0.5rem;
+  margin: 1.5rem 0;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.poker-card,
+.point-btn {
+  width: 70px;
+  height: 100px;
+  border-radius: 8px;
+  border: 3px solid gold;
+  background: #2c3e50;
+  color: gold;
+  font-weight: bold;
+  font-size: 1.4rem;
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.point-btn {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+.poker-card:hover,
+.point-btn:hover {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
+}
+
+.poker-card.selected,
+.point-btn.selected {
+  background: gold;
+  color: #1a1a2e;
+  transform: scale(1.2);
+}
+
+/* Participants */
+.participants {
+  display: flex;
+  gap: 1rem;
+  margin: 1.5rem 0;
+  flex-wrap: wrap;
+}
+
+.participant {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--border-radius);
+  transition: var(--transition);
+}
+
+.participant.estimated {
+  background: rgba(76, 175, 80, 0.3);
+}
+
+.card-back {
+  width: 40px;
+  height: 60px;
+  background: #34495e;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+/* Bouton casino stylisé */
+#casinoBtn {
+  background: linear-gradient(135deg, #9C27B0, #7B1FA2);
+  color: white;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+#casinoBtn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+#casinoBtn:active::before {
+  width: 300px;
+  height: 300px;
+}
+
+#casinoBtn:hover {
+  background: linear-gradient(135deg, #7B1FA2, #6A1B9A);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(156, 39, 176, 0.4);
+}
+
+/* Bouton mood stylisé */
+#moodBtn {
+  background: linear-gradient(135deg, #FF9800, #F57C00);
+  color: white;
+  transition: all 0.3s ease;
+}
+
+#moodBtn:hover {
+  background: linear-gradient(135deg, #F57C00, #E65100);
+  transform: translateY(-2px);
+}

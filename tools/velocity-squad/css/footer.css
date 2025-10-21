@@ -1,0 +1,513 @@
+/* ====================================
+   FOOTER - VALEURS ET PRINCIPES AGILE
+   ==================================== */
+
+.agile-footer {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    color: #f5f5f5;
+    padding: 3rem 2rem 2rem;
+    margin-top: 4rem;
+    border-top: 4px solid #2196F3;
+}
+
+.footer-content {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.footer-section {
+    margin-bottom: 3rem;
+}
+
+.footer-section h3 {
+    color: #2196F3;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-weight: 600;
+}
+
+.footer-section h4 {
+    color: #00BCD4;
+    font-size: 1.1rem;
+    margin: 0 0 1rem;
+    font-weight: 500;
+}
+
+/* ====================================
+   VALEURS AGILE
+   ==================================== */
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.value-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: rgba(33, 150, 243, 0.1);
+    border-radius: 8px;
+    border-left: 4px solid #2196F3;
+    transition: all 0.3s ease;
+}
+
+.value-item:hover {
+    background: rgba(33, 150, 243, 0.2);
+    transform: translateX(5px);
+}
+
+.value-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+}
+
+.value-item strong {
+    display: block;
+    color: #fff;
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+}
+
+.value-item small {
+    color: #bbb;
+    font-size: 0.85rem;
+    font-style: italic;
+}
+
+/* ====================================
+   MODERN AGILE
+   ==================================== */
+
+.modern-agile-section {
+    background: linear-gradient(135deg, rgba(255, 193, 7, 0.1) 0%, rgba(255, 152, 0, 0.1) 100%);
+    padding: 2rem;
+    border-radius: 12px;
+    border: 2px solid rgba(255, 193, 7, 0.3);
+}
+
+.modern-agile-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.modern-agile-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, rgba(255, 193, 7, 0.15) 0%, rgba(255, 152, 0, 0.15) 100%);
+    border-radius: 8px;
+    border-left: 4px solid #FFC107;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.modern-agile-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255, 193, 7, 0.1) 0%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modern-agile-item:hover {
+    background: linear-gradient(135deg, rgba(255, 193, 7, 0.25) 0%, rgba(255, 152, 0, 0.25) 100%);
+    transform: translateX(5px) scale(1.02);
+    box-shadow: 0 4px 12px rgba(255, 193, 7, 0.3);
+}
+
+.modern-agile-item:hover::before {
+    opacity: 1;
+}
+
+.modern-icon {
+    font-size: 2.5rem;
+    flex-shrink: 0;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.modern-agile-item strong {
+    display: block;
+    color: #FFC107;
+    font-size: 1.05rem;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.modern-agile-item small {
+    color: #ddd;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    display: block;
+}
+
+/* 12 Principes Agile (compact) */
+.agile-principles-compact {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: rgba(33, 150, 243, 0.05);
+    border-radius: 8px;
+    border-left: 4px solid #2196F3;
+}
+
+.agile-principles-compact h4 {
+    color: #2196F3;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.principles-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 0.5rem;
+}
+
+.principle-compact {
+    padding: 0.5rem 0.75rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    color: #ccc;
+    transition: all 0.2s ease;
+}
+
+.principle-compact:hover {
+    background: rgba(33, 150, 243, 0.1);
+    color: #fff;
+    transform: translateX(3px);
+}
+
+/* ====================================
+   PILIERS SCRUM
+   ==================================== */
+
+.pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.pillar-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: rgba(76, 175, 80, 0.1);
+    border-radius: 8px;
+    border-left: 4px solid #4CAF50;
+    transition: all 0.3s ease;
+}
+
+.pillar-item:hover {
+    background: rgba(76, 175, 80, 0.2);
+    transform: translateY(-3px);
+}
+
+.pillar-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+}
+
+.pillar-item strong {
+    display: block;
+    color: #fff;
+    font-size: 1.1rem;
+    margin-bottom: 0.25rem;
+}
+
+.pillar-item small {
+    color: #bbb;
+    font-size: 0.85rem;
+}
+
+/* Valeurs Scrum */
+.scrum-values {
+    background: rgba(255, 152, 0, 0.1);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-left: 4px solid #FF9800;
+    margin-bottom: 2rem;
+}
+
+.values-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+.value-badge {
+    background: linear-gradient(135deg, #FF9800, #F57C00);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.value-badge:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* ====================================
+   VALEURS SAFe
+   ==================================== */
+
+.safe-values {
+    background: rgba(0, 150, 136, 0.1);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-left: 4px solid #009688;
+}
+
+.safe-values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.safe-value-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: rgba(0, 150, 136, 0.15);
+    border-radius: 8px;
+    border-left: 4px solid #00BCD4;
+    transition: all 0.3s ease;
+}
+
+.safe-value-item:hover {
+    background: rgba(0, 150, 136, 0.25);
+    transform: translateX(5px);
+    box-shadow: 0 4px 12px rgba(0, 150, 136, 0.3);
+}
+
+.safe-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.safe-value-item strong {
+    display: block;
+    color: #00BCD4;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.safe-value-item small {
+    color: #ccc;
+    font-size: 0.85rem;
+    line-height: 1.4;
+}
+
+/* ====================================
+   PRINCIPES KANBAN
+   ==================================== */
+
+.kanban-principles {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.principle-category {
+    background: rgba(0, 188, 212, 0.1);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-left: 4px solid #00BCD4;
+}
+
+.principle-category ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.principle-category li {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    line-height: 1.6;
+}
+
+.principle-category li:last-child {
+    border-bottom: none;
+}
+
+.principle-category strong {
+    color: #00BCD4;
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+/* Pratiques Kanban */
+.kanban-practices {
+    background: rgba(156, 39, 176, 0.1);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-left: 4px solid #9C27B0;
+}
+
+.practices-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+.practice-badge {
+    background: linear-gradient(135deg, #9C27B0, #7B1FA2);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.practice-badge:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* ====================================
+   CRÉDITS
+   ==================================== */
+
+.footer-credits {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: #999;
+}
+
+.footer-credits p {
+    margin: 0.5rem 0;
+}
+
+.footer-credits a {
+    color: #2196F3;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-credits a:hover {
+    color: #00BCD4;
+    text-decoration: underline;
+}
+
+/* ====================================
+   RESPONSIVE
+   ==================================== */
+
+@media (max-width: 768px) {
+    .agile-footer {
+        padding: 2rem 1rem 1.5rem;
+    }
+
+    .values-grid,
+    .pillars-grid,
+    .modern-agile-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .kanban-principles {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .footer-section h3 {
+        font-size: 1.3rem;
+    }
+
+    .value-item,
+    .pillar-item,
+    .modern-agile-item {
+        padding: 1rem;
+    }
+
+    .modern-agile-section {
+        padding: 1.5rem 1rem;
+    }
+
+    .agile-principles-compact {
+        padding: 1rem;
+    }
+
+    .principles-list {
+        grid-template-columns: 1fr;
+        gap: 0.4rem;
+    }
+
+    .principle-compact {
+        font-size: 0.8rem;
+        padding: 0.4rem 0.6rem;
+    }
+
+    .values-list,
+    .practices-grid {
+        gap: 0.5rem;
+    }
+
+    .value-badge,
+    .practice-badge {
+        font-size: 0.85rem;
+        padding: 0.4rem 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .value-icon,
+    .pillar-icon,
+    .modern-icon {
+        font-size: 1.5rem;
+    }
+
+    .footer-section h3 {
+        font-size: 1.1rem;
+    }
+
+    .footer-section h4 {
+        font-size: 1rem;
+    }
+
+    .modern-agile-item strong {
+        font-size: 0.95rem;
+    }
+
+    .modern-agile-item small {
+        font-size: 0.8rem;
+    }
+
+    .agile-principles-compact h4 {
+        font-size: 0.9rem;
+    }
+
+    .principle-compact {
+        font-size: 0.75rem;
+    }
+}

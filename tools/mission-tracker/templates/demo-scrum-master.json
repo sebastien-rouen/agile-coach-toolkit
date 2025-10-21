@@ -1,0 +1,542 @@
+{
+  "name": "Démo Scrum Master",
+  "description": "Exemple de mission Scrum Master avec événements et objectifs",
+  "data": {
+    "missions": [
+      {
+        "id": "demo-sm-001",
+        "title": "Transformation Agile - Banque Digitale",
+        "client": "BankTech Solutions",
+        "role": "scrum-master",
+        "start_date": "2024-09-01",
+        "end_date": null,
+        "status": "active",
+        "objectives": [
+          {
+            "id": "obj-1",
+            "title": "Mettre en place les cérémonies Scrum",
+            "completed": true
+          },
+          {
+            "id": "obj-2",
+            "title": "Former l'équipe aux pratiques agiles",
+            "completed": true
+          },
+          {
+            "id": "obj-3",
+            "title": "Améliorer la vélocité de 30%",
+            "completed": false
+          },
+          {
+            "id": "obj-4",
+            "title": "Réduire le temps de cycle à 5 jours",
+            "completed": false
+          }
+        ],
+        "metrics": [
+          {
+            "name": "Vélocité",
+            "value": 30,
+            "unit": "points",
+            "trend": "up"
+          },
+          {
+            "name": "Temps de cycle",
+            "value": 7,
+            "unit": "jours",
+            "trend": "down"
+          }
+        ],
+        "context": {
+          "team_size": 8,
+          "technologies": ["React", "Node.js", "MongoDB"],
+          "challenges": ["Résistance au changement", "Legacy code"]
+        },
+        "createdAt": "2024-09-01T08:00:00.000Z",
+        "updatedAt": "2024-11-24T10:00:00.000Z"
+      },
+      {
+        "id": "demo-sm-002",
+        "title": "Coaching Équipe DevOps - FinTech",
+        "client": "PayFast",
+        "role": "scrum-master",
+        "start_date": "2024-03-01",
+        "end_date": "2024-08-31",
+        "status": "completed",
+        "objectives": [
+          {
+            "id": "obj-5",
+            "title": "Automatiser le pipeline CI/CD",
+            "completed": true
+          },
+          {
+            "id": "obj-6",
+            "title": "Réduire le lead time de 50%",
+            "completed": true
+          },
+          {
+            "id": "obj-7",
+            "title": "Former l'équipe à Kanban",
+            "completed": true
+          }
+        ],
+        "metrics": [
+          {
+            "name": "Lead Time",
+            "value": 3,
+            "unit": "jours",
+            "trend": "down"
+          },
+          {
+            "name": "Déploiements/semaine",
+            "value": 12,
+            "unit": "déploiements",
+            "trend": "up"
+          }
+        ],
+        "context": {
+          "team_size": 6,
+          "technologies": ["Docker", "Kubernetes", "Jenkins"],
+          "challenges": ["Déploiements manuels", "Manque d'automatisation"]
+        },
+        "createdAt": "2024-03-01T08:00:00.000Z",
+        "updatedAt": "2024-08-31T18:00:00.000Z"
+      }
+    ],
+    "events": [
+      {
+        "id": "event-1",
+        "mission_id": "demo-sm-001",
+        "type": "milestone",
+        "title": "Kick-off mission et rencontre équipe",
+        "description": "Première rencontre avec l'équipe de 8 développeurs",
+        "date": "2024-09-01",
+        "tags": ["kickoff", "team"],
+        "impact": "high"
+      },
+      {
+        "id": "event-2",
+        "mission_id": "demo-sm-001",
+        "type": "meeting",
+        "title": "Atelier de formation Scrum",
+        "description": "Formation de 2 jours sur les pratiques Scrum",
+        "date": "2024-09-05",
+        "tags": ["training", "scrum"],
+        "impact": "high"
+      },
+      {
+        "id": "event-3",
+        "mission_id": "demo-sm-001",
+        "type": "milestone",
+        "title": "Premier Sprint Planning réussi",
+        "description": "L'équipe a bien adhéré au format, bonne estimation des stories",
+        "date": "2024-09-15",
+        "tags": ["sprint", "planning"],
+        "impact": "high"
+      },
+      {
+        "id": "event-4",
+        "mission_id": "demo-sm-001",
+        "type": "achievement",
+        "title": "Mise en place du Daily Standup",
+        "description": "100% de participation de l'équipe aux daily meetings",
+        "date": "2024-09-20",
+        "tags": ["daily", "ceremony"],
+        "impact": "medium"
+      },
+      {
+        "id": "event-5",
+        "mission_id": "demo-sm-001",
+        "type": "delivery",
+        "title": "Première release Sprint 1",
+        "description": "Déploiement réussi de 8 user stories",
+        "date": "2024-09-30",
+        "tags": ["release", "sprint"],
+        "impact": "high"
+      },
+      {
+        "id": "event-6",
+        "mission_id": "demo-sm-001",
+        "type": "meeting",
+        "title": "Rétrospective Sprint 1",
+        "description": "Identification de 3 actions d'amélioration",
+        "date": "2024-10-01",
+        "tags": ["retrospective", "improvement"],
+        "impact": "medium"
+      },
+      {
+        "id": "event-7",
+        "mission_id": "demo-sm-001",
+        "type": "achievement",
+        "title": "Vélocité augmentée de 20%",
+        "description": "Passage de 25 à 30 points par sprint",
+        "date": "2024-10-15",
+        "tags": ["metrics", "velocity"],
+        "impact": "high"
+      },
+      {
+        "id": "event-8",
+        "mission_id": "demo-sm-001",
+        "type": "meeting",
+        "title": "Backlog Refinement avec le PO",
+        "description": "Affinage de 20 user stories pour les prochains sprints",
+        "date": "2024-10-20",
+        "tags": ["backlog", "refinement"],
+        "impact": "medium"
+      },
+      {
+        "id": "event-9",
+        "mission_id": "demo-sm-001",
+        "type": "meeting",
+        "title": "Rétrospective Sprint 2",
+        "description": "Focus sur l'amélioration de la qualité du code",
+        "date": "2024-10-30",
+        "tags": ["retrospective", "quality"],
+        "impact": "medium"
+      },
+      {
+        "id": "event-10",
+        "mission_id": "demo-sm-001",
+        "type": "issue",
+        "title": "Blocage technique sur l'API",
+        "description": "Dépendance externe non disponible, escalade nécessaire",
+        "date": "2024-11-05",
+        "tags": ["blocker", "technical"],
+        "impact": "high"
+      },
+      {
+        "id": "event-11",
+        "mission_id": "demo-sm-001",
+        "type": "achievement",
+        "title": "Résolution du blocage API",
+        "description": "Solution trouvée avec l'équipe architecture",
+        "date": "2024-11-08",
+        "tags": ["resolution", "technical"],
+        "impact": "high"
+      },
+      {
+        "id": "event-12",
+        "mission_id": "demo-sm-001",
+        "type": "delivery",
+        "title": "Release v2.1 en production",
+        "description": "Déploiement réussi avec 15 nouvelles fonctionnalités",
+        "date": "2024-11-20",
+        "tags": ["release", "production"],
+        "impact": "high"
+      },
+      {
+        "id": "event-13",
+        "mission_id": "demo-sm-002",
+        "type": "milestone",
+        "title": "Démarrage mission PayFast",
+        "description": "Kick-off avec l'équipe DevOps de 6 personnes",
+        "date": "2024-03-01",
+        "tags": ["kickoff", "devops"],
+        "impact": "high"
+      },
+      {
+        "id": "event-14",
+        "mission_id": "demo-sm-002",
+        "type": "meeting",
+        "title": "Atelier Kanban",
+        "description": "Formation de l'équipe à la méthode Kanban",
+        "date": "2024-03-15",
+        "tags": ["training", "kanban"],
+        "impact": "high"
+      },
+      {
+        "id": "event-15",
+        "mission_id": "demo-sm-002",
+        "type": "achievement",
+        "title": "Pipeline CI/CD automatisé",
+        "description": "Mise en place complète du pipeline avec Jenkins",
+        "date": "2024-04-30",
+        "tags": ["cicd", "automation"],
+        "impact": "high"
+      },
+      {
+        "id": "event-16",
+        "mission_id": "demo-sm-002",
+        "type": "achievement",
+        "title": "Lead time réduit de 70%",
+        "description": "Passage de 10 jours à 3 jours en moyenne",
+        "date": "2024-06-15",
+        "tags": ["metrics", "improvement"],
+        "impact": "high"
+      },
+      {
+        "id": "event-17",
+        "mission_id": "demo-sm-002",
+        "type": "delivery",
+        "title": "Première release automatisée",
+        "description": "Déploiement automatique en production sans intervention manuelle",
+        "date": "2024-07-01",
+        "tags": ["release", "automation"],
+        "impact": "high"
+      },
+      {
+        "id": "event-18",
+        "mission_id": "demo-sm-002",
+        "type": "milestone",
+        "title": "Fin de mission PayFast",
+        "description": "Bilan final très positif, équipe autonome",
+        "date": "2024-08-31",
+        "tags": ["closure", "success"],
+        "impact": "high"
+      }
+    ],
+    "achievements": [
+      {
+        "id": "ach-1",
+        "mission_id": "demo-sm-001",
+        "title": "Adoption du Daily Standup",
+        "description": "100% de participation de l'équipe aux daily meetings",
+        "date": "2024-09-20",
+        "impact": "medium"
+      },
+      {
+        "id": "ach-2",
+        "mission_id": "demo-sm-001",
+        "title": "Réduction du temps de cycle",
+        "description": "Passage de 10 jours à 7 jours en moyenne",
+        "date": "2024-10-25",
+        "impact": "high"
+      }
+    ],
+    "challenges": [
+      {
+        "id": "chal-1",
+        "mission_id": "demo-sm-001",
+        "title": "Résistance du Product Owner",
+        "description": "Difficulté à faire accepter le backlog refinement",
+        "date": "2024-09-10",
+        "status": "resolved",
+        "severity": "medium"
+      },
+      {
+        "id": "chal-2",
+        "mission_id": "demo-sm-002",
+        "title": "Conflits entre Dev et Ops",
+        "description": "Manque de collaboration entre les équipes",
+        "date": "2024-04-15",
+        "status": "resolved",
+        "severity": "high"
+      }
+    ],
+    "checkpoints": [
+      {
+        "id": "checkpoint-1",
+        "mission_id": "demo-sm-001",
+        "type": "weekly",
+        "date": "2024-09-20",
+        "mood": "good",
+        "energy_level": 4,
+        "highlights": ["Daily standup adopté", "Équipe motivée", "Première release réussie"],
+        "lowlights": ["Quelques résistances au changement", "Backlog pas encore bien affiné"],
+        "blockers": [],
+        "learnings": ["L'équipe apprend vite", "Besoin de plus de formation sur l'estimation"],
+        "next_actions": ["Former sur le planning poker", "Améliorer le backlog refinement"]
+      },
+      {
+        "id": "checkpoint-2",
+        "mission_id": "demo-sm-001",
+        "type": "monthly",
+        "date": "2024-10-31",
+        "mood": "great",
+        "energy_level": 5,
+        "highlights": ["Vélocité augmentée de 20%", "Équipe autonome", "Rétrospectives productives"],
+        "lowlights": ["Blocage technique sur l'API"],
+        "blockers": ["Dépendance externe non disponible"],
+        "learnings": ["L'amélioration continue fonctionne", "Les métriques motivent l'équipe"],
+        "next_actions": ["Résoudre le blocage API", "Continuer les rétrospectives"]
+      },
+      {
+        "id": "checkpoint-3",
+        "mission_id": "demo-sm-001",
+        "type": "monthly",
+        "date": "2024-11-30",
+        "mood": "good",
+        "energy_level": 4,
+        "highlights": ["Release v2.1 réussie", "Blocage résolu", "Équipe très autonome"],
+        "lowlights": ["Absence d'un développeur clé"],
+        "blockers": [],
+        "learnings": ["L'équipe sait gérer les imprévus", "La communication est clé"],
+        "next_actions": ["Préparer la prochaine release", "Former le remplaçant"]
+      },
+      {
+        "id": "checkpoint-4",
+        "mission_id": "demo-sm-002",
+        "type": "monthly",
+        "date": "2024-04-30",
+        "mood": "great",
+        "energy_level": 5,
+        "highlights": ["Pipeline CI/CD opérationnel", "Équipe DevOps soudée", "Automatisation réussie"],
+        "lowlights": ["Quelques bugs en production"],
+        "blockers": [],
+        "learnings": ["L'automatisation libère du temps", "Les tests sont essentiels"],
+        "next_actions": ["Améliorer les tests", "Réduire encore le lead time"]
+      },
+      {
+        "id": "checkpoint-5",
+        "mission_id": "demo-sm-002",
+        "type": "monthly",
+        "date": "2024-06-30",
+        "mood": "great",
+        "energy_level": 5,
+        "highlights": ["Lead time réduit de 70%", "12 déploiements par semaine", "Zéro incident"],
+        "lowlights": [],
+        "blockers": [],
+        "learnings": ["La culture DevOps est installée", "Les métriques prouvent le succès"],
+        "next_actions": ["Partager les pratiques", "Documenter le processus"]
+      }
+    ],
+    "reports": [
+      {
+        "id": "report-1",
+        "mission_id": "demo-sm-001",
+        "type": "initial",
+        "title": "Rapport d'étonnement - BankTech",
+        "date": "2024-09-15",
+        "content": {
+          "first_impressions": "Équipe motivée mais manque de structure dans les pratiques agiles",
+          "context": "Projet de refonte d'application bancaire avec 8 développeurs",
+          "strengths": ["Compétences techniques solides", "Bonne ambiance d'équipe", "Volonté d'apprendre"],
+          "challenges": ["Pas de cérémonies Scrum", "Backlog non priorisé", "Déploiements chaotiques"],
+          "quick_wins": ["Mise en place du Daily Standup", "Création du board Kanban", "Premier Sprint Planning"],
+          "recommendations": ["Former l'équipe à Scrum", "Mettre en place les rétrospectives", "Améliorer la définition of Done"]
+        }
+      },
+      {
+        "id": "report-2",
+        "mission_id": "demo-sm-001",
+        "type": "checkpoint",
+        "title": "Checkpoint Mensuel - Octobre 2024",
+        "date": "2024-10-31",
+        "content": {
+          "period": "Octobre 2024",
+          "highlights": ["Vélocité augmentée de 20%", "Première release réussie", "Équipe autonome sur les cérémonies"],
+          "lowlights": ["Blocage technique sur l'API", "Absence d'un développeur clé"],
+          "metrics": {
+            "velocity": 30,
+            "cycle_time": 7,
+            "sprint_goal_success": "80%"
+          },
+          "next_actions": ["Résoudre le blocage API", "Former le remplaçant", "Améliorer les tests automatisés"]
+        }
+      },
+      {
+        "id": "report-3",
+        "mission_id": "demo-sm-002",
+        "type": "final",
+        "title": "Bilan Final - PayFast DevOps",
+        "date": "2024-08-31",
+        "content": {
+          "summary": "Mission réussie avec transformation complète du processus de déploiement",
+          "objectives_achieved": ["Pipeline CI/CD automatisé", "Lead time réduit de 70%", "Équipe formée à Kanban"],
+          "key_achievements": ["12 déploiements par semaine vs 2 avant", "Zéro incident en production", "Culture DevOps installée"],
+          "lessons_learned": ["L'automatisation est clé", "La collaboration Dev/Ops nécessite du temps", "Les métriques motivent l'équipe"],
+          "recommendations": ["Continuer les rétrospectives", "Investir dans le monitoring", "Partager les pratiques avec d'autres équipes"]
+        }
+      }
+    ],
+    "roadmap": [
+      {
+        "id": "road-1",
+        "type": "skill",
+        "title": "Certification PSM II",
+        "description": "Obtenir la certification Professional Scrum Master niveau 2",
+        "status": "in_progress",
+        "priority": "high",
+        "due_date": "2025-03-01"
+      },
+      {
+        "id": "road-2",
+        "type": "learn",
+        "title": "Approfondir SAFe",
+        "description": "Se former au framework SAFe pour les transformations à l'échelle",
+        "status": "planned",
+        "priority": "medium",
+        "due_date": "2025-06-01"
+      },
+      {
+        "id": "road-3",
+        "type": "experiment",
+        "title": "Tester le Mob Programming",
+        "description": "Expérimenter le mob programming avec l'équipe",
+        "status": "done",
+        "priority": "low",
+        "completion_date": "2024-10-15"
+      }
+    ],
+    "vision": {
+      "statement": "Devenir un expert reconnu en transformation agile et coaching d'équipes",
+      "goals": [
+        "Accompagner 10+ équipes dans leur transformation agile",
+        "Obtenir les certifications PSM II et SAFe",
+        "Créer une communauté de pratique agile",
+        "Publier des articles sur mes apprentissages"
+      ]
+    },
+    "skills": [
+      {
+        "name": "Facilitation",
+        "level": 4,
+        "category": "soft-skills"
+      },
+      {
+        "name": "Scrum",
+        "level": 5,
+        "category": "frameworks"
+      },
+      {
+        "name": "Kanban",
+        "level": 4,
+        "category": "frameworks"
+      },
+      {
+        "name": "Coaching",
+        "level": 3,
+        "category": "soft-skills"
+      }
+    ],
+    "skills_to_develop": [
+      {
+        "name": "SAFe",
+        "reason": "Pour accompagner des transformations à l'échelle",
+        "priority": "high"
+      },
+      {
+        "name": "OKR",
+        "reason": "Pour aider les équipes à définir leurs objectifs",
+        "priority": "medium"
+      }
+    ],
+    "learning_goals": [
+      {
+        "title": "Certification PSM II",
+        "type": "certification",
+        "deadline": "2025-03-01",
+        "status": "in_progress"
+      },
+      {
+        "title": "Lire 'Team Topologies'",
+        "type": "reading",
+        "deadline": "2025-01-31",
+        "status": "planned"
+      }
+    ],
+    "experiments": [
+      {
+        "id": "exp-1",
+        "mission_id": "demo-sm-001",
+        "title": "Mob Programming hebdomadaire",
+        "hypothesis": "Le mob programming améliore le partage de connaissances",
+        "status": "completed",
+        "outcome": "success",
+        "start_date": "2024-10-01",
+        "end_date": "2024-10-31",
+        "results": "Amélioration significative du partage de connaissances, réduction des silos techniques"
+      }
+    ]
+  }
+}

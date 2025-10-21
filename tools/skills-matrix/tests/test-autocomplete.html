@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Autocomplétion - Skills Matrix</title>
+    <link rel="stylesheet" href="../css/autocomplete.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 90%;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        .test-section {
+            margin-bottom: 40px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        .test-input-wrapper {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .result {
+            margin-top: 10px;
+            padding: 10px;
+            background: #f5f5f5;
+            border-radius: 4px;
+        }
+        h2 {
+            color: #333;
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tests d'Autocomplétion - Skills Matrix</h1>
+
+    <div class="test-section">
+        <h2>Test 1 : Autocomplétion Skills</h2>
+        <div class="test-input-wrapper">
+            <input type="text" id="test-skill" placeholder="Tapez un skill (ex: Java)">
+        </div>
+        <div class="result" id="result-skill">Aucune sélection</div>
+    </div>
+
+    <div class="test-section">
+        <h2>Test 2 : Autocomplétion Appétences</h2>
+        <div class="test-input-wrapper">
+            <input type="text" id="test-appetence" placeholder="Tapez une appétence">
+        </div>
+        <div class="result" id="result-appetence">Aucune sélection</div>
+    </div>
+
+    <div class="test-section">
+        <h2>Test 3 : Autocomplétion Ownership</h2>
+        <div class="test-input-wrapper">
+            <input type="text" id="test-ownership" placeholder="Tapez un ownership">
+        </div>
+        <div class="result" id="result-ownership">Aucune sélection</div>
+    </div>
+
+    <div class="test-section">
+        <h2>Test 4 : Mode Fallback (sans PocketBase)</h2>
+        <div class="test-input-wrapper">
+            <input type="text" id="test-fallback" placeholder="Test sans PocketBase">
+        </div>
+        <div class="result" id="result-fallback">Mode fallback activé</div>
+    </div>
+
+    <!-- Mock PocketBase Manager pour les tests -->
+    <script>
+        // Simuler usePocketBase et pbManager pour les tests
+        const usePocketBase = true;
+        
+        const pbManager = {
+            getRecords: async (collection, options) => {
+                // Données de test
+                const mockData = {
+                    items: [
+                        { name: 'JavaScript', type: 'skill', active: true },
+                        { name: 'Java', type: 'skill', active: true },
+                        { name: 'Python', type: 'skill', active: true },
+                        { name: 'React', type: 'skill', active: true },
+                        { name: 'Vue.js', type: 'skill', active: true },
+                        { name: 'Angular', type: 'skill', active: true },
+                        { name: 'Node.js', type: 'skill', active: true },
+                        { name: 'TypeScript', type: 'skill', active: true },
+                        { name: 'Frontend', type: 'appetence', active: true },
+                        { name: 'Backend', type: 'appetence', active: true },
+                        { name: 'DevOps', type: 'appetence', active: true },
+                        { name: 'Architecture', type: 'ownership', active: true },
+                        { name: 'Code Review', type: 'ownership', active: true },
+                        { name: 'Mentoring', type: 'ownership', active: true }
+                    ]
+                };
+
+                // Simuler un délai réseau
+                await new Promise(resolve => setTimeout(resolve, 100));
+
+                return mockData.items;
+            }
+        };
+    </script>
+
+    <!-- Charger le module d'autocomplétion -->
+    <script src="../js/autocomplete.js"></script>
+
+    <!-- Initialiser les tests -->
+    <script>
+        // Test 1 : Skills
+        const skillInput = document.getElementById('test-skill');
+        initAutocomplete(skillInput, 'skill', {
+            minChars: 1,
+            debounceDelay: 200,
+            onSelect: (value) => {
+                document.getElementById('result-skill').textContent = `Sélectionné: ${value}`;
+            }
+        });
+
+        // Test 2 : Appétences
+        const appetenceInput = document.getElementById('test-appetence');
+        initAutocomplete(appetenceInput, 'appetence', {
+            minChars: 1,
+            onSelect: (value) => {
+                document.getElementById('result-appetence').textContent = `Sélectionné: ${value}`;
+            }
+        });
+
+        // Test 3 : Ownership
+        const ownershipInput = document.getElementById('test-ownership');
+        initAutocomplete(ownershipInput, 'ownership', {
+            minChars: 1,
+            onSelect: (value) => {
+                document.getElementById('result-ownership').textContent = `Sélectionné: ${value}`;
+            }
+        });
+
+        // Test 4 : Fallback (désactiver PocketBase temporairement)
+        const fallbackInput = document.getElementById('test-fallback');
+        const originalUsePocketBase = window.usePocketBase;
+        window.usePocketBase = false;
+        
+        initAutocomplete(fallbackInput, 'skill', {
+            minChars: 1,
+            onSelect: (value) => {
+                document.getElementById('result-fallback').textContent = `Sélectionné: ${value}`;
+            }
+        });
+
+        // Restaurer après 1 seconde
+        setTimeout(() => {
+            window.usePocketBase = originalUsePocketBase;
+        }, 1000);
+
+        console.log('Tests d\'autocomplétion initialisés');
+    </script>
+</body>
+</html>

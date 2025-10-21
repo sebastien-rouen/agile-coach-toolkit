@@ -1,0 +1,2072 @@
+/* Hospital Flow Master - Kanban Game Styles */
+
+:root {
+    --hospital-primary: #2c5aa0;
+    --hospital-secondary: #e8f4fd;
+    --urgent-color: #dc3545;
+    --standard-color: #28a745;
+    --expedite-color: #fd7e14;
+    --fixed-date-color: #6f42c1;
+    --column-bg: #f8f9fa;
+    --patient-card-bg: white;
+    --shadow-light: 0 2px 4px rgba(0,0,0,0.1);
+    --shadow-medium: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+body {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header hospitalier */
+.hospital-header {
+    background: var(--hospital-primary);
+    color: white;
+    padding: 1rem 0;
+    box-shadow: var(--shadow-medium);
+}
+
+.header-content {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 2rem;
+}
+
+.game-status {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.timer-display, .score-display {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 600;
+}
+
+.timer-value {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+.timer-value.timer-warning {
+    color: #ffd700;
+    animation: pulse-warning 1s infinite;
+}
+
+.timer-value.timer-critical {
+    color: #ff4444;
+    animation: pulse-critical 0.5s infinite;
+}
+
+@keyframes pulse-warning {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+@keyframes pulse-critical {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+.score-value {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #ffd700;
+}
+
+.hospital-info h1 {
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+.hospital-info p {
+    margin: 0.25rem 0 0 0;
+    opacity: 0.9;
+    font-size: 0.9rem;
+}
+
+.game-controls {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.btn-control {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.btn-control:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Dashboard métriques */
+.game-dashboard {
+    background: white;
+    border-bottom: 1px solid #e9ecef;
+    padding: 1rem 0;
+}
+
+.metrics-bar {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.metric-card {
+    display: flex;
+    align-items: center;
+    background: var(--patient-card-bg);
+    padding: 1rem;
+    border-radius: 8px;
+    border-left: 4px solid var(--hospital-primary);
+    box-shadow: var(--shadow-light);
+}
+
+.metric-icon {
+    font-size: 2rem;
+    margin-right: 1rem;
+}
+
+.metric-label {
+    font-size: 0.8rem;
+    color: #6c757d;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.metric-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--hospital-primary);
+}
+
+.metric-value.urgent {
+    color: var(--urgent-color);
+}
+
+/* Couloir d'urgence */
+.emergency-lane {
+    background: linear-gradient(135deg, #dc3545, #e83e8c);
+    color: white;
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+    border: 2px solid #bd2130;
+    display: none; /* Caché par défaut */
+    transition: all 0.3s ease;
+}
+
+.emergency-lane.emergency-flash {
+    animation: emergencyFlash 1s ease-in-out;
+}
+
+@keyframes emergencyFlash {
+    0%, 100% { box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3); }
+    50% { box-shadow: 0 8px 24px rgba(220, 53, 69, 0.6); }
+}
+
+.emergency-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.emergency-header h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.emergency-count {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 600;
+}
+
+.emergency-content {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    padding: 0.5rem 0;
+    min-height: 80px;
+}
+
+.emergency-content::-webkit-scrollbar {
+    height: 6px;
+}
+
+.emergency-content::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+}
+
+.emergency-content::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+}
+
+/* Tableau Kanban */
+.kanban-board {
+    padding: 2rem 0;
+    min-height: 70vh;
+}
+
+.board-container {
+    display: grid;
+    grid-template-columns: 200px repeat(5, 1fr);
+    gap: 1rem;
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow-medium);
+}
+
+/* Parking (Salle d'attente) */
+.parking-area {
+    background: #f8f9fa;
+    border: 2px dashed #dee2e6;
+    border-radius: 8px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.parking-header {
+    text-align: center;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.parking-header h4 {
+    margin: 0 0 0.5rem 0;
+    font-size: 0.9rem;
+    color: #6c757d;
+    font-weight: 600;
+}
+
+.parking-count {
+    font-size: 0.8rem;
+    color: #868e96;
+    font-weight: 500;
+}
+
+.parking-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    max-height: 600px;
+    overflow-y: auto;
+}
+
+.parking-content::-webkit-scrollbar {
+    width: 4px;
+}
+
+.parking-content::-webkit-scrollbar-track {
+    background: #f1f3f4;
+    border-radius: 2px;
+}
+
+.parking-content::-webkit-scrollbar-thumb {
+    background: #c1c8cd;
+    border-radius: 2px;
+}
+
+/* Cartes patients dans le parking */
+.parking-content .patient-card {
+    font-size: 0.8rem;
+    padding: 0.5rem;
+    margin-bottom: 0.25rem;
+    opacity: 0.8;
+    transform: scale(0.9);
+    border-left-width: 3px;
+    cursor: default;
+}
+
+.parking-content .patient-card:hover {
+    transform: scale(0.92);
+    opacity: 0.9;
+}
+
+.parking-content .patient-card .patient-name {
+    font-size: 0.75rem;
+}
+
+.parking-content .patient-card .patient-condition {
+    font-size: 0.7rem;
+}
+
+.parking-content .patient-card .patient-timing {
+    font-size: 0.65rem;
+}
+
+/* Style pour les patients en attente stressés */
+.parking-content .patient-card.stressed {
+    animation: parkingStress 2s ease-in-out infinite;
+    border-left-color: var(--urgent-color);
+}
+
+@keyframes parkingStress {
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 0.6; }
+}
+
+/* Cartes patients dans le couloir d'urgence */
+.emergency-content .patient-card {
+    min-width: 200px;
+    flex-shrink: 0;
+    background: rgba(255, 255, 255, 0.95);
+    border: 2px solid #fff;
+    animation: emergencyPulse 2s ease-in-out infinite;
+    position: relative;
+}
+
+@keyframes emergencyPulse {
+    0%, 100% { 
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        transform: scale(1);
+    }
+    50% { 
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+        transform: scale(1.02);
+    }
+}
+
+/* Timer d'urgence */
+.emergency-timer {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: linear-gradient(135deg, #28a745, #20c997);
+    color: white;
+    padding: 0.3rem 0.6rem;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    font-family: 'Courier New', monospace;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    border: 2px solid white;
+}
+
+.emergency-timer.timer-warning {
+    background: linear-gradient(135deg, #ffc107, #fd7e14);
+    animation: timerWarning 1s ease-in-out infinite;
+}
+
+.emergency-timer.timer-critical {
+    background: linear-gradient(135deg, #dc3545, #e83e8c);
+    animation: timerCritical 0.5s ease-in-out infinite;
+}
+
+/* Timer d'urgence inline pour les patients dans le flux normal */
+.emergency-timer-inline {
+    background: linear-gradient(135deg, #17a2b8, #20c997);
+    color: white;
+    padding: 0.2rem 0.5rem;
+    border-radius: 8px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    font-family: 'Courier New', monospace;
+    margin: 0.3rem 0;
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    border: 1px solid rgba(255,255,255,0.3);
+}
+
+/* Barre de progression pour le traitement des patients */
+.patient-progress-bar {
+    width: 100%;
+    height: 6px;
+    background: #e9ecef;
+    border-radius: 3px;
+    margin: 0.5rem 0;
+    overflow: hidden;
+    position: relative;
+}
+
+.patient-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #28a745, #20c997);
+    border-radius: 3px;
+    width: 0%;
+    transition: width 0.3s ease;
+    position: relative;
+}
+
+.patient-progress-fill.urgent {
+    background: linear-gradient(90deg, #ffc107, #fd7e14);
+}
+
+.patient-progress-fill.expedite {
+    background: linear-gradient(90deg, #dc3545, #e83e8c);
+}
+
+.patient-progress-fill.processing {
+    animation: progressPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes progressPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+/* Texte de progression */
+.patient-progress-text {
+    font-size: 0.65rem;
+    color: #6c757d;
+    text-align: center;
+    margin-top: 0.2rem;
+    font-weight: 500;
+}
+
+.emergency-timer-inline.timer-warning {
+    background: linear-gradient(135deg, #ffc107, #fd7e14);
+    animation: timerWarningInline 1s ease-in-out infinite;
+}
+
+.emergency-timer-inline.timer-critical {
+    background: linear-gradient(135deg, #dc3545, #e83e8c);
+    animation: timerCriticalInline 0.5s ease-in-out infinite;
+}
+
+@keyframes timerWarning {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+@keyframes timerCritical {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    25% { transform: scale(1.2) rotate(-5deg); }
+    75% { transform: scale(1.2) rotate(5deg); }
+}
+
+@keyframes timerWarningInline {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+@keyframes timerCriticalInline {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.board-column {
+    background: var(--column-bg);
+    border-radius: 8px;
+    min-height: 500px;
+    display: flex;
+    flex-direction: column;
+}
+
+.column-header {
+    background: var(--hospital-primary);
+    color: white;
+    padding: 1rem;
+    border-radius: 8px 8px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.3s ease;
+    flex-wrap: nowrap;
+}
+
+.column-header h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    flex: 1;
+}
+
+.wip-limit {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    font-size: 1rem;
+    margin-left: 1rem;
+}
+
+.column-header.wip-limit-reached {
+    background: linear-gradient(135deg, #dc3545, #c82333);
+    animation: headerAlert 2s ease-in-out infinite;
+}
+
+@keyframes headerAlert {
+    0%, 100% { background: linear-gradient(135deg, #dc3545, #c82333); }
+    50% { background: linear-gradient(135deg, #e74c3c, #dc3545); }
+}
+
+.column-header h3 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.wip-limit {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.25rem 0.5rem;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.wip-current {
+    color: white;
+}
+
+.wip-current.wip-limit-reached {
+    color: #ff4444;
+    font-weight: 700;
+    animation: wipAlert 1s ease-in-out infinite;
+}
+
+.wip-max {
+    opacity: 0.7;
+}
+
+@keyframes wipAlert {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+.column-content {
+    flex: 1;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+/* Cartes patients */
+.patient-card {
+    background: var(--patient-card-bg);
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: var(--shadow-light);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-left: 4px solid var(--standard-color);
+    position: relative;
+    margin-bottom: 0.5rem;
+}
+
+.patient-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-medium);
+}
+
+/* Priorités visuelles renforcées */
+.patient-card.urgent {
+    border-left-color: var(--urgent-color);
+    border-left-width: 6px;
+    background: linear-gradient(135deg, #fff 0%, #fff3cd 100%);
+    animation: pulse-urgent 2s infinite;
+    box-shadow: 0 2px 8px rgba(220, 53, 69, 0.2);
+}
+
+.patient-card.expedite {
+    border-left-color: var(--expedite-color);
+    border-left-width: 8px;
+    background: linear-gradient(135deg, #fff 0%, #ffe6cc 100%);
+    animation: pulse-critical 1.5s infinite;
+    box-shadow: 0 4px 12px rgba(253, 126, 20, 0.3);
+}
+
+.patient-card.fixed-date {
+    border-left-color: var(--fixed-date-color);
+    background: linear-gradient(135deg, #fff 0%, #f3e5f5 100%);
+}
+
+.patient-card.standard {
+    border-left-color: var(--standard-color);
+    background: var(--patient-card-bg);
+}
+
+@keyframes pulse-urgent {
+    0%, 100% { 
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% { 
+        opacity: 0.9;
+        transform: scale(1.02);
+    }
+}
+
+@keyframes pulse-critical {
+    0%, 100% { 
+        opacity: 1;
+        transform: scale(1);
+        box-shadow: 0 4px 12px rgba(253, 126, 20, 0.3);
+    }
+    50% { 
+        opacity: 0.95;
+        transform: scale(1.03);
+        box-shadow: 0 6px 16px rgba(253, 126, 20, 0.4);
+    }
+}
+
+.patient-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.5rem;
+}
+
+.patient-name {
+    font-weight: 600;
+    color: #2c3e50;
+    font-size: 0.9rem;
+}
+
+.patient-age {
+    background: #e9ecef;
+    color: #495057;
+    padding: 0.2rem 0.5rem;
+    border-radius: 12px;
+    font-size: 0.7rem;
+    font-weight: 500;
+}
+
+.patient-condition {
+    color: #6c757d;
+    font-size: 0.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.patient-scheduled {
+    background: linear-gradient(135deg, #6f42c1, #8e44ad);
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 0.3rem 0.6rem;
+    border-radius: 12px;
+    margin-bottom: 0.5rem;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(111, 66, 193, 0.3);
+}
+
+.patient-timing {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.7rem;
+    color: #868e96;
+}
+
+.patient-priority {
+    padding: 0.2rem 0.5rem;
+    border-radius: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.6rem;
+}
+
+.priority-urgent {
+    background: var(--urgent-color);
+    color: white;
+}
+
+.priority-standard {
+    background: var(--standard-color);
+    color: white;
+}
+
+.priority-expedite {
+    background: var(--expedite-color);
+    color: white;
+}
+
+.priority-fixed-date {
+    background: var(--fixed-date-color);
+    color: white;
+}
+
+/* Panneau d'informations */
+.info-panel {
+    position: fixed;
+    right: -400px;
+    top: 0;
+    width: 400px;
+    height: 100vh;
+    background: white;
+    box-shadow: -4px 0 12px rgba(0,0,0,0.15);
+    transition: right 0.3s ease;
+    z-index: 1000;
+}
+
+.info-panel.open {
+    right: 0;
+}
+
+.panel-header {
+    background: var(--hospital-primary);
+    color: white;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.panel-header h3 {
+    margin: 0;
+}
+
+.close-panel {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background 0.3s ease;
+}
+
+.close-panel:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.panel-content {
+    padding: 1.5rem;
+    height: calc(100vh - 80px);
+    overflow-y: auto;
+}
+
+/* Styles pour les détails des patients */
+.patient-details {
+    margin-bottom: 2rem;
+}
+
+.patient-detail-card {
+    background: #f8f9fa;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.patient-detail-header {
+    background: linear-gradient(135deg, var(--hospital-primary), #4a90e2);
+    color: white;
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.patient-detail-header h4 {
+    margin: 0;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.patient-id {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    font-family: 'Courier New', monospace;
+}
+
+.patient-detail-info {
+    padding: 1.5rem;
+}
+
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.detail-row:last-child {
+    border-bottom: none;
+}
+
+.detail-label {
+    font-weight: 600;
+    color: #495057;
+    font-size: 0.95rem;
+}
+
+.detail-value {
+    font-weight: 500;
+    color: #2c3e50;
+    font-size: 0.95rem;
+}
+
+.detail-value.priority-urgent {
+    background: var(--urgent-color);
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.detail-value.priority-standard {
+    background: var(--standard-color);
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.detail-value.priority-expedite {
+    background: var(--expedite-color);
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.detail-value.priority-fixed-date {
+    background: var(--fixed-date-color);
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.processing-timeline {
+    background: white;
+    padding: 1.5rem;
+    border-top: 1px solid #e9ecef;
+}
+
+.processing-timeline h5 {
+    margin: 0 0 1rem 0;
+    color: var(--hospital-primary);
+    font-size: 1.1rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.processing-timeline h5::before {
+    content: "🏥";
+    font-size: 1.2rem;
+}
+
+.timeline-step {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #f1f3f4;
+}
+
+.timeline-step:last-child {
+    border-bottom: none;
+}
+
+.step-status {
+    font-size: 1.2rem;
+    width: 24px;
+    text-align: center;
+}
+
+.step-name {
+    flex: 1;
+    font-weight: 500;
+    color: #495057;
+    text-transform: capitalize;
+    font-size: 0.95rem;
+}
+
+.step-duration {
+    background: #e9ecef;
+    color: #6c757d;
+    padding: 0.3rem 0.6rem;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    min-width: 50px;
+    text-align: center;
+}
+
+/* Amélioration de la lisibilité */
+.patient-detail-info .detail-row:hover {
+    background: rgba(44, 90, 160, 0.05);
+    border-radius: 6px;
+    margin: 0 -0.5rem;
+    padding: 0.75rem 0.5rem;
+}
+
+.timeline-step:hover {
+    background: rgba(44, 90, 160, 0.05);
+    border-radius: 6px;
+    margin: 0 -0.5rem;
+    padding: 0.75rem 0.5rem;
+}
+
+/* Indicateurs visuels pour les temps d'attente */
+.detail-value.waiting-time-good {
+    color: var(--standard-color);
+    font-weight: 600;
+}
+
+.detail-value.waiting-time-warning {
+    color: var(--expedite-color);
+    font-weight: 600;
+}
+
+.detail-value.waiting-time-critical {
+    color: var(--urgent-color);
+    font-weight: 600;
+}
+
+/* Indicateurs de satisfaction */
+.detail-value.satisfaction-high {
+    color: var(--standard-color);
+    font-weight: 600;
+}
+
+.detail-value.satisfaction-medium {
+    color: var(--expedite-color);
+    font-weight: 600;
+}
+
+.detail-value.satisfaction-low {
+    color: var(--urgent-color);
+    font-weight: 600;
+}
+
+/* Style pour l'absence d'étapes */
+.no-steps {
+    text-align: center;
+    color: #6c757d;
+    font-style: italic;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border: 2px dashed #dee2e6;
+}
+
+/* Modal événements */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+}
+
+.modal-overlay.show {
+    display: flex;
+}
+
+.modal-content {
+    background: white;
+    border-radius: 12px;
+    max-width: 600px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+}
+
+.modal-header {
+    background: var(--hospital-primary);
+    color: white;
+    padding: 1.5rem;
+    border-radius: 12px 12px 0 0;
+}
+
+.modal-header h3 {
+    color: #dbdddf;
+    margin: 0;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.modal-body h3 {
+    color: #2c3e50;
+}
+
+.modal-body strong {
+    color: #2c3e50;
+}
+
+.modal-body {
+    padding: 1.5rem;
+    color: #2c3e50;
+    line-height: 1.6;
+}
+
+.modal-body p {
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
+
+.event-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+}
+
+.event-option {
+    background: #f8f9fa;
+    border: 2px solid #e9ecef;
+    padding: 1.2rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: left;
+}
+
+.event-option:hover {
+    border-color: var(--hospital-primary);
+    background: var(--hospital-secondary);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.option-text {
+    font-weight: 600;
+    font-size: 1rem;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+}
+
+.option-cost {
+    font-size: 0.9rem;
+    color: #6c757d;
+    margin-bottom: 0.25rem;
+}
+
+.option-principle {
+    font-size: 0.85rem;
+    color: var(--hospital-primary);
+    font-weight: 500;
+}
+
+/* Styles pour les notifications */
+.event-notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    border-left: 4px solid var(--hospital-primary);
+    max-width: 350px;
+    z-index: 1500;
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+.notification-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1rem 0.5rem 1rem;
+}
+
+.notification-title {
+    font-weight: 600;
+    color: var(--hospital-primary);
+}
+
+.notification-close {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: #6c757d;
+    padding: 0;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.notification-body {
+    padding: 0 1rem 1rem 1rem;
+    color: #6c757d;
+    font-size: 0.9rem;
+}
+
+/* Amélioration des métriques */
+.metric-card.good .metric-value {
+    color: var(--standard-color);
+}
+
+.metric-card.warning .metric-value {
+    color: var(--expedite-color);
+}
+
+.metric-card.critical .metric-value {
+    color: var(--urgent-color);
+}
+
+.wip-current.near-limit {
+    color: var(--urgent-color);
+    font-weight: 700;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .board-container {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.75rem;
+    }
+    
+    .info-panel {
+        width: 350px;
+        right: -350px;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+    
+    .metrics-bar {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+    }
+    
+    .board-container {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+    }
+    
+    .info-panel {
+        width: 100%;
+        right: -100%;
+    }
+    
+    .modal-content {
+        width: 95%;
+        margin: 1rem;
+    }
+    
+    .event-notification {
+        right: 10px;
+        left: 10px;
+        max-width: none;
+    }
+    
+    .header-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 1rem;
+    }
+    
+    .game-status {
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+}
+
+/* Styles pour les résultats du jeu */
+.game-results {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.results-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.results-header h2 {
+    margin: 0 0 1rem 0;
+    color: var(--hospital-primary);
+}
+
+.final-score {
+    background: linear-gradient(135deg, #ffd700, #ffed4e);
+    color: #8b4513;
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    display: inline-block;
+    box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+    border: 2px solid #e6c200;
+}
+
+.final-grade {
+    display: inline-block;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: white;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    margin-bottom: 1rem;
+}
+
+.grade-a\\+ {
+    background: linear-gradient(135deg, #28a745, #20c997);
+    animation: gradeGlow 2s ease-in-out infinite alternate;
+}
+
+.grade-a {
+    background: linear-gradient(135deg, #28a745, #17a2b8);
+}
+
+.grade-b {
+    background: linear-gradient(135deg, #17a2b8, #6f42c1);
+}
+
+.grade-c {
+    background: linear-gradient(135deg, #ffc107, #fd7e14);
+}
+
+.grade-d {
+    background: linear-gradient(135deg, #fd7e14, #dc3545);
+}
+
+.grade-f {
+    background: linear-gradient(135deg, #dc3545, #e83e8c);
+}
+
+@keyframes gradeGlow {
+    0% { box-shadow: 0 4px 12px rgba(40, 167, 69, 0.4); }
+    100% { box-shadow: 0 6px 20px rgba(40, 167, 69, 0.6); }
+}
+
+.results-metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.metric-result {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 8px;
+    border-left: 4px solid var(--hospital-primary);
+}
+
+.metric-result.metric-warning {
+    background: #fff3cd;
+    border-left-color: var(--urgent-color);
+}
+
+.metric-result.metric-warning .metric-value {
+    color: var(--urgent-color);
+}
+
+.metric-icon {
+    font-size: 1.5rem;
+}
+
+.metric-label {
+    flex: 1;
+    font-weight: 500;
+    color: #6c757d;
+}
+
+.metric-value {
+    font-weight: 700;
+    color: var(--hospital-primary);
+    font-size: 1.1rem;
+}
+
+.kanban-lessons {
+    margin-bottom: 2rem;
+}
+
+.kanban-lessons h3 {
+    color: var(--hospital-primary);
+    margin-bottom: 1rem;
+}
+
+.lesson-card {
+    background: #e8f4fd;
+    border: 1px solid #bee5eb;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.lesson-card h4 {
+    color: var(--hospital-primary);
+    margin: 0 0 0.5rem 0;
+    font-size: 1.1rem;
+}
+
+.lesson-text {
+    color: #495057;
+    margin: 0 0 0.75rem 0;
+    line-height: 1.5;
+}
+
+.lesson-suggestion {
+    color: #6c757d;
+    margin: 0;
+    font-style: italic;
+    font-size: 0.9rem;
+}
+
+.achievements-summary h3 {
+    color: var(--hospital-primary);
+    margin-bottom: 1rem;
+}
+
+.achievements-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.achievement-badge {
+    background: linear-gradient(135deg, #ffd700, #ffed4e);
+    color: #8b4513;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.no-achievements {
+    color: #6c757d;
+    font-style: italic;
+}
+
+/* Animations de personnages (style Theme Hospital) */
+.patient-character {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    font-size: 24px;
+    z-index: 100;
+    transition: all 0.8s ease-in-out;
+    pointer-events: none;
+}
+
+.patient-character.walking {
+    animation: walk 0.8s ease-in-out;
+}
+
+@keyframes walk {
+    0% { transform: translateX(0) scale(1); }
+    25% { transform: translateX(25%) scale(1.1) rotate(5deg); }
+    50% { transform: translateX(50%) scale(1); }
+    75% { transform: translateX(75%) scale(1.1) rotate(-5deg); }
+    100% { transform: translateX(100%) scale(1); }
+}
+
+.patient-character.urgent {
+    animation: urgentWalk 0.6s ease-in-out;
+}
+
+@keyframes urgentWalk {
+    0% { transform: translateX(0) scale(1); }
+    20% { transform: translateX(20%) scale(1.2) rotate(10deg); }
+    40% { transform: translateX(40%) scale(0.9) rotate(-10deg); }
+    60% { transform: translateX(60%) scale(1.2) rotate(10deg); }
+    80% { transform: translateX(80%) scale(0.9) rotate(-10deg); }
+    100% { transform: translateX(100%) scale(1); }
+}
+
+.patient-character.expedite {
+    animation: criticalRun 0.4s ease-in-out;
+}
+
+@keyframes criticalRun {
+    0% { transform: translateX(0) scale(1); }
+    25% { transform: translateX(25%) scale(1.3) rotate(15deg); }
+    50% { transform: translateX(50%) scale(0.8) rotate(-15deg); }
+    75% { transform: translateX(75%) scale(1.3) rotate(15deg); }
+    100% { transform: translateX(100%) scale(1); }
+}
+
+/* Animation de popup de score */
+.score-popup {
+    position: fixed;
+    color: #28a745;
+    font-weight: 700;
+    font-size: 1.5rem;
+    z-index: 1000;
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(0);
+}
+
+.score-popup.animate {
+    animation: scoreFloat 2s ease-out forwards;
+}
+
+@keyframes scoreFloat {
+    0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(-30px) scale(1.2);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-60px) scale(0.8);
+    }
+}
+
+/* Effets visuels pour les colonnes */
+.board-column.receiving-patient {
+    animation: columnHighlight 0.5s ease-in-out;
+}
+
+@keyframes columnHighlight {
+    0% { background-color: var(--column-bg); }
+    50% { background-color: rgba(44, 90, 160, 0.1); }
+    100% { background-color: var(--column-bg); }
+}
+
+/* Surbrillance pour le drag & drop */
+.board-column.drag-over.drag-valid {
+    background-color: rgba(40, 167, 69, 0.1);
+    border: 2px dashed #28a745;
+    transform: scale(1.02);
+    transition: all 0.2s ease;
+}
+
+.board-column.drag-over.drag-invalid {
+    background-color: rgba(220, 53, 69, 0.1);
+    border: 2px dashed #dc3545;
+    transform: scale(0.98);
+    transition: all 0.2s ease;
+}
+
+.board-column.drag-over.drag-valid .column-header {
+    background: linear-gradient(135deg, #28a745, #20c997);
+}
+
+.board-column.drag-over.drag-invalid .column-header {
+    background: linear-gradient(135deg, #dc3545, #c82333);
+}
+
+/* NOUVEAU : Style pour progression incomplète */
+.board-column.drag-over.drag-progress-incomplete {
+    background-color: rgba(255, 193, 7, 0.1);
+    border: 2px dashed #ffc107;
+    transform: scale(1.02);
+    transition: all 0.2s ease;
+    animation: progressIncompleteWarning 1s ease-in-out infinite;
+}
+
+@keyframes progressIncompleteWarning {
+    0%, 100% { 
+        border-color: #ffc107;
+        background-color: rgba(255, 193, 7, 0.1);
+    }
+    50% { 
+        border-color: #fd7e14;
+        background-color: rgba(253, 126, 20, 0.15);
+    }
+}
+
+.board-column.drag-over.drag-progress-incomplete .column-header {
+    background: linear-gradient(135deg, #ffc107, #fd7e14);
+    animation: headerProgressWarning 1s ease-in-out infinite;
+}
+
+@keyframes headerProgressWarning {
+    0%, 100% { 
+        background: linear-gradient(135deg, #ffc107, #fd7e14);
+    }
+    50% { 
+        background: linear-gradient(135deg, #fd7e14, #e83e8c);
+    }
+}
+
+/* NOUVEAU : Styles pour l'augmentation temporaire de WIP limit */
+.column-header.wip-increased {
+    background: linear-gradient(135deg, #28a745, #20c997) !important;
+    animation: wipIncreasedPulse 2s ease-in-out infinite;
+}
+
+@keyframes wipIncreasedPulse {
+    0%, 100% { 
+        background: linear-gradient(135deg, #28a745, #20c997) !important;
+    }
+    50% { 
+        background: linear-gradient(135deg, #20c997, #17a2b8) !important;
+    }
+}
+
+@keyframes wipIncreaseGlow {
+    0%, 100% { 
+        box-shadow: 0 0 5px rgba(40, 167, 69, 0.5);
+        transform: scale(1);
+    }
+    50% { 
+        box-shadow: 0 0 15px rgba(40, 167, 69, 0.8);
+        transform: scale(1.1);
+    }
+}
+
+/* NOUVEAU : Barre d'événements actifs */
+.active-events-bar {
+    background: linear-gradient(135deg, #17a2b8, #138496);
+    color: white;
+    padding: 0.75rem 0;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+    animation: eventBarPulse 3s ease-in-out infinite;
+}
+
+.active-event-content {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.9rem;
+}
+
+.event-icon {
+    font-size: 1.2rem;
+    animation: eventIconSpin 2s linear infinite;
+}
+
+.event-title {
+    font-weight: bold;
+    color: #fff;
+}
+
+.event-effect {
+    color: #b8e6ff;
+    font-style: italic;
+}
+
+@keyframes eventBarPulse {
+    0%, 100% { 
+        background: linear-gradient(135deg, #17a2b8, #138496);
+    }
+    50% { 
+        background: linear-gradient(135deg, #20c997, #17a2b8);
+    }
+}
+
+@keyframes eventIconSpin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* NOUVEAU : Styles pour les options d'événements améliorées */
+.event-option {
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border-radius: 8px;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.option-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+}
+
+.option-impact-icon {
+    font-size: 1.5rem;
+    min-width: 2rem;
+    text-align: center;
+}
+
+.option-text {
+    font-weight: bold;
+    font-size: 1rem;
+    flex: 1;
+}
+
+.option-details {
+    margin-left: 2.75rem;
+    font-size: 0.85rem;
+    opacity: 0.8;
+}
+
+.option-cost {
+    margin-bottom: 0.25rem;
+    color: #fd7e14;
+}
+
+.option-principle {
+    color: #6c757d;
+    font-style: italic;
+}
+
+/* Classes d'impact */
+.option-very-positive {
+    background: linear-gradient(135deg, rgba(40, 167, 69, 0.1), rgba(32, 201, 151, 0.1));
+    border-color: #28a745;
+}
+
+.option-positive {
+    background: linear-gradient(135deg, rgba(32, 201, 151, 0.1), rgba(23, 162, 184, 0.1));
+    border-color: #20c997;
+}
+
+.option-neutral {
+    background: linear-gradient(135deg, rgba(108, 117, 125, 0.1), rgba(134, 142, 150, 0.1));
+    border-color: #6c757d;
+}
+
+.option-negative {
+    background: linear-gradient(135deg, rgba(253, 126, 20, 0.1), rgba(220, 53, 69, 0.1));
+    border-color: #fd7e14;
+}
+
+.option-critical {
+    background: linear-gradient(135deg, rgba(220, 53, 69, 0.1), rgba(232, 62, 140, 0.1));
+    border-color: #dc3545;
+}
+
+.event-option:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.option-very-positive:hover {
+    background: linear-gradient(135deg, rgba(40, 167, 69, 0.2), rgba(32, 201, 151, 0.2));
+    border-color: #1e7e34;
+}
+
+.option-positive:hover {
+    background: linear-gradient(135deg, rgba(32, 201, 151, 0.2), rgba(23, 162, 184, 0.2));
+    border-color: #1a9e7e;
+}
+
+.option-neutral:hover {
+    background: linear-gradient(135deg, rgba(108, 117, 125, 0.2), rgba(134, 142, 150, 0.2));
+    border-color: #545b62;
+}
+
+.option-negative:hover {
+    background: linear-gradient(135deg, rgba(253, 126, 20, 0.2), rgba(220, 53, 69, 0.2));
+    border-color: #e0a800;
+}
+
+.option-critical:hover {
+    background: linear-gradient(135deg, rgba(220, 53, 69, 0.2), rgba(232, 62, 140, 0.2));
+    border-color: #bd2130;
+}
+
+/* Animations de satisfaction */
+.patient-card.happy {
+    animation: happyBounce 0.6s ease-in-out;
+}
+
+.patient-card.sad {
+    animation: sadShake 0.6s ease-in-out;
+}
+
+@keyframes happyBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px) scale(1.05); }
+}
+
+@keyframes sadShake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-3px); }
+    75% { transform: translateX(3px); }
+}
+
+/* Effets de particules pour les achievements */
+.achievement-particle {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    font-size: 16px;
+    z-index: 1500;
+    pointer-events: none;
+    animation: particleFloat 3s ease-out forwards;
+}
+
+@keyframes particleFloat {
+    0% {
+        opacity: 1;
+        transform: translateY(0) rotate(0deg);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-100px) rotate(360deg);
+    }
+}
+
+/* Notifications d'achievements */
+.achievement-notification {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    background: linear-gradient(135deg, #ffd700, #ffed4e);
+    color: #8b4513;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    z-index: 2000;
+    text-align: center;
+    min-width: 300px;
+    border: 3px solid #ff6b35;
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+}
+
+.achievement-notification.show {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.achievement-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.achievement-icon {
+    font-size: 2rem;
+    animation: bounce 0.6s ease-in-out infinite alternate;
+}
+
+@keyframes bounce {
+    from { transform: translateY(0); }
+    to { transform: translateY(-10px); }
+}
+
+.achievement-title {
+    font-weight: 700;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+}
+
+.achievement-name {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: #d4691e;
+}
+
+.achievement-description {
+    font-size: 1rem;
+    opacity: 0.8;
+}
+
+/* Notification de début de partie */
+.start-notification {
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    background: linear-gradient(135deg, var(--hospital-primary), #4a90e2);
+    color: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    z-index: 2000;
+    text-align: center;
+    min-width: 350px;
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+}
+
+.start-notification.show {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.start-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    animation: pulse 1s ease-in-out infinite alternate;
+}
+
+@keyframes pulse {
+    from { transform: scale(1); }
+    to { transform: scale(1.1); }
+}
+
+.start-text {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.start-subtext {
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+/* Notifications centrales de stress */
+.central-notification {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    min-width: 400px;
+    max-width: 600px;
+    padding: 1.5rem 2rem;
+    border-radius: 12px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+    z-index: 3000;
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    border: 3px solid transparent;
+    backdrop-filter: blur(10px);
+}
+
+.central-notification.show {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.notification-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.notification-message {
+    flex: 1;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.notification-close {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: inherit;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: bold;
+    transition: background 0.3s ease;
+    flex-shrink: 0;
+}
+
+.notification-close:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Niveaux d'urgence des notifications */
+.central-notification.urgency-low {
+    background: linear-gradient(135deg, #17a2b8, #20c997);
+    color: white;
+    border-color: #0056b3;
+    animation: gentlePulse 2s ease-in-out infinite;
+}
+
+.central-notification.urgency-medium {
+    background: linear-gradient(135deg, #ffc107, #fd7e14);
+    color: #212529;
+    border-color: #e0a800;
+    animation: mediumPulse 1.5s ease-in-out infinite;
+}
+
+.central-notification.urgency-high {
+    background: linear-gradient(135deg, #fd7e14, #dc3545);
+    color: white;
+    border-color: #bd2130;
+    animation: urgentPulse 1s ease-in-out infinite;
+}
+
+.central-notification.urgency-critical {
+    background: linear-gradient(135deg, #dc3545, #e83e8c);
+    color: white;
+    border-color: #721c24;
+    animation: criticalFlash 0.8s ease-in-out infinite;
+    box-shadow: 0 15px 35px rgba(220, 53, 69, 0.4);
+}
+
+/* Animations selon l'urgence */
+@keyframes gentlePulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); }
+    50% { transform: translate(-50%, -50%) scale(1.02); }
+}
+
+@keyframes mediumPulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); }
+    50% { transform: translate(-50%, -50%) scale(1.05); }
+}
+
+@keyframes urgentPulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); }
+    50% { transform: translate(-50%, -50%) scale(1.08); }
+}
+
+@keyframes criticalFlash {
+    0%, 100% { 
+        transform: translate(-50%, -50%) scale(1);
+        box-shadow: 0 15px 35px rgba(220, 53, 69, 0.4);
+    }
+    50% { 
+        transform: translate(-50%, -50%) scale(1.1);
+        box-shadow: 0 20px 45px rgba(220, 53, 69, 0.6);
+    }
+}
+
+/* Animation de disparition des patients */
+.patient-card.disappearing {
+    animation: patientDisappear 1s ease-in-out forwards;
+    pointer-events: none;
+}
+
+@keyframes patientDisappear {
+    0% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+        filter: brightness(1);
+    }
+    25% {
+        opacity: 0.8;
+        transform: scale(1.1) rotate(-5deg);
+        filter: brightness(1.2);
+    }
+    50% {
+        opacity: 0.6;
+        transform: scale(0.9) rotate(5deg);
+        filter: brightness(0.8) blur(1px);
+    }
+    75% {
+        opacity: 0.3;
+        transform: scale(0.7) rotate(-10deg);
+        filter: brightness(0.5) blur(2px);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.3) rotate(15deg);
+        filter: brightness(0) blur(3px);
+    }
+}
+
+/* Effet de stress sur les cartes patients */
+.patient-card.stressed {
+    animation: stressShake 0.5s ease-in-out infinite;
+    border-left-width: 6px;
+}
+
+@keyframes stressShake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-2px) rotate(-1deg); }
+    75% { transform: translateX(2px) rotate(1deg); }
+}
+
+/* Indicateur de niveau de stress global */
+.stress-indicator {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.stress-level-low {
+    color: #28a745;
+}
+
+.stress-level-medium {
+    color: #ffc107;
+}
+
+.stress-level-high {
+    color: #fd7e14;
+}
+
+.stress-level-critical {
+    color: #dc3545;
+    animation: stressBlink 1s ease-in-out infinite;
+}
+
+@keyframes stressBlink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+}
+
+/* Responsive pour les notifications */
+@media (max-width: 768px) {
+    .central-notification {
+        min-width: 90%;
+        max-width: 95%;
+        padding: 1rem 1.5rem;
+        margin: 0 1rem;
+    }
+    
+    .notification-message {
+        font-size: 1rem;
+    }
+    
+    .notification-close {
+        width: 25px;
+        height: 25px;
+        font-size: 1rem;
+    }
+}

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Advice Message - Skills Matrix</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/advice.css">
+    <link rel="stylesheet" href="../css/theme-light.css">
+    <style>
+        body {
+            padding: 20px;
+        }
+        .test-section {
+            margin: 30px 0;
+            padding: 20px;
+            background: rgba(26, 26, 46, 0.5);
+            border-radius: 12px;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+        }
+        .test-section h2 {
+            margin-top: 0;
+            color: #00d4ff;
+        }
+        .theme-toggle-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        .theme-toggle-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(102, 126, 234, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <button class="theme-toggle-btn" onclick="toggleTheme()">
+        🌓 Changer de thème
+    </button>
+    
+    <div class="container">
+        <h1>🧪 Test des Messages de Conseils</h1>
+        
+        <!-- Message Simple -->
+        <div class="test-section">
+            <h2>Message Simple</h2>
+            <div class="advice-card level-1">
+                <div class="advice-header">
+                    <span class="advice-emoji">💡</span>
+                    <span class="advice-title">Conseil de base</span>
+                </div>
+                <div class="advice-message">
+                    Continuez à pratiquer régulièrement pour progresser dans cette compétence.
+                </div>
+            </div>
+        </div>
+        
+        <!-- Message avec Strong -->
+        <div class="test-section">
+            <h2>Message avec Emphase (Strong)</h2>
+            <div class="advice-card level-2">
+                <div class="advice-header">
+                    <span class="advice-emoji">🚀</span>
+                    <span class="advice-title">Conseil avec emphase</span>
+                </div>
+                <div class="advice-message">
+                    <strong>Excellent travail !</strong> Vous progressez bien dans cette compétence. Continuez sur cette lancée.
+                </div>
+            </div>
+        </div>
+        
+        <!-- Message avec Em -->
+        <div class="test-section">
+            <h2>Message avec Mise en Valeur (Em)</h2>
+            <div class="advice-card level-3">
+                <div class="advice-header">
+                    <span class="advice-emoji">⭐</span>
+                    <span class="advice-title">Conseil avec mise en valeur</span>
+                </div>
+                <div class="advice-message">
+                    Vous devriez <em>absolument</em> pratiquer cette compétence plus souvent pour atteindre le niveau expert.
+                </div>
+            </div>
+        </div>
+        
+        <!-- Message avec Code -->
+        <div class="test-section">
+            <h2>Message avec Code</h2>
+            <div class="advice-card level-4">
+                <div class="advice-header">
+                    <span class="advice-emoji">💻</span>
+                    <span class="advice-title">Conseil technique</span>
+                </div>
+                <div class="advice-message">
+                    Pour sauvegarder vos données, utilisez <code>Ctrl+S</code> ou cliquez sur le bouton <code>Sauvegarder</code>.
+                </div>
+            </div>
+        </div>
+        
+        <!-- Message Complet -->
+        <div class="test-section">
+            <h2>Message Complet (Strong + Em + Code)</h2>
+            <div class="advice-card level-1">
+                <div class="advice-header">
+                    <span class="advice-emoji">🎯</span>
+                    <span class="advice-title">Conseil complet</span>
+                </div>
+                <div class="advice-message">
+                    <strong>Bienvenue dans l'apprentissage !</strong>
+                    <br><br>
+                    Vous débutez avec cette compétence. C'est <em>tout à fait normal</em> de ne pas tout comprendre au début.
+                    <br><br>
+                    <strong>Conseil :</strong> Commencez par les bases et utilisez la fonction <code>manageSkills()</code> pour suivre votre progression.
+                </div>
+            </div>
+        </div>
+        
+        <!-- Message Niveau 1 - Débutant -->
+        <div class="test-section">
+            <h2>Exemple Niveau 1 - Débutant</h2>
+            <div class="advice-card level-1">
+                <div class="advice-header">
+                    <span class="advice-emoji">🌱</span>
+                    <span class="advice-title">JavaScript - Débutant</span>
+                </div>
+                <div class="advice-member">Jean Dupont</div>
+                <div class="advice-message">
+                    <strong>Bienvenue dans l'apprentissage de JavaScript !</strong>
+                    <br><br>
+                    Vous débutez avec cette compétence. C'est <em>tout à fait normal</em> de ne pas tout comprendre au début.
+                    <br><br>
+                    <strong>Conseil :</strong> Commencez par les bases (variables, fonctions, boucles) et pratiquez avec des exercices simples sur <code>codecademy.com</code> ou <code>freecodecamp.org</code>.
+                    <br><br>
+                    <strong>Mentor suggéré :</strong> Marie Martin (niveau 4) peut vous accompagner dans votre apprentissage.
+                </div>
+            </div>
+        </div>
+        
+        <!-- Message Niveau 2 - En Apprentissage -->
+        <div class="test-section">
+            <h2>Exemple Niveau 2 - En Apprentissage</h2>
+            <div class="advice-card level-2">
+                <div class="advice-header">
+                    <span class="advice-emoji">🚀</span>
+                    <span class="advice-title">React - En Apprentissage</span>
+                </div>
+                <div class="advice-member">Sophie Bernard</div>
+                <div class="advice-message">
+                    <strong>Vous progressez bien !</strong>
+                    <br><br>
+                    Vous avez acquis les bases de React. Il est temps de <em>passer à la pratique</em> avec des projets réels.
+                    <br><br>
+                    <strong>Prochaine étape :</strong> Créez une application complète avec <code>useState</code>, <code>useEffect</code> et <code>React Router</code>.
+                    <br><br>
+                    <strong>Ressources :</strong> Consultez la documentation officielle sur <code>react.dev</code> et suivez des tutoriels avancés.
+                </div>
+            </div>
+        </div>
+        
+        <!-- Message Niveau 3 - Compétent -->
+        <div class="test-section">
+            <h2>Exemple Niveau 3 - Compétent</h2>
+            <div class="advice-card level-3">
+                <div class="advice-header">
+                    <span class="advice-emoji">⭐</span>
+                    <span class="advice-title">Node.js - Compétent</span>
+                </div>
+                <div class="advice-member">Thomas Petit</div>
+                <div class="advice-message">
+                    <strong>Excellent niveau !</strong>
+                    <br><br>
+                    Vous maîtrisez bien Node.js. Pour atteindre le niveau expert, concentrez-vous sur les <em>patterns avancés</em> et l'optimisation.
+                    <br><br>
+                    <strong>Conseil :</strong> Explorez les concepts avancés comme les <code>streams</code>, <code>workers</code> et <code>clustering</code>.
+                    <br><br>
+                    <strong>Opportunité :</strong> Vous pourriez mentorer les membres de niveau 1-2 sur cette compétence.
+                </div>
+            </div>
+        </div>
+        
+        <!-- Message Niveau 4 - Expert -->
+        <div class="test-section">
+            <h2>Exemple Niveau 4 - Expert</h2>
+            <div class="advice-card level-4">
+                <div class="advice-header">
+                    <span class="advice-emoji">🏆</span>
+                    <span class="advice-title">Python - Expert</span>
+                </div>
+                <div class="advice-member">Marie Martin</div>
+                <div class="advice-message">
+                    <strong>Félicitations, vous êtes expert !</strong>
+                    <br><br>
+                    Vous maîtrisez parfaitement Python. Votre expertise est <em>précieuse</em> pour l'équipe.
+                    <br><br>
+                    <strong>Conseil :</strong> Partagez vos connaissances en mentorant les membres débutants et en créant de la documentation avec <code>Sphinx</code> ou <code>MkDocs</code>.
+                    <br><br>
+                    <strong>Rôle :</strong> Vous êtes identifié comme mentor potentiel pour 3 membres de l'équipe.
+                </div>
+            </div>
+        </div>
+        
+        <!-- Message avec Appétences -->
+        <div class="test-section">
+            <h2>Message avec Appétences</h2>
+            <div class="advice-card level-2">
+                <div class="advice-header">
+                    <span class="advice-emoji">⚡</span>
+                    <span class="advice-title">TypeScript - Avec Appétence</span>
+                </div>
+                <div class="advice-member">Lucas Dubois</div>
+                <div class="advice-message">
+                    <strong>Excellente nouvelle !</strong>
+                    <br><br>
+                    Vous avez exprimé une <em>appétence</em> pour TypeScript. C'est le moment idéal pour approfondir cette compétence.
+                    <br><br>
+                    <strong>Conseil :</strong> Profitez de votre motivation pour progresser rapidement. Utilisez <code>TypeScript Playground</code> pour expérimenter.
+                    <br><br>
+                    <strong>Mentor disponible :</strong> Sophie Bernard (niveau 4) peut vous accompagner dans votre montée en compétence.
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            html.setAttribute('data-theme', newTheme);
+            
+            // Sauvegarder la préférence
+            localStorage.setItem('theme', newTheme);
+        }
+        
+        // Charger le thème sauvegardé
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        
+        console.log('✅ Test advice message initialisé');
+    </script>
+</body>
+</html>

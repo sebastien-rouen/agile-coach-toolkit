@@ -1,0 +1,218 @@
+/* ===================================
+   TABLE VIEW
+   =================================== */
+
+.table-container {
+    background: var(--bg-card);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+#stakeholdersTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#stakeholdersTable thead {
+    background: var(--bg-tertiary);
+}
+
+#stakeholdersTable th {
+    padding: var(--spacing-md);
+    text-align: left;
+    font-weight: 600;
+    color: var(--text-primary);
+    border-bottom: 2px solid var(--border-color);
+}
+
+#stakeholdersTable tbody tr {
+    border-bottom: 1px solid var(--border-color);
+    transition: var(--transition);
+}
+
+#stakeholdersTable tbody tr:hover {
+    background: var(--bg-tertiary);
+}
+
+#stakeholdersTable td {
+    padding: var(--spacing-md);
+    color: var(--text-primary);
+}
+
+.stakeholder-name {
+    font-weight: 600;
+}
+
+.stakeholder-role {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.power-badge,
+.interest-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: white;
+}
+
+/* Power Badge Colors */
+.power-badge.level-1,
+.power-badge.level-2 {
+    background: #ef4444;
+}
+
+.power-badge.level-3 {
+    background: #f59e0b;
+}
+
+.power-badge.level-4,
+.power-badge.level-5 {
+    background: #10b981;
+}
+
+/* Interest Badge Colors */
+.interest-badge.level-1,
+.interest-badge.level-2 {
+    background: #ef4444;
+}
+
+.interest-badge.level-3 {
+    background: #f59e0b;
+}
+
+.interest-badge.level-4,
+.interest-badge.level-5 {
+    background: #10b981;
+}
+
+.influence-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: var(--border-radius);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.influence-badge.vital {
+    background: var(--color-vital);
+    color: white;
+}
+
+.influence-badge.necessary {
+    background: var(--color-necessary);
+    color: white;
+}
+
+.influence-badge.good {
+    background: var(--color-good);
+    color: white;
+}
+
+.influence-badge.courtesy {
+    background: var(--color-courtesy);
+    color: white;
+}
+
+.domain-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 12px;
+    border-radius: var(--border-radius);
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.domain-badge.governance {
+    background: rgba(139, 92, 246, 0.2);
+    color: #a78bfa;
+}
+
+.domain-badge.governance::before {
+    content: '👑';
+}
+
+.domain-badge.customer {
+    background: rgba(6, 182, 212, 0.2);
+    color: #22d3ee;
+}
+
+.domain-badge.customer::before {
+    content: '👥';
+}
+
+.domain-badge.provider {
+    background: rgba(249, 115, 22, 0.2);
+    color: #fb923c;
+}
+
+.domain-badge.provider::before {
+    content: '🤝';
+}
+
+.domain-badge.influencer {
+    background: rgba(236, 72, 153, 0.2);
+    color: #f472b6;
+}
+
+.domain-badge.influencer::before {
+    content: '💡';
+}
+
+.table-actions {
+    display: flex;
+    gap: var(--spacing-xs);
+}
+
+.btn-table-action {
+    padding: 4px 8px;
+    border: none;
+    border-radius: 4px;
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: var(--transition);
+}
+
+.btn-table-action:hover {
+    background: var(--bg-secondary);
+}
+
+.btn-table-action.edit:hover {
+    background: #3b82f6;
+    color: white;
+}
+
+.btn-table-action.delete:hover {
+    background: #ef4444;
+    color: white;
+}
+
+/* Empty State */
+.table-empty {
+    padding: var(--spacing-xl);
+    text-align: center;
+    color: var(--text-secondary);
+}
+
+.table-empty-icon {
+    font-size: 3rem;
+    margin-bottom: var(--spacing-md);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .table-container {
+        overflow-x: auto;
+    }
+
+    #stakeholdersTable {
+        min-width: 800px;
+    }
+}

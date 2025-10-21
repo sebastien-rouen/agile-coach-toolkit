@@ -1,0 +1,73 @@
+# Démo Simple - Petit projet agile
+# Contexte : 2 équipes, 20 personnes
+
+teams:
+  - id: team_dev
+    name: "Équipe Dev"
+    members: 6
+    color: "#3498db"
+    icon: "💻"
+    
+  - id: team_ops
+    name: "Équipe Ops"
+    members: 4
+    color: "#e74c3c"
+    icon: "⚙️"
+
+subjects:
+  # Équipe Dev
+  - title: "Nouvelle fonctionnalité de paiement"
+    type: team
+    teams: [team_dev]
+    status: in-progress
+    priority: critical
+    deadline: "2025-01-15"
+    description: "Intégration Stripe pour les paiements en ligne"
+    dependencies: []
+    
+  - title: "Correction bugs critiques"
+    type: team
+    teams: [team_dev]
+    status: blocked
+    priority: critical
+    deadline: "2025-01-08"
+    description: "5 bugs bloquants en production"
+    dependencies: []
+    
+  - title: "Refactoring du code legacy"
+    type: team
+    teams: [team_dev]
+    status: planned
+    priority: medium
+    deadline: "2025-02-01"
+    description: "Nettoyage du code ancien"
+    dependencies: []
+
+  # Équipe Ops
+  - title: "Mise en place monitoring"
+    type: team
+    teams: [team_ops]
+    status: in-progress
+    priority: high
+    deadline: "2025-01-20"
+    description: "Installation Prometheus + Grafana"
+    dependencies: []
+    
+  - title: "Automatisation déploiements"
+    type: cross-team
+    teams: [team_ops, team_dev]
+    status: in-progress
+    priority: high
+    deadline: "2025-01-25"
+    description: "Pipeline CI/CD avec GitHub Actions"
+    dependencies: []
+
+  # Individuel
+  - title: "Documentation technique"
+    type: individual
+    teams: []
+    status: in-progress
+    priority: medium
+    deadline: "2025-01-30"
+    description: "Mise à jour de la documentation projet"
+    dependencies: []

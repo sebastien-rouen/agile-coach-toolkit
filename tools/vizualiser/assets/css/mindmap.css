@@ -1,0 +1,113 @@
+/**
+ * MindMap Styles - Personnalisation Markmap
+ */
+
+/* ================================================
+   SVG MindMap Container
+   ================================================ */
+
+#mindmap-svg {
+  width: 100%;
+  height: 100%;
+  background: var(--bg-primary, #ffffff);
+}
+
+/* ================================================
+   Markmap Node Customization
+   ================================================ */
+
+/* Nœud racine */
+.markmap-node[data-depth="0"] circle {
+  fill: var(--primary, #0056b3);
+  stroke: var(--primary, #0056b3);
+  stroke-width: 3;
+}
+
+.markmap-node[data-depth="0"] text {
+  font-size: 18px;
+  font-weight: 700;
+  fill: var(--text-primary, #212529);
+}
+
+/* Nœuds niveau 1 (Équipes) */
+.markmap-node[data-depth="1"] circle {
+  fill: var(--secondary, #6c757d);
+  stroke: var(--secondary, #6c757d);
+  stroke-width: 2;
+}
+
+.markmap-node[data-depth="1"] text {
+  font-size: 16px;
+  font-weight: 600;
+  fill: var(--text-primary, #212529);
+}
+
+/* Nœuds niveau 2+ (Sujets) */
+.markmap-node[data-depth="2"] circle,
+.markmap-node[data-depth="3"] circle {
+  fill: var(--light, #f8f9fa);
+  stroke: var(--border-color, #e0e0e0);
+  stroke-width: 1.5;
+}
+
+.markmap-node[data-depth="2"] text,
+.markmap-node[data-depth="3"] text {
+  font-size: 14px;
+  font-weight: 400;
+  fill: var(--text-primary, #212529);
+}
+
+/* ================================================
+   Liens entre nœuds
+   ================================================ */
+
+.markmap-link {
+  stroke: var(--border-color, #e0e0e0);
+  stroke-width: 2;
+  fill: none;
+  opacity: 0.6;
+}
+
+.markmap-link:hover {
+  stroke: var(--primary, #0056b3);
+  opacity: 1;
+}
+
+/* ================================================
+   États interactifs
+   ================================================ */
+
+.markmap-node:hover circle {
+  stroke-width: 3;
+  filter: brightness(1.1);
+  cursor: pointer;
+}
+
+.markmap-node:hover text {
+  font-weight: 600;
+}
+
+/* ================================================
+   Codes couleurs d'alerte (via emojis)
+   ================================================ */
+
+/* Les emojis sont gérés dans le markdown généré */
+/* Pas de style CSS spécifique nécessaire */
+
+/* ================================================
+   Responsive
+   ================================================ */
+
+@media (max-width: 768px) {
+  .markmap-node text {
+    font-size: 12px !important;
+  }
+
+  .markmap-node[data-depth="0"] text {
+    font-size: 16px !important;
+  }
+
+  .markmap-node[data-depth="1"] text {
+    font-size: 14px !important;
+  }
+}

@@ -1,0 +1,159 @@
+# Démo SAFe ART - Agile Release Train
+# Contexte : 4 équipes, 80+ personnes, PI Planning
+
+teams:
+  - id: team_alpha
+    name: "Team Alpha"
+    members: 8
+    color: "#3498db"
+    icon: "🚀"
+    
+  - id: team_beta
+    name: "Team Beta"
+    members: 7
+    color: "#e74c3c"
+    icon: "⚡"
+    
+  - id: team_gamma
+    name: "Team Gamma"
+    members: 9
+    color: "#2ecc71"
+    icon: "🎯"
+    
+  - id: team_delta
+    name: "Team Delta"
+    members: 8
+    color: "#f39c12"
+    icon: "🔥"
+
+subjects:
+  # Features Team Alpha
+  - title: "Migration Base de Données vers PostgreSQL"
+    type: cross-team
+    teams: [team_alpha, team_beta]
+    status: in-progress
+    priority: critical
+    deadline: "2025-01-15"
+    description: "Migration complète de MySQL vers PostgreSQL avec zero downtime"
+    dependencies: []
+    
+  - title: "API Gateway v2 - Refactoring"
+    type: team
+    teams: [team_alpha]
+    status: in-progress
+    priority: high
+    deadline: "2025-01-20"
+    description: "Refonte de l'API Gateway pour améliorer les performances"
+    dependencies: []
+    
+  - title: "Authentification SSO"
+    type: team
+    teams: [team_alpha]
+    status: planned
+    priority: medium
+    deadline: "2025-02-10"
+    description: "Intégration Single Sign-On avec Azure AD"
+    dependencies: []
+
+  # Features Team Beta
+  - title: "Dashboard Analytics Temps Réel"
+    type: team
+    teams: [team_beta]
+    status: in-progress
+    priority: high
+    deadline: "2025-01-25"
+    description: "Tableau de bord avec métriques en temps réel"
+    dependencies: ["Migration Base de Données vers PostgreSQL"]
+    
+  - title: "Module de Reporting Avancé"
+    type: team
+    teams: [team_beta]
+    status: blocked
+    priority: critical
+    deadline: "2025-01-10"
+    description: "Génération de rapports PDF/Excel personnalisés"
+    dependencies: []
+    
+  - title: "Optimisation Requêtes SQL"
+    type: team
+    teams: [team_beta]
+    status: in-progress
+    priority: medium
+    deadline: "2025-02-05"
+    description: "Amélioration des performances des requêtes lourdes"
+    dependencies: []
+
+  # Features Team Gamma
+  - title: "Refonte UI/UX Mobile"
+    type: cross-team
+    teams: [team_gamma, team_delta]
+    status: in-progress
+    priority: high
+    deadline: "2025-01-30"
+    description: "Nouvelle interface mobile responsive avec Material Design"
+    dependencies: []
+    
+  - title: "Progressive Web App (PWA)"
+    type: team
+    teams: [team_gamma]
+    status: planned
+    priority: medium
+    deadline: "2025-02-15"
+    description: "Transformation en PWA pour installation offline"
+    dependencies: ["Refonte UI/UX Mobile"]
+    
+  - title: "Accessibilité WCAG 2.1 AA"
+    type: team
+    teams: [team_gamma]
+    status: in-progress
+    priority: high
+    deadline: "2025-01-18"
+    description: "Mise en conformité accessibilité niveau AA"
+    dependencies: []
+
+  # Features Team Delta
+  - title: "Infrastructure as Code (Terraform)"
+    type: team
+    teams: [team_delta]
+    status: in-progress
+    priority: high
+    deadline: "2025-01-22"
+    description: "Migration infrastructure vers Terraform"
+    dependencies: []
+    
+  - title: "CI/CD Pipeline Optimisation"
+    type: cross-team
+    teams: [team_delta, team_alpha]
+    status: in-progress
+    priority: medium
+    deadline: "2025-02-01"
+    description: "Réduction du temps de build de 30 min à 10 min"
+    dependencies: []
+    
+  - title: "Monitoring & Observability"
+    type: team
+    teams: [team_delta]
+    status: planned
+    priority: medium
+    deadline: "2025-02-20"
+    description: "Stack Prometheus + Grafana + Loki"
+    dependencies: []
+
+  # Rôles individuels
+  - title: "Architecture Decision Records (ADR)"
+    type: individual
+    teams: []
+    status: in-progress
+    priority: high
+    deadline: "2025-01-12"
+    description: "Documentation des décisions architecturales majeures"
+    dependencies: []
+    
+  - title: "Product Roadmap Q1 2025"
+    type: individual
+    teams: []
+    status: completed
+    priority: critical
+    deadline: "2024-12-20"
+    description: "Roadmap produit validée pour le trimestre"
+    dependencies: []

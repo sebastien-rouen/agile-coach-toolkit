@@ -82,7 +82,8 @@ Le mot **Kanban** (看板) signifie _"tableau"_ ou _"enseigne"_ en japonais. À 
 → Prévoir **quand une tâche sera terminée** (si le flux est stable).
 
 **Exemple** :
-![Exemple CFD](https://pablopernot.fr/wp-content/uploads/2017/03/cfd-example.png)
+![Exemple CFD](https://pablopernot.fr/images/2017/03/ods4_hu_4be3e41f6f2f2c23.webp)
+![CFD](https://pablopernot.fr/images/2017/03/ods-leadtime1_hu_6b5c7d8f1b1ad5d3.webp)
 _(Source : Pablo Pernot)_
 
 **Comment le lire ?**
@@ -92,7 +93,6 @@ _(Source : Pablo Pernot)_
 - **Cassure brute** = Un blocage majeur (ex : un serveur en panne).
 
 💡 **Astuce Coach Sticko** :
-
 > _"Si votre CFD ressemble à un sapin de Noël, c’est que vous avez trop de WIP. Coupez les branches (limitez le WIP) !"_
 
 ---
@@ -226,7 +226,7 @@ _(Source : Pablo Pernot)_
 
 ### **📌 Afficher Son Activité**
 
-![Kanban Portfolio - Afficher son activité](../../assets/images/kanban/001-kanban-stickies.webp)
+![Kanban Portfolio - Afficher son activité](/uploads/frameworks_kanban-method_1762263683616.webp)
 
 La première étape d'un Portfolio Kanban est simple : **afficher tous les projets** sur lesquels travaille l'organisation. Pas de doublon, pas de tâches cachées. Chaque projet est représenté par une fiche (pas un post-it, une vraie fiche A5 ou A6).
 
@@ -236,11 +236,11 @@ La première étape d'un Portfolio Kanban est simple : **afficher tous les proje
 
 ### **📋 Un Brin d'Organisation**
 
-![Kanban Portfolio - Organisation de base](../../assets/images/kanban/002-kanban-basic.webp)
+![Kanban Portfolio - Organisation de base](/uploads/frameworks_kanban-method_1762263683617.webp)
 
 Plutôt qu'un tas informe, donnez une dynamique de lecture (de gauche à droite) avec : **À faire → En cours → Fini**.
 
-![Kanban Portfolio - Processus détaillé](../../assets/images/kanban/003-kanban-basic-2.webp)
+![Kanban Portfolio - Processus détaillé](/uploads/frameworks_kanban-method_1762263683619.webp)
 
 Mais rapidement, il faut **afficher la réalité du flux projet**. Interrogez les équipes et placez les vraies étapes. Exemple hybride : _Idées → Sélection → Préparation → Réalisation Agile → Réalisation Agile/DevOps → Live/Prod_.
 
@@ -248,7 +248,7 @@ Mais rapidement, il faut **afficher la réalité du flux projet**. Interrogez le
 
 ### **🏊 Commencer la Gouvernance (Swim Lanes)**
 
-![Kanban Portfolio - Lignes horizontales](../../assets/images/kanban/004-kanban-swim-lanes.webp)
+![Kanban Portfolio - Lignes horizontales](/uploads/frameworks_kanban-method_1762263683620.webp)
 
 Scindez votre Kanban en **lignes horizontales** (swim lanes) pour refléter votre organisation stratégique :
 
@@ -259,7 +259,7 @@ Scindez votre Kanban en **lignes horizontales** (swim lanes) pour refléter votr
 
 ### **📜 Des Règles Claires**
 
-![Kanban Portfolio - Règles claires](../../assets/images/kanban/005-kanban-reglesclaires.webp)
+![Kanban Portfolio - Règles claires](/uploads/frameworks_kanban-method_1762263683621.webp)
 
 Pour faciliter l'implication, précisez :
 
@@ -267,17 +267,17 @@ Pour faciliter l'implication, précisez :
 - **Qui peut manipuler** les éléments
 - **Les critères de sortie** d'une colonne à l'autre
 
-![Kanban Portfolio - Critères de sortie](../../assets/images/kanban/006-kanban-reglesclaires-2.webp)
+![Kanban Portfolio - Critères de sortie](/uploads/frameworks_kanban-method_1762263683623.webp)
 
 Établir ce protocole clarifie les tenants et aboutissants. Vous pouvez appliquer des responsabilités et critères par bloc.
 
 ### **📄 La Fiche Projet**
 
-![Fiche Kanban](../../assets/images/kanban/fiche-kanban.webp)
+![Fiche Kanban](/uploads/frameworks_kanban-method_1762263683624.webp)
 
 Chaque fiche (quart de page A4) rassemble les éléments essentiels pour la gouvernance :
 
-![Fiche Kanban - Détails](../../assets/images/kanban/fiche-kanban-details.webp)
+![Fiche Kanban - Détails](/uploads/frameworks_kanban-method_1762263683626.webp)
 
 - **Nom du projet**
 - **Deadline estimée**
@@ -289,7 +289,7 @@ Chaque fiche (quart de page A4) rassemble les éléments essentiels pour la gouv
 
 ### **🚦 Les Limites WIP**
 
-![Kanban Portfolio - Limites](../../assets/images/kanban/007-kanban-limit-1.webp)
+![Kanban Portfolio - Limites](/uploads/frameworks_kanban-method_1762263683627.webp)
 
 Les **limites WIP** (Work In Progress) contrôlent la capacité du portfolio pour :
 
@@ -303,19 +303,19 @@ Une limite indique le **nombre maximum d'éléments** autorisés par colonne, bl
 
 ### **⬇️ Limites Basses**
 
-![Kanban Portfolio - Limites basses](../../assets/images/kanban/008-kanban-limit-2.webp)
+![Kanban Portfolio - Limites basses](/uploads/frameworks_kanban-method_1762263683629.webp)
 
 Les **limites basses** garantissent l'existence d'un flux minimum. Il faut _a minima_ des éléments en préparation pour éviter l'assèchement de l'activité de réalisation.
 
 ### **🎯 Limites Stratégiques**
 
-![Kanban Portfolio - Limites stratégiques](../../assets/images/kanban/009-kanban-limit-3.webp)
+![Kanban Portfolio - Limites stratégiques](/uploads/frameworks_kanban-method_1762263683630.webp)
 
 Les limites par ligne horizontale indiquent le **poids et la capacité** accordés à chaque domaine. Souvent, ce sont des équipes affectées ou une capacité globale (ex : 3 équipes ici, 4 équipes là).
 
 ### **🚨 Les Urgences**
 
-![Kanban Portfolio - Urgences](../../assets/images/kanban/010-kanban-limit-4.webp)
+![Kanban Portfolio - Urgences](/uploads/frameworks_kanban-method_1762263683631.webp)
 
 Malgré les limites, il est pertinent d'avoir une **ligne dédiée aux urgences**. Mais attention : **limitez aussi les urgences**. Si tout est urgence, il n'y a pas d'urgence.
 

@@ -1,0 +1,126 @@
+/* ====================================
+   SYSTÈME D'ANNOTATIONS
+   ==================================== */
+
+/* Panneau annotations */
+.annotations-panel {
+  position: fixed;
+  top: 50%;
+  right: -400px;
+  transform: translateY(-50%);
+  width: 380px;
+  max-height: 80vh;
+  background: white;
+  border-radius: 12px 0 0 12px;
+  box-shadow: -4px 0 20px rgba(0, 0, 0, 0.2);
+  z-index: 1500;
+  transition: right 0.4s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.annotations-panel.show {
+  right: 0;
+}
+
+.annotations-panel-header {
+  padding: 1.5rem;
+  color: white;
+  border-radius: 12px 0 0 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.annotations-panel-header h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: white;
+}
+
+.annotations-panel-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem;
+}
+
+.annotation-panel-item {
+  background: linear-gradient(135deg, #f8f9fa, #ffffff);
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  margin-bottom: 0.75rem;
+  border-left: 4px solid var(--primary);
+  transition: var(--transition);
+}
+
+.annotation-panel-item:hover {
+  transform: translateX(-5px);
+  box-shadow: var(--shadow);
+}
+
+.annotation-panel-sprint {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.annotation-panel-sprint strong {
+  color: var(--primary);
+  font-size: 0.95rem;
+}
+
+.annotation-panel-date {
+  font-size: 0.8rem;
+  color: #666;
+  font-style: italic;
+}
+
+.annotation-panel-text {
+  color: var(--text-dark);
+  line-height: 1.5;
+  font-size: 0.9rem;
+}
+
+/* Tooltip annotations */
+.annotation-tooltip {
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  padding: 0.75rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  max-width: 250px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  pointer-events: none;
+  animation: tooltipFadeIn 0.2s ease;
+}
+
+@keyframes tooltipFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animation pulse pour nouvelles annotations */
+@keyframes annotationPulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.annotation-new {
+  animation: annotationPulse 1s ease-in-out 3;
+}

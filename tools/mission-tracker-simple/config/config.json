@@ -1,0 +1,279 @@
+{
+  "tool": {
+    "id": "mission-tracker",
+    "name": "Mission Tracker",
+    "icon": "🎯",
+    "version": "1.0.0",
+    "description": "Suivez l'évolution de vos missions depuis le rapport d'étonnement jusqu'au bilan final"
+  },
+  "roles": [
+    {
+      "id": "coach-agile",
+      "label": "Coach Agile / Scrum Master",
+      "icon": "🎓",
+      "defaultObjectives": [
+        "Améliorer la maturité agile de l'équipe",
+        "Faciliter les cérémonies Scrum",
+        "Accompagner le changement culturel"
+      ],
+      "suggestedMetrics": [
+        "Vélocité",
+        "Satisfaction équipe",
+        "Nombre d'impediments résolus"
+      ]
+    },
+    {
+      "id": "scrum-master",
+      "label": "Scrum Master",
+      "icon": "🎯",
+      "defaultObjectives": [
+        "Optimiser les cérémonies Scrum",
+        "Éliminer les impediments",
+        "Améliorer la collaboration"
+      ],
+      "suggestedMetrics": [
+        "Vélocité",
+        "Sprint goal success rate",
+        "Temps de résolution impediments"
+      ]
+    },
+    {
+      "id": "product-owner",
+      "label": "Product Owner / Product Manager",
+      "icon": "👨‍💼",
+      "defaultObjectives": [
+        "Maximiser la valeur produit",
+        "Prioriser le backlog",
+        "Aligner stakeholders"
+      ],
+      "suggestedMetrics": [
+        "Business value delivered",
+        "User satisfaction",
+        "Time to market"
+      ]
+    },
+    {
+      "id": "designer",
+      "label": "Designer (UX/UI)",
+      "icon": "🎨",
+      "defaultObjectives": [
+        "Améliorer l'expérience utilisateur",
+        "Créer un design system",
+        "Faciliter les tests utilisateurs"
+      ],
+      "suggestedMetrics": [
+        "User satisfaction score",
+        "Task completion rate",
+        "Design system adoption"
+      ]
+    },
+    {
+      "id": "dev",
+      "label": "Développeur",
+      "icon": "💻",
+      "defaultObjectives": [
+        "Livrer du code de qualité",
+        "Réduire la dette technique",
+        "Améliorer les pratiques de développement"
+      ],
+      "suggestedMetrics": [
+        "Code coverage",
+        "Bug rate",
+        "Deployment frequency"
+      ]
+    },
+    {
+      "id": "architecte",
+      "label": "Architecte",
+      "icon": "🏗️",
+      "defaultObjectives": [
+        "Définir l'architecture technique",
+        "Garantir la scalabilité",
+        "Réduire la complexité"
+      ],
+      "suggestedMetrics": [
+        "Technical debt ratio",
+        "System availability",
+        "Performance metrics"
+      ]
+    },
+    {
+      "id": "devops",
+      "label": "DevOps / SRE",
+      "icon": "⚙️",
+      "defaultObjectives": [
+        "Automatiser les déploiements",
+        "Améliorer la fiabilité",
+        "Optimiser les coûts infrastructure"
+      ],
+      "suggestedMetrics": [
+        "Deployment frequency",
+        "Mean time to recovery",
+        "Change failure rate"
+      ]
+    },
+    {
+      "id": "rte",
+      "label": "RTE (Release Train Engineer)",
+      "icon": "🚢",
+      "defaultObjectives": [
+        "Faciliter le PI Planning",
+        "Coordonner les équipes",
+        "Gérer les dépendances"
+      ],
+      "suggestedMetrics": [
+        "Program predictability",
+        "Feature completion rate",
+        "Dependencies resolved"
+      ]
+    },
+    {
+      "id": "coach-organisationnel",
+      "label": "Coach Organisationnel",
+      "icon": "🌐",
+      "defaultObjectives": [
+        "Transformer la culture d'entreprise",
+        "Accompagner le leadership",
+        "Faciliter le changement à grande échelle"
+      ],
+      "suggestedMetrics": [
+        "Employee engagement",
+        "Organizational health",
+        "Change adoption rate"
+      ]
+    }
+  ],
+  "eventTypes": [
+    {
+      "id": "success",
+      "label": "Réussite",
+      "icon": "✨",
+      "color": "#10b981"
+    },
+    {
+      "id": "failure",
+      "label": "Échec",
+      "icon": "❌",
+      "color": "#ef4444"
+    },
+    {
+      "id": "experiment",
+      "label": "Tentative",
+      "icon": "🧪",
+      "color": "#f59e0b"
+    },
+    {
+      "id": "learning",
+      "label": "Apprentissage",
+      "icon": "💡",
+      "color": "#3b82f6"
+    },
+    {
+      "id": "decision",
+      "label": "Décision",
+      "icon": "⚖️",
+      "color": "#8b5cf6"
+    }
+  ],
+  "checkpointTypes": [
+    {
+      "id": "weekly",
+      "label": "Hebdomadaire",
+      "frequency": 7
+    },
+    {
+      "id": "monthly",
+      "label": "Mensuel",
+      "frequency": 30
+    },
+    {
+      "id": "quarterly",
+      "label": "Trimestriel",
+      "frequency": 90
+    },
+    {
+      "id": "custom",
+      "label": "Personnalisé",
+      "frequency": null
+    }
+  ],
+  "roadmapCategories": [
+    {
+      "id": "skill",
+      "label": "Compétence",
+      "icon": "📚"
+    },
+    {
+      "id": "experiment",
+      "label": "Expérimentation",
+      "icon": "🧪"
+    },
+    {
+      "id": "read",
+      "label": "Lecture",
+      "icon": "📖"
+    },
+    {
+      "id": "meet",
+      "label": "Rencontre",
+      "icon": "🤝"
+    },
+    {
+      "id": "create",
+      "label": "Création",
+      "icon": "✍️"
+    },
+    {
+      "id": "learn",
+      "label": "Apprentissage",
+      "icon": "🎓"
+    },
+    {
+      "id": "network",
+      "label": "Réseau",
+      "icon": "🌐"
+    },
+    {
+      "id": "other",
+      "label": "Autre",
+      "icon": "📌"
+    }
+  ],
+  "checkpointQuestions": {
+    "weekly": [
+      "Quelles ont été mes principales réalisations cette semaine ?",
+      "Quels défis ai-je rencontrés ?",
+      "Qu'ai-je appris ?",
+      "Quelles sont mes priorités pour la semaine prochaine ?"
+    ],
+    "monthly": [
+      "Quels objectifs ai-je atteints ce mois-ci ?",
+      "Quels sont les principaux blocages ?",
+      "Comment l'équipe a-t-elle évolué ?",
+      "Quels ajustements dois-je faire pour le mois prochain ?"
+    ],
+    "quarterly": [
+      "Quel impact ai-je eu sur l'organisation ?",
+      "Quelles transformations majeures ont eu lieu ?",
+      "Quels sont les apprentissages clés ?",
+      "Quelle est ma vision pour le prochain trimestre ?"
+    ]
+  },
+  "exportFormats": [
+    {
+      "id": "pdf",
+      "label": "PDF",
+      "mimeType": "application/pdf"
+    },
+    {
+      "id": "markdown",
+      "label": "Markdown",
+      "mimeType": "text/markdown"
+    },
+    {
+      "id": "json",
+      "label": "JSON",
+      "mimeType": "application/json"
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+/* ====================================
+   USER STORIES
+   ==================================== */
+
+.story-card {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  margin-bottom: 1.5rem;
+  border-left: 4px solid gold;
+}
+
+.story-card-large {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  margin-bottom: 2rem;
+  border-left: 4px solid gold;
+}
+
+.story-card-large h3 {
+  color: gold;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.story-card-large p {
+  line-height: 1.6;
+  font-size: 1.1rem;
+}
+
+/* Estimation */
+.estimation-zone-full {
+  margin: 2rem 0;
+}
+
+.estimation-zone-full h4 {
+  color: white;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.estimation-result {
+  background: rgba(76, 175, 80, 0.2);
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  margin: 1.5rem 0;
+  border-left: 4px solid #4CAF50;
+}
+
+.estimation-result p {
+  margin: 0.5rem 0;
+  font-size: 1.1rem;
+}
+
+.consensus-info {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}

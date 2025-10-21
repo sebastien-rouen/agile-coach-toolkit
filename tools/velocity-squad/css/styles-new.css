@@ -1,0 +1,42 @@
+/* ====================================
+   VELOCITY SQUAD - STYLES MODULAIRES
+   Point d'entrée principal
+   ==================================== */
+
+/* Base */
+@import url('base/variables.css');
+@import url('base/animations.css');
+
+/* Layout */
+@import url('layout/header.css');
+@import url('layout/grid.css');
+@import url('layout/modals.css');
+
+/* Components */
+@import url('components/states.css');
+@import url('components/buttons.css');
+@import url('components/forms.css');
+
+/* Modules */
+@import url('modules/charts.css');
+@import url('modules/kpi.css');
+@import url('modules/capacity.css');
+@import url('modules/heatmap.css');
+@import url('modules/annotations.css');
+@import url('modules/annotations-legend.css');
+@import url('modules/achievements.css');
+@import url('modules/casino.css');
+@import url('modules/pi-planning.css');
+@import url('modules/planning.css');
+@import url('modules/templates.css');
+@import url('modules/stories.css');
+@import url('modules/export.css');
+@import url('modules/team.css');
+@import url('modules/team-table.css');
+@import url('modules/inline-edit.css');
+@import url('modules/sidebar.css');
+
+/* Fichiers existants */
+@import url('visual.css');
+@import url('team-manager.css');
+@import url('footer.css');

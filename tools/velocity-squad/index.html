@@ -1,58 +1,124 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🚀 Team Velocity Dashboard - Votre GPS Agile</title>
-    <link rel="stylesheet" href="styles.css">
-    
+    <link rel="stylesheet" href="css/styles-new.css">
+    <link rel="stylesheet" href="css/themes/light.css">
+
     <!-- Librairies externes via CDN -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
-    
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+
     <!-- PWA Integration -->
     <meta name="theme-color" content="#3b82f6">
-    <link rel="manifest" href="../../manifest.json">
-    <link rel="icon" href="../../assets/icons/favicon.ico">
+    <link rel="icon" href="../../assets/icons/logo.svg">
 </head>
+
 <body>
     <!-- ====== HEADER - Cockpit de pilotage ====== -->
     <header class="dashboard-header">
         <div class="header-content">
             <h1>🎯 Team Velocity Dashboard</h1>
+            <div id="demo-notification" class="demo-notification">
+                🎯 Mode Démo - Données d'exemple
+            </div>
             <div class="mode-selector">
-                <label>Mode: </label>
-                <select id="frameworkMode">
-                    <option value="scrum">🏃‍♂️ Scrum</option>
-                    <option value="kanban">🌊 Kanban</option>
-                </select>
+                <button id="newSessionBtn" class="btn btn-primary">
+                    ➕ Nouvelle Session
+                </button>
+                <div class="framework-selector">
+                    <label>Mode: </label>
+                    <select id="frameworkMode">
+                        <option value="scrum">🏃‍♂️ Scrum</option>
+                        <option value="kanban">🌊 Kanban</option>
+                    </select>
+                </div>
             </div>
         </div>
     </header>
 
     <!-- ====== BARRE D'ACTIONS - Commandes principales ====== -->
     <nav class="action-bar">
-        <button id="importBtn" class="btn btn-primary">📥 Import</button>
-        <button id="manualEntryBtn" class="btn btn-secondary">✏️ Saisie</button>
-        <button id="templatesBtn" class="btn btn-secondary">📋 Templates</button>
-        <button id="exportBtn" class="btn btn-success">📤 Export</button>
-        <button id="shareBtn" class="btn btn-info">🔗 Partager</button>
-        <button id="moodBtn" class="btn btn-warning">😊 Humeur</button>
-        <button id="casinoBtn" class="btn btn-warning">🎰 Casino</button>
+        <!-- Groupe: Gestion des données -->
+        <div class="action-group">
+            <span class="action-group-label">📊 Données</span>
+            <button id="managePiBtn" class="btn-compact btn-safe">🎯 SAFe</button>
+            <button id="manualEntryBtn" class="btn-compact btn-secondary">✏️ Sprint</button>
+            <button id="manageTeamBtn" class="btn-compact btn-secondary">👥 Équipe</button>
+        </div>
+
+        <!-- Groupe: Outils -->
+        <div class="action-group">
+            <span class="action-group-label">🛠️ Outils</span>
+            <button id="templatesBtn" class="btn-compact btn-secondary">📋 Templates</button>
+            <button id="moodBtn" class="btn-compact btn-warning">😊 Humeur</button>
+            <button id="toggleViewBtn" class="btn-compact btn-warning">🎰 Casino</button>
+        </div>
+
+        <!-- Groupe: Partage -->
+        <div class="action-group">
+            <span class="action-group-label">🔗 Partage</span>
+            <button id="importBtn" class="btn-compact btn-primary">📥 Import</button>
+            <button id="exportBtn" class="btn-compact btn-success">📤 Export</button>
+            <button id="shareBtn" class="btn-compact btn-info">🔗 Partager</button>
+        </div>
     </nav>
+
+    <!-- ====== SPRINT GOAL - Objectif du sprint actuel ====== -->
+    <section id="sprintGoalSection" class="sprint-goal-section">
+        <div class="sprint-goal-container">
+            <div class="sprint-goal-header">
+                <h3>🎯 Sprint Goal</h3>
+                <button id="editSprintGoalBtn" class="btn-small btn-primary">✏️ Modifier</button>
+            </div>
+            <div id="sprintGoalDisplay" class="sprint-goal-display">
+                <p class="sprint-goal-empty">Aucun objectif défini pour ce sprint</p>
+            </div>
+        </div>
+    </section>
 
     <!-- ====== DASHBOARD PRINCIPAL - Layout en grille ====== -->
     <main class="dashboard-grid">
-        <!-- Graphique principal -->
+        <!-- Graphique principal / Casino (switchable) -->
         <section class="chart-section">
-            <div class="chart-header">
-                <h2 id="chartTitle">📊 Vélocité d'Équipe</h2>
-                <div class="chart-controls">
-                    <button id="addAnnotation" class="btn-small">📝 Fait marquant</button>
+            <!-- Vue Graphique -->
+            <div id="chartView">
+                <div class="chart-header">
+                    <h2 id="chartTitle">📊 Vélocité d'Équipe</h2>
+                    <div class="chart-controls">
+                        <div class="chart-view-selector" id="chartViewSelector" style="display: none;">
+                            <button class="chart-view-btn active" data-view="velocity" title="Vélocité">
+                                📊
+                            </button>
+                            <button class="chart-view-btn" data-view="burndown" title="Burndown">
+                                📉
+                            </button>
+                            <button class="chart-view-btn" data-view="burnup" title="Burnup">
+                                📈
+                            </button>
+                            <button id="addAnnotation" class="btn-small">📝 Fait marquant</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="mainChart"></canvas>
                 </div>
             </div>
-            <div class="chart-container">
-                <canvas id="mainChart"></canvas>
+
+            <!-- Vue Casino -->
+            <div id="chartCasinoView" style="display: none;">
+                <div class="chart-header">
+                    <h2>🎰 Story Points Casino</h2>
+                    <div class="chart-controls">
+                        <button id="addStoryBtn" class="btn-small btn-success">➕ Ajouter US</button>
+                        <button id="manageStoriesBtn" class="btn-small btn-primary">📋 Gérer US</button>
+                    </div>
+                </div>
+                <div id="casinoMainContainer" class="casino-main-container"></div>
             </div>
         </section>
 
@@ -77,10 +143,31 @@
 
         <!-- Performance radar -->
         <section class="radar-section">
-            <h3>🎯 Performance Équipe</h3>
+            <h3>🎯 Compétences Équipe</h3>
             <div class="radar-container">
                 <canvas id="radarChart"></canvas>
             </div>
+        </section>
+
+        <!-- Planning Section -->
+        <section class="planning-section">
+            <div class="planning-header">
+                <h3>📅 Planning</h3>
+                <div style="display: flex; gap: 0.5rem;">
+                    <button id="toggleTimelineViewBtn" class="btn-small btn-secondary"
+                        title="Basculer vue timeline">📊</button>
+                    <button id="addEventBtn" class="btn-small btn-primary">➕ Ajouter Événement</button>
+                </div>
+            </div>
+
+            <!-- Timeline visuelle -->
+            <div id="planningTimeline" class="planning-timeline" style="display: block;"></div>
+
+            <!-- Vue timeline compacte -->
+            <div id="compactTimeline" class="compact-timeline" style="display: none;"></div>
+
+            <!-- Liste des événements -->
+            <div id="planningEvents" class="planning-events"></div>
         </section>
 
         <!-- Capacité équipe -->
@@ -94,12 +181,6 @@
             </div>
         </section>
 
-        <!-- Heatmap burnout -->
-        <section class="heatmap-section">
-            <h3>🔥 Heatmap Burnout</h3>
-            <div id="burnoutHeatmap"></div>
-        </section>
-
         <!-- Insights coaching -->
         <aside class="coaching-section">
             <h3>🎯 Insights Coach</h3>
@@ -110,14 +191,10 @@
             </div>
         </aside>
 
-        <!-- Zone casino/gamification -->
-        <section class="casino-section">
-            <div id="casinoContainer"></div>
-        </section>
     </main>
 
     <!-- ====== MODALES ====== -->
-    
+
     <!-- Modal Import -->
     <div id="importModal" class="modal">
         <div class="modal-content">
@@ -145,6 +222,183 @@
         </div>
     </div>
 
+    <!-- Modal Gestion PI (SAFe) -->
+    <div id="piModal" class="modal">
+        <div class="modal-content modal-large">
+            <span class="close">&times;</span>
+            <h2>🎯 Gestion des Program Increments (SAFe)</h2>
+
+            <div class="pi-header">
+                <button id="addPiBtn" class="btn btn-primary">➕ Nouveau PI</button>
+            </div>
+
+            <div id="piList" class="pi-list">
+                <!-- Liste des PIs sera générée dynamiquement -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Ajouter/Modifier PI -->
+    <div id="piFormModal" class="modal">
+        <div class="modal-content modal-large">
+            <span class="close">&times;</span>
+            <h2 id="piFormTitle">➕ Nouveau Program Increment</h2>
+
+            <!-- Onglets de navigation -->
+            <div class="pi-tabs">
+                <button type="button" class="pi-tab active" data-tab="general">📋 Général</button>
+                <button type="button" class="pi-tab" data-tab="objectives">🎯 Objectifs</button>
+                <button type="button" class="pi-tab" data-tab="risks">⚠️ Risques</button>
+                <button type="button" class="pi-tab" data-tab="confidence">📊 Confiance</button>
+            </div>
+
+            <form id="piForm">
+                <input type="hidden" id="piId">
+
+                <!-- Onglet Général -->
+                <div class="pi-tab-content active" data-tab="general">
+                    <div class="form-group">
+                        <label>🎯 Nom du PI:</label>
+                        <input type="text" id="piName" placeholder="Ex: PI 2025.1, Q1 2025" required>
+                        <small>Format recommandé: PI YYYY.N ou QN YYYY</small>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>📅 Date de début:</label>
+                            <input type="date" id="piStartDate" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>🏁 Date de fin:</label>
+                            <input type="date" id="piEndDate" required>
+                            <small>Durée typique: 8-12 semaines</small>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>📊 Statut du PI:</label>
+                        <div class="status-buttons">
+                            <button type="button" class="status-btn" data-status="planning">
+                                📝 Planning
+                            </button>
+                            <button type="button" class="status-btn" data-status="active">
+                                🚀 Actif
+                            </button>
+                            <button type="button" class="status-btn" data-status="completed">
+                                ✅ Terminé
+                            </button>
+                        </div>
+                        <input type="hidden" id="piStatus" value="planning">
+                    </div>
+
+                    <div class="form-group">
+                        <label>📍 Localisation du PI Planning:</label>
+                        <input type="text" id="piLocation" placeholder="Ex: Remote, Paris - La Défense">
+                        <small>Remote → 🏠 | Adresse → 📍</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label>💬 Commentaires:</label>
+                        <textarea id="piComment" rows="3" placeholder="Notes générales sur le PI..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Onglet Objectifs -->
+                <div class="pi-tab-content" data-tab="objectives">
+                    <div class="form-group">
+                        <label>🎯 Objectifs du PI (3-5 objectifs SMART):</label>
+                        <div id="objectivesList" class="objectives-list">
+                            <!-- Objectifs seront ajoutés dynamiquement -->
+                        </div>
+                        <button type="button" id="addObjectiveBtn" class="btn-compact btn-primary">
+                            ➕ Ajouter un objectif
+                        </button>
+                    </div>
+
+                    <div class="pi-info-box">
+                        <h4>💡 Objectifs SMART</h4>
+                        <ul>
+                            <li><strong>S</strong>pécifique : Clair et précis</li>
+                            <li><strong>M</strong>esurable : Quantifiable</li>
+                            <li><strong>A</strong>tteignable : Réaliste</li>
+                            <li><strong>R</strong>elevant : Aligné avec la stratégie</li>
+                            <li><strong>T</strong>emporel : Délai défini</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Onglet Risques -->
+                <div class="pi-tab-content" data-tab="risks">
+                    <div class="form-group">
+                        <label>⚠️ Risques identifiés:</label>
+                        <div id="risksList" class="risks-list">
+                            <!-- Risques seront ajoutés dynamiquement -->
+                        </div>
+                        <button type="button" id="addRiskBtn" class="btn-compact btn-warning">
+                            ➕ Ajouter un risque
+                        </button>
+                    </div>
+
+                    <div class="form-group">
+                        <label>🔗 Dépendances inter-équipes:</label>
+                        <div id="dependenciesList" class="dependencies-list">
+                            <!-- Dépendances seront ajoutées dynamiquement -->
+                        </div>
+                        <button type="button" id="addDependencyBtn" class="btn-compact btn-info">
+                            ➕ Ajouter une dépendance
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Onglet Confiance -->
+                <div class="pi-tab-content" data-tab="confidence">
+                    <div class="form-group">
+                        <label>📊 Vote de Confiance (Fist of Five):</label>
+                        <div class="confidence-vote">
+                            <button type="button" class="confidence-btn" data-vote="1">
+                                <span class="confidence-number">1</span>
+                                <span class="confidence-label">Très faible</span>
+                            </button>
+                            <button type="button" class="confidence-btn" data-vote="2">
+                                <span class="confidence-number">2</span>
+                                <span class="confidence-label">Faible</span>
+                            </button>
+                            <button type="button" class="confidence-btn" data-vote="3">
+                                <span class="confidence-number">3</span>
+                                <span class="confidence-label">Moyen</span>
+                            </button>
+                            <button type="button" class="confidence-btn" data-vote="4">
+                                <span class="confidence-number">4</span>
+                                <span class="confidence-label">Bon</span>
+                            </button>
+                            <button type="button" class="confidence-btn" data-vote="5">
+                                <span class="confidence-number">5</span>
+                                <span class="confidence-label">Excellent</span>
+                            </button>
+                        </div>
+                        <input type="hidden" id="piConfidenceVote" value="">
+                    </div>
+
+                    <div class="pi-info-box">
+                        <h4>💡 Fist of Five</h4>
+                        <p>Technique de vote SAFe pour mesurer la confiance de l'équipe :</p>
+                        <ul>
+                            <li><strong>1-2</strong> : Préoccupations majeures, discussion nécessaire</li>
+                            <li><strong>3</strong> : Confiance moyenne, quelques réserves</li>
+                            <li><strong>4-5</strong> : Haute confiance, prêt à s'engager</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="pi-form-actions">
+                    <button type="submit" class="btn btn-primary">💾 Enregistrer</button>
+                    <button type="button" id="cancelPiFormBtn" class="btn btn-secondary">Annuler</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <!-- Modal Saisie Manuelle -->
     <div id="manualModal" class="modal">
         <div class="modal-content">
@@ -160,32 +414,391 @@
                     <input type="number" id="sprintVelocity" min="0" required>
                 </div>
                 <div class="form-group">
-                    <label>Date de fin:</label>
+                    <label>📅 Date de début:</label>
+                    <input type="date" id="sprintStartDate" required>
+                </div>
+                <div class="form-group">
+                    <label>🏁 Date de fin:</label>
                     <input type="date" id="sprintEndDate" required>
+                    <div class="quick-duration-buttons">
+                        <button type="button" class="btn-duration" data-weeks="1">+1 semaine</button>
+                        <button type="button" class="btn-duration" data-weeks="2">+2 semaines</button>
+                        <button type="button" class="btn-duration" data-weeks="3">+3 semaines</button>
+                    </div>
+                </div>
+                <div class="form-group" id="sprintGoalFormGroup">
+                    <label>🎯 Sprint Goal (Objectif):</label>
+                    <textarea id="sprintGoalInput" rows="3"
+                        placeholder="Décrivez l'objectif principal de ce sprint..."></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary">Ajouter</button>
             </form>
         </div>
     </div>
 
-    <!-- Modal Templates -->
-    <div id="templatesModal" class="modal">
+    <!-- Modal Sprint Goal -->
+    <div id="sprintGoalModal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
+            <h2>🎯 Modifier Sprint Goal</h2>
+            <form id="sprintGoalForm">
+                <div class="form-group">
+                    <label>Sprint:</label>
+                    <select id="sprintGoalSelect" required></select>
+                </div>
+                <div class="form-group">
+                    <label>Objectif du Sprint:</label>
+                    <textarea id="sprintGoalTextarea" rows="4"
+                        placeholder="Décrivez l'objectif principal de ce sprint..." required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Enregistrer</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Ajouter User Story -->
+    <div id="addStoryModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>➕ Ajouter des User Stories</h2>
+
+            <div class="add-story-tabs">
+                <button id="singleStoryTab" class="tab-btn active">📝 Une Story</button>
+                <button id="multipleStoriesTab" class="tab-btn">📋 Plusieurs Stories</button>
+            </div>
+
+            <!-- Formulaire simple -->
+            <form id="addStoryForm" class="story-form-view">
+                <div class="form-group">
+                    <label>Titre de la User Story:</label>
+                    <input type="text" id="storyTitle" placeholder="Ex: Login social OAuth">
+                </div>
+                <div class="form-group">
+                    <label>Description:</label>
+                    <textarea id="storyDescription" rows="3" placeholder="Décrivez la fonctionnalité..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Ajouter</button>
+            </form>
+
+            <!-- Formulaire multiple -->
+            <form id="addMultipleStoriesForm" class="story-form-view" style="display: none;">
+                <div class="form-group">
+                    <label>User Stories (une par ligne):</label>
+                    <small style="color: #666; display: block; margin-bottom: 0.5rem;">
+                        Format: <code>Titre | Description</code> ou simplement <code>Titre</code>
+                    </small>
+                    <textarea id="multipleStoriesText" rows="10" placeholder="Login social OAuth | Intégration Google/GitHub/LinkedIn
+Dashboard analytics | Métriques temps réel avec Chart.js
+Notifications push
+Export PDF | Génération rapports automatiques"></textarea>
+                </div>
+                <div class="form-info">
+                    <p>💡 <strong>Exemples de formats acceptés :</strong></p>
+                    <ul>
+                        <li><code>Titre simple</code> → Description vide</li>
+                        <li><code>Titre | Description complète</code> → Avec description</li>
+                        <li><code>Titre | Description | Autre info</code> → Seuls titre et description sont pris</li>
+                    </ul>
+                </div>
+                <button type="submit" class="btn btn-primary">Ajouter toutes les stories</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Gérer User Stories -->
+    <div id="manageStoriesModal" class="modal">
+        <div class="modal-content modal-large">
+            <span class="close">&times;</span>
+            <h2>📋 Gérer les User Stories</h2>
+            <div id="storiesList" class="stories-list"></div>
+            <button id="closeManageStoriesBtn" class="btn btn-secondary" style="margin-top: 1rem;">Fermer</button>
+        </div>
+    </div>
+
+    <!-- Modal Ajouter Événement -->
+    <div id="addEventModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>📅 Ajouter un Événement</h2>
+            <form id="addEventForm">
+                <div class="form-group">
+                    <label>Type d'événement:</label>
+                    <select id="eventType" required></select>
+                </div>
+                <div class="form-group">
+                    <label>Titre:</label>
+                    <input type="text" id="eventTitle" placeholder="Ex: Daily Standup" required>
+                </div>
+                <div class="form-group">
+                    <label>📅 Date:</label>
+                    <input type="date" id="eventDate" required>
+                </div>
+                <div class="form-group">
+                    <label>🕐 Heure:</label>
+                    <input type="time" id="eventTime" value="09:00">
+                </div>
+                <div class="form-group">
+                    <label>⏱️ Durée (minutes):</label>
+                    <input type="number" id="eventDuration" min="0" max="480" placeholder="15">
+                </div>
+                <div class="form-group">
+                    <label>Description (optionnelle):</label>
+                    <textarea id="eventDescription" rows="2" placeholder="Détails supplémentaires..."></textarea>
+                </div>
+
+                <!-- Récurrence -->
+                <div class="form-group">
+                    <label>🔄 Récurrence:</label>
+                    <select id="recurrenceType">
+                        <option value="none">Aucune</option>
+                        <option value="daily">📅 Chaque jour</option>
+                        <option value="weekly">📆 Chaque semaine</option>
+                        <option value="monthly">🗓️ Chaque mois</option>
+                    </select>
+                </div>
+
+                <div id="recurrenceOptions" style="display: none;">
+
+                    <div class="form-group" id="recurrenceIntervalGroup" style="display: none;">
+                        <label>Répéter toutes les <span id="recurrenceIntervalLabel">semaine(s)</span>:</label>
+                        <input type="hidden" id="recurrenceInterval" value="1">
+                        <div class="interval-selector">
+                            <button type="button" class="interval-btn" data-interval="1">1</button>
+                            <button type="button" class="interval-btn" data-interval="2">2</button>
+                            <button type="button" class="interval-btn" data-interval="3">3</button>
+                            <button type="button" class="interval-btn" data-interval="4">4</button>
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="recurrenceDaysGroup" style="display: none;">
+                        <label>Jours de la semaine:</label>
+                        <div class="weekdays-selector">
+                            <label class="weekday-checkbox">
+                                <input type="checkbox" name="recurrenceDays" value="1">
+                                <span>Lun</span>
+                            </label>
+                            <label class="weekday-checkbox">
+                                <input type="checkbox" name="recurrenceDays" value="2">
+                                <span>Mar</span>
+                            </label>
+                            <label class="weekday-checkbox">
+                                <input type="checkbox" name="recurrenceDays" value="3">
+                                <span>Mer</span>
+                            </label>
+                            <label class="weekday-checkbox">
+                                <input type="checkbox" name="recurrenceDays" value="4">
+                                <span>Jeu</span>
+                            </label>
+                            <label class="weekday-checkbox">
+                                <input type="checkbox" name="recurrenceDays" value="5">
+                                <span>Ven</span>
+                            </label>
+                            <label class="weekday-checkbox">
+                                <input type="checkbox" name="recurrenceDays" value="6">
+                                <span>Sam</span>
+                            </label>
+                            <label class="weekday-checkbox">
+                                <input type="checkbox" name="recurrenceDays" value="0">
+                                <span>Dim</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Date de fin de récurrence (optionnelle):</label>
+                        <input type="date" id="recurrenceEndDate">
+                        <small style="color: #666; font-size: 0.85rem;">Laissez vide pour une récurrence
+                            illimitée</small>
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+                    <button type="submit" class="btn btn-primary">Ajouter</button>
+                    <button type="button" id="deleteEventBtn" class="btn btn-danger" style="display: none;">🗑️
+                        Supprimer</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Éditer Dates Sprint -->
+    <div id="editSprintDatesModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>📅 Modifier le Sprint</h2>
+            <form id="editSprintDatesForm">
+                <div class="form-group">
+                    <label>📝 Nom:</label>
+                    <input type="text" id="editSprintName" placeholder="Ex: Sprint 1" required>
+                </div>
+                <div class="form-group">
+                    <label>🎯 Sprint Goal (Objectif):</label>
+                    <textarea id="editSprintGoal" placeholder="Ex: Mise en place du catalogue produits et panier"
+                        rows="2"></textarea>
+                    <small>Objectif principal à atteindre pendant ce sprint</small>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>📊 Vélocité (Story Points):</label>
+                        <input type="number" id="editSprintVelocity" min="0" placeholder="Ex: 45">
+                    </div>
+                    <div class="form-group">
+                        <label>🐛 Nombre de bugs:</label>
+                        <input type="number" id="editSprintBugCount" min="0" value="0" placeholder="0">
+                    </div>
+                    <div class="form-group">
+                        <label>👥 Taille de l'équipe:</label>
+                        <input type="number" id="editSprintTeamSize" min="1" placeholder="Ex: 8">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>📅 Date de début:</label>
+                    <div class="date-input-wrapper">
+                        <input type="date" id="editSprintStartDate" required>
+                        <span class="date-display" id="editSprintStartDateDisplay"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>🏁 Date de fin: <span id="editSprintEndDateLabel" class="date-label-value"></span></label>
+                    <div class="slider-container">
+                        <input type="range" id="editSprintEndDateSlider" min="1" max="30" value="14"
+                            class="date-slider">
+                        <div class="slider-labels">
+                            <span>+1 jour</span>
+                            <span id="sliderDaysLabel">+14 jours</span>
+                            <span>+30 jours</span>
+                        </div>
+                    </div>
+                    <input type="date" id="editSprintEndDate" required style="display: none;">
+                </div>
+                <div class="form-info" style="margin-top: 1rem;">
+                    <p>💡 <strong>Informations :</strong></p>
+                    <ul>
+                        <li>Utilisez le slider pour ajuster facilement la durée du sprint</li>
+                        <li>La date de fin est calculée automatiquement depuis la date de début</li>
+                        <li>Durée recommandée : 7-14 jours (Scrum) ou 7-30 jours (Kanban)</li>
+                    </ul>
+                </div>
+                <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
+                    <button type="submit" class="btn btn-primary">💾 Enregistrer</button>
+                    <button type="button" class="btn btn-secondary"
+                        onclick="document.getElementById('editSprintDatesModal').style.display='none'">Annuler</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Templates -->
+    <div id="templatesModal" class="modal">
+        <div class="modal-content modal-large">
+            <span class="close">&times;</span>
             <h2>📋 Templates d'Équipe</h2>
-            <div class="templates-grid">
-                <div class="template-card" data-template="startup">
-                    <h3>🚀 Startup</h3>
-                    <p>Équipe 3 pers, sprints 1 semaine<br>Données mood, annotations incluses</p>
+
+            <div class="templates-columns">
+                <!-- Colonne Scrum -->
+                <div class="template-column">
+                    <h3 class="template-column-title">🏃‍♂️ Scrum</h3>
+                    <div class="template-cards-list">
+                        <div class="template-card" data-template="scrum-it-ecommerce" data-framework="scrum">
+                            <div class="template-icon">🛒</div>
+                            <h4>IT - E-commerce</h4>
+                            <p>Équipe 5 pers, sprints 2 semaines<br>Développement plateforme e-commerce</p>
+                        </div>
+                        <div class="template-card" data-template="scrum-devops" data-framework="scrum">
+                            <div class="template-icon">⚙️</div>
+                            <h4>DevOps</h4>
+                            <p>(SAFe) Équipe 4 pers, sprints 2 semaines<br>Infrastructure et automatisation</p>
+                        </div>
+                        <div class="template-card" data-template="scrum-data" data-framework="scrum">
+                            <div class="template-icon">📊</div>
+                            <h4>Data</h4>
+                            <p>Équipe 4 pers, sprints 2 semaines<br>Analytics et data engineering</p>
+                        </div>
+                        <div class="template-card" data-template="scrum-rh" data-framework="scrum">
+                            <div class="template-icon">👥</div>
+                            <h4>RH</h4>
+                            <p>Équipe 3 pers, sprints 2 semaines<br>Digitalisation processus RH</p>
+                        </div>
+                        <div class="template-card" data-template="scrum-mairie" data-framework="scrum">
+                            <div class="template-icon">🏛️</div>
+                            <h4>Mairie</h4>
+                            <p>Équipe 4 pers, sprints 3 semaines<br>Services publics numériques</p>
+                        </div>
+                        <div class="template-card" data-template="scrum-medical" data-framework="scrum">
+                            <div class="template-icon">🏥</div>
+                            <h4>Médical</h4>
+                            <p>Équipe 5 pers, sprints 2 semaines<br>Système de gestion hospitalière</p>
+                        </div>
+                        <div class="template-card" data-template="scrum-permis" data-framework="scrum">
+                            <div class="template-icon">🚗</div>
+                            <h4>Permis de conduire</h4>
+                            <p>Équipe 3 pers, sprints 2 semaines<br>Plateforme d'apprentissage</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="template-card" data-template="enterprise">
-                    <h3>🏢 Enterprise</h3>
-                    <p>Équipe 5 pers, sprints 2 semaines<br>Métriques qualité avancées</p>
+
+                <!-- Colonne Kanban -->
+                <div class="template-column">
+                    <h3 class="template-column-title">🌊 Kanban</h3>
+                    <div class="template-cards-list">
+                        <div class="template-card" data-template="kanban-it-ecommerce" data-framework="kanban">
+                            <div class="template-icon">🛒</div>
+                            <h4>IT - E-commerce</h4>
+                            <p>Équipe 4 pers, flux continu<br>Maintenance et évolutions</p>
+                        </div>
+                        <div class="template-card" data-template="kanban-devops" data-framework="kanban">
+                            <div class="template-icon">⚙️</div>
+                            <h4>DevOps</h4>
+                            <p>Équipe 3 pers, flux continu<br>Support et incidents</p>
+                        </div>
+                        <div class="template-card" data-template="kanban-data" data-framework="kanban">
+                            <div class="template-icon">📊</div>
+                            <h4>Data</h4>
+                            <p>Équipe 3 pers, flux continu<br>Rapports et analyses</p>
+                        </div>
+                        <div class="template-card" data-template="kanban-rh" data-framework="kanban">
+                            <div class="template-icon">👥</div>
+                            <h4>RH</h4>
+                            <p>Équipe 2 pers, flux continu<br>Gestion quotidienne RH</p>
+                        </div>
+                        <div class="template-card" data-template="kanban-mairie" data-framework="kanban">
+                            <div class="template-icon">🏛️</div>
+                            <h4>Mairie</h4>
+                            <p>Équipe 3 pers, flux continu<br>Demandes citoyennes</p>
+                        </div>
+                        <div class="template-card" data-template="kanban-medical" data-framework="kanban">
+                            <div class="template-icon">🏥</div>
+                            <h4>Médical</h4>
+                            <p>Équipe 4 pers, flux continu<br>Support et maintenance</p>
+                        </div>
+                        <div class="template-card" data-template="kanban-permis" data-framework="kanban">
+                            <div class="template-icon">🚗</div>
+                            <h4>Permis de conduire</h4>
+                            <p>Équipe 2 pers, flux continu<br>Support utilisateurs</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="template-card" data-template="maintenance">
-                    <h3>🔧 Maintenance</h3>
-                    <p>Mode Kanban, équipe 2 pers<br>Focus bugs et amélioration</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Confirmation Template -->
+    <div id="templateConfirmModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>💾 Sauvegarder le template</h2>
+            <div id="templateConfirmContent">
+                <p>Vous avez sélectionné le template : <strong id="selectedTemplateName"></strong></p>
+                <div class="form-group">
+                    <label>Voulez-vous sauvegarder ce template dans :</label>
+                    <div id="sessionOptions" style="margin-top: 1rem;">
+                        <!-- Options dynamiques -->
+                    </div>
                 </div>
+            </div>
+            <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
+                <button id="confirmTemplateSaveBtn" class="btn btn-primary">💾 Sauvegarder</button>
+                <button id="cancelTemplateSaveBtn" class="btn btn-secondary">Annuler</button>
             </div>
         </div>
     </div>
@@ -225,15 +838,38 @@
         <div class="modal-content">
             <span class="close">&times;</span>
             <h2>👥 Configuration Équipe</h2>
-            <div id="teamMembersList"></div>
+            <div id="teamMembersList" class="team-members-list"></div>
             <button id="addMemberBtn" class="btn btn-secondary">➕ Ajouter Membre</button>
-            <div id="addMemberForm" style="display:none;">
+            <div id="addMemberForm" class="add-member-form" style="display:none;">
                 <div class="form-group">
-                    <input type="text" id="memberName" placeholder="Nom">
-                    <input type="text" id="memberRole" placeholder="Rôle">
-                    <input type="text" id="memberSkills" placeholder="Compétences (séparées par ,)">
-                    <input type="number" id="memberCapacity" placeholder="Capacité %" min="0" max="100" value="100">
-                    <button id="saveMemberBtn" class="btn btn-primary">Sauver</button>
+                    <label>📋 Sélectionner un membre existant (optionnel):</label>
+                    <select id="existingMemberSelect" class="form-control">
+                        <option value="">-- Nouveau membre --</option>
+                    </select>
+                    <small style="color: #666; font-size: 0.85rem;">Choisissez un membre pour pré-remplir les
+                        champs</small>
+                </div>
+                <div class="form-group">
+                    <label>Nom:</label>
+                    <input type="text" id="memberName" placeholder="Ex: Marie Dupont" required>
+                </div>
+                <div class="form-group">
+                    <label>Rôle:</label>
+                    <input type="text" id="memberRole" placeholder="Ex: Développeur Frontend" required>
+                </div>
+                <div class="form-group">
+                    <label>Compétences:</label>
+                    <input type="text" id="memberSkills" placeholder="Ex: React, TypeScript, CSS" required>
+                    <small style="color: #666; font-size: 0.85rem;">Séparez les compétences par des virgules</small>
+                </div>
+                <div class="form-group">
+                    <label>Capacité (%):</label>
+                    <input type="number" id="memberCapacity" placeholder="100" min="0" max="100" value="100" required>
+                    <small style="color: #666; font-size: 0.85rem;">Disponibilité du membre (100% = temps plein)</small>
+                </div>
+                <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+                    <button id="saveMemberBtn" class="btn btn-primary">💾 Sauvegarder</button>
+                    <button id="cancelMemberBtn" class="btn btn-secondary">Annuler</button>
                 </div>
             </div>
         </div>
@@ -244,13 +880,30 @@
         <div class="modal-content">
             <span class="close">&times;</span>
             <h2>😊 Humeur du Jour</h2>
+
+            <div class="form-group">
+                <label for="moodMemberSelect">👤 Membre de l'équipe</label>
+                <select id="moodMemberSelect" class="form-control">
+                    <option value="">Sélectionner un membre...</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="moodDate">📅 Date</label>
+                <div class="date-input-wrapper">
+                    <input type="date" id="moodDate" class="form-control" required>
+                    <span class="date-display" id="moodDateDisplay">Sélectionnez une date</span>
+                </div>
+            </div>
+
             <div class="mood-selector">
                 <button class="mood-btn" data-mood="3">😊 Super</button>
                 <button class="mood-btn" data-mood="2">😐 Correct</button>
                 <button class="mood-btn" data-mood="1">😞 Difficile</button>
             </div>
-            <textarea id="moodComment" placeholder="Commentaire optionnel"></textarea>
-            <button id="saveMoodBtn" class="btn btn-primary">Sauver</button>
+            <textarea id="moodComment"
+                placeholder="💬 Commentaire optionnel (ex: Bonne journée productive, Sprint intense, Besoin de repos...)"></textarea>
+            <button id="saveMoodBtn" class="btn btn-primary">💾 Enregistrer</button>
         </div>
     </div>
 
@@ -260,11 +913,11 @@
             <span class="close">&times;</span>
             <h2>🔗 Partager Dashboard</h2>
             <p style="color: #666;">Génère une URL publique sans données sensibles (noms, commentaires personnels)</p>
-            
+
             <div style="margin: 1.5rem 0;">
                 <button id="generateUrlBtn" class="btn btn-primary">🔗 Générer URL de Partage</button>
             </div>
-            
+
             <div id="urlResult" style="display: none;">
                 <label style="font-weight: 500; display: block; margin-bottom: 0.5rem;">
                     URL de partage généré :
@@ -280,17 +933,186 @@
         </div>
     </div>
 
-    <!-- Script principal -->
-    <script src="script.js"></script>
+    <!-- Modal Export -->
+    <div id="exportModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>📤 Export des Données</h2>
+            <p style="color: #666; margin-bottom: 1.5rem;">Exportez toutes vos données au format JSON pour sauvegarde ou
+                migration</p>
+
+            <div class="export-info">
+                <h3 style="color: var(--primary); margin-bottom: 1rem;">📋 Contenu du fichier</h3>
+
+                <div class="export-field">
+                    <strong>🏃 sprints</strong>
+                    <p>Liste de tous les sprints avec vélocité, dates, objectifs et métriques</p>
+                    <code>{ name, velocity, startDate, endDate, goal, ... }</code>
+                </div>
+
+                <div class="export-field">
+                    <strong>👥 team</strong>
+                    <p>Membres de l'équipe avec rôles, compétences, capacité et dates</p>
+                    <code>{ name, role, skills[], capacity, startDate, endDate }</code>
+                </div>
+
+                <div class="export-field">
+                    <strong>📝 annotations</strong>
+                    <p>Faits marquants liés aux sprints (incidents, releases, formations...)</p>
+                    <code>{ type, sprintId, text, timestamp }</code>
+                </div>
+
+                <div class="export-field">
+                    <strong>😊 moodTracking</strong>
+                    <p>Suivi de l'humeur quotidienne des membres de l'équipe</p>
+                    <code>{ date, score, memberId, memberName, comment }</code>
+                </div>
+
+                <div class="export-field">
+                    <strong>📅 events</strong>
+                    <p>Événements de planning (daily, retro, review, refinement...)</p>
+                    <code>{ type, title, date, time, duration, recurring }</code>
+                </div>
+
+                <div class="export-field">
+                    <strong>🎯 stories</strong>
+                    <p>User Stories pour estimation collaborative (Planning Poker)</p>
+                    <code>{ title, description, estimate, estimates{} }</code>
+                </div>
+
+                <div class="export-field">
+                    <strong>⚙️ settings</strong>
+                    <p>Configuration de l'outil (framework, durée sprint, jours ouvrés...)</p>
+                    <code>{ framework, sprintLength, workingDays, userName }</code>
+                </div>
+
+                <div class="export-field">
+                    <strong>🏆 achievements</strong>
+                    <p>Succès débloqués et progression</p>
+                    <code>{ name, description, unlockedAt }</code>
+                </div>
+
+                <div class="export-metadata">
+                    <p><strong>📦 Métadonnées :</strong></p>
+                    <ul>
+                        <li><code>exportDate</code> : Date et heure de l'export</li>
+                        <li><code>version</code> : Version du format de données</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div style="margin-top: 2rem; padding-top: 1.5rem; border-top: 2px solid #e9ecef;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                    <button id="downloadExportBtn" class="btn btn-success"
+                        style="padding: 1rem; font-size: 1.1rem;">
+                        📥 Télécharger JSON
+                    </button>
+                    <button id="downloadExportXlsxBtn" class="btn btn-primary"
+                        style="padding: 1rem; font-size: 1.1rem;">
+                        📊 Télécharger Excel
+                    </button>
+                </div>
+                <p style="text-align: center; color: #666; font-size: 0.9rem;">
+                    Fichiers nommés : <code>velocity-data-YYYY-MM-DD.json/xlsx</code>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Gestion Membre -->
+    <div id="teamMemberModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="teamMemberModalTitle">➕ Ajouter un Membre</h2>
+            <form id="teamMemberForm">
+                <input type="hidden" id="teamMemberId">
+
+                <div class="form-group">
+                    <label>👤 Nom:</label>
+                    <input type="text" id="teamMemberName" placeholder="Ex: Marie Dupont" required>
+                </div>
+
+                <div class="form-group">
+                    <label>💼 Rôle:</label>
+                    <input type="text" id="teamMemberRole" placeholder="Ex: Développeur Frontend" required>
+                </div>
+
+                <div class="form-group">
+                    <label>🎯 Compétences:</label>
+                    <div class="autocomplete-container">
+                        <input type="text" id="teamMemberSkills" placeholder="Ex: React, TypeScript, CSS"
+                            autocomplete="off">
+                        <div id="skillsAutocomplete" class="autocomplete-suggestions"></div>
+                    </div>
+                    <small>Séparez les compétences par des virgules. Suggestions basées sur l'équipe.</small>
+                </div>
+
+                <div class="form-group">
+                    <label>⚡ Capacité (%):</label>
+                    <input type="number" id="teamMemberCapacity" min="0" max="100" value="100" required>
+                    <small>Disponibilité du membre (100% = temps plein)</small>
+                </div>
+
+                <div class="form-group">
+                    <label>📅 Date d'arrivée:</label>
+                    <input type="date" id="teamMemberStartDate">
+                    <small>Date d'entrée du membre dans l'équipe</small>
+                </div>
+
+                <div class="form-group">
+                    <label>🚪 Date de sortie:</label>
+                    <input type="date" id="teamMemberEndDate">
+                    <small>Date de départ du membre (optionnel)</small>
+                </div>
+
+                <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
+                    <button type="submit" class="btn btn-primary">💾 Enregistrer</button>
+                    <button type="button" id="cancelTeamMemberBtn" class="btn btn-secondary">Annuler</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts - Architecture Modulaire ES6 -->
+    <script type="module" src="js/app.js"></script>
     
+    <!-- Scripts Legacy (à migrer progressivement) -->
+    <script src="js/templates-data.js"></script>
+    <script src="js/team-manager.js"></script>
+    <script src="js/footer-loader.js"></script>
+
+    <!-- PocketBase Integration -->
+    <script src="../../assets/js/pocketbase-manager.js"></script>
+    <script src="js/pocketbase-integration.js"></script>
+
+    <!-- Legacy Bridge - Fonctionnalités en cours de migration -->
+    <script src="js/legacy-bridge.js"></script>
+    <script src="js/inline-edit-team.js"></script>
+
     <!-- Intégration Agile Coach Toolkit -->
     <script src="../../assets/js/tool-integration.js"></script>
     <script>
-      // Configuration spécifique à l'outil
-      window.TOOL_CONFIG = {
-        name: 'velocity-squad',
-        backUrl: '../../index.html#tools'
-      };
+        // Configuration spécifique à l'outil
+        window.TOOL_CONFIG = {
+            name: 'velocity-squad',
+            backUrl: '../../index.html#tools'
+        };
     </script>
+
+    <!-- ====== SIDEBAR - Barre Latérale ====== -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <div class="sidebar" id="annotationsSidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-title">
+                <span id="sidebarIcon">📝</span>
+                <span id="sidebarTitle">Détails</span>
+            </div>
+            <button class="sidebar-close" id="sidebarClose">&times;</button>
+        </div>
+        <div class="sidebar-content" id="sidebarContent">
+            <!-- Contenu dynamique -->
+        </div>
+    </div>
 </body>
+
 </html>

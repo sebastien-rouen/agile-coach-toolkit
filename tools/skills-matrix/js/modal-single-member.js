@@ -48,6 +48,17 @@ function editMemberAppetences(memberIndex) {
     
     // Afficher la modal
     modal.classList.add('active');
+    
+    // Initialiser l'autocomplétion après que le DOM soit mis à jour
+    setTimeout(() => {
+        if (typeof initAutocomplete === 'function') {
+            const appetenceInput = document.getElementById(`appetence-input-${memberIndex}`);
+            if (appetenceInput) {
+                console.log(`🎯 Init autocomplétion appétence pour ${member.name}`);
+                initAutocomplete(appetenceInput, 'skill');
+            }
+        }
+    }, 100);
 }
 
 /**
@@ -96,6 +107,17 @@ function editMemberOwnerships(memberIndex) {
     
     // Afficher la modal
     modal.classList.add('active');
+    
+    // Initialiser l'autocomplétion après que le DOM soit mis à jour
+    setTimeout(() => {
+        if (typeof initAutocomplete === 'function') {
+            const ownershipInput = document.getElementById(`ownership-input-${memberIndex}`);
+            if (ownershipInput) {
+                console.log(`🏆 Init autocomplétion ownership pour ${member.name}`);
+                initAutocomplete(ownershipInput, 'ownership');
+            }
+        }
+    }, 100);
 }
 
 // Rendre les fonctions globales

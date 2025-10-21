@@ -1,0 +1,133 @@
+/* ====================================
+   GRAPHIQUES ET VISUALISATIONS
+   ==================================== */
+
+/* Section graphique principale */
+.chart-section {
+  grid-column: span 2;
+  min-height: 500px;
+}
+
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.chart-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.chart-controls button {
+  cursor: pointer;
+}
+
+.chart-view-selector {
+  display: flex;
+  gap: 0.5rem;
+  background: #f8f9fa;
+  padding: 0.25rem;
+  border-radius: var(--border-radius);
+  margin-right: 1rem;
+}
+
+.chart-view-btn {
+  background: transparent;
+  border: none;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.chart-view-btn:hover {
+  background: rgba(33, 150, 243, 0.1);
+  transform: translateY(-2px);
+}
+
+.chart-view-btn.active {
+  background: linear-gradient(135deg, #2196F3, #1976D2);
+  box-shadow: 0 2px 8px rgba(33, 150, 243, 0.3);
+}
+
+/* Tooltip pour les boutons de vue */
+.chart-view-btn::after {
+  content: attr(title);
+  position: absolute;
+  bottom: -35px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 1000;
+}
+
+.chart-view-btn:hover::after {
+  opacity: 1;
+}
+
+.chart-container {
+  position: relative;
+  height: 400px;
+  width: 100%;
+}
+
+#mainChart,
+#radarChart {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+/* Cursor pointer sur canvas quand survol annotation */
+.chart-container canvas {
+  transition: cursor 0.2s ease;
+}
+
+/* Légende des annotations */
+.annotation-legend {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 6px;
+  width: 100%;
+}
+
+.annotation-legend-item:hover {
+  background: rgba(0, 0, 0, 0.05);
+  transform: translateY(-2px);
+}
+
+/* Toggle timeline view */
+#toggleTimelineViewBtn {
+  cursor: pointer;
+}
+
+/* Vues alternatives */
+#casinoView {
+  animation: fadeIn 0.3s ease;
+}
+
+#kpiView {
+  animation: fadeIn 0.3s ease;
+}

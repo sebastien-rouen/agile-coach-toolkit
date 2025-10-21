@@ -1,0 +1,23 @@
+{
+  "enabled": true,
+  "name": "Code Quality Analyzer",
+  "description": "Monitors source code files for changes and provides suggestions for code improvements including code smells, design patterns, best practices, readability, maintainability, and performance optimizations",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "**/*.js",
+      "**/*.html",
+      "**/*.css",
+      "**/*.json",
+      "!**/node_modules/**",
+      "!**/pb_data/**",
+      "!**/dist/**",
+      "!**/build/**"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Analyse les fichiers modifiés pour détecter les problèmes de qualité selon les standards BastaVerse :\n\n**1. Code Smells** :\n- Code dupliqué (variables, animations, fonctions)\n- Fichiers > 800 lignes (découper en composants)\n- Fonctions complexes (> 50 lignes)\n- Nommage incorrect (camelCase JS, kebab-case CSS/fichiers)\n\n**2. Standards du Projet** :\n- ❌ CSS dans fichiers JS (utiliser classes CSS)\n- ❌ `console.log()` (utiliser Winston Logger : `req.siteLogger`)\n- ❌ `innerHTML` avec données utilisateur (utiliser `textContent`)\n- ✅ Commentaires en français, code en anglais\n- ✅ Indentation : 4 espaces JS, 2 espaces HTML/CSS\n- ✅ Séparation HTML/CSS/JS\n\n**3. Architecture** :\n- Structure modulaire respectée (components/, modules/, layout/)\n- Variables CSS centralisées dans `base.css`\n- Routes API dans `api/routes/routes-*.js`\n- Migrations PocketBase valides\n\n**4. Performance** :\n- Boucles imbriquées inutiles\n- Manipulation DOM inefficace\n- Fuites mémoire potentielles\n- Sélecteurs CSS trop spécifiques\n\n**5. Maintenabilité** :\n- Fonctions réutilisables\n- Documentation claire (JSDoc)\n- Gestion d'erreurs avec Winston Logger\n- Tests unitaires si pertinent\n\n**Format de Réponse** :\n🔴 Critique : [problème] → [solution]\n🟠 Important : [problème] → [suggestion]\n🟡 Amélioration : [optimisation possible]\n\nPropose des corrections concrètes et priorisées. Ne rapporte QUE les problèmes détectés."
+  }
+}

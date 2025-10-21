@@ -1,0 +1,23 @@
+/* ====================================
+   GESTION ÉQUIPE
+   ==================================== */
+
+.team-member {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+  border-radius: var(--border-radius);
+  margin-bottom: 0.5rem;
+  transition: var(--transition);
+}
+
+.team-member:hover {
+  background: linear-gradient(135deg, #e9ecef, #dee2e6);
+  transform: translateX(5px);
+}
+
+.team-member strong {
+  color: var(--primary);
+}

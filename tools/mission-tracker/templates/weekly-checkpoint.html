@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkpoint Hebdomadaire - {{mission.title}}</title>
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/report-templates.css">
+</head>
+<body>
+  <div class="report-container">
+    <!-- En-tête -->
+    <header class="report-header compact">
+      <div class="report-header-content">
+        <h1 class="report-title">Checkpoint Hebdomadaire</h1>
+        <h2 class="report-subtitle">{{mission.title}}</h2>
+        <div class="report-meta">
+          <span class="report-meta-item">
+            <sl-icon name="calendar-week"></sl-icon>
+            Semaine {{weekNumber}} - {{weekStart | formatDate}} au {{weekEnd | formatDate}}
+          </span>
+          <span class="report-meta-item">
+            <sl-icon name="person"></sl-icon>
+            {{author}}
+          </span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Mood de la Semaine -->
+    <section class="report-section mood-section">
+      <div class="mood-display">
+        <div class="mood-icon mood-{{mood}}">{{moodIcon}}</div>
+        <div class="mood-content">
+          <h3>Ressenti de la semaine</h3>
+          <div class="mood-scale">
+            <span class="mood-label">Énergie : <strong>{{energy}}/5</strong></span>
+            <div class="mood-bar">
+              <div class="mood-bar-fill" style="width: {{energyPercent}}%;"></div>
+            </div>
+          </div>
+          <div class="mood-scale">
+            <span class="mood-label">Progression : <strong>{{progress}}/5</strong></span>
+            <div class="mood-bar">
+              <div class="mood-bar-fill" style="width: {{progressPercent}}%;"></div>
+            </div>
+          </div>
+          {{#if moodComment}}
+          <p class="mood-comment">{{moodComment}}</p>
+          {{/if}}
+        </div>
+      </div>
+    </section>
+
+    <!-- 1. Réussites de la Semaine -->
+    <section class="report-section">
+      <div class="report-section-header">
+        <h2 class="report-section-title">
+          <span class="report-section-icon">✅</span>
+          1. Réussites de la Semaine
+        </h2>
+      </div>
+      <div class="report-section-content">
+        {{#if achievements.length}}
+        <div class="achievements-list">
+          {{#each achievements}}
+          <div class="achievement-item">
+            <div class="achievement-icon">🎉</div>
+            <div class="achievement-content">
+              <h4>{{title}}</h4>
+              <p>{{description}}</p>
+              {{#if impact}}
+              <div class="achievement-impact">
+                <strong>Impact :</strong> {{impact}}
+              </div>
+              {{/if}}
+              {{#if tags}}
+              <div class="achievement-tags">
+                {{#each tags}}
+                <span class="tag">{{this}}</span>
+                {{/each}}
+              </div>
+              {{/if}}
+            </div>
+          </div>
+          {{/each}}
+        </div>
+        {{else}}
+        <p class="text-muted">Aucune réussite documentée cette semaine.</p>
+        {{/if}}
+      </div>
+    </section>
+
+    <!-- 2. Défis et Difficultés -->
+    <section class="report-section">
+      <div class="report-section-header">
+        <h2 class="report-section-title">
+          <span class="report-section-icon">⚠️</span>
+          2. Défis et Difficultés
+        </h2>
+      </div>
+      <div class="report-section-content">
+        {{#if challenges.length}}
+        <div class="challenges-list">
+          {{#each challenges}}
+          <div class="challenge-item status-{{status}}">
+            <div class="challenge-header">
+              <h4>{{title}}</h4>
+              <span class="challenge-status status-badge-{{status}}">{{statusLabel}}</span>
+            </div>
+            <p>{{description}}</p>
+            {{#if blockers}}
+            <div class="challenge-blockers">
+              <strong>Blocages :</strong>
+              <ul>
+                {{#each blockers}}
+                <li>{{this}}</li>
+                {{/each}}
+              </ul>
+            </div>
+            {{/if}}
+            {{#if nextSteps}}
+            <div class="challenge-actions">
+              <strong>Prochaines étapes :</strong>
+              <ul>
+                {{#each nextSteps}}
+                <li>{{this}}</li>
+                {{/each}}
+              </ul>
+            </div>
+            {{/if}}
+          </div>
+          {{/each}}
+        </div>
+        {{else}}
+        <p class="text-muted">Aucun défi majeur cette semaine.</p>
+        {{/if}}
+      </div>
+    </section>
+
+    <!-- 3. Apprentissages -->
+    <section class="report-section">
+      <div class="report-section-header">
+        <h2 class="report-section-title">
+          <span class="report-section-icon">💡</span>
+          3. Apprentissages et Insights
+        </h2>
+      </div>
+      <div class="report-section-content">
+        {{#if learnings.length}}
+        <div class="learnings-list">
+          {{#each learnings}}
+          <div class="learning-item">
+            <div class="learning-icon">💡</div>
+            <div class="learning-content">
+              <h4>{{title}}</h4>
+              <p>{{description}}</p>
+              {{#if application}}
+              <div class="learning-application">
+                <strong>Application :</strong> {{application}}
+              </div>
+              {{/if}}
+            </div>
+          </div>
+          {{/each}}
+        </div>
+        {{else}}
+        <p class="text-muted">Aucun apprentissage documenté cette semaine.</p>
+        {{/if}}
+      </div>
+    </section>
+
+    <!-- 4. Événements Clés -->
+    <section class="report-section">
+      <div class="report-section-header">
+        <h2 class="report-section-title">
+          <span class="report-section-icon">📅</span>
+          4. Événements Clés de la Semaine
+        </h2>
+      </div>
+      <div class="report-section-content">
+        {{#if events.length}}
+        <div class="events-timeline">
+          {{#each events}}
+          <div class="event-item event-type-{{type}}">
+            <div class="event-date">
+              <span class="event-day">{{date | formatDay}}</span>
+              <span class="event-date-full">{{date | formatDate}}</span>
+            </div>
+            <div class="event-content">
+              <div class="event-type-badge event-badge-{{type}}">{{typeLabel}}</div>
+              <h4>{{title}}</h4>
+              <p>{{description}}</p>
+              {{#if tags}}
+              <div class="event-tags">
+                {{#each tags}}
+                <span class="tag">{{this}}</span>
+                {{/each}}
+              </div>
+              {{/if}}
+            </div>
+          </div>
+          {{/each}}
+        </div>
+        {{else}}
+        <p class="text-muted">Aucun événement marquant cette semaine.</p>
+        {{/if}}
+      </div>
+    </section>
+
+    <!-- 5. Plan pour la Semaine Prochaine -->
+    <section class="report-section">
+      <div class="report-section-header">
+        <h2 class="report-section-title">
+          <span class="report-section-icon">🎯</span>
+          5. Plan pour la Semaine Prochaine
+        </h2>
+      </div>
+      <div class="report-section-content">
+        {{#if nextWeekPlan.length}}
+        <div class="plan-list">
+          {{#each nextWeekPlan}}
+          <div class="plan-item priority-{{priority}}">
+            <div class="plan-header">
+              <h4>{{title}}</h4>
+              <span class="plan-priority priority-badge-{{priority}}">{{priorityLabel}}</span>
+            </div>
+            <p>{{description}}</p>
+            {{#if actions}}
+            <div class="plan-actions">
+              <strong>Actions :</strong>
+              <ul>
+                {{#each actions}}
+                <li>{{this}}</li>
+                {{/each}}
+              </ul>
+            </div>
+            {{/if}}
+          </div>
+          {{/each}}
+        </div>
+        {{else}}
+        <p class="text-muted">Aucun plan défini pour la semaine prochaine.</p>
+        {{/if}}
+      </div>
+    </section>
+
+    <!-- Métriques de la Semaine -->
+    {{#if metrics}}
+    <section class="report-section">
+      <div class="report-section-header">
+        <h2 class="report-section-title">
+          <span class="report-section-icon">📊</span>
+          Métriques de la Semaine
+        </h2>
+      </div>
+      <div class="report-section-content">
+        <div class="metrics-grid">
+          {{#each metrics}}
+          <div class="metric-card">
+            <div class="metric-value">
+              {{value}}{{#if unit}}<span class="metric-unit">{{unit}}</span>{{/if}}
+            </div>
+            <div class="metric-label">{{label}}</div>
+            {{#if trend}}
+            <div class="metric-trend trend-{{trend}}">
+              {{#if (eq trend 'up')}}↑{{/if}}
+              {{#if (eq trend 'down')}}↓{{/if}}
+              {{#if (eq trend 'stable')}}→{{/if}}
+              {{trendValue}}
+            </div>
+            {{/if}}
+          </div>
+          {{/each}}
+        </div>
+      </div>
+    </section>
+    {{/if}}
+
+    <!-- Footer -->
+    <footer class="report-footer compact">
+      <div class="report-footer-meta">
+        <p>Checkpoint généré le {{generatedDate | formatDate}}</p>
+        <p class="text-muted">Semaine {{weekNumber}} de la mission {{mission.title}}</p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Print Styles -->
+  <style media="print">
+    @page {
+      margin: 1.5cm;
+      size: A4;
+    }
+
+    body {
+      background: white;
+      color: black;
+    }
+
+    .report-section {
+      page-break-inside: avoid;
+    }
+
+    .mood-section {
+      background: white !important;
+      border: 1px solid #ddd;
+    }
+  </style>
+</body>
+</html>

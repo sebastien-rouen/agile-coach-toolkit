@@ -1,0 +1,18 @@
+{
+  "enabled": true,
+  "name": "API Routes Reloader",
+  "description": "Détecte les modifications dans les routes API et rappelle de redémarrer PM2 pour appliquer les changements",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "api/routes/**/*.js",
+      "api/lib/**/*.js",
+      "data/*/api/routes/**/*.js"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Des routes API ont été modifiées. Rappelle à l'utilisateur les actions nécessaires :\n\n**Contexte** :\nL'API Multi-Sites utilise PM2 pour gérer les processus. Les modifications de routes nécessitent un redémarrage pour être prises en compte.\n\n**Commandes PM2** :\n```bash\n# Redémarrer l'API drafts (développement)\npm2 restart \"drafts.api\"\n\n# Redémarrer l'API production\npm2 restart \"api\"\n\n# Voir les logs en temps réel\npm2 logs \"drafts.api\"\n\n# Vérifier le statut\npm2 status\n\n# Recharger sans downtime (production)\npm2 reload \"api\"\n```\n\n**Endpoints de Gestion** :\n```bash\n# Recharger les routes d'un site spécifique\ncurl http://localhost:3002/api/{site}/reload\n\n# Recharger la détection des sites\ncurl http://localhost:3002/api/reload-sites\n\n# Vérifier la santé de l'API\ncurl http://localhost:3002/api/health\n```\n\n**Actions** :\n1. Identifie quel environnement est concerné (drafts/prod)\n2. Rappelle la commande PM2 appropriée\n3. Suggère de vérifier les logs après redémarrage\n4. Mentionne l'endpoint de reload si applicable\n\nFournis un rappel concis et actionnable avec la commande exacte à exécuter."
+  }
+}

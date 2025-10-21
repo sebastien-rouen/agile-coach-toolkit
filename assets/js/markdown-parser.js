@@ -343,14 +343,31 @@ function parseMarkdown(markdown) {
   // Blocs de code (```langue ... ```)
   html = html.replace(/```(\w+)?\n([\s\S]*?)```/g, (match, lang, code) => {
     const language = lang || 'plaintext';
+    
+    // Détecter les blocs Mermaid
+    if (language === 'mermaid') {
+      return `<div class="mermaid">${code.trim()}</div>`;
+    }
+    
     return `<pre><code class="language-${language}">${code.trim()}</code></pre>`;
   });
   
   // Liens [texte](url)
   html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
   
-  // Images ![alt](url)
-  html = html.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" loading="lazy">');
+  // Images ![alt](url) avec légendes stylisées
+  html = html.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, (match, alt, src) => {
+    if (alt && alt.trim()) {
+      // Si il y a un texte alt, créer une figure avec légende
+      return `<figure class="image-with-caption">
+        <img src="${src}" alt="${alt}" loading="lazy">
+        <figcaption>${alt}</figcaption>
+      </figure>`;
+    } else {
+      // Sinon, image simple
+      return `<img src="${src}" alt="" loading="lazy">`;
+    }
+  });
   
   // Tableaux (avant les autres conversions)
   html = parseMarkdownTables(html);
@@ -517,7 +534,7 @@ function extractFrontmatter(markdown) {
 function generateTOC(html) {
   const parser = new DOMParser();
   const doc = parser.parseFromString(html, 'text/html');
-  const headings = doc.querySelectorAll('h2, h3');
+  const headings = doc.querySelectorAll('h1, h2, h3');
   
   if (headings.length === 0) return null;
   
@@ -559,14 +576,158 @@ function styleBlockquotesWithAuthor() {
   });
 }
 
+/**
+ * Initialiser Mermaid pour le rendu des diagrammes
+ */
+function initMermaid() {
+  if (typeof mermaid !== 'undefined') {
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default',
+      securityLevel: 'loose',
+      fontFamily: 'inherit',
+      flowchart: {
+        useMaxWidth: true,
+        htmlLabels: true,
+        curve: 'basis'
+      }
+    });
+    
+    // Re-render les diagrammes Mermaid après chargement du contenu
+    setTimeout(() => {
+      mermaid.contentLoaded();
+    }, 100);
+  }
+}
+
+/**
+ * Rafraîchir les diagrammes Mermaid (utile après changement de thème)
+ */
+function refreshMermaid() {
+  if (typeof mermaid !== 'undefined') {
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default';
+    mermaid.initialize({ theme });
+    
+    // Re-render tous les diagrammes
+    document.querySelectorAll('.mermaid').forEach((element, index) => {
+      const graphDefinition = element.textContent;
+      element.removeAttribute('data-processed');
+      element.innerHTML = graphDefinition;
+    });
+    
+    mermaid.contentLoaded();
+  }
+}
+
+/**
+ * Styliser les images avec légendes
+ * Les styles sont maintenant dans markdown.css
+ */
+function styleImagesWithCaptions() {
+  // Les styles sont maintenant gérés par CSS
+  // Cette fonction peut être utilisée pour des ajustements dynamiques si nécessaire
+  document.querySelectorAll('.markdown-content figure.image-with-caption').forEach(figure => {
+    // Ajouter des classes ou attributs si nécessaire
+    figure.setAttribute('data-styled', 'true');
+  });
+}
+
+/**
+ * Ajouter des boutons de copie aux blocs de code
+ */
+function addCopyButtonsToCodeBlocks() {
+  document.querySelectorAll('pre code').forEach((codeBlock) => {
+    const pre = codeBlock.parentElement;
+    
+    // Éviter de dupliquer les boutons
+    if (pre.querySelector('.copy-button')) return;
+    
+    // Créer le bouton de copie
+    const copyButton = document.createElement('button');
+    copyButton.className = 'copy-button';
+    copyButton.innerHTML = `
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+      </svg>
+    `;
+    copyButton.title = 'Copier le code';
+    
+    // Positionner le bouton (les styles sont maintenant dans CSS)
+    pre.style.position = 'relative';
+    
+    // Fonction de copie
+    copyButton.addEventListener('click', async () => {
+      const code = codeBlock.textContent;
+      
+      try {
+        await navigator.clipboard.writeText(code);
+        
+        // Feedback visuel
+        const originalHTML = copyButton.innerHTML;
+        copyButton.innerHTML = `
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="20,6 9,17 4,12"></polyline>
+          </svg>
+        `;
+        copyButton.style.color = 'var(--success-color, #28a745)';
+        
+        setTimeout(() => {
+          copyButton.innerHTML = originalHTML;
+          copyButton.style.color = '';
+        }, 2000);
+        
+      } catch (err) {
+        console.error('Erreur lors de la copie:', err);
+        
+        // Fallback pour les navigateurs plus anciens
+        const textArea = document.createElement('textarea');
+        textArea.value = code;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+        
+        // Feedback visuel
+        const originalHTML = copyButton.innerHTML;
+        copyButton.innerHTML = `
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="20,6 9,17 4,12"></polyline>
+          </svg>
+        `;
+        copyButton.style.color = 'var(--success-color, #28a745)';
+        
+        setTimeout(() => {
+          copyButton.innerHTML = originalHTML;
+          copyButton.style.color = '';
+        }, 2000);
+      }
+    });
+    
+    pre.appendChild(copyButton);
+  });
+}
+
 // Appliquer le style après le chargement du DOM
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', styleBlockquotesWithAuthor);
+  document.addEventListener('DOMContentLoaded', () => {
+    styleBlockquotesWithAuthor();
+    styleImagesWithCaptions();
+    initMermaid();
+    addCopyButtonsToCodeBlocks();
+  });
 } else {
   styleBlockquotesWithAuthor();
+  styleImagesWithCaptions();
+  initMermaid();
+  addCopyButtonsToCodeBlocks();
 }
 
 // Exporter pour utilisation externe
 window.styleBlockquotesWithAuthor = styleBlockquotesWithAuthor;
+window.styleImagesWithCaptions = styleImagesWithCaptions;
+window.initMermaid = initMermaid;
+window.refreshMermaid = refreshMermaid;
+window.addCopyButtonsToCodeBlocks = addCopyButtonsToCodeBlocks;
 
 console.log('✅ markdown-parser.js chargé');

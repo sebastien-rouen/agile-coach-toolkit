@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visualiseur Multi-Équipes - Agile Toolkit</title>
+  
+  <!-- Styles spécifiques -->
+  <link rel="stylesheet" href="assets/css/vizualiser.css">
+  <link rel="stylesheet" href="assets/css/mindmap.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+  
+  <!-- Favicon -->
+  <link rel="icon" href="/assets/img/favicon.ico">
+</head>
+<body>
+
+  <!-- Header Tool -->
+  <header class="tool-header">
+    <div class="container">
+      <div class="header-content">
+        <div class="tool-title">
+          <span class="tool-icon">🎯</span>
+          <div>
+            <h1>Visualiseur de Sujets Multi-Équipes</h1>
+            <p class="tool-tagline">Cartographie visuelle avec codes couleurs d'alerte</p>
+          </div>
+        </div>
+        
+        <div class="tool-actions">
+          <button class="btn btn-secondary" onclick="showImportModal()">
+            📥 Importer
+          </button>
+          <a href="crud.html" class="btn btn-primary">
+            ✏️ Gérer
+          </a>
+          <button class="btn btn-outline" onclick="exportData()">
+            📤 Exporter
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Stats Bar -->
+  <section class="stats-bar">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-card danger">
+          <span class="stat-value" id="stat-danger">0</span>
+          <span class="stat-label">🔴 Critiques</span>
+        </div>
+        <div class="stat-card warning">
+          <span class="stat-value" id="stat-warning">0</span>
+          <span class="stat-label">🟠 À surveiller</span>
+        </div>
+        <div class="stat-card success">
+          <span class="stat-value" id="stat-success">0</span>
+          <span class="stat-label">🟢 Dans les temps</span>
+        </div>
+        <div class="stat-card info">
+          <span class="stat-value" id="stat-dependencies">0</span>
+          <span class="stat-label">🔵 Dépendances</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="tool-content">
+    <div class="container">
+      
+      <!-- Layout 2 colonnes -->
+      <div class="tool-layout">
+        
+        <!-- Sidebar Filtres -->
+        <aside class="tool-sidebar">
+          <div class="sidebar-section">
+            <h3 class="sidebar-title">🔍 Filtres</h3>
+            
+            <div class="filter-group">
+              <label class="filter-label">Type de sujet</label>
+              <div class="checkbox-list">
+                <label class="checkbox-item">
+                  <input type="checkbox" checked data-filter="type" value="team">
+                  <span>👥 Équipe</span>
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" checked data-filter="type" value="cross-team">
+                  <span>🔀 Cross-équipe</span>
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" checked data-filter="type" value="individual">
+                  <span>👤 Individuel</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="filter-group">
+              <label class="filter-label">Statut d'alerte</label>
+              <div class="checkbox-list">
+                <label class="checkbox-item">
+                  <input type="checkbox" checked data-filter="status" value="danger">
+                  <span>🔴 Critique</span>
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" checked data-filter="status" value="warning">
+                  <span>🟠 Mitigé</span>
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" checked data-filter="status" value="success">
+                  <span>🟢 OK</span>
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" checked data-filter="status" value="neutral">
+                  <span>⚪ Neutre</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="filter-group">
+              <label class="filter-label">Équipe</label>
+              <select id="team-filter" class="form-select">
+                <option value="all">Toutes les équipes</option>
+              </select>
+            </div>
+
+            <button class="btn btn-secondary btn-block" onclick="resetFilters()">
+              🔄 Réinitialiser
+            </button>
+          </div>
+
+          <!-- Légende -->
+          <div class="sidebar-section">
+            <h3 class="sidebar-title">📖 Légende</h3>
+            <div class="legend">
+              <div class="legend-item">
+                <span class="legend-dot danger"></span>
+                <span>Critique (échéance passée, bloqué)</span>
+              </div>
+              <div class="legend-item">
+                <span class="legend-dot warning"></span>
+                <span>À surveiller (échéance &lt; 7j)</span>
+              </div>
+              <div class="legend-item">
+                <span class="legend-dot success"></span>
+                <span>Dans les temps</span>
+              </div>
+              <div class="legend-item">
+                <span class="legend-dot info"></span>
+                <span>Dépendances inter-sujets</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Actions -->
+          <div class="sidebar-section">
+            <h3 class="sidebar-title">⚡ Actions rapides</h3>
+            <button class="btn btn-outline btn-block" onclick="loadDemo('safe')">
+              📦 Démo SAFe ART
+            </button>
+            <button class="btn btn-outline btn-block" onclick="loadDemo('spotify')">
+              📦 Démo Spotify
+            </button>
+            <button class="btn btn-outline btn-block" onclick="loadDemo('simple')">
+              📦 Démo Simple
+            </button>
+          </div>
+        </aside>
+
+        <!-- Zone MindMap -->
+        <div class="tool-main">
+          <div class="mindmap-wrapper">
+            <div class="mindmap-toolbar">
+              <div class="toolbar-group">
+                <span class="toolbar-label">🔍 Zoom</span>
+                <button class="btn btn-sm btn-icon" onclick="zoomIn()" title="Zoom +">
+                  ➕
+                </button>
+                <button class="btn btn-sm btn-icon" onclick="zoomOut()" title="Zoom -">
+                  ➖
+                </button>
+                <button class="btn btn-sm btn-icon" onclick="fitView()" title="Ajuster">
+                  📐
+                </button>
+              </div>
+              
+              <div class="toolbar-separator"></div>
+              
+              <div class="toolbar-group">
+                <span class="toolbar-label">📂 Arbre</span>
+                <button class="btn btn-sm btn-icon" onclick="expandAll()" title="Tout déplier">
+                  ⬇️
+                </button>
+                <button class="btn btn-sm btn-icon" onclick="collapseAll()" title="Tout replier">
+                  ⬆️
+                </button>
+              </div>
+              
+              <div class="toolbar-separator"></div>
+              
+              <div class="toolbar-group">
+                <span class="toolbar-label">👁️ Vue</span>
+                <button class="btn btn-sm btn-icon active" onclick="switchView('mindmap')" id="btn-view-mindmap" title="Vue MindMap">
+                  🌳
+                </button>
+                <button class="btn btn-sm btn-icon" onclick="switchView('radar')" id="btn-view-radar" title="Vue Radar">
+                  🎯
+                </button>
+              </div>
+            </div>
+            
+            <!-- Vue MindMap -->
+            <div id="mindmap" class="mindmap">
+              <!-- État vide -->
+              <div class="empty-state" id="empty-state">
+                <div class="empty-icon">🎯</div>
+                <h3>Aucune donnée chargée</h3>
+                <p>Chargez une démo ou importez vos données pour commencer</p>
+                <div class="empty-actions">
+                  <button class="btn btn-primary" onclick="loadDemo('safe')">
+                    📦 Charger une démo
+                  </button>
+                  <button class="btn btn-outline" onclick="showImportModal()">
+                    📥 Importer des données
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Vue Radar -->
+            <div id="radar-view" class="radar-view">
+              <div class="radar-container">
+                <svg id="radar-svg" class="radar-svg"></svg>
+                <div class="radar-legend">
+                  <h4>📊 Légende</h4>
+                  <div class="radar-legend-item">
+                    <span class="radar-legend-dot" style="background: #dc3545;"></span>
+                    <span>Critique</span>
+                  </div>
+                  <div class="radar-legend-item">
+                    <span class="radar-legend-dot" style="background: #fd7e14;"></span>
+                    <span>Warning</span>
+                  </div>
+                  <div class="radar-legend-item">
+                    <span class="radar-legend-dot" style="background: #28a745;"></span>
+                    <span>OK</span>
+                  </div>
+                  <div class="radar-legend-item">
+                    <span class="radar-legend-dot" style="background: #6c757d;"></span>
+                    <span>Neutre</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Info Panel (caché par défaut) -->
+          <div id="info-panel" class="info-panel" style="display: none;">
+            <div class="info-header">
+              <h3 id="info-title">Détails du sujet</h3>
+              <button class="btn-close" onclick="closeInfoPanel()">×</button>
+            </div>
+            <div class="info-content" id="info-content">
+              <!-- Rempli dynamiquement -->
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Modal Import -->
+  <div id="import-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>📥 Importer des données</h2>
+        <button class="btn-close" onclick="closeImportModal()">×</button>
+      </div>
+      
+      <div class="modal-body">
+        <div class="tabs">
+          <button class="tab active" onclick="switchTab('yaml')">YAML</button>
+          <button class="tab" onclick="switchTab('jira')">JIRA</button>
+          <button class="tab" onclick="switchTab('demo')">Démo</button>
+        </div>
+
+        <!-- Tab YAML -->
+        <div id="tab-yaml" class="tab-content active">
+          <div class="upload-zone" id="upload-zone">
+            <div class="upload-icon">📄</div>
+            <p>Glissez-déposez un fichier YAML ici</p>
+            <p class="upload-hint">ou</p>
+            <button class="btn btn-primary" onclick="document.getElementById('file-input').click()">
+              Sélectionner un fichier
+            </button>
+            <input type="file" id="file-input" accept=".yaml,.yml" style="display: none;">
+          </div>
+          <div class="upload-preview" id="upload-preview" style="display: none;">
+            <p>Fichier : <strong id="file-name"></strong></p>
+            <button class="btn btn-primary" onclick="processYAML()">
+              ✅ Importer
+            </button>
+          </div>
+        </div>
+
+        <!-- Tab JIRA -->
+        <div id="tab-jira" class="tab-content">
+          <div class="form-group">
+            <label>URL JIRA</label>
+            <input type="text" class="form-control" id="jira-url" placeholder="https://votreentreprise.atlassian.net">
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" class="form-control" id="jira-email" placeholder="vous@entreprise.com">
+          </div>
+          <div class="form-group">
+            <label>API Token</label>
+            <input type="password" class="form-control" id="jira-token" placeholder="Votre token JIRA">
+            <small class="form-hint">
+              <a href="https://id.atlassian.com/manage-profile/security/api-tokens" target="_blank">
+                → Générer un token JIRA
+              </a>
+            </small>
+          </div>
+          <div class="form-group">
+            <label>Clé de projet</label>
+            <input type="text" class="form-control" id="jira-project" placeholder="PROJ">
+          </div>
+          <button class="btn btn-primary" onclick="importJIRA()">
+            📥 Importer depuis JIRA
+          </button>
+        </div>
+
+        <!-- Tab Démo -->
+        <div id="tab-demo" class="tab-content">
+          <div class="demo-list">
+            <div class="demo-card" onclick="loadDemo('safe')">
+              <div class="demo-icon">🚀</div>
+              <h4>SAFe ART</h4>
+              <p>4 équipes, 12 sujets dont 3 cross-team</p>
+              <span class="demo-badge">80+ personnes</span>
+            </div>
+            <div class="demo-card" onclick="loadDemo('spotify')">
+              <div class="demo-icon">🎵</div>
+              <h4>Spotify Model</h4>
+              <p>5 squads, 3 guilds, 15 sujets</p>
+              <span class="demo-badge">60 personnes</span>
+            </div>
+            <div class="demo-card" onclick="loadDemo('simple')">
+              <div class="demo-icon">✨</div>
+              <h4>Simple</h4>
+              <p>2 équipes, 5 sujets basiques</p>
+              <span class="demo-badge">20 personnes</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="tool-footer">
+    <div class="container">
+      <p>
+        🎓 <strong>Coach Sticko</strong> • Agile Toolkit • 
+        <a href="/tools/visualizer/README.md">Documentation</a> • 
+        <a href="https://github.com/sebastien-rouen/agile-toolkit" target="_blank">GitHub</a>
+      </p>
+    </div>
+  </footer>
+
+  <!-- Intégration Agile Coach Toolkit -->
+  <script src="../../assets/js/tool-integration.js"></script>
+  <script>
+      // Configuration spécifique à l'outil
+      window.TOOL_CONFIG = {
+          name: 'velocity-squad',
+          backUrl: '../../index.html#tools'
+      };
+  </script>
+
+  <!-- Scripts -->
+  <!-- js-yaml pour parser YAML -->
+  <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+  
+  <!-- Markmap pour la visualisation MindMap -->
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+  <script src="https://cdn.jsdelivr.net/npm/markmap-view"></script>
+  <script src="https://cdn.jsdelivr.net/npm/markmap-lib"></script>
+  
+  <!-- PocketBase (optionnel pour v1.1.0) -->
+  <script src="https://cdn.jsdelivr.net/npm/pocketbase@0.20.0/dist/pocketbase.umd.js"></script>
+  
+  <!-- Scripts de l'application -->
+  <script src="assets/js/alert-engine.js"></script>
+  <script src="assets/js/mindmap-renderer.js"></script>
+  <script src="assets/js/radar-renderer.js"></script>
+  <script src="assets/js/import-manager.js"></script>
+  <script src="assets/js/visualizer.js"></script>
+
+</body>
+</html>

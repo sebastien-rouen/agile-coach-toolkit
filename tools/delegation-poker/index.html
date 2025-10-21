@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delegation Poker - Management 3.0</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/themes/light.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <h1>🃏 Delegation Poker</h1>
+            <p class="subtitle">Clarifiez les niveaux de délégation dans votre équipe</p>
+
+            <div class="header-actions">
+                <button class="btn btn-secondary" id="btnNewSession">
+                    ➕ Nouvelle session
+                </button>
+                <button class="btn btn-secondary" id="btnLoadSession">
+                    📂 Charger session
+                </button>
+                <select class="btn btn-secondary" id="selectTemplate" style="cursor: pointer;">
+                    <option value="">📋 Charger un template...</option>
+                    <option value="product">🎯 Équipe Produit - Sprint Planning</option>
+                    <option value="rh">👥 Service RH - Recrutement</option>
+                    <option value="medical">🏥 Service Urgences - Protocoles</option>
+                    <option value="military">🎖️ Unité Tactique - Mission</option>
+                    <option value="digital-license">🪪 Permis Numérique - MVP</option>
+                </select>
+                <button class="btn btn-primary" id="btnExport" disabled>
+                    📥 Exporter
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <div class="layout">
+            <!-- Sidebar : Légende -->
+            <aside class="sidebar">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>📊 Niveaux de délégation</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="delegation-levels">
+                            <div class="level-item" data-level="1">
+                                <span class="level-badge level-1">1</span>
+                                <div>
+                                    <strong>Tell</strong>
+                                    <p>Je décide et j'informe</p>
+                                </div>
+                            </div>
+                            <div class="level-item" data-level="2">
+                                <span class="level-badge level-2">2</span>
+                                <div>
+                                    <strong>Sell</strong>
+                                    <p>Je décide et je convaincs</p>
+                                </div>
+                            </div>
+                            <div class="level-item" data-level="3">
+                                <span class="level-badge level-3">3</span>
+                                <div>
+                                    <strong>Consult</strong>
+                                    <p>Je consulte puis décide</p>
+                                </div>
+                            </div>
+                            <div class="level-item" data-level="4">
+                                <span class="level-badge level-4">4</span>
+                                <div>
+                                    <strong>Agree</strong>
+                                    <p>Nous décidons ensemble</p>
+                                </div>
+                            </div>
+                            <div class="level-item" data-level="5">
+                                <span class="level-badge level-5">5</span>
+                                <div>
+                                    <strong>Advise</strong>
+                                    <p>Je conseille, tu décides</p>
+                                </div>
+                            </div>
+                            <div class="level-item" data-level="6">
+                                <span class="level-badge level-6">6</span>
+                                <div>
+                                    <strong>Inquire</strong>
+                                    <p>Tu décides et m'informes</p>
+                                </div>
+                            </div>
+                            <div class="level-item" data-level="7">
+                                <span class="level-badge level-7">7</span>
+                                <div>
+                                    <strong>Delegate</strong>
+                                    <p>Tu décides en autonomie</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Session Info -->
+                <div class="card session-info-card" id="sessionInfo" style="display: none;">
+                    <div class="card-header session-info-header">
+                        <div class="session-status-badge">
+                            <span class="status-dot"></span>
+                            <span>Session active</span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="session-name-container">
+                            <div class="session-icon">🎯</div>
+                            <div class="session-name" id="sessionName"></div>
+                        </div>
+                        <div id="participantsList"></div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Main Zone -->
+            <div class="main-zone">
+                <!-- État initial : Pas de session -->
+                <div id="emptyState" class="empty-state">
+                    <div class="empty-state-icon">🎯</div>
+                    <h2>Aucune session active</h2>
+                    <p>Créez une nouvelle session pour commencer à clarifier les responsabilités avec votre équipe.</p>
+                    <button class="btn btn-primary" onclick="document.getElementById('btnNewSession').click()">
+                        Créer une session
+                    </button>
+                </div>
+
+                <!-- Zone active : Gestion des décisions -->
+                <div id="activeZone" style="display: none;">
+                    <!-- Formulaire d'ajout de décision -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h2>➕ Ajouter une décision</h2>
+                        </div>
+                        <div class="card-body">
+                            <form id="formAddDecision">
+                                <div class="form-group">
+                                    <input type="text" id="inputDecision"
+                                        placeholder="Ex: Choix des technologies pour un nouveau composant" minlength="3"
+                                        maxlength="200" required>
+                                    <select id="selectCategory">
+                                        <option value="technical">🔧 Technique</option>
+                                        <option value="organizational">🏢 Organisationnel</option>
+                                        <option value="product">📦 Produit</option>
+                                        <option value="team">👥 Équipe</option>
+                                        <option value="other">🔄 Autre</option>
+                                    </select>
+                                    <button type="submit" class="btn btn-primary">Ajouter</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Liste des décisions -->
+                    <div id="decisionsList"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Explication de l'atelier -->
+    <div class="workshop-explanation">
+        <h3>🎯 Comment jouer ?</h3>
+        <ol class="workshop-steps">
+            <li><strong>Préparez les situations</strong> : Listez des décisions concrètes à clarifier (ex: "Choix d'une
+                nouvelle technologie")</li>
+            <li><strong>Votez individuellement</strong> : Chaque participant choisit secrètement un niveau de délégation
+                (1-7)</li>
+            <li><strong>Révélez simultanément</strong> : Tous les votes sont dévoilés en même temps</li>
+            <li><strong>Gagnez des points</strong> : Chaque joueur gagne des points selon sa carte, sauf la "minorité
+                haute" (voir règle ci-dessous)</li>
+            <li><strong>Discutez les extrêmes</strong> : Les votes les plus hauts et les plus bas expliquent leur
+                raisonnement</li>
+            <li><strong>Créez le Delegation Board</strong> : Visualisez le consensus pour chaque décision</li>
+        </ol>
+
+        <div class="workshop-rule">
+            <strong>📜 Règle de la Minorité Haute :</strong> Si un seul joueur vote 7 alors que les autres votent plus
+            bas, son vote est écarté (pas de points). L'objectif est de déléguer autant que possible, mais pas trop
+            loin. Si 3-4 personnes votent 7, c'est la majorité et ils gagnent 7 points chacun.
+        </div>
+
+        <div class="workshop-consensus">
+            <strong>🤝 Qu'est-ce qu'un consensus ?</strong>
+            <p>
+                Le consensus n'est pas l'unanimité. C'est un <b>accord collectif</b> où chacun peut vivre avec la
+                décision prise,
+                même s'il ne s'agit pas de son premier choix.<br />
+                Le consensus émerge après discussion, où les participants écoutent les différents points de vue et
+                convergent vers une solution acceptable par tous.<br />
+                Dans le Delegation Poker, le consensus se matérialise souvent par la <b>médiane</b> des votes,
+                représentant un équilibre entre les différentes perspectives.
+            </p>
+        </div>
+
+    </div>
+
+    <!-- Conseils de Coach -->
+    <footer class="coach-tips">
+        <div class="container">
+            <h2>💡 Conseils</h2>
+
+            <div class="tips-grid">
+                <div class="tip-card">
+                    <div class="tip-icon">🎯</div>
+                    <h3>Avant la session</h3>
+                    <ul>
+                        <li>Préparez 5-10 décisions concrètes et variées</li>
+                        <li>Choisissez des situations réelles vécues par l'équipe</li>
+                        <li>Mélangez les catégories (technique, organisationnel, produit)</li>
+                        <li>Prévoyez 45-60 minutes pour une session complète</li>
+                    </ul>
+                </div>
+
+                <div class="tip-card">
+                    <div class="tip-icon">🃏</div>
+                    <h3>Pendant les votes</h3>
+                    <ul>
+                        <li>Encouragez le vote instinctif (pas de sur-analyse)</li>
+                        <li>Rappelez qu'il n'y a pas de "bon" niveau, seulement de la clarification</li>
+                        <li>Observez les écarts : un vote 2 vs 6 révèle une incompréhension</li>
+                        <li>Laissez les extrêmes s'exprimer en premier (min et max)</li>
+                    </ul>
+                </div>
+
+                <div class="tip-card">
+                    <div class="tip-icon">💬</div>
+                    <h3>Faciliter les discussions</h3>
+                    <ul>
+                        <li>Posez des questions ouvertes : "Qu'est-ce qui t'a fait choisir ce niveau ?"</li>
+                        <li>Évitez de juger ou d'imposer un consensus trop vite</li>
+                        <li>Cherchez les hypothèses cachées derrière les votes</li>
+                        <li>Acceptez qu'un consensus ne soit pas toujours possible immédiatement</li>
+                    </ul>
+                </div>
+
+                <div class="tip-card">
+                    <div class="tip-icon">📈</div>
+                    <h3>Après la session</h3>
+                    <ul>
+                        <li>Affichez le Delegation Board dans l'espace de travail</li>
+                        <li>Revisitez-le tous les 3-6 mois (la délégation évolue)</li>
+                        <li>Utilisez-le comme référence lors de nouvelles décisions</li>
+                        <li>Célébrez les progrès vers plus d'autonomie</li>
+                    </ul>
+                </div>
+
+                <div class="tip-card">
+                    <div class="tip-icon">⚠️</div>
+                    <h3>Pièges à éviter</h3>
+                    <ul>
+                        <li>Ne pas confondre délégation et abandon (niveau 7 ≠ "je m'en fiche")</li>
+                        <li>Éviter les décisions trop vagues ("Gérer le projet")</li>
+                        <li>Ne pas forcer un consensus artificiel pour "finir vite"</li>
+                        <li>Attention aux biais hiérarchiques (le manager vote en dernier)</li>
+                    </ul>
+                </div>
+
+                <div class="tip-card">
+                    <div class="tip-icon">🎭</div>
+                    <h3>Rôle du facilitateur</h3>
+                    <ul>
+                        <li>Expose les objectifs et le fonctionnement du groupe</li>
+                        <li>Distribue la parole de manière équilibrée</li>
+                        <li>Instaure un climat de confiance et d'écoute active</li>
+                        <li>Maintient la neutralité et reste impartial</li>
+                        <li>Favorise les questions ouvertes pour clarifier</li>
+                        <li>Permet à chacun d'aller au bout de son raisonnement</li>
+                        <li>Reformule et transcrit la décision adoptée</li>
+                    </ul>
+                </div>
+
+                <div class="tip-card">
+                    <div class="tip-icon">🤝</div>
+                    <h3>Principes pour les participants</h3>
+                    <ul>
+                        <li>S'exprimer clairement, avec sincérité</li>
+                        <li>Être ouvert et réceptif aux idées des autres</li>
+                        <li>Éviter les paroles blessantes ou destructrices</li>
+                        <li>Viser l'intérêt général, pas les attaques personnelles</li>
+                        <li>Respecter les opinions de tous les participants</li>
+                        <li>Être prêt à apprendre et à faire évoluer ses positions</li>
+                    </ul>
+                </div>
+
+                <div class="tip-card">
+                    <div class="tip-icon">🚀</div>
+                    <h3>Aller plus loin</h3>
+                    <ul>
+                        <li>Combinez avec le <strong>Delegation Board</strong> physique (post-its)</li>
+                        <li>Explorez les <strong>7 niveaux</strong> avec des exemples concrets</li>
+                        <li>Lisez "<a href="https://management30.com/practice/delegation-poker/" target="_blank"
+                                rel="noopener noreferrer">Management 3.0</a>" de Jurgen Appelo</li>
+                        <li>Partagez vos résultats avec d'autres équipes</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="coach-quote">
+                <blockquote>
+                    "La délégation n'est pas binaire (tout ou rien). C'est un spectre de 7 nuances qui permet d'adapter
+                    le niveau d'autonomie au contexte, aux compétences et à la maturité de l'équipe."
+                    <footer>Jurgen Appelo, Management 3.0</footer>
+                </blockquote>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal : Nouvelle Session -->
+    <div id="modalNewSession" class="modal" style="display: none;">
+        <div class="modal-overlay" onclick="closeModal('modalNewSession')"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>🎯 Nouvelle session</h2>
+                <button class="modal-close" onclick="closeModal('modalNewSession')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="formNewSession">
+                    <div class="form-group-vertical">
+                        <label for="inputSessionName">Nom de la session *</label>
+                        <input type="text" id="inputSessionName" placeholder="Ex: Équipe Produit - Sprint Planning"
+                            required>
+                    </div>
+                    <div class="form-group-vertical">
+                        <label for="inputParticipants">Participants (un par ligne) *</label>
+                        <textarea id="inputParticipants" rows="5"
+                            placeholder="Alice (PO)&#10;Bob (Dev)&#10;Charlie (SM)" required></textarea>
+                        <small>Ajoutez les noms et rôles des participants</small>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" onclick="closeModal('modalNewSession')">
+                            Annuler
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            Créer la session
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal : Charger Session -->
+    <div id="modalLoadSession" class="modal" style="display: none;">
+        <div class="modal-overlay" onclick="closeModal('modalLoadSession')"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>📂 Charger une session</h2>
+                <button class="modal-close" onclick="closeModal('modalLoadSession')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="sessionsList"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal : Vote -->
+    <div id="modalVote" class="modal" style="display: none;">
+        <div class="modal-overlay" onclick="closeModal('modalVote')"></div>
+        <div class="modal-content modal-large">
+            <div class="modal-header">
+                <h2>🃏 Voter pour : <span id="voteDecisionText"></span></h2>
+                <button class="modal-close" onclick="closeModal('modalVote')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="votingArea">
+                    <!-- Généré dynamiquement -->
+                </div>
+                <div class="form-actions">
+                    <button class="btn btn-secondary" onclick="closeModal('modalVote')">Annuler</button>
+                    <button class="btn btn-primary" id="btnRevealVotes" disabled>
+                        🎭 Révéler les votes
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal : Résultats -->
+    <div id="modalResults" class="modal" style="display: none;">
+        <div class="modal-overlay" onclick="closeModal('modalResults')"></div>
+        <div class="modal-content modal-large">
+            <div class="modal-header">
+                <h2>📊 Résultats du vote</h2>
+                <button class="modal-close" onclick="closeModal('modalResults')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="resultsArea"></div>
+                <div class="form-group-vertical">
+                    <label for="inputConsensusNotes">Notes de discussion (optionnel)</label>
+                    <textarea id="inputConsensusNotes" rows="3" placeholder="Résumé des échanges..."></textarea>
+                </div>
+                <div class="form-actions">
+                    <button class="btn btn-secondary" onclick="closeModal('modalResults')">Fermer</button>
+                    <button class="btn btn-primary" id="btnSaveConsensus">
+                        💾 Enregistrer le consensus
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Templates -->
+    <script src="js/templates.js"></script>
+
+    <!-- Application principale -->
+    <script src="js/app.js"></script>
+
+    <!-- PocketBase Integration -->
+    <script src="../../assets/js/pocketbase-manager.js"></script>
+    <script src="js/pocketbase-integration.js"></script>
+
+    <!-- Intégration Agile Coach Toolkit -->
+    <script src="../../assets/js/tool-integration.js"></script>
+    <script>
+        // Configuration spécifique à l'outil
+        window.TOOL_CONFIG = {
+            name: 'delegation-poker',
+            backUrl: '../../index.html#tools'
+        };
+    </script>
+</body>
+
+</html>

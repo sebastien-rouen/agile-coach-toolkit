@@ -9,15 +9,226 @@
       "id": "conduite-changement",
       "title": "Conduite du Changement",
       "file": "conduite-changement.md",
-      "tags": ["changement", "transformation", "kotter", "accompagnement"],
+      "tags": [
+        "changement",
+        "transformation",
+        "kotter",
+        "accompagnement"
+      ],
       "order": 1
     },
     {
       "id": "culture-entreprise",
       "title": "Culture d'Entreprise",
       "file": "culture-entreprise.md",
-      "tags": ["culture", "valeurs", "comportements", "mindset"],
+      "tags": [
+        "culture",
+        "valeurs",
+        "comportements",
+        "mindset"
+      ],
       "order": 2
+    },
+    {
+      "id": "org-topologies",
+      "title": "ORG Topologies",
+      "file": "org-topologies.md",
+      "tags": [
+        "organisation",
+        "structure",
+        "topologies",
+        "design"
+      ],
+      "order": 3
+    },
+    {
+      "id": "team-topologies",
+      "title": "Team Topologies",
+      "file": "team-topologies.md",
+      "tags": [
+        "équipes",
+        "topologies",
+        "collaboration",
+        "architecture"
+      ],
+      "order": 4
+    },
+    {
+      "id": "transition-waterfall-agile",
+      "title": "Transition Waterfall → Agile : Guide Pratique",
+      "file": "transition-waterfall-agile.md",
+      "tags": [
+        "transformation",
+        "waterfall",
+        "agile",
+        "change-management",
+        "mindset",
+        "pilote",
+        "roadmap",
+        "résistance",
+        "sponsorship",
+        "kotter",
+        "cascade",
+        "itératif",
+        "sprints",
+        "feedback",
+        "amélioration-continue"
+      ],
+      "order": 5
+    },
+    {
+      "id": "onboarding-offboarding-les-deux-faces-d-une-experience-collaborateur-reussie",
+      "title": "Onboarding & Offboarding : Les Deux Faces d'une Expérience Collaborateur Réussie",
+      "file": "onboarding-offboarding.md",
+      "tags": [
+        "onboarding",
+        "offboarding",
+        "expérience collaborateur",
+        "intégration",
+        "départ",
+        "culture d'entreprise"
+      ],
+      "order": 6
     }
-  ]
+  ],
+  "tools": [
+    {
+      "id": "culture-map",
+      "title": "Culture Map",
+      "description": "Outil pour cartographier et analyser la culture organisationnelle",
+      "tags": [
+        "culture",
+        "diagnostic",
+        "transformation",
+        "analyse"
+      ],
+      "platform": "Web",
+      "external": true,
+      "url": "https://www.strategyzer.com/library/the-culture-map",
+      "order": 1
+    },
+    {
+      "id": "kotter-8-steps",
+      "title": "Kotter's 8-Step Change Model",
+      "description": "Modèle de conduite du changement en 8 étapes de John Kotter",
+      "tags": [
+        "changement",
+        "kotter",
+        "transformation",
+        "méthodologie"
+      ],
+      "platform": "Web",
+      "external": true,
+      "url": "https://www.kotterinc.com/8-steps-process-for-leading-change",
+      "order": 2
+    },
+    {
+      "id": "team-topologies-tool",
+      "title": "Team Topologies Assessment",
+      "description": "Outil d'évaluation pour identifier les patterns d'équipes optimaux",
+      "tags": [
+        "team-topologies",
+        "organisation",
+        "équipes",
+        "assessment"
+      ],
+      "platform": "Web",
+      "external": true,
+      "url": "https://teamtopologies.com/key-concepts",
+      "order": 3
+    },
+    {
+      "id": "org-design-canvas",
+      "title": "Organization Design Canvas",
+      "description": "Canvas pour concevoir et visualiser la structure organisationnelle",
+      "tags": [
+        "organisation",
+        "design",
+        "structure",
+        "transformation"
+      ],
+      "platform": "Web",
+      "external": true,
+      "url": "https://www.organizationdesigncanvas.com",
+      "order": 4
+    }
+  ],
+  "templates": [
+    {
+      "id": "change-roadmap",
+      "title": "Roadmap de Transformation",
+      "description": "Template de roadmap pour planifier et communiquer votre transformation agile",
+      "tags": [
+        "transformation",
+        "roadmap",
+        "changement",
+        "planning"
+      ],
+      "format": "PowerPoint",
+      "file": "change-roadmap.pptx",
+      "downloadUrl": "templates/transformation-culture/change-roadmap.pptx",
+      "order": 1
+    },
+    {
+      "id": "culture-assessment",
+      "title": "Grille d'Assessment Culturel",
+      "description": "Questionnaire pour évaluer la culture organisationnelle actuelle",
+      "tags": [
+        "culture",
+        "assessment",
+        "diagnostic",
+        "questionnaire"
+      ],
+      "format": "Excel",
+      "file": "culture-assessment.xlsx",
+      "downloadUrl": "templates/transformation-culture/culture-assessment.xlsx",
+      "order": 2
+    },
+    {
+      "id": "team-topologies-canvas",
+      "title": "Team Topologies Canvas",
+      "description": "Canvas pour mapper vos équipes selon les 4 types fondamentaux",
+      "tags": [
+        "team-topologies",
+        "équipes",
+        "organisation",
+        "mapping"
+      ],
+      "format": "Miro Board",
+      "file": "team-topologies-canvas.rtb",
+      "downloadUrl": "templates/transformation-culture/team-topologies-canvas.rtb",
+      "order": 3
+    },
+    {
+      "id": "stakeholder-map",
+      "title": "Carte des Parties Prenantes",
+      "description": "Template pour identifier et analyser les stakeholders de la transformation",
+      "tags": [
+        "stakeholders",
+        "transformation",
+        "changement",
+        "analyse"
+      ],
+      "format": "PowerPoint",
+      "file": "stakeholder-map.pptx",
+      "downloadUrl": "templates/transformation-culture/stakeholder-map.pptx",
+      "order": 4
+    },
+    {
+      "id": "transition-plan",
+      "title": "Plan de Transition Waterfall → Agile",
+      "description": "Template de plan de transition avec phases, jalons et indicateurs",
+      "tags": [
+        "transition",
+        "waterfall",
+        "agile",
+        "plan"
+      ],
+      "format": "Excel",
+      "file": "transition-plan.xlsx",
+      "downloadUrl": "templates/transformation-culture/transition-plan.xlsx",
+      "order": 5
+    }
+  ],
+  "order": 5
 }

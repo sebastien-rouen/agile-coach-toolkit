@@ -8,130 +8,10 @@
 
     <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
 
-    <link rel="stylesheet" href="assets/css/variables.css">
-    <link rel="stylesheet" href="assets/themes/theme-light.css">
-    <link rel="stylesheet" href="assets/css/base.css">
-    <link rel="stylesheet" href="assets/css/components.css">
-    <link rel="stylesheet" href="assets/css/sidebar.css">
-    <link rel="stylesheet" href="assets/css/layout.css">
-    <link rel="stylesheet" href="assets/css/markdown.css">
-    <link rel="stylesheet" href="assets/css/responsive.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
 
-    <style>
-        /* Article Header */
-        .article-header {
-            text-align: center;
-            padding: var(--space-2xl) 0;
-            margin-bottom: var(--space-xl);
-            border-bottom: var(--border-width) solid var(--border-default);
-        }
 
-        #articleTitle {
-            font-size: var(--font-size-4xl);
-            font-weight: var(--font-weight-bold);
-            margin-bottom: var(--space-md);
-            color: var(--text-primary);
-        }
-
-        .article-meta {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: var(--space-lg);
-            flex-wrap: wrap;
-            color: var(--text-secondary);
-            font-size: var(--font-size-sm);
-        }
-
-        .article-tags {
-            display: flex;
-            gap: var(--space-xs);
-            flex-wrap: wrap;
-            justify-content: center;
-            margin-top: var(--space-md);
-        }
-
-        /* Styles markdown maintenant dans markdown.css */
-        .markdown-content strong {
-            color: var(--text-primary);
-            font-weight: var(--font-weight-bold);
-        }
-
-        .markdown-content em {
-            color: var(--text-secondary);
-        }
-
-        /* Table of Contents */
-        .toc {
-            background: var(--bg-secondary);
-            border: var(--border-width) solid var(--border-default);
-            border-radius: var(--radius-lg);
-            padding: var(--space-lg);
-            margin: 0 auto var(--space-2xl);
-            max-width: 800px;
-        }
-
-        .toc-title {
-            font-weight: var(--font-weight-bold);
-            font-size: var(--font-size-lg);
-            margin-bottom: var(--space-md);
-            color: var(--text-primary);
-        }
-
-        .toc ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .toc li {
-            margin-bottom: var(--space-sm);
-        }
-
-        .toc a {
-            text-decoration: none;
-            color: var(--text-secondary);
-            transition: all var(--transition-fast);
-            display: block;
-            padding: var(--space-xs) var(--space-sm);
-            border-radius: var(--radius-sm);
-        }
-
-        .toc a:hover {
-            color: var(--primary-color);
-            background: rgba(59, 130, 246, 0.1);
-            transform: translateX(4px);
-        }
-
-        /* Navigation Prev/Next */
-        .content-navigation {
-            display: flex;
-            justify-content: space-between;
-            gap: var(--space-md);
-            max-width: 800px;
-            margin: var(--space-2xl) auto 0;
-            padding-top: var(--space-xl);
-            border-top: var(--border-width) solid var(--border-default);
-        }
-
-        .nav-prev,
-        .nav-next {
-            flex: 1;
-            padding: var(--space-md) var(--space-lg);
-            background: var(--bg-secondary);
-            border: var(--border-width) solid var(--border-default);
-            border-radius: var(--radius-lg);
-            text-decoration: none;
-            color: var(--text-primary);
-            transition: all var(--transition-fast);
-        }
-
-        .nav-prev:hover,
-        .nav-next:hover {
-            border-color: var(--primary-color);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-        }
-    </style>
 </head>
 
 <body>
@@ -139,11 +19,13 @@
     <!-- HEADER (chargé dynamiquement) -->
     <div id="header-placeholder"></div>
 
-    <!-- SIDEBAR (chargé dynamiquement) -->
-    <div id="sidebar-placeholder"></div>
+    <!-- PAGE CONTAINER -->
+    <div class="page-container">
+        <!-- SIDEBAR (chargé dynamiquement) -->
+        <div id="sidebar-placeholder"></div>
 
-    <!-- MAIN CONTENT -->
-    <main class="main-content">
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
 
         <!-- Breadcrumb -->
         <nav class="breadcrumb">
@@ -184,20 +66,22 @@
             </a>
         </nav>
 
-    </main>
-
-    <!-- FOOTER (chargé dynamiquement) -->
-    <div id="footer-placeholder"></div>
+            <!-- FOOTER (chargé dynamiquement) -->
+            <div id="footer-placeholder"></div>
+        </main>
+    </div>
 
     <!-- SCRIPTS -->
     <!-- Bibliothèques externes pour le parsing Markdown -->
     <script src="https://cdn.jsdelivr.net/npm/marked@11.1.1/marked.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js"></script>
     
     <script src="assets/js/partials-loader.js"></script>
     <script src="assets/js/utils.js"></script>
     <script src="assets/js/navigation.js"></script>
     <script src="assets/js/markdown-parser.js"></script>
+    <script src="assets/js/search.js"></script>
     <script src="assets/js/main.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', async () => {
@@ -256,8 +140,33 @@
                 // Parser et afficher le markdown
                 let html;
                 if (typeof marked !== 'undefined') {
-                    // Utiliser marked.js si disponible
-                    html = marked.parse(markdown);
+                    // Configurer marked pour gérer les blocs de code Mermaid et les images avec légendes
+                    const renderer = new marked.Renderer();
+                    const originalCodeRenderer = renderer.code.bind(renderer);
+                    
+                    renderer.code = function(code, language) {
+                        if (language === 'mermaid') {
+                            return `<div class="mermaid">${code}</div>`;
+                        }
+                        return originalCodeRenderer(code, language);
+                    };
+                    
+                    // Renderer personnalisé pour les images avec légendes
+                    renderer.image = function(href, title, text) {
+                        if (text && text.trim()) {
+                            // Si il y a un texte alt, créer une figure avec légende
+                            return `<figure class="image-with-caption">
+                                <img src="${href}" alt="${text}" loading="lazy"${title ? ` title="${title}"` : ''}>
+                                <figcaption>${text}</figcaption>
+                            </figure>`;
+                        } else {
+                            // Sinon, image simple
+                            return `<img src="${href}" alt="" loading="lazy"${title ? ` title="${title}"` : ''}>`;
+                        }
+                    };
+                    
+                    // Utiliser marked.js avec le renderer personnalisé
+                    html = marked.parse(markdown, { renderer });
                 } else {
                     // Fallback : parser maison
                     html = parseMarkdown(markdown);
@@ -269,6 +178,21 @@
                 if (typeof styleBlockquotesWithAuthor === 'function') {
                     styleBlockquotesWithAuthor();
                 }
+                
+                // Styliser les images avec légendes
+                if (typeof styleImagesWithCaptions === 'function') {
+                    styleImagesWithCaptions();
+                }
+                
+                // Initialiser Mermaid pour les diagrammes
+                if (typeof initMermaid === 'function') {
+                    initMermaid();
+                }
+
+                // Ajouter les boutons de copie aux blocs de code
+                if (typeof addCopyButtonsToCodeBlocks === 'function') {
+                    addCopyButtonsToCodeBlocks();
+                }
 
                 // Utiliser le titre du front-matter ou extraire du H1
                 const title = frontMatter.title || document.querySelector('.markdown-content h1')?.textContent || fileSlug;
@@ -277,9 +201,7 @@
                 document.getElementById('pageTitle').textContent = `${title} | Coach Agile Toolkit`;
                 document.getElementById('breadcrumbContent').textContent = title;
 
-                // Enlever le premier H1 pour éviter doublon
-                const firstH1 = document.querySelector('.markdown-content h1');
-                if (firstH1) firstH1.remove();
+                // Ne pas enlever le premier H1 - il fait partie du contenu
 
                 // Afficher les tags si présents
                 if (frontMatter.tags) {
@@ -307,7 +229,7 @@
         }
 
         function generateTOC() {
-            const headings = document.querySelectorAll('.markdown-content h2, .markdown-content h3');
+            const headings = document.querySelectorAll('.markdown-content h1, .markdown-content h2, .markdown-content h3');
             if (headings.length === 0) return;
 
             const toc = document.getElementById('toc');
@@ -321,7 +243,15 @@
                 heading.id = id;
 
                 const li = document.createElement('li');
-                li.style.paddingLeft = heading.tagName === 'H3' ? 'var(--space-md)' : '0';
+                // Indentation selon le niveau de titre
+                if (heading.tagName === 'H1') {
+                    li.style.paddingLeft = '0';
+                    li.style.fontWeight = 'bold';
+                } else if (heading.tagName === 'H2') {
+                    li.style.paddingLeft = 'var(--space-sm, 8px)';
+                } else if (heading.tagName === 'H3') {
+                    li.style.paddingLeft = 'var(--space-md, 16px)';
+                }
 
                 const a = document.createElement('a');
                 a.href = `#${id}`;

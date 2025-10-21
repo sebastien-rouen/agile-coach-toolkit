@@ -1,0 +1,56 @@
+/* ====================================
+   MODALES
+   ==================================== */
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(5px);
+}
+
+.modal-content {
+  background: white;
+  margin: 5% auto;
+  padding: 2.5rem;
+  border-radius: 15px;
+  width: 90%;
+  max-width: 800px;
+  overflow-y: auto;
+  position: relative;
+  max-height: 87vh;
+  animation: modalSlide 0.4s ease;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.modal-large {
+  max-width: 90%;
+}
+
+.close {
+  position: absolute;
+  right: 1.5rem;
+  top: 1.5rem;
+  font-size: 2rem;
+  cursor: pointer;
+  color: #666;
+  transition: var(--transition);
+}
+
+.close:hover {
+  color: var(--danger);
+  transform: scale(1.1);
+}
+
+/* Mood Selector */
+.mood-selector {
+  display: flex;
+  gap: 1rem;
+  margin: 1.5rem 0;
+  justify-content: center;
+}

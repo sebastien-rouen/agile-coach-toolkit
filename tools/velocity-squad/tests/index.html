@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🧪 Velocity Squad - Storybook Tests</title>
+    <link rel="stylesheet" href="../css/styles-new.css">
+    <style>
+        body {
+            padding: 2rem;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+        }
+        .storybook-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+        .storybook-title {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+        .storybook-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+        }
+        .test-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        .test-category {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+        .test-category:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .category-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        .category-description {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        .test-list {
+            list-style: none;
+            padding: 0;
+        }
+        .test-item {
+            margin-bottom: 0.75rem;
+        }
+        .test-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1rem;
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+        .test-link:hover {
+            background: var(--bg-tertiary);
+            border-color: var(--primary);
+            transform: translateX(4px);
+        }
+        .test-icon {
+            font-size: 1.2rem;
+        }
+        .test-name {
+            flex: 1;
+            font-weight: 500;
+        }
+        .test-badge {
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .badge-functional {
+            background: #4CAF50;
+            color: white;
+        }
+        .badge-integration {
+            background: #2196F3;
+            color: white;
+        }
+        .badge-performance {
+            background: #FF9800;
+            color: white;
+        }
+        .badge-security {
+            background: #F44336;
+            color: white;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .back-link:hover {
+            background: var(--primary-dark);
+            transform: translateX(-4px);
+        }
+    </style>
+</head>
+<body>
+    <div class="storybook-header">
+        <h1 class="storybook-title">🧪 Velocity Squad - Storybook</h1>
+        <p class="storybook-subtitle">Suite de tests fonctionnels, d'intégration et de performance</p>
+    </div>
+
+    <div class="test-categories">
+        <!-- Tests Fonctionnels -->
+        <div class="test-category">
+            <h2 class="category-title">🎯 Tests Fonctionnels</h2>
+            <p class="category-description">
+                Tests des fonctionnalités métier et des parcours utilisateur
+            </p>
+            <ul class="test-list">
+                <li class="test-item">
+                    <a href="functional/annotations-legend.test.html" class="test-link">
+                        <span class="test-icon">📝</span>
+                        <span class="test-name">Légende des Annotations</span>
+                        <span class="test-badge badge-functional">Fonctionnel</span>
+                    </a>
+                </li>
+                <li class="test-item">
+                    <a href="#" class="test-link" style="opacity: 0.5; pointer-events: none;">
+                        <span class="test-icon">📊</span>
+                        <span class="test-name">Graphiques de Vélocité</span>
+                        <span class="test-badge badge-functional">À venir</span>
+                    </a>
+                </li>
+                <li class="test-item">
+                    <a href="#" class="test-link" style="opacity: 0.5; pointer-events: none;">
+                        <span class="test-icon">🎰</span>
+                        <span class="test-name">Casino Planning Poker</span>
+                        <span class="test-badge badge-functional">À venir</span>
+                    </a>
+                </li>
+                <li class="test-item">
+                    <a href="#" class="test-link" style="opacity: 0.5; pointer-events: none;">
+                        <span class="test-icon">📅</span>
+                        <span class="test-name">Planning Timeline</span>
+                        <span class="test-badge badge-functional">À venir</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Tests d'Intégration -->
+        <div class="test-category">
+            <h2 class="category-title">🔗 Tests d'Intégration</h2>
+            <p class="category-description">
+                Tests des routes API et de l'intégration PocketBase
+            </p>
+            <ul class="test-list">
+                <li class="test-item">
+                    <a href="#" class="test-link" style="opacity: 0.5; pointer-events: none;">
+                        <span class="test-icon">🗄️</span>
+                        <span class="test-name">PocketBase CRUD</span>
+                        <span class="test-badge badge-integration">À venir</span>
+                    </a>
+                </li>
+                <li class="test-item">
+                    <a href="#" class="test-link" style="opacity: 0.5; pointer-events: none;">
+                        <span class="test-icon">📥</span>
+                        <span class="test-name">Import/Export Données</span>
+                        <span class="test-badge badge-integration">À venir</span>
+                    </a>
+                </li>
+                <li class="test-item">
+                    <a href="#" class="test-link" style="opacity: 0.5; pointer-events: none;">
+                        <span class="test-icon">🔄</span>
+                        <span class="test-name">Synchronisation Sessions</span>
+                        <span class="test-badge badge-integration">À venir</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Tests de Performance -->
+        <div class="test-category">
+            <h2 class="category-title">⚡ Tests de Performance</h2>
+            <p class="category-description">
+                Tests de charge et de stress sur les fonctionnalités critiques
+            </p>
+            <ul class="test-list">
+                <li class="test-item">
+                    <a href="#" class="test-link" style="opacity: 0.5; pointer-events: none;">
+                        <span class="test-icon">📈</span>
+                        <span class="test-name">Rendu Graphiques (1000 sprints)</span>
+                        <span class="test-badge badge-performance">À venir</span>
+                    </a>
+                </li>
+                <li class="test-item">
+                    <a href="#" class="test-link" style="opacity: 0.5; pointer-events: none;">
+                        <span class="test-icon">💾</span>
+                        <span class="test-name">Chargement Données Volumineuses</span>
+                        <span class="test-badge badge-performance">À venir</span>
+                    </a>
+                </li>
+                <li class="test-item">
+                    <a href="#" class="test-link" style="opacity: 0.5; pointer-events: none;">
+                        <span class="test-icon">🔄</span>
+                        <span class="test-name">Rafraîchissement Interface</span>
+                        <span class="test-badge badge-performance">À venir</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Tests de Sécurité -->
+        <div class="test-category">
+            <h2 class="category-title">🔒 Tests de Sécurité</h2>
+            <p class="category-description">
+                Tests d'authentification, XSS et injection
+            </p>
+            <ul class="test-list">
+                <li class="test-item">
+                    <a href="#" class="test-link" style="opacity: 0.5; pointer-events: none;">
+                        <span class="test-icon">🛡️</span>
+                        <span class="test-name">Protection XSS</span>
+                        <span class="test-badge badge-security">À venir</span>
+                    </a>
+                </li>
+                <li class="test-item">
+                    <a href="#" class="test-link" style="opacity: 0.5; pointer-events: none;">
+                        <span class="test-icon">🔐</span>
+                        <span class="test-name">Authentification PocketBase</span>
+                        <span class="test-badge badge-security">À venir</span>
+                    </a>
+                </li>
+                <li class="test-item">
+                    <a href="#" class="test-link" style="opacity: 0.5; pointer-events: none;">
+                        <span class="test-icon">💉</span>
+                        <span class="test-name">Injection SQL</span>
+                        <span class="test-badge badge-security">À venir</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 3rem;">
+        <a href="../index.html" class="back-link">
+            ← Retour au Dashboard
+        </a>
+    </div>
+
+    <script>
+        // Statistiques des tests
+        const totalTests = document.querySelectorAll('.test-link').length;
+        const activeTests = document.querySelectorAll('.test-link:not([style*="opacity"])').length;
+        
+        console.log(`📊 Storybook Stats:
+        - Total tests: ${totalTests}
+        - Tests actifs: ${activeTests}
+        - Tests à venir: ${totalTests - activeTests}
+        - Couverture: ${Math.round((activeTests / totalTests) * 100)}%`);
+    </script>
+</body>
+</html>

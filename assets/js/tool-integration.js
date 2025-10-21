@@ -4,30 +4,44 @@
  */
 
 class ToolIntegration {
-    constructor() {
-        this.mainSiteUrl = '/';
-        this.currentTool = this.detectCurrentTool();
-        this.init();
-    }
+  constructor() {
+    this.mainSiteUrl = '/';
+    this.currentTool = this.detectCurrentTool();
+    this.toolsData = null;
+    this.init();
+  }
 
-    init() {
-        this.addBackNavigation();
-        this.addUnifiedStyling();
-        this.trackToolUsage();
-        this.addThemeSupport();
-    }
+  async init() {
+    await this.loadToolsData();
+    this.addBackNavigation();
+    this.addUnifiedStyling();
+    this.trackToolUsage();
+    this.addThemeSupport();
+  }
 
-    detectCurrentTool() {
-        const path = window.location.pathname;
-        const toolMatch = path.match(/\/tools\/([^\/]+)/);
-        return toolMatch ? toolMatch[1] : null;
+  async loadToolsData() {
+    try {
+      const response = await fetch('../../config/config.json');
+      const config = await response.json();
+      this.toolsData = config.tools || [];
+      window.TOOLS_DATA = this.toolsData;
+    } catch (error) {
+      console.warn('Impossible de charger config.json:', error);
+      this.toolsData = [];
     }
+  }
 
-    addBackNavigation() {
-        // Créer une barre de navigation unifiée pour les outils
-        const navBar = document.createElement('div');
-        navBar.className = 'tool-nav-bar';
-        navBar.innerHTML = `
+  detectCurrentTool() {
+    const path = window.location.pathname;
+    const toolMatch = path.match(/\/tools\/([^\/]+)/);
+    return toolMatch ? toolMatch[1] : null;
+  }
+
+  addBackNavigation() {
+    // Créer une barre de navigation unifiée pour les outils
+    const navBar = document.createElement('div');
+    navBar.className = 'tool-nav-bar';
+    navBar.innerHTML = `
       <div class="tool-nav-container">
         <a href="${this.mainSiteUrl}" class="tool-nav-back">
           <span class="tool-nav-icon">←</span>
@@ -45,14 +59,14 @@ class ToolIntegration {
       </div>
     `;
 
-        // Insérer en haut de la page
-        document.body.insertBefore(navBar, document.body.firstChild);
-    }
+    // Insérer en haut de la page
+    document.body.insertBefore(navBar, document.body.firstChild);
+  }
 
-    addUnifiedStyling() {
-        // Ajouter les styles CSS unifiés
-        const styleSheet = document.createElement('style');
-        styleSheet.textContent = `
+  addUnifiedStyling() {
+    // Ajouter les styles CSS unifiés
+    const styleSheet = document.createElement('style');
+    styleSheet.textContent = `
       .tool-nav-bar {
         background: var(--primary-color, #3b82f6);
         color: white;
@@ -170,138 +184,109 @@ class ToolIntegration {
         }
       }
     `;
-        document.head.appendChild(styleSheet);
+    document.head.appendChild(styleSheet);
+  }
+
+  getToolDisplayName() {
+    const toolData = this.getToolData();
+    return toolData ? toolData.name : this.currentTool || 'Outil';
+  }
+
+  getToolStatus() {
+    const toolData = this.getToolData();
+    if (!toolData) return '';
+
+    const statusMap = {
+      'stable': '✅ Stable',
+      'beta': '🚧 Bêta',
+      'alpha': '⚠️ Alpha'
+    };
+
+    return statusMap[toolData.status] || toolData.status;
+  }
+
+  getToolData() {
+    // Essayer depuis window.TOOLS_DATA d'abord
+    if (window.TOOLS_DATA) {
+      return window.TOOLS_DATA.find(tool => tool.id === this.currentTool);
     }
 
-    getToolDisplayName() {
-        const toolData = this.getToolData();
-        return toolData ? toolData.name : this.currentTool || 'Outil';
+    // Essayer depuis this.toolsData
+    if (this.toolsData) {
+      return this.toolsData.find(tool => tool.id === this.currentTool);
+    }
+  }
+
+  addThemeSupport() {
+    // Récupérer le thème depuis localStorage
+    const savedTheme = localStorage.getItem('agile-toolkit-theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+
+    // Mettre à jour l'icône du thème
+    const themeIcon = document.querySelector('.theme-icon');
+    if (themeIcon) {
+      themeIcon.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
     }
 
-    getToolStatus() {
-        const toolData = this.getToolData();
-        if (!toolData) return '';
+    // Ajouter l'événement de basculement
+    const themeToggle = document.querySelector('.tool-nav-theme-toggle');
+    if (themeToggle) {
+      themeToggle.addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
 
-        const statusMap = {
-            'stable': '✅ Stable',
-            'beta': '🚧 Bêta',
-            'alpha': '⚠️ Alpha'
-        };
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('agile-toolkit-theme', newTheme);
 
-        return statusMap[toolData.status] || toolData.status;
+        const icon = themeToggle.querySelector('.theme-icon');
+        icon.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+      });
+    }
+  }
+
+  trackToolUsage() {
+    // Utiliser le système de synchronisation
+    if (window.ToolsSync) {
+      window.ToolsSync.trackUsage(this.currentTool, {
+        timestamp: new Date().toISOString(),
+        userAgent: navigator.userAgent,
+        referrer: document.referrer
+      });
     }
 
-    getToolData() {
-        // Essayer d'accéder aux données depuis le site principal
-        if (window.TOOLS_DATA) {
-            return window.TOOLS_DATA.find(tool => tool.id === this.currentTool);
-        }
-
-        // Données de fallback pour les outils connus
-        const fallbackData = {
-            'example-mapping': {
-                name: 'Example Mapping',
-                status: 'stable'
-            },
-            'planning-poker': {
-                name: 'Planning Poker',
-                status: 'beta'
-            },
-            'ikigai': {
-                name: 'Ikigai',
-                status: 'stable'
-            },
-            'ikigai-engagement': {
-                name: 'Ikigai Engagement',
-                status: 'stable'
-            },
-            'agile-fluency': {
-                name: 'Agile Fluency',
-                status: 'stable'
-            },
-            'velocity-squad': {
-                name: 'Velocity Squad',
-                status: 'stable'
-            },
-            'skills-matrix': {
-                name: 'Skill Matrix',
-                status: 'beta'
-            }
-        };
-
-        return fallbackData[this.currentTool];
+    // Utiliser le système de logging
+    if (window.agileToolkitLogger) {
+      window.agileToolkitLogger.logTool(this.currentTool, 'visit', {
+        toolName: this.getToolDisplayName(),
+        status: this.getToolStatus()
+      });
     }
+  }
 
-    addThemeSupport() {
-        // Récupérer le thème depuis localStorage
-        const savedTheme = localStorage.getItem('agile-toolkit-theme') || 'light';
-        document.documentElement.setAttribute('data-theme', savedTheme);
-
-        // Mettre à jour l'icône du thème
-        const themeIcon = document.querySelector('.theme-icon');
-        if (themeIcon) {
-            themeIcon.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
-        }
-
-        // Ajouter l'événement de basculement
-        const themeToggle = document.querySelector('.tool-nav-theme-toggle');
-        if (themeToggle) {
-            themeToggle.addEventListener('click', () => {
-                const currentTheme = document.documentElement.getAttribute('data-theme');
-                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-
-                document.documentElement.setAttribute('data-theme', newTheme);
-                localStorage.setItem('agile-toolkit-theme', newTheme);
-
-                const icon = themeToggle.querySelector('.theme-icon');
-                icon.textContent = newTheme === 'dark' ? '☀️' : '🌙';
-            });
-        }
+  getSessionId() {
+    let sessionId = sessionStorage.getItem('agile-toolkit-session');
+    if (!sessionId) {
+      sessionId = 'session-' + Date.now() + '-' + Math.random().toString(36).substring(2, 11);
+      sessionStorage.setItem('agile-toolkit-session', sessionId);
     }
+    return sessionId;
+  }
 
-    trackToolUsage() {
-        // Utiliser le système de synchronisation
-        if (window.ToolsSync) {
-            window.ToolsSync.trackUsage(this.currentTool, {
-                timestamp: new Date().toISOString(),
-                userAgent: navigator.userAgent,
-                referrer: document.referrer
-            });
-        }
-
-        // Utiliser le système de logging
-        if (window.agileToolkitLogger) {
-            window.agileToolkitLogger.logTool(this.currentTool, 'visit', {
-                toolName: this.getToolDisplayName(),
-                status: this.getToolStatus()
-            });
-        }
-    }
-
-    getSessionId() {
-        let sessionId = sessionStorage.getItem('agile-toolkit-session');
-        if (!sessionId) {
-            sessionId = 'session-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9);
-            sessionStorage.setItem('agile-toolkit-session', sessionId);
-        }
-        return sessionId;
-    }
-
-    // Méthode supprimée - remplacée par le système de logging unifié
+  // Méthode supprimée - remplacée par le système de logging unifié
 }
 
 // Auto-initialisation si nous sommes dans un outil
 if (window.location.pathname.includes('/tools/')) {
-    document.addEventListener('DOMContentLoaded', () => {
-        new ToolIntegration();
-    });
+  document.addEventListener('DOMContentLoaded', () => {
+    new ToolIntegration();
+  });
 }
 
 // Export pour usage manuel
 if (typeof module !== 'undefined' && module.exports) {
-    module.exports = ToolIntegration;
+  module.exports = ToolIntegration;
 }
 
 if (typeof window !== 'undefined') {
-    window.ToolIntegration = ToolIntegration;
+  window.ToolIntegration = ToolIntegration;
 }

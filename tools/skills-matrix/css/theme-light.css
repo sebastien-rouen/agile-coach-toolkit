@@ -131,7 +131,6 @@
 }
 
 [data-theme="light"] .skill-name {
-    background: var(--bg-tertiary);
     color: #764ba2;
 }
 
@@ -426,7 +425,31 @@
     color: #0088a8;
 }
 
-[data-theme="light"] .advice-message, [data-theme="light"] .advice-member {
+[data-theme="light"] .advice-message {
+    color: #1a202c;
+    background: rgba(255, 255, 255, 0.5);
+    border-left-color: rgba(0, 168, 204, 0.4);
+}
+
+[data-theme="light"] .advice-message:hover {
+    background: rgba(255, 255, 255, 0.7);
+    border-left-color: rgba(0, 168, 204, 0.7);
+}
+
+[data-theme="light"] .advice-message strong {
+    color: #0369a1;
+}
+
+[data-theme="light"] .advice-message em {
+    color: #c026d3;
+}
+
+[data-theme="light"] .advice-message code {
+    background: rgba(102, 126, 234, 0.15);
+    color: #5b21b6;
+}
+
+[data-theme="light"] .advice-member {
     color: #0f1213;
 }
 

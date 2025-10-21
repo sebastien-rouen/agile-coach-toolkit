@@ -1,0 +1,142 @@
+/* ====================================
+   TEAM TABLE - Tableau des membres
+   ==================================== */
+
+.team-table-container {
+    overflow-x: auto;
+    margin-bottom: 1rem;
+}
+
+.team-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: var(--border-radius);
+    overflow-y: auto;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.team-table thead {
+    background: linear-gradient(135deg, var(--primary), #1976D2);
+    color: white;
+}
+
+.team-table th {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.team-table tbody tr {
+    border-bottom: 1px solid #e9ecef;
+    transition: var(--transition);
+}
+
+.team-table tbody tr:hover {
+    background: #f8f9fa;
+}
+
+.team-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.team-table td {
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+}
+
+/* Skills Tags */
+.skills-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+}
+
+.skill-tag {
+    display: inline-block;
+    padding: 0.15rem 0.5rem;
+    background: linear-gradient(135deg, #E3F2FD, #BBDEFB);
+    color: #1976D2;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+/* Capacity Badge */
+.capacity-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    color: white;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+
+/* Action Buttons */
+.action-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+/* Team Summary */
+.team-summary {
+    padding: 0.75rem 1rem;
+    background: #f8f9fa;
+    border-radius: var(--border-radius);
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.team-summary strong {
+    color: var(--text-dark);
+}
+
+/* Non-Dev Role Styling */
+.team-table tbody tr.non-dev-role {
+    background: #f8f9fa;
+    opacity: 0.85;
+}
+
+.team-table tbody tr.non-dev-role:hover {
+    background: #e9ecef;
+}
+
+.role-badge {
+    display: inline-block;
+    margin-left: 0.5rem;
+    padding: 0.15rem 0.5rem;
+    background: linear-gradient(135deg, #FFF3E0, #FFE0B2);
+    color: #F57C00;
+    border-radius: 12px;
+    font-size: 0.7rem;
+    font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .team-table {
+        font-size: 0.85rem;
+    }
+
+    .team-table th,
+    .team-table td {
+        padding: 0.5rem;
+    }
+
+    .skill-tag {
+        font-size: 0.7rem;
+        padding: 0.1rem 0.4rem;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+
+    .role-badge {
+        display: block;
+        margin-left: 0;
+        margin-top: 0.25rem;
+    }
+}

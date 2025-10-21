@@ -9,8 +9,197 @@
       "id": "resistance-changement",
       "title": "Résistance au Changement",
       "file": "resistance-changement.md",
-      "tags": ["résistance", "changement", "accompagnement", "adoption"],
+      "tags": [
+        "résistance",
+        "changement",
+        "accompagnement",
+        "adoption"
+      ],
       "order": 1
+    },
+    {
+      "id": "stress-surcharge",
+      "title": "Stress et Surcharge",
+      "file": "stress-surcharge.md",
+      "tags": [
+        "stress",
+        "surcharge",
+        "bien-être",
+        "gestion"
+      ],
+      "order": 2
+    },
+    {
+      "id": "dette-technique",
+      "title": "Gérer la Dette Technique en Agile",
+      "file": "dette-technique.md",
+      "tags": [
+        "dette-technique",
+        "qualité",
+        "refactoring",
+        "développement",
+        "sonarqube",
+        "tests",
+        "code-quality",
+        "boy-scout",
+        "sprint-stabilisation",
+        "vélocité",
+        "legacy",
+        "technical-debt-ratio"
+      ],
+      "order": 3
+    },
+    {
+      "id": "po-ops-vs-equipe-ops-comment-creer-l-alignement-sans-exploser-en-vol",
+      "title": "PO OPS dans l’équipe : comment passer du ‘bulldozer’ au ‘facilitateur’ sans casser l’équipe ?",
+      "file": "po-ops-facilitateur.md",
+      "tags": [
+        "po-ops",
+        "leadership",
+        "conflits",
+        "alignement",
+        "run-vs-build",
+        "soft-skills"
+      ],
+      "order": 5
+    },
+    {
+      "id": "modele-tuckman",
+      "title": "Le modèle de Tuckman",
+      "file": "modele-tuckman.md",
+      "tags": [
+        "tuckman",
+        "équipe",
+        "cohésion",
+        "storming",
+        "team-building"
+      ],
+      "order": 5
     }
-  ]
+  ],
+  "tools": [
+    {
+      "id": "sonarqube",
+      "title": "SonarQube - Qualité de Code",
+      "description": "Plateforme d'analyse de code pour détecter et gérer la dette technique",
+      "tags": [
+        "dette-technique",
+        "qualité",
+        "code",
+        "analyse"
+      ],
+      "platform": "Web, Self-hosted",
+      "external": true,
+      "url": "https://www.sonarqube.org",
+      "order": 1
+    },
+    {
+      "id": "codeclimate",
+      "title": "Code Climate - Technical Debt",
+      "description": "Outil pour mesurer et suivre la dette technique de vos projets",
+      "tags": [
+        "dette-technique",
+        "métriques",
+        "qualité",
+        "tracking"
+      ],
+      "platform": "Web",
+      "external": true,
+      "url": "https://codeclimate.com",
+      "order": 2
+    },
+    {
+      "id": "change-curve",
+      "title": "Change Curve Tool",
+      "description": "Outil pour comprendre et accompagner les phases de résistance au changement",
+      "tags": [
+        "changement",
+        "résistance",
+        "accompagnement",
+        "psychologie"
+      ],
+      "platform": "Web",
+      "external": true,
+      "url": "https://www.change-management-coach.com/kubler-ross.html",
+      "order": 3
+    },
+    {
+      "id": "burnout-assessment",
+      "title": "Burnout Assessment Tool",
+      "description": "Questionnaire pour évaluer les risques de burnout dans l'équipe",
+      "tags": [
+        "stress",
+        "burnout",
+        "bien-être",
+        "prévention"
+      ],
+      "platform": "Web",
+      "external": true,
+      "url": "https://www.mindtools.com/pages/article/newTCS_08.htm",
+      "order": 4
+    }
+  ],
+  "templates": [
+    {
+      "id": "technical-debt-register",
+      "title": "Registre de Dette Technique",
+      "description": "Template Excel pour inventorier, prioriser et suivre la dette technique",
+      "tags": [
+        "dette-technique",
+        "tracking",
+        "priorisation",
+        "registre"
+      ],
+      "format": "Excel",
+      "file": "technical-debt-register.xlsx",
+      "downloadUrl": "templates/gestion-defis/technical-debt-register.xlsx",
+      "order": 1
+    },
+    {
+      "id": "resistance-map",
+      "title": "Carte de Résistance au Changement",
+      "description": "Canvas pour identifier et adresser les sources de résistance",
+      "tags": [
+        "résistance",
+        "changement",
+        "analyse",
+        "stratégie"
+      ],
+      "format": "PDF",
+      "file": "resistance-map.pdf",
+      "downloadUrl": "templates/gestion-defis/resistance-map.pdf",
+      "order": 2
+    },
+    {
+      "id": "workload-tracker",
+      "title": "Suivi de Charge de Travail",
+      "description": "Template pour monitorer et prévenir la surcharge de l'équipe",
+      "tags": [
+        "surcharge",
+        "charge",
+        "bien-être",
+        "prévention"
+      ],
+      "format": "Excel",
+      "file": "workload-tracker.xlsx",
+      "downloadUrl": "templates/gestion-defis/workload-tracker.xlsx",
+      "order": 3
+    },
+    {
+      "id": "conflict-resolution",
+      "title": "Guide de Résolution de Conflits",
+      "description": "Framework pour faciliter la résolution de conflits en équipe",
+      "tags": [
+        "conflit",
+        "médiation",
+        "communication",
+        "résolution"
+      ],
+      "format": "PDF",
+      "file": "conflict-resolution.pdf",
+      "downloadUrl": "templates/gestion-defis/conflict-resolution.pdf",
+      "order": 4
+    }
+  ],
+  "order": 6
 }

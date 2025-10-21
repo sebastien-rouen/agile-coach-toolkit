@@ -1,0 +1,17 @@
+{
+  "enabled": true,
+  "name": "PocketBase Migration Validator",
+  "description": "Valide la structure et la syntaxe des migrations PocketBase selon les conventions du projet avant commit",
+  "version": "1.1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "bdd/pb_migrations/**/*.js",
+      "bdd/pb_hooks/**/*.js"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "🔍 Migration ou hook PocketBase modifié - Validation requise\n\n**Contexte Projet** : Site 'agile' - Collections doivent commencer par 'agile_'\n\n**Vérifications Critiques** :\n1. Structure `values` au niveau racine (pas dans `options`)\n2. Champs obligatoires : `id`, `created`, `updated`\n3. Nommage collection : `agile_{nom}`\n4. Timestamp croissant et fonction rollback présente\n\n**Référence** : Consulte `.kiro/steering/shared-pocketbase-migrations.md` pour les règles complètes\n\n**Actions** :\n- Identifie les erreurs critiques\n- Propose corrections concrètes\n- Valide l'ordre des migrations\n- Suggère test : `pm2 restart pb-agile-drafts`\n\nRapporte UNIQUEMENT les problèmes avec solutions."
+  }
+}

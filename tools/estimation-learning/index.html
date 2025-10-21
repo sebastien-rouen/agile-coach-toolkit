@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estimation par Comparaison | Agile Coach Toolkit</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../assets/css/variables.css">
+    <link rel="stylesheet" href="../../assets/css/base.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="estimation-learning-layout">
+        <!-- Sidebar -->
+        <aside class="estimation-learning-sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h2 class="sidebar-title">Ressources</h2>
+                <button class="sidebar-close" id="sidebar-close" aria-label="Fermer le panneau">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div class="sidebar-content">
+                <!-- Conseils pour l'animateur -->
+                <section class="sidebar-section">
+                    <h3><i class="fas fa-lightbulb"></i> Conseils pour l'animateur</h3>
+                    <ul>
+                        <li><strong>Commencez par un exemple concret</strong> : Utilisez l'exemple des animaux pour expliquer le principe</li>
+                        <li><strong>Encouragez les discussions</strong> : "Pourquoi avez-vous placé cet élément ici ?"</li>
+                        <li><strong>Utilisez des références</strong> : "Ce produit est-il plus cher qu'un smartphone moyen ?"</li>
+                        <li><strong>Affinez progressivement</strong> : Commencez avec 3-4 éléments, puis ajoutez-en</li>
+                        <li><strong>Variez les échelles</strong> : Taille, prix, complexité, temps - le principe reste le même</li>
+                        <li><strong>Notez les résultats</strong> : Prenez en photo le tableau final pour référence</li>
+                    </ul>
+                </section>
+
+                <!-- Applications en contexte Agile -->
+                <section class="sidebar-section">
+                    <h3><i class="fas fa-sync-alt"></i> Applications en contexte Agile</h3>
+                    <p style="color: var(--text-light); font-size: 0.9rem; margin: 0 0 1rem 0;">Cette technique s'applique parfaitement à :</p>
+                    <ul>
+                        <li><strong>Planning Poker</strong> : Estimer la complexité des user stories</li>
+                        <li><strong>Priorisation</strong> : Classer les features par valeur métier</li>
+                        <li><strong>Risques</strong> : Évaluer l'impact/potential des risques</li>
+                        <li><strong>Compétences</strong> : Cartographier les niveaux d'expertise</li>
+                        <li><strong>Dette technique</strong> : Prioriser les éléments à refactoriser</li>
+                    </ul>
+                </section>
+            </div>
+        </aside>
+
+        <!-- Overlay for mobile -->
+        <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+        <!-- Toggle Button -->
+        <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Ouvrir le panneau de ressources">
+            <i class="fas fa-lightbulb"></i>
+        </button>
+
+        <!-- Main Content -->
+        <main class="estimation-learning-main" id="main-content">
+            <div class="container">
+                <!-- Header simplifié -->
+                <div class="header-simple">
+                    <h1>🔄 Estimation par Comparaison</h1>
+                    <p>Notre cerveau est meilleur pour <strong>comparer</strong> que pour <strong>évaluer</strong>.</p>
+                </div>
+
+                <!-- Wizard Container -->
+                <div class="wizard-container">
+            <!-- Level 1: Introduction -->
+            <div class="wizard-level" id="level-1" data-level="1">
+                <div class="level-header">
+                    <div class="level-indicator">
+                        <span class="level-number">1</span>
+                        <span class="level-title">Comprendre le principe</span>
+                    </div>
+                    <div class="level-progress">
+                        <div class="progress-bar" style="width: 33%"></div>
+                    </div>
+                </div>
+
+                <div class="level-content">
+                    <div class="explanation">
+                        <h2>Pourquoi cette méthode fonctionne ?</h2>
+                        <p>En plaçant des éléments les uns par rapport aux autres, nous obtenons des estimations plus précises et cohérentes qu'en essayant de deviner des valeurs absolues.</p>
+
+                        <h3>Les 3 étapes clés :</h3>
+                        <ol>
+                            <li><strong>Choisir une référence</strong> : Un élément dont tout le monde connaît la valeur</li>
+                            <li><strong>Comparer</strong> : Placer les autres éléments par rapport à cette référence</li>
+                            <li><strong>Affiner</strong> : Ajuster les positions jusqu'à obtenir un consensus</li>
+                        </ol>
+                    </div>
+
+                    <div class="example animals">
+                        <h3><i class="fas fa-paw example-icon"></i> Exemple 1 : Comparaison d'animaux</h3>
+                        <p>Classez ces animaux du plus petit au plus grand en les déplaçant.</p>
+
+                        <div class="estimation-board">
+                            <div class="board-header">
+                                <span class="board-title">Taille des animaux</span>
+                                <div class="board-scale">
+                                    <span>Plus petit</span>
+                                    <span>Plus grand</span>
+                                </div>
+                            </div>
+                            <div class="cards-container" id="animals-board">
+                                <div class="card animal" draggable="true">
+                                    <div class="card-content">
+                                        <span class="card-icon">🐜</span>
+                                        <span>Fourmi</span>
+                                    </div>
+                                </div>
+                                <div class="card animal" draggable="true">
+                                    <div class="card-content">
+                                        <span class="card-icon">🐝</span>
+                                        <span>Abeille</span>
+                                    </div>
+                                </div>
+                                <div class="card animal" draggable="true">
+                                    <div class="card-content">
+                                        <span class="card-icon">🐿️</span>
+                                        <span>Écureuil</span>
+                                    </div>
+                                </div>
+                                <div class="card animal" draggable="true">
+                                    <div class="card-content">
+                                        <span class="card-icon">🐇</span>
+                                        <span>Lapin</span>
+                                    </div>
+                                </div>
+                                <div class="card animal" draggable="true">
+                                    <div class="card-content">
+                                        <span class="card-icon">🦊</span>
+                                        <span>Renard</span>
+                                    </div>
+                                </div>
+                                <div class="card animal" draggable="true">
+                                    <div class="card-content">
+                                        <span class="card-icon">🐑</span>
+                                        <span>Mouton</span>
+                                    </div>
+                                </div>
+                                <div class="card animal" draggable="true">
+                                    <div class="card-content">
+                                        <span class="card-icon">🦌</span>
+                                        <span>Cerf</span>
+                                    </div>
+                                </div>
+                                <div class="card animal" draggable="true">
+                                    <div class="card-content">
+                                        <span class="card-icon">🐄</span>
+                                        <span>Vache</span>
+                                    </div>
+                                </div>
+                                <div class="card animal" draggable="true">
+                                    <div class="card-content">
+                                        <span class="card-icon">🐘</span>
+                                        <span>Éléphant</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="controls">
+                                <button class="btn btn-secondary" onclick="resetBoard('animals')">
+                                    <i class="fas fa-redo"></i> Réinitialiser
+                                </button>
+                                <button class="btn btn-primary" onclick="showSolution('animals')">
+                                    <i class="fas fa-lightbulb"></i> Voir solution
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="level-footer">
+                    <button class="btn btn-secondary" onclick="skipLevel(1)">
+                        <i class="fas fa-forward"></i> Passer
+                    </button>
+                    <button class="btn btn-primary" onclick="nextLevel(1)">
+                        <i class="fas fa-arrow-right"></i> Continuer
+                    </button>
+                </div>
+            </div>
+
+            <!-- Level 2: Intermédiaire -->
+            <div class="wizard-level hidden" id="level-2" data-level="2">
+                <div class="level-header">
+                    <div class="level-indicator">
+                        <span class="level-number">2</span>
+                        <span class="level-title">Pratiquer avec des cas réels</span>
+                    </div>
+                    <div class="level-progress">
+                        <div class="progress-bar" style="width: 66%"></div>
+                    </div>
+                </div>
+
+                <div class="level-content">
+                    <div class="example ecommerce">
+                        <h3><i class="fas fa-shopping-cart example-icon"></i> Exemple 2 : Panier e-commerce</h3>
+                        <p>Classez ces produits du moins cher au plus cher en les déplaçant.</p>
+
+                        <div class="estimation-board">
+                            <div class="board-header">
+                                <span class="board-title">Prix des produits</span>
+                                <div class="board-scale">
+                                    <span>Moins cher</span>
+                                    <span>Plus cher</span>
+                                </div>
+                            </div>
+                            <div class="cards-container" id="ecommerce-board">
+                                <div class="card product" draggable="true">
+                                    <div class="card-content">
+                                        <i class="fas fa-mug-hot card-icon"></i>
+                                        <span>Tasse à café</span>
+                                    </div>
+                                </div>
+                                <div class="card product" draggable="true">
+                                    <div class="card-content">
+                                        <i class="fas fa-headphones card-icon"></i>
+                                        <span>Écouteurs</span>
+                                    </div>
+                                </div>
+                                <div class="card product" draggable="true">
+                                    <div class="card-content">
+                                        <i class="fas fa-laptop card-icon"></i>
+                                        <span>Ordinateur</span>
+                                    </div>
+                                </div>
+                                <div class="card product" draggable="true">
+                                    <div class="card-content">
+                                        <i class="fas fa-mobile-alt card-icon"></i>
+                                        <span>Smartphone</span>
+                                    </div>
+                                </div>
+                                <div class="card product" draggable="true">
+                                    <div class="card-content">
+                                        <i class="fas fa-gamepad card-icon"></i>
+                                        <span>Console</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="controls">
+                                <button class="btn btn-secondary" onclick="resetBoard('ecommerce')">
+                                    <i class="fas fa-redo"></i> Réinitialiser
+                                </button>
+                                <button class="btn btn-primary" onclick="showSolution('ecommerce')">
+                                    <i class="fas fa-lightbulb"></i> Voir solution
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="level-footer">
+                    <button class="btn btn-secondary" onclick="prevLevel(2)">
+                        <i class="fas fa-arrow-left"></i> Retour
+                    </button>
+                    <button class="btn btn-secondary" onclick="skipLevel(2)">
+                        <i class="fas fa-forward"></i> Passer
+                    </button>
+                    <button class="btn btn-primary" onclick="nextLevel(2)">
+                        <i class="fas fa-arrow-right"></i> Continuer
+                    </button>
+                </div>
+            </div>
+
+            <!-- Level 3: Avancé -->
+            <div class="wizard-level hidden" id="level-3" data-level="3">
+                <div class="level-header">
+                    <div class="level-indicator">
+                        <span class="level-number">3</span>
+                        <span class="level-title">Cas complexe : Tâches OPS</span>
+                    </div>
+                    <div class="level-progress">
+                        <div class="progress-bar" style="width: 100%"></div>
+                    </div>
+                </div>
+
+                <div class="level-content">
+                    <div class="example ops">
+                        <h3><i class="fas fa-server example-icon"></i> Exemple 3 : Tâches OPS</h3>
+                        <p>Classez ces tâches du plus simple au plus complexe en les déplaçant.</p>
+
+                        <div class="estimation-board">
+                            <div class="board-header">
+                                <span class="board-title">Complexité des tâches</span>
+                                <div class="board-scale">
+                                    <span>Plus simple</span>
+                                    <span>Plus complexe</span>
+                                </div>
+                            </div>
+                            <div class="cards-container" id="ops-board">
+                                <div class="card task" draggable="true">
+                                    <div class="card-content">
+                                        <i class="fas fa-sync-alt card-icon"></i>
+                                        <span>Redémarrer un service</span>
+                                    </div>
+                                </div>
+                                <div class="card task" draggable="true">
+                                    <div class="card-content">
+                                        <i class="fas fa-database card-icon"></i>
+                                        <span>Sauvegarder une DB</span>
+                                    </div>
+                                </div>
+                                <div class="card task" draggable="true">
+                                    <div class="card-content">
+                                        <i class="fas fa-network-wired card-icon"></i>
+                                        <span>Configurer un load balancer</span>
+                                    </div>
+                                </div>
+                                <div class="card task" draggable="true">
+                                    <div class="card-content">
+                                        <i class="fas fa-shield-alt card-icon"></i>
+                                        <span>Mettre à jour les certificats SSL</span>
+                                    </div>
+                                </div>
+                                <div class="card task" draggable="true">
+                                    <div class="card-content">
+                                        <i class="fas fa-server card-icon"></i>
+                                        <span>Migrer une infrastructure</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="controls">
+                                <button class="btn btn-secondary" onclick="resetBoard('ops')">
+                                    <i class="fas fa-redo"></i> Réinitialiser
+                                </button>
+                                <button class="btn btn-primary" onclick="showSolution('ops')">
+                                    <i class="fas fa-lightbulb"></i> Voir solution
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="level-footer">
+                    <button class="btn btn-secondary" onclick="prevLevel(3)">
+                        <i class="fas fa-arrow-left"></i> Retour
+                    </button>
+                    <button class="btn btn-success" onclick="completedWizard()">
+                        <i class="fas fa-check"></i> Terminé
+                    </button>
+                </div>
+            </div>
+
+            <!-- Completion Screen -->
+            <div class="wizard-level hidden" id="completion" data-level="completion">
+                <div class="completion-screen">
+                    <div class="completion-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h2>Bravo ! 🎉</h2>
+                    <p>Vous avez complété le parcours d'apprentissage sur l'estimation par comparaison.</p>
+                    
+                    <div class="completion-summary">
+                        <h3>Vous avez appris :</h3>
+                        <ul>
+                            <li>✅ Le principe de l'estimation relative</li>
+                            <li>✅ Comment comparer plutôt qu'évaluer</li>
+                            <li>✅ L'application à différents contextes</li>
+                        </ul>
+                    </div>
+
+                    <div class="completion-actions">
+                        <button class="btn btn-secondary" onclick="restartWizard()">
+                            <i class="fas fa-redo"></i> Recommencer
+                        </button>
+                        <button class="btn btn-primary" onclick="window.location.href='../../index.html#tools'">
+                            <i class="fas fa-home"></i> Retour au toolkit
+                        </button>
+                    </div>
+
+                    <!-- Ressources complémentaires -->
+                    <div class="resources-section">
+                        <h3>📚 Ressources complémentaires</h3>
+                        
+                        <!-- Références -->
+                        <div class="resource-category">
+                            <h4><i class="fas fa-link"></i> Références & Articles</h4>
+                            <ul class="resource-list">
+                                <li>
+                                    <a href="https://www.mountaingoatsoftware.com/blog/estimating-with-story-points" target="_blank" rel="noopener">
+                                        <strong>Mountain Goat Software</strong> - Estimating with Story Points
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://www.atlassian.com/agile/project-management/estimation" target="_blank" rel="noopener">
+                                        <strong>Atlassian</strong> - Agile Estimation Techniques
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://www.scrum.org/resources/blog/planning-poker" target="_blank" rel="noopener">
+                                        <strong>Scrum.org</strong> - Planning Poker Guide
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://www.agilealliance.org/glossary/relative-estimation/" target="_blank" rel="noopener">
+                                        <strong>Agile Alliance</strong> - Relative Estimation
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Images & Diagrammes -->
+                        <div class="resource-category">
+                            <h4><i class="fas fa-image"></i> Visuels & Diagrammes</h4>
+                            <div class="resource-gallery">
+                                <div class="resource-item">
+                                    <img src="https://media.licdn.com/dms/image/v2/C5112AQHljHi4ujx_3w/article-cover_image-shrink_600_2000/article-cover_image-shrink_600_2000/0/1596578409079?e=2147483647&v=beta&t=TdZFc3XVj2mwoE1iF5HB-y8Nvt4t9h9uKx02ceicfFg" alt="Planning Poker Estimation" loading="lazy">
+                                    <p>Planning Poker - Estimation collaborative</p>
+                                </div>
+                                <div class="resource-item">
+                                    <img src="https://miro.medium.com/v2/resize:fit:1400/1*MLObBNRwSy60B8y-vrblCQ.png" alt="Story Points Scale" loading="lazy">
+                                    <p>Échelle de points d'histoire</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Outils recommandés -->
+                        <div class="resource-category">
+                            <h4><i class="fas fa-tools"></i> Outils recommandés</h4>
+                            <ul class="resource-list">
+                                <li>
+                                    <strong>Planning Poker Online</strong> - Outil collaboratif pour l'estimation en équipe
+                                </li>
+                                <li>
+                                    <strong>Miro / Mural</strong> - Tableaux blancs virtuels pour les ateliers d'estimation
+                                </li>
+                                <li>
+                                    <strong>Jira / Azure DevOps</strong> - Gestion de projet avec estimation intégrée
+                                </li>
+                                <li>
+                                    <strong>Trello</strong> - Kanban simple avec estimation par points
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Prochaines étapes -->
+                        <div class="resource-category">
+                            <h4><i class="fas fa-arrow-right"></i> Prochaines étapes</h4>
+                            <ul class="resource-list">
+                                <li>Pratiquez l'estimation avec votre équipe en utilisant Planning Poker</li>
+                                <li>Comparez vos estimations avec les résultats réels pour affiner votre calibrage</li>
+                                <li>Explorez d'autres techniques : T-shirt sizing, Fibonacci, Ideal days</li>
+                                <li>Consultez les autres outils du toolkit pour approfondir vos compétences agiles</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+                <div class="footer">
+                    <p>Outil créé par <strong>Coach Sticko</strong> - Licence MIT</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Sidebar Toggle
+        const sidebar = document.getElementById('sidebar');
+        const sidebarToggle = document.getElementById('sidebar-toggle');
+        const sidebarClose = document.getElementById('sidebar-close');
+        const sidebarOverlay = document.getElementById('sidebar-overlay');
+        const mainContent = document.getElementById('main-content');
+
+        function openSidebar() {
+            sidebar.classList.add('open');
+            sidebarOverlay.classList.add('visible');
+            mainContent.classList.add('sidebar-open');
+            sidebarToggle.classList.add('hidden');
+        }
+
+        function closeSidebar() {
+            sidebar.classList.remove('open');
+            sidebarOverlay.classList.remove('visible');
+            mainContent.classList.remove('sidebar-open');
+            sidebarToggle.classList.remove('hidden');
+        }
+
+        sidebarToggle.addEventListener('click', openSidebar);
+        sidebarClose.addEventListener('click', closeSidebar);
+        sidebarOverlay.addEventListener('click', closeSidebar);
+
+        // Close sidebar on mobile when clicking a link
+        document.querySelectorAll('.sidebar-section a').forEach(link => {
+            link.addEventListener('click', closeSidebar);
+        });
+    </script>
+
+    <script>
+        // Solutions pour chaque exemple
+        const solutions = {
+            animals: ['Fourmi', 'Abeille', 'Écureuil', 'Lapin', 'Renard', 'Mouton', 'Cerf', 'Vache', 'Éléphant'],
+            ecommerce: ['Tasse à café', 'Écouteurs', 'Smartphone', 'Console', 'Ordinateur'],
+            ops: ['Redémarrer un service', 'Sauvegarder une DB', 'Mettre à jour les certificats SSL', 'Configurer un load balancer', 'Migrer une infrastructure']
+        };
+
+        let currentLevel = 1;
+
+        // Gestion du drag & drop
+        function initDragDrop() {
+            document.querySelectorAll('.cards-container').forEach(container => {
+                container.addEventListener('dragover', e => {
+                    e.preventDefault();
+                    const afterElement = getDragAfterElement(container, e.clientX);
+                    const draggable = document.querySelector('.dragging');
+                    if (afterElement == null) {
+                        container.appendChild(draggable);
+                    } else {
+                        container.insertBefore(draggable, afterElement);
+                    }
+                });
+            });
+
+            document.querySelectorAll('.card').forEach(card => {
+                card.addEventListener('dragstart', () => {
+                    card.classList.add('dragging');
+                });
+
+                card.addEventListener('dragend', () => {
+                    card.classList.remove('dragging');
+                });
+            });
+        }
+
+        function getDragAfterElement(container, x) {
+            const draggableElements = [...container.querySelectorAll('.card:not(.dragging)')];
+
+            return draggableElements.reduce((closest, child) => {
+                const box = child.getBoundingClientRect();
+                const offset = x - box.left - box.width / 2;
+
+                if (offset < 0 && offset > closest.offset) {
+                    return { offset: offset, element: child };
+                } else {
+                    return closest;
+                }
+            }, { offset: Number.NEGATIVE_INFINITY }).element;
+        }
+
+        function resetBoard(type) {
+            const container = document.getElementById(`${type}-board`);
+            const cards = Array.from(container.querySelectorAll('.card'));
+
+            cards.sort(() => Math.random() - 0.5);
+
+            cards.forEach(card => {
+                container.appendChild(card);
+                card.classList.remove('estimated');
+                const valueEl = card.querySelector('.card-value');
+                if (valueEl) valueEl.remove();
+            });
+        }
+
+        function showSolution(type) {
+            const container = document.getElementById(`${type}-board`);
+            const cards = Array.from(container.querySelectorAll('.card'));
+            const solution = solutions[type];
+
+            // Vérifier chaque carte à sa position actuelle
+            let correctCount = 0;
+            
+            cards.forEach((card, index) => {
+                // Pour les animaux, récupérer le deuxième span (le nom)
+                // Pour les autres, récupérer le span du texte
+                const spans = card.querySelectorAll('span');
+                const text = type === 'animals' ? spans[1]?.textContent : spans[0]?.textContent;
+                const trimmedText = text?.trim();
+                
+                // Vérifier si c'est correct à sa position actuelle
+                const isCorrect = solution[index] === trimmedText;
+                if (isCorrect) correctCount++;
+                
+                card.classList.add('estimated');
+
+                // Supprimer l'ancienne valeur
+                const oldValue = card.querySelector('.card-value');
+                if (oldValue) oldValue.remove();
+
+                // Ajouter le numéro de position
+                const value = document.createElement('div');
+                value.className = 'card-value';
+                value.textContent = index + 1;
+                card.appendChild(value);
+
+                // Supprimer l'ancien feedback
+                const oldFeedback = card.querySelector('.feedback-icon');
+                if (oldFeedback) oldFeedback.remove();
+
+                // Ajouter le feedback
+                const feedback = document.createElement('div');
+                feedback.className = `feedback-icon ${isCorrect ? 'correct' : 'incorrect'}`;
+                feedback.innerHTML = isCorrect 
+                    ? '<i class="fas fa-check-circle"></i>' 
+                    : '<i class="fas fa-times-circle"></i>';
+                card.appendChild(feedback);
+            });
+
+            // Afficher un message de résultat
+            showResultMessage(type, correctCount, cards.length);
+        }
+
+        function showResultMessage(type, correctCount, totalCount) {
+            const container = document.getElementById(`${type}-board`);
+            const existingMessage = container.parentElement.querySelector('.result-message');
+            
+            if (existingMessage) existingMessage.remove();
+
+            const percentage = Math.round((correctCount / totalCount) * 100);
+            const isSuccess = percentage === 100;
+
+            const message = document.createElement('div');
+            message.className = `result-message ${isSuccess ? 'success' : 'partial'}`;
+            message.innerHTML = `
+                <div class="result-content">
+                    <span class="result-icon">${isSuccess ? '🎉' : '📊'}</span>
+                    <span class="result-text">
+                        ${correctCount}/${totalCount} correct${correctCount > 1 ? 's' : ''} (${percentage}%)
+                    </span>
+                </div>
+            `;
+
+            container.parentElement.insertBefore(message, container);
+        }
+
+        // Wizard Navigation
+        function showLevel(level) {
+            document.querySelectorAll('.wizard-level').forEach(el => {
+                el.classList.add('hidden');
+            });
+            
+            // Gérer les deux formats d'ID : level-X et completion
+            const elementId = level === 'completion' ? 'completion' : `level-${level}`;
+            const element = document.getElementById(elementId);
+            
+            if (element) {
+                element.classList.remove('hidden');
+                currentLevel = level;
+                window.scrollTo(0, 0);
+            } else {
+                console.warn(`Élément avec l'ID "${elementId}" non trouvé`);
+            }
+        }
+
+        function nextLevel(current) {
+            if (current < 3) {
+                showLevel(current + 1);
+            }
+        }
+
+        function prevLevel(current) {
+            if (current > 1) {
+                showLevel(current - 1);
+            }
+        }
+
+        function skipLevel(current) {
+            if (current < 3) {
+                showLevel(current + 1);
+            }
+        }
+
+        function completedWizard() {
+            showLevel('completion');
+        }
+
+        function restartWizard() {
+            showLevel(1);
+            ['animals', 'ecommerce', 'ops'].forEach(type => {
+                resetBoard(type);
+            });
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            initDragDrop();
+            ['animals', 'ecommerce', 'ops'].forEach(type => {
+                resetBoard(type);
+            });
+        });
+    </script>
+
+    <!-- Intégration Agile Coach Toolkit -->
+    <script src="../../assets/js/tool-integration.js"></script>
+    <script>
+      window.TOOL_CONFIG = {
+        name: 'estimation-learning',
+        backUrl: '../../index.html#tools'
+      };
+    </script>
+</body>
+</html>

@@ -161,7 +161,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
     gap: var(--spacing-md);
-    max-width: 800px;
+    max-width: 90%;
     margin: 0 auto;
     padding: var(--spacing-lg) 0;
     justify-items: center;

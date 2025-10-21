@@ -1,0 +1,361 @@
+{
+  "name": "Démo Product Owner",
+  "description": "Exemple de mission Product Owner avec gestion de backlog",
+  "data": {
+    "missions": [
+      {
+        "id": "demo-po-001",
+        "title": "Refonte Application Mobile - E-commerce",
+        "client": "ShopNow",
+        "role": "product-owner",
+        "start_date": "2024-08-01",
+        "end_date": null,
+        "status": "active",
+        "objectives": [
+          {
+            "id": "obj-1",
+            "title": "Augmenter le taux de conversion de 25%",
+            "completed": false
+          },
+          {
+            "id": "obj-2",
+            "title": "Réduire le taux d'abandon panier de 40%",
+            "completed": false
+          },
+          {
+            "id": "obj-3",
+            "title": "Améliorer le NPS de 15 points",
+            "completed": true
+          },
+          {
+            "id": "obj-4",
+            "title": "Livrer 3 features majeures par trimestre",
+            "completed": true
+          }
+        ],
+        "metrics": [],
+        "context": {
+          "team_size": 6,
+          "technologies": ["React Native", "GraphQL", "AWS"],
+          "challenges": ["Forte concurrence", "Attentes utilisateurs élevées"]
+        },
+        "createdAt": "2024-08-01T08:00:00.000Z",
+        "updatedAt": "2024-11-24T10:00:00.000Z"
+      },
+      {
+        "id": "demo-po-002",
+        "title": "Plateforme SaaS B2B - CRM",
+        "client": "SalesPro Solutions",
+        "role": "product-owner",
+        "start_date": "2024-02-01",
+        "end_date": "2024-07-31",
+        "status": "completed",
+        "objectives": [
+          {
+            "id": "obj-5",
+            "title": "Lancer 3 features majeures",
+            "completed": true
+          },
+          {
+            "id": "obj-6",
+            "title": "Atteindre 1000 utilisateurs actifs",
+            "completed": true
+          },
+          {
+            "id": "obj-7",
+            "title": "Réduire le churn de 30%",
+            "completed": true
+          }
+        ],
+        "metrics": [],
+        "context": {
+          "team_size": 8,
+          "technologies": ["Vue.js", "Laravel", "MySQL"],
+          "challenges": ["Marché concurrentiel", "Attentes clients élevées"]
+        },
+        "createdAt": "2024-02-01T08:00:00.000Z",
+        "updatedAt": "2024-07-31T18:00:00.000Z"
+      }
+    ],
+    "events": [
+      {
+        "id": "event-1",
+        "mission_id": "demo-po-001",
+        "type": "milestone",
+        "title": "Validation du MVP avec les utilisateurs",
+        "description": "Tests utilisateurs positifs sur 5 fonctionnalités clés",
+        "date": "2024-09-01",
+        "tags": ["mvp", "user-testing"],
+        "impact": "high"
+      },
+      {
+        "id": "event-2",
+        "mission_id": "demo-po-001",
+        "type": "achievement",
+        "title": "Taux de conversion augmenté de 18%",
+        "description": "Optimisation du tunnel d'achat",
+        "date": "2024-10-15",
+        "tags": ["metrics", "conversion"],
+        "impact": "high"
+      },
+      {
+        "id": "event-3",
+        "mission_id": "demo-po-001",
+        "type": "delivery",
+        "title": "Release v3.0 - Paiement en 1 clic",
+        "description": "Nouvelle fonctionnalité très attendue par les utilisateurs",
+        "date": "2024-10-01",
+        "tags": ["release", "payment"],
+        "impact": "high"
+      },
+      {
+        "id": "event-4",
+        "mission_id": "demo-po-001",
+        "type": "meeting",
+        "title": "Backlog Refinement - Q4",
+        "description": "Priorisation de 25 user stories pour le trimestre",
+        "date": "2024-10-05",
+        "tags": ["backlog", "planning"],
+        "impact": "medium"
+      },
+      {
+        "id": "event-5",
+        "mission_id": "demo-po-001",
+        "type": "achievement",
+        "title": "NPS passé de 45 à 62",
+        "description": "Amélioration significative de la satisfaction client",
+        "date": "2024-11-10",
+        "tags": ["nps", "satisfaction"],
+        "impact": "high"
+      }
+    ],
+    "achievements": [
+      {
+        "id": "ach-1",
+        "mission_id": "demo-po-001",
+        "title": "Réduction du temps de chargement de 60%",
+        "description": "Optimisation technique majeure",
+        "date": "2024-09-15",
+        "impact": "high"
+      },
+      {
+        "id": "ach-2",
+        "mission_id": "demo-po-001",
+        "title": "Intégration de 3 nouveaux moyens de paiement",
+        "description": "Apple Pay, Google Pay, PayPal",
+        "date": "2024-10-20",
+        "impact": "medium"
+      }
+    ],
+    "challenges": [
+      {
+        "id": "chal-1",
+        "mission_id": "demo-po-001",
+        "title": "Priorisation difficile avec les stakeholders",
+        "description": "Trop de demandes urgentes en parallèle",
+        "date": "2024-09-01",
+        "status": "resolved",
+        "severity": "medium"
+      },
+      {
+        "id": "chal-2",
+        "mission_id": "demo-po-002",
+        "title": "Churn élevé des nouveaux utilisateurs",
+        "description": "40% des utilisateurs abandonnent après 1 semaine",
+        "date": "2024-03-15",
+        "status": "resolved",
+        "severity": "high"
+      }
+    ],
+    "reports": [
+      {
+        "id": "report-po-1",
+        "mission_id": "demo-po-001",
+        "type": "initial",
+        "title": "Rapport d'étonnement - ShopNow",
+        "date": "2024-08-15",
+        "content": {
+          "first_impressions": "Application mobile avec bon potentiel mais UX à améliorer",
+          "context": "Refonte e-commerce avec focus sur la conversion",
+          "strengths": ["Catalogue produits riche", "Équipe technique compétente", "Data analytics en place"],
+          "challenges": ["Tunnel d'achat complexe", "Temps de chargement lent", "Taux d'abandon élevé"],
+          "quick_wins": ["Simplifier le checkout", "Optimiser les images", "Ajouter Apple Pay"],
+          "recommendations": ["Tests utilisateurs réguliers", "A/B testing systématique", "Focus sur la performance"]
+        }
+      },
+      {
+        "id": "report-po-2",
+        "mission_id": "demo-po-001",
+        "type": "checkpoint",
+        "title": "Checkpoint Mensuel - Octobre 2024",
+        "date": "2024-10-31",
+        "content": {
+          "period": "Octobre 2024",
+          "highlights": ["Conversion +18%", "NPS +17 points", "Paiement 1-clic lancé"],
+          "lowlights": ["Retard sur la wishlist", "Bug critique en production"],
+          "metrics": {
+            "conversion_rate": "3.8%",
+            "nps": 62,
+            "cart_abandonment": "45%"
+          },
+          "next_actions": ["Corriger le bug", "Lancer la wishlist", "Optimiser le panier"]
+        }
+      },
+      {
+        "id": "report-po-3",
+        "mission_id": "demo-po-002",
+        "type": "final",
+        "title": "Bilan Final - SalesPro",
+        "date": "2024-07-31",
+        "content": {
+          "summary": "Lancement réussi de la plateforme SaaS avec adoption forte",
+          "objectives_achieved": ["3 features majeures livrées", "1200 utilisateurs actifs", "Churn réduit de 35%"],
+          "key_achievements": ["Onboarding optimisé", "Intégrations tierces", "Mobile app lancée"],
+          "lessons_learned": ["L'onboarding est critique", "Les intégrations créent de la valeur", "Écouter les early adopters"],
+          "recommendations": ["Continuer les user interviews", "Investir dans l'analytics", "Développer l'écosystème"]
+        }
+      }
+    ],
+    "roadmap": [
+      {
+        "id": "road-po-1",
+        "type": "skill",
+        "title": "Certification PSPO II",
+        "description": "Professional Scrum Product Owner niveau 2",
+        "status": "in_progress",
+        "priority": "high",
+        "due_date": "2025-03-01"
+      },
+      {
+        "id": "road-po-2",
+        "type": "learn",
+        "title": "Approfondir le Product Analytics",
+        "description": "Formation Amplitude/Mixpanel avancée",
+        "status": "planned",
+        "priority": "high",
+        "due_date": "2025-02-01"
+      },
+      {
+        "id": "road-po-3",
+        "type": "read",
+        "title": "Lire 'Inspired' de Marty Cagan",
+        "description": "Référence en product management",
+        "status": "done",
+        "priority": "medium",
+        "completion_date": "2024-09-30"
+      },
+      {
+        "id": "road-po-4",
+        "type": "experiment",
+        "title": "Tester le Continuous Discovery",
+        "description": "Interviews utilisateurs hebdomadaires",
+        "status": "in_progress",
+        "priority": "high",
+        "due_date": "2024-12-31"
+      }
+    ],
+    "vision": {
+      "statement": "Créer des produits qui résolvent de vrais problèmes utilisateurs et génèrent de la valeur business",
+      "goals": [
+        "Devenir Product Owner senior reconnu",
+        "Maîtriser le product analytics et le data-driven",
+        "Lancer un produit de A à Z",
+        "Partager mes apprentissages (blog, meetups)",
+        "Obtenir les certifications PSPO II et Product-Led Growth"
+      ]
+    },
+    "skills": [
+      {
+        "name": "Product Discovery",
+        "level": 4,
+        "category": "product"
+      },
+      {
+        "name": "User Research",
+        "level": 4,
+        "category": "product"
+      },
+      {
+        "name": "Data Analytics",
+        "level": 3,
+        "category": "technical"
+      },
+      {
+        "name": "Priorisation",
+        "level": 5,
+        "category": "product"
+      },
+      {
+        "name": "Stakeholder Management",
+        "level": 4,
+        "category": "soft-skills"
+      },
+      {
+        "name": "A/B Testing",
+        "level": 3,
+        "category": "technical"
+      }
+    ],
+    "skills_to_develop": [
+      {
+        "name": "SQL",
+        "reason": "Pour analyser les données directement",
+        "priority": "high"
+      },
+      {
+        "name": "Product-Led Growth",
+        "reason": "Pour optimiser l'acquisition et la rétention",
+        "priority": "high"
+      },
+      {
+        "name": "UX Design",
+        "reason": "Pour mieux collaborer avec les designers",
+        "priority": "medium"
+      }
+    ],
+    "learning_goals": [
+      {
+        "title": "Certification PSPO II",
+        "type": "certification",
+        "deadline": "2025-03-01",
+        "status": "in_progress"
+      },
+      {
+        "title": "Formation SQL avancé",
+        "type": "training",
+        "deadline": "2025-01-31",
+        "status": "planned"
+      },
+      {
+        "title": "Participer à Product Tank Paris",
+        "type": "conference",
+        "deadline": "2025-02-15",
+        "status": "planned"
+      }
+    ],
+    "experiments": [
+      {
+        "id": "exp-po-1",
+        "mission_id": "demo-po-001",
+        "title": "A/B test sur le bouton CTA",
+        "hypothesis": "Un CTA plus visible augmente la conversion",
+        "status": "completed",
+        "outcome": "success",
+        "start_date": "2024-10-01",
+        "end_date": "2024-10-15",
+        "results": "Conversion +12% avec le nouveau CTA"
+      },
+      {
+        "id": "exp-po-2",
+        "mission_id": "demo-po-002",
+        "title": "Onboarding interactif",
+        "hypothesis": "Un onboarding guidé réduit le churn",
+        "status": "completed",
+        "outcome": "success",
+        "start_date": "2024-04-01",
+        "end_date": "2024-05-31",
+        "results": "Churn réduit de 35%, activation +40%"
+      }
+    ]
+  }
+}

@@ -1,0 +1,457 @@
+{
+  "tool": {
+    "id": "mission-tracker",
+    "name": "Mission Tracker",
+    "version": "1.0.0",
+    "icon": "🎯",
+    "description": "Suivez l'évolution de vos missions depuis le rapport d'étonnement jusqu'au bilan final",
+    "author": "Bastou",
+    "order": 100
+  },
+  "roles": [
+    {
+      "id": "coach-agile",
+      "name": "Coach Agile / Scrum Master",
+      "icon": "🎓",
+      "color": "#4CAF50",
+      "default_objectives": [
+        "Améliorer l'efficacité des cérémonies",
+        "Développer l'autonomie de l'équipe",
+        "Fluidifier la communication équipe/stakeholders",
+        "Instaurer une culture d'amélioration continue",
+        "Réduire les impediments systémiques"
+      ],
+      "suggested_metrics": [
+        "Maturité Agile (1-5)",
+        "Durée moyenne des Daily (minutes)",
+        "Taux d'actions réalisées post-rétro (%)",
+        "Nombre de stakeholders aux Sprint Reviews",
+        "Engagement équipe (sondage 1-5)"
+      ],
+      "report_questions": {
+        "context": [
+          "Quel est le contexte de l'équipe (taille, composition, ancienneté) ?",
+          "Quelle est la maturité Agile actuelle (1-5) ?",
+          "Quelles sont les pratiques Agile déjà en place ?"
+        ],
+        "what_works": [
+          "Quelles cérémonies fonctionnent bien ?",
+          "Quels points forts de l'équipe ?",
+          "Quelles pratiques Agile sont adoptées ?"
+        ],
+        "pain_points": [
+          "Quelles cérémonies dysfonctionnent ?",
+          "Quels impediments bloquent l'équipe ?",
+          "Quelle est la principale résistance au changement ?"
+        ],
+        "surprises": [
+          "Qu'est-ce qui vous a surpris positivement ?",
+          "Qu'est-ce qui vous a surpris négativement ?",
+          "Quelle observation inattendue ?"
+        ]
+      }
+    },
+    {
+      "id": "product-owner",
+      "name": "Product Owner / Product Manager",
+      "icon": "👨‍💼",
+      "color": "#2196F3",
+      "default_objectives": [
+        "Améliorer la qualité du backlog",
+        "Clarifier la vision et la roadmap",
+        "Optimiser le processus de discovery",
+        "Aligner les stakeholders",
+        "Réduire le time-to-market"
+      ],
+      "suggested_metrics": [
+        "% stories 'ready' dans le backlog",
+        "Lead time (idée → production) en jours",
+        "Satisfaction utilisateurs (NPS)",
+        "Nombre de pivots / mois",
+        "Engagement stakeholders (1-5)"
+      ],
+      "report_questions": {
+        "context": [
+          "Quel est le produit et son marché ?",
+          "Quelle est la maturité du backlog ?",
+          "Comment est structurée la discovery ?"
+        ],
+        "what_works": [
+          "Quels processus product fonctionnent bien ?",
+          "Quelles sont les forces du backlog actuel ?",
+          "Quelle bonne pratique est déjà en place ?"
+        ],
+        "pain_points": [
+          "Quel est le principal problème du backlog ?",
+          "Quels sont les conflits de priorisation ?",
+          "Quel est le plus gros frein au time-to-market ?"
+        ],
+        "surprises": [
+          "Quelle surprise côté utilisateurs ?",
+          "Quelle surprise côté stakeholders ?",
+          "Quelle observation inattendue sur le produit ?"
+        ]
+      }
+    },
+    {
+      "id": "designer",
+      "name": "Designer (UX/UI)",
+      "icon": "🎨",
+      "color": "#E91E63",
+      "default_objectives": [
+        "Intégrer le design dès la discovery",
+        "Faciliter l'accès aux utilisateurs (research)",
+        "Améliorer l'adoption du design system",
+        "Structurer le processus de validation",
+        "Former l'équipe au design thinking"
+      ],
+      "suggested_metrics": [
+        "Nombre de tests utilisateurs / mois",
+        "Taux d'adoption du design system (%)",
+        "Délai entre design et implémentation (jours)",
+        "Satisfaction utilisateur (SUS score)",
+        "Nombre d'allers-retours dev/design"
+      ],
+      "report_questions": {
+        "context": [
+          "Quel est l'état du design system ?",
+          "Comment est structuré le processus de design ?",
+          "Quelle est la maturité UX de l'équipe ?"
+        ],
+        "what_works": [
+          "Quels outils de design fonctionnent bien ?",
+          "Quelle pratique design est déjà adoptée ?",
+          "Quelle collaboration dev/design fonctionne ?"
+        ],
+        "pain_points": [
+          "Quel est le principal problème UX ?",
+          "Quels sont les freins à l'adoption du design system ?",
+          "Quel est le plus gros problème d'accès aux utilisateurs ?"
+        ],
+        "surprises": [
+          "Quelle surprise côté utilisateurs ?",
+          "Quelle surprise côté équipe technique ?",
+          "Quelle observation inattendue sur le design ?"
+        ]
+      }
+    },
+    {
+      "id": "developer",
+      "name": "Développeur",
+      "icon": "💻",
+      "color": "#FF9800",
+      "default_objectives": [
+        "Réduire la dette technique",
+        "Améliorer la couverture de tests",
+        "Optimiser le temps de build",
+        "Documenter l'architecture",
+        "Moderniser les dépendances critiques"
+      ],
+      "suggested_metrics": [
+        "Couverture de tests (%)",
+        "Temps de build (minutes)",
+        "Nombre de bugs en production / sprint",
+        "Complexité cyclomatique moyenne",
+        "Nombre de dépendances obsolètes"
+      ],
+      "report_questions": {
+        "context": [
+          "Quelle est la stack technique ?",
+          "Quel est l'état de la dette technique ?",
+          "Comment est organisé le processus de dev ?"
+        ],
+        "what_works": [
+          "Quelles pratiques de dev fonctionnent bien ?",
+          "Quel outil / processus est efficace ?",
+          "Quelle partie du code est bien structurée ?"
+        ],
+        "pain_points": [
+          "Quel est le principal problème technique ?",
+          "Quels sont les plus gros freins au développement ?",
+          "Quel est le module legacy le plus problématique ?"
+        ],
+        "surprises": [
+          "Quelle surprise côté architecture ?",
+          "Quelle surprise côté qualité de code ?",
+          "Quelle observation inattendue sur la tech ?"
+        ]
+      }
+    },
+    {
+      "id": "architect",
+      "name": "Architecte",
+      "icon": "🏗️",
+      "color": "#9C27B0",
+      "default_objectives": [
+        "Réduire le couplage entre services",
+        "Définir une stratégie de migration legacy",
+        "Moderniser l'architecture (cloud-native)",
+        "Améliorer l'observabilité",
+        "Structurer la gouvernance technique"
+      ],
+      "suggested_metrics": [
+        "Nombre de dépendances entre services",
+        "Temps de réponse moyen (ms)",
+        "Taux de disponibilité (uptime %)",
+        "Nombre d'incidents liés à l'architecture",
+        "Coût d'infrastructure / utilisateur (€)"
+      ],
+      "report_questions": {
+        "context": [
+          "Quelle est l'architecture actuelle ?",
+          "Quels sont les principaux services / modules ?",
+          "Comment est gérée la scalabilité ?"
+        ],
+        "what_works": [
+          "Quelles parties de l'architecture sont solides ?",
+          "Quelles bonnes pratiques sont en place ?",
+          "Quel service est bien conçu ?"
+        ],
+        "pain_points": [
+          "Quel est le principal problème d'architecture ?",
+          "Quels sont les couplages problématiques ?",
+          "Quel est le plus gros risque technique ?"
+        ],
+        "surprises": [
+          "Quelle surprise côté scalabilité ?",
+          "Quelle surprise côté infrastructure ?",
+          "Quelle observation inattendue sur l'archi ?"
+        ]
+      }
+    },
+    {
+      "id": "devops",
+      "name": "DevOps / SRE",
+      "icon": "⚙️",
+      "color": "#00BCD4",
+      "default_objectives": [
+        "Automatiser 100% des déploiements",
+        "Réduire le MTTR (Mean Time To Recovery)",
+        "Implémenter des rollbacks automatiques",
+        "Sécuriser la gestion des secrets",
+        "Améliorer l'observabilité (traces distribuées)"
+      ],
+      "suggested_metrics": [
+        "Deployment frequency (par jour/semaine)",
+        "Lead time for changes (commit → prod en minutes)",
+        "MTTR (Mean Time To Recovery en minutes)",
+        "Change failure rate (%)",
+        "Coût cloud mensuel (€)"
+      ],
+      "report_questions": {
+        "context": [
+          "Quel est l'état du CI/CD ?",
+          "Comment sont gérés les déploiements ?",
+          "Quelle est la stratégie d'observabilité ?"
+        ],
+        "what_works": [
+          "Quels processus DevOps fonctionnent bien ?",
+          "Quels outils sont efficaces ?",
+          "Quelle pratique d'automatisation marche ?"
+        ],
+        "pain_points": [
+          "Quel est le principal problème de déploiement ?",
+          "Quels sont les freins à l'automatisation ?",
+          "Quel est le plus gros risque de production ?"
+        ],
+        "surprises": [
+          "Quelle surprise côté infrastructure ?",
+          "Quelle surprise côté monitoring ?",
+          "Quelle observation inattendue sur le DevOps ?"
+        ]
+      }
+    },
+    {
+      "id": "rte",
+      "name": "RTE (Release Train Engineer)",
+      "icon": "🚢",
+      "color": "#607D8B",
+      "default_objectives": [
+        "Fluidifier le PI Planning",
+        "Réduire les dépendances inter-équipes",
+        "Améliorer la coordination quotidienne",
+        "Anticiper et résoudre les risques",
+        "Augmenter la prévisibilité des releases"
+      ],
+      "suggested_metrics": [
+        "Nombre de dépendances par PI",
+        "% d'objectifs PI atteints",
+        "Nombre de risques identifiés vs résolus",
+        "Satisfaction équipes (sondage 1-5)",
+        "Predictability (Planned vs Delivered %)"
+      ],
+      "report_questions": {
+        "context": [
+          "Combien d'équipes dans l'ART ?",
+          "Comment est organisé le PI Planning ?",
+          "Quelle est la maturité SAFe actuelle ?"
+        ],
+        "what_works": [
+          "Quels rituels SAFe fonctionnent bien ?",
+          "Quelle coordination inter-équipes marche ?",
+          "Quelle pratique est déjà adoptée ?"
+        ],
+        "pain_points": [
+          "Quel est le principal problème de coordination ?",
+          "Quelles dépendances bloquent le plus ?",
+          "Quel est le plus gros frein à la prévisibilité ?"
+        ],
+        "surprises": [
+          "Quelle surprise côté coordination ?",
+          "Quelle surprise côté PI Planning ?",
+          "Quelle observation inattendue sur l'ART ?"
+        ]
+      }
+    },
+    {
+      "id": "coach-orga",
+      "name": "Coach Organisationnel",
+      "icon": "🌐",
+      "color": "#3F51B5",
+      "default_objectives": [
+        "Accompagner la transformation culturelle",
+        "Aligner les équipes sur la vision",
+        "Faciliter la collaboration inter-départements",
+        "Structurer la gouvernance agile",
+        "Former les leaders au management agile"
+      ],
+      "suggested_metrics": [
+        "Nombre d'équipes accompagnées",
+        "Satisfaction globale organisation (1-5)",
+        "Nombre de conflits résolus",
+        "Taux d'adoption des pratiques agiles (%)",
+        "Engagement des leaders (1-5)"
+      ],
+      "report_questions": {
+        "context": [
+          "Quelle est la taille de l'organisation ?",
+          "Quel est le niveau de maturité agile global ?",
+          "Comment est structurée la transformation ?"
+        ],
+        "what_works": [
+          "Quelles pratiques organisationnelles marchent ?",
+          "Quels leaders sont moteurs du changement ?",
+          "Quelle collaboration inter-équipes fonctionne ?"
+        ],
+        "pain_points": [
+          "Quel est le principal frein culturel ?",
+          "Quelles résistances sont les plus fortes ?",
+          "Quel est le plus gros problème de gouvernance ?"
+        ],
+        "surprises": [
+          "Quelle surprise côté leadership ?",
+          "Quelle surprise côté culture ?",
+          "Quelle observation inattendue sur l'organisation ?"
+        ]
+      }
+    }
+  ],
+  "event_types": [
+    {
+      "id": "success",
+      "label": "Réussite",
+      "icon": "✨",
+      "color": "#4CAF50",
+      "placeholder": "Décrivez cette réussite et son impact..."
+    },
+    {
+      "id": "failure",
+      "label": "Échec",
+      "icon": "❌",
+      "color": "#F44336",
+      "placeholder": "Décrivez cet échec et ce que vous en avez appris..."
+    },
+    {
+      "id": "attempt",
+      "label": "Tentative",
+      "icon": "🧪",
+      "color": "#FF9800",
+      "placeholder": "Décrivez cette expérimentation et ses résultats..."
+    },
+    {
+      "id": "learning",
+      "label": "Apprentissage",
+      "icon": "💡",
+      "color": "#2196F3",
+      "placeholder": "Décrivez cet apprentissage et comment vous allez l'appliquer..."
+    },
+    {
+      "id": "decision",
+      "label": "Décision",
+      "icon": "⚖️",
+      "color": "#9C27B0",
+      "placeholder": "Décrivez cette décision et son contexte..."
+    }
+  ],
+  "roadmap_categories": [
+    {
+      "id": "learn",
+      "label": "Apprendre",
+      "icon": "📚",
+      "color": "#2196F3",
+      "placeholder": "Livre, formation, article, vidéo..."
+    },
+    {
+      "id": "experiment",
+      "label": "Expérimenter",
+      "icon": "🧪",
+      "color": "#FF9800",
+      "placeholder": "Nouvelle technique, format, outil..."
+    },
+    {
+      "id": "create",
+      "label": "Créer",
+      "icon": "🎨",
+      "color": "#E91E63",
+      "placeholder": "Article, talk, atelier, template..."
+    },
+    {
+      "id": "meet",
+      "label": "Rencontrer",
+      "icon": "👥",
+      "color": "#4CAF50",
+      "placeholder": "Expert, pair, communauté..."
+    },
+    {
+      "id": "develop",
+      "label": "Développer",
+      "icon": "💪",
+      "color": "#9C27B0",
+      "placeholder": "Compétence, posture, hard skill..."
+    }
+  ],
+  "checkpoint_frequency": "weekly",
+  "checkpoint_types": {
+    "weekly": {
+      "questions": [
+        "Quelle a été ma plus grande réussite cette semaine ?",
+        "Quel a été mon plus grand défi ?",
+        "Qu'est-ce que j'ai appris ?",
+        "Quel est mon focus pour la semaine prochaine ?"
+      ]
+    },
+    "monthly": {
+      "questions": [
+        "Quelle progression sur mes objectifs ce mois-ci ?",
+        "Quel objectif dois-je ajuster ou abandonner ?",
+        "Quel impact ai-je eu sur l'équipe/organisation ?",
+        "Quelles sont mes 3 priorités pour le mois prochain ?"
+      ]
+    }
+  },
+  "export_formats": ["pdf", "markdown", "json"],
+  "features": {
+    "ai_suggestions": true,
+    "team_sharing": false,
+    "public_export": false,
+    "pocketbase_sync": true
+  },
+  "pocketbase": {
+    "collections": {
+      "missions": "missions",
+      "events": "mission_events",
+      "checkpoints": "mission_checkpoints",
+      "roadmap": "mission_roadmap"
+    }
+  }
+}

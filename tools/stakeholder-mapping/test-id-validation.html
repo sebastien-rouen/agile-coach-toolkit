@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test ID Validation</title>
+    <style>
+        body {
+            font-family: monospace;
+            padding: 20px;
+            background: #1a1a1a;
+            color: #f3f4f6;
+        }
+        .test {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .pass {
+            background: rgba(16, 185, 129, 0.2);
+            border-left: 4px solid #10b981;
+        }
+        .fail {
+            background: rgba(239, 68, 68, 0.2);
+            border-left: 4px solid #ef4444;
+        }
+        h1 {
+            color: #3b82f6;
+        }
+        code {
+            background: #2d2d2d;
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧪 Test de Validation des IDs</h1>
+    <div id="results"></div>
+
+    <script>
+        // Fonction de génération d'ID (copie de utils.js)
+        function generateId() {
+            return Date.now().toString(36) + Math.random().toString(36).substr(2);
+        }
+
+        // Regex de validation (copie de pocketbase-integration.js)
+        function isValidId(id) {
+            return id && /^[a-z0-9]{10,}$/.test(id);
+        }
+
+        // Tests
+        const tests = [
+            {
+                name: "ID généré par Utils.generateId()",
+                id: generateId(),
+                shouldPass: true
+            },
+            {
+                name: "ID avec 10 caractères alphanumériques",
+                id: "abc1234567",
+                shouldPass: true
+            },
+            {
+                name: "ID avec 15 caractères alphanumériques",
+                id: "abc123def456789",
+                shouldPass: true
+            },
+            {
+                name: "ID avec 20 caractères alphanumériques",
+                id: "abc123def456789xyz12",
+                shouldPass: true
+            },
+            {
+                name: "ID trop court (9 caractères)",
+                id: "abc123456",
+                shouldPass: false
+            },
+            {
+                name: "ID avec majuscules",
+                id: "ABC1234567890",
+                shouldPass: false
+            },
+            {
+                name: "ID avec caractères spéciaux",
+                id: "abc-123-456",
+                shouldPass: false
+            },
+            {
+                name: "ID vide",
+                id: "",
+                shouldPass: false
+            },
+            {
+                name: "ID null",
+                id: null,
+                shouldPass: false
+            },
+            {
+                name: "ID undefined",
+                id: undefined,
+                shouldPass: false
+            },
+            {
+                name: "ID réel exemple 1",
+                id: "mhdmetrbclhhn65226",
+                shouldPass: true
+            },
+            {
+                name: "ID réel exemple 2",
+                id: "lz8x9y2abc",
+                shouldPass: true
+            }
+        ];
+
+        // Exécuter les tests
+        const resultsDiv = document.getElementById('results');
+        let passed = 0;
+        let failed = 0;
+
+        tests.forEach((test, index) => {
+            const result = isValidId(test.id);
+            const success = result === test.shouldPass;
+            
+            if (success) passed++;
+            else failed++;
+
+            const div = document.createElement('div');
+            div.className = `test ${success ? 'pass' : 'fail'}`;
+            div.innerHTML = `
+                <strong>${success ? '✅' : '❌'} Test ${index + 1}: ${test.name}</strong><br>
+                ID: <code>${test.id || '(vide)'}</code><br>
+                Longueur: ${test.id ? test.id.length : 0} caractères<br>
+                Résultat: ${result ? 'VALIDE' : 'INVALIDE'}<br>
+                Attendu: ${test.shouldPass ? 'VALIDE' : 'INVALIDE'}
+            `;
+            resultsDiv.appendChild(div);
+        });
+
+        // Résumé
+        const summary = document.createElement('div');
+        summary.style.marginTop = '20px';
+        summary.style.padding = '15px';
+        summary.style.background = '#2d2d2d';
+        summary.style.borderRadius = '8px';
+        summary.innerHTML = `
+            <h2>📊 Résumé</h2>
+            <p>✅ Tests réussis: <strong style="color: #10b981">${passed}</strong></p>
+            <p>❌ Tests échoués: <strong style="color: #ef4444">${failed}</strong></p>
+            <p>📈 Taux de réussite: <strong>${Math.round(passed / tests.length * 100)}%</strong></p>
+        `;
+        resultsDiv.appendChild(summary);
+
+        // Générer quelques IDs pour vérification
+        const generatedDiv = document.createElement('div');
+        generatedDiv.style.marginTop = '20px';
+        generatedDiv.style.padding = '15px';
+        generatedDiv.style.background = '#2d2d2d';
+        generatedDiv.style.borderRadius = '8px';
+        generatedDiv.innerHTML = '<h2>🔑 IDs Générés (exemples)</h2>';
+        
+        for (let i = 0; i < 5; i++) {
+            const id = generateId();
+            const valid = isValidId(id);
+            generatedDiv.innerHTML += `
+                <p>
+                    ${valid ? '✅' : '❌'} 
+                    <code>${id}</code> 
+                    (${id.length} caractères)
+                </p>
+            `;
+        }
+        resultsDiv.appendChild(generatedDiv);
+    </script>
+</body>
+</html>

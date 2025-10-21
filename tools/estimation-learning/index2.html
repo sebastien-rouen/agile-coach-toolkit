@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apprentissage des Estimations - Agile Coach Toolkit</title>
+    <link rel="stylesheet" href="../../assets/css/variables.css">
+    <link rel="stylesheet" href="../../assets/css/base.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>🎓 Apprentissage des Estimations</h1>
+            <p class="subtitle">Visualisez et manipulez les cartes d'estimation avec des animaux</p>
+        </header>
+
+        <main class="main-content">
+            <!-- Mode Selection -->
+            <section class="mode-selector">
+                <h2>Choisissez votre système d'estimation</h2>
+                <div class="mode-buttons">
+                    <button class="mode-btn active" data-mode="fibonacci">
+                        <span class="mode-icon">📊</span>
+                        <span class="mode-name">Fibonacci</span>
+                        <span class="mode-desc">1, 2, 3, 5, 8, 13, 21...</span>
+                    </button>
+                    <button class="mode-btn" data-mode="tshirt">
+                        <span class="mode-icon">👕</span>
+                        <span class="mode-name">Taille T-Shirt</span>
+                        <span class="mode-desc">XS, S, M, L, XL, XXL</span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Learning Section -->
+            <section class="learning-section">
+                <div class="learning-info">
+                    <h3>📚 Comment ça marche ?</h3>
+                    <p>Les animaux sont classés du plus léger au plus lourd. Chaque animal représente une valeur d'estimation. Vous pouvez les réorganiser pour comprendre la progression.</p>
+                </div>
+
+                <!-- Cards Display -->
+                <div class="cards-container">
+                    <div class="cards-board" id="cardsBoard">
+                        <!-- Cards will be generated here -->
+                    </div>
+                </div>
+
+                <!-- Shuffle Button -->
+                <div class="controls">
+                    <button class="btn btn-primary" id="shuffleBtn">
+                        🔀 Mélanger les cartes
+                    </button>
+                    <button class="btn btn-secondary" id="resetBtn">
+                        ↺ Réinitialiser
+                    </button>
+                </div>
+            </section>
+
+            <!-- Info Section -->
+            <section class="info-section">
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h4>💡 Fibonacci</h4>
+                        <p>Suite mathématique où chaque nombre est la somme des deux précédents. Idéale pour les estimations car elle reflète l'incertitude croissante.</p>
+                        <code>1, 2, 3, 5, 8, 13, 21, 34, 55, 89</code>
+                    </div>
+                    <div class="info-card">
+                        <h4>👕 Tailles T-Shirt</h4>
+                        <p>Système simple et intuitif pour les équipes qui préfèrent une approche moins numérique. Facile à comprendre pour les non-techniques.</p>
+                        <code>XS, S, M, L, XL, XXL</code>
+                    </div>
+                    <div class="info-card">
+                        <h4>🎯 Objectif</h4>
+                        <p>Comprendre la progression des estimations et comment les tâches augmentent en complexité. Utilisez cet outil pour former votre équipe.</p>
+                    </div>
+                    <div class="info-card">
+                        <h4>🐾 Les Animaux</h4>
+                        <p>Chaque animal a un poids réel qui correspond à une valeur d'estimation. Plus l'animal est lourd, plus la valeur est élevée.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p>Agile Coach Toolkit • <a href="../../index.html">Retour à l'accueil</a></p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+    
+    <!-- Intégration Agile Coach Toolkit -->
+    <script src="../../assets/js/tool-integration.js"></script>
+    <script>
+      // Configuration spécifique à l'outil
+      window.TOOL_CONFIG = {
+        name: 'agile-fluency',
+        backUrl: '../../index.html#tools'
+      };
+    </script>
+</body>
+</html>

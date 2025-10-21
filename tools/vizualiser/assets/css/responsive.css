@@ -1,0 +1,398 @@
+/**
+ * Responsive Styles - Adaptations mobile et tablette
+ */
+
+/* ================================================
+   Tablette (max-width: 1024px)
+   ================================================ */
+
+@media (max-width: 1024px) {
+  /* Layout passe en colonne unique */
+  .tool-layout {
+    grid-template-columns: 1fr;
+  }
+
+  /* Sidebar devient statique */
+  .tool-sidebar {
+    position: static;
+    max-height: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
+  }
+
+  .sidebar-section {
+    margin-bottom: 0;
+  }
+
+  /* Stats en 2 colonnes */
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* MindMap hauteur réduite */
+  .mindmap {
+    height: 500px;
+  }
+}
+
+/* ================================================
+   Mobile (max-width: 768px)
+   ================================================ */
+
+@media (max-width: 768px) {
+  /* Header tool */
+  .tool-header .header-content {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .tool-title {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
+
+  .tool-title h1 {
+    font-size: 24px;
+  }
+
+  .tool-tagline {
+    font-size: 14px;
+  }
+
+  /* Actions en colonne */
+  .tool-actions {
+    width: 100%;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .tool-actions .btn {
+    width: 100%;
+  }
+
+  /* Breadcrumb plus compact */
+  .breadcrumb {
+    font-size: 13px;
+    padding: 8px 0;
+  }
+
+  /* Stats en 2 colonnes */
+  .stats-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .stat-card {
+    padding: 12px;
+  }
+
+  .stat-value {
+    font-size: 28px;
+  }
+
+  .stat-label {
+    font-size: 12px;
+  }
+
+  /* Sidebar en colonne unique */
+  .tool-sidebar {
+    grid-template-columns: 1fr;
+  }
+
+  /* MindMap */
+  .mindmap {
+    height: 400px;
+  }
+
+  .mindmap-toolbar {
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 8px 12px;
+  }
+
+  .btn-icon {
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+  }
+
+  /* Modal */
+  .modal-content {
+    width: 95%;
+    max-height: 90vh;
+  }
+
+  .modal-header,
+  .modal-body {
+    padding: 16px;
+  }
+
+  .modal-header h2 {
+    font-size: 18px;
+  }
+
+  /* Tabs */
+  .tabs {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .tab {
+    padding: 10px 16px;
+    font-size: 13px;
+    white-space: nowrap;
+  }
+
+  /* Upload zone */
+  .upload-zone {
+    padding: 32px 16px;
+  }
+
+  .upload-icon {
+    font-size: 36px;
+  }
+
+  /* Demo cards */
+  .demo-card {
+    flex-direction: column;
+    text-align: center;
+    padding: 12px;
+  }
+
+  .demo-icon {
+    margin: 0 auto;
+  }
+
+  .demo-badge {
+    margin-left: 0;
+    margin-top: 8px;
+  }
+
+  /* Info panel */
+  .info-panel {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    max-height: 60vh;
+    border-radius: 16px 16px 0 0;
+    z-index: 1000;
+  }
+
+  /* Filtres */
+  .filter-group {
+    margin-bottom: 12px;
+  }
+
+  .checkbox-item {
+    padding: 8px;
+    font-size: 13px;
+  }
+
+  .form-select {
+    font-size: 14px;
+  }
+
+  /* Légende */
+  .legend-item {
+    font-size: 12px;
+  }
+
+  .legend-dot {
+    width: 10px;
+    height: 10px;
+  }
+}
+
+/* ================================================
+   Petit mobile (max-width: 576px)
+   ================================================ */
+
+@media (max-width: 576px) {
+  /* Container padding réduit */
+  .container {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  /* Header */
+  .tool-icon {
+    font-size: 32px;
+  }
+
+  .tool-title h1 {
+    font-size: 20px;
+  }
+
+  /* Stats en colonne unique */
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* MindMap encore plus compact */
+  .mindmap {
+    height: 350px;
+  }
+
+  /* Toolbar en 2 lignes */
+  .mindmap-toolbar {
+    justify-content: center;
+  }
+
+  /* Modal plein écran */
+  .modal-content {
+    width: 100%;
+    height: 100%;
+    max-height: 100vh;
+    border-radius: 0;
+  }
+
+  /* Tabs en scroll */
+  .tabs {
+    gap: 2px;
+  }
+
+  .tab {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+
+  /* Form inputs */
+  .form-control {
+    font-size: 16px; /* Éviter zoom iOS */
+  }
+
+  /* Boutons */
+  .btn {
+    padding: 10px 16px;
+    font-size: 14px;
+  }
+
+  .btn-sm {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+
+  /* Empty state */
+  .empty-icon {
+    font-size: 48px;
+  }
+
+  .empty-state h3 {
+    font-size: 18px;
+  }
+
+  .empty-state p {
+    font-size: 14px;
+  }
+
+  .empty-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .empty-actions .btn {
+    width: 100%;
+  }
+}
+
+/* ================================================
+   Landscape mobile (orientation paysage)
+   ================================================ */
+
+@media (max-width: 896px) and (orientation: landscape) {
+  .mindmap {
+    height: 300px;
+  }
+
+  .stats-bar {
+    padding: 12px 0;
+  }
+
+  .tool-header {
+    padding: 12px 0;
+  }
+
+  .modal-content {
+    max-height: 95vh;
+  }
+}
+
+/* ================================================
+   Touch optimizations
+   ================================================ */
+
+@media (hover: none) and (pointer: coarse) {
+  /* Zones tactiles minimum 44px */
+  .btn,
+  .checkbox-item,
+  .tab,
+  .demo-card {
+    min-height: 44px;
+  }
+
+  /* Espacement entre éléments cliquables */
+  .tool-actions {
+    gap: 12px;
+  }
+
+  .mindmap-toolbar {
+    gap: 10px;
+  }
+
+  /* Pas d'effets hover */
+  .btn:hover,
+  .checkbox-item:hover,
+  .demo-card:hover {
+    transform: none;
+  }
+
+  /* Focus visible pour navigation clavier */
+  .btn:focus,
+  .checkbox-item:focus,
+  .tab:focus {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+  }
+}
+
+/* ================================================
+   Print styles
+   ================================================ */
+
+@media print {
+  /* Masquer les éléments non imprimables */
+  .toolkit-nav,
+  .breadcrumb,
+  .tool-actions,
+  .tool-sidebar,
+  .mindmap-toolbar,
+  .tool-footer,
+  .modal {
+    display: none !important;
+  }
+
+  /* MindMap pleine page */
+  .mindmap-wrapper {
+    border: none;
+    page-break-inside: avoid;
+  }
+
+  .mindmap {
+    height: auto;
+    min-height: 600px;
+  }
+
+  /* Stats visibles */
+  .stats-bar {
+    page-break-after: avoid;
+  }
+
+  /* Couleurs pour impression */
+  body {
+    background: white;
+    color: black;
+  }
+}

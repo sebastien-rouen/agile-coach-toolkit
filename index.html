@@ -15,25 +15,10 @@
     <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
 
     <!-- CSS -->
-    <link rel="stylesheet" href="assets/css/variables.css">
-    <link rel="stylesheet" href="assets/themes/theme-light.css">
-    <link rel="stylesheet" href="assets/css/base.css">
-    <link rel="stylesheet" href="assets/css/components.css">
-    <link rel="stylesheet" href="assets/css/sidebar.css">
-    <link rel="stylesheet" href="assets/css/layout.css">
-    <link rel="stylesheet" href="assets/css/responsive.css">
-    <link rel="stylesheet" href="assets/css/modal.css">
-    <link rel="stylesheet" href="assets/css/wizard.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 
     <!-- Preload -->
     <link rel="preload" href="config/config.json" as="fetch" crossorigin>
-    
-    <style>
-        /* Cacher le bouton favori sur la page d'accueil */
-        #favoriteBtn {
-            display: none !important;
-        }
-    </style>
 </head>
 
 <body>
@@ -41,178 +26,107 @@
     <!-- HEADER (chargé dynamiquement) -->
     <div id="header-placeholder"></div>
 
-    <!-- SIDEBAR (chargé dynamiquement) -->
-    <div id="sidebar-placeholder"></div>
+    <!-- PAGE CONTAINER -->
+    <div class="page-container">
+        <!-- SIDEBAR (chargé dynamiquement) -->
+        <div id="sidebar-placeholder"></div>
 
-    <!-- MAIN CONTENT -->
-    <main class="main-content" id="mainContent">
+        <!-- MAIN CONTENT -->
+        <main class="main-content" id="mainContent">
 
-        <!-- WIZARD (affiché au premier chargement) -->
-        <div class="wizard-container">
-            <div class="wizard-card">
-                <!-- Header -->
-                <div class="wizard-header">
-                    <span class="wizard-icon">🎯</span>
-                    <h1 class="wizard-title">Trouvez les bons outils pour votre contexte</h1>
-                    <p class="wizard-subtitle">
-                        Répondez à quelques questions pour obtenir des recommandations personnalisées
-                    </p>
-                </div>
-
-                <!-- Progress bar -->
-                <div class="wizard-progress">
-                    <div class="progress-step active">
-                        <div class="progress-number">1</div>
-                        <span>Votre rôle</span>
+            <!-- WIZARD (affiché au premier chargement) -->
+            <div class="wizard-container">
+                <div class="wizard-card">
+                    <!-- Header -->
+                    <div class="wizard-header">
+                        <span class="wizard-icon">🎯</span>
+                        <h1 class="wizard-title">Trouvez les bons outils pour votre contexte</h1>
+                        <p class="wizard-subtitle">
+                            Répondez à quelques questions pour obtenir des recommandations personnalisées
+                        </p>
                     </div>
-                    <div class="progress-separator"></div>
-                    <div class="progress-step">
-                        <div class="progress-number">2</div>
-                        <span>Votre objectif</span>
-                    </div>
-                    <div class="progress-separator"></div>
-                    <div class="progress-step">
-                        <div class="progress-number">3</div>
-                        <span>Votre contexte</span>
-                    </div>
-                </div>
 
-                <!-- Contenu -->
-                <div class="wizard-content">
-                    <h2 class="wizard-question">Quel est votre rôle ?</h2>
-
-                    <div class="options-grid">
-                        <div class="option-card" data-value="scrum-master">
-                            <span class="option-icon">🏃</span>
-                            <div class="option-label">Scrum Master</div>
-                            <p class="option-description">Facilitateur d'équipe Scrum</p>
+                    <!-- Progress bar -->
+                    <div class="wizard-progress">
+                        <div class="progress-step active">
+                            <div class="progress-number">1</div>
+                            <span>Votre rôle</span>
                         </div>
-
-                        <div class="option-card" data-value="coach-agile">
-                            <span class="option-icon">🎓</span>
-                            <div class="option-label">Coach Agile</div>
-                            <p class="option-description">Coach de transformation</p>
+                        <div class="progress-separator"></div>
+                        <div class="progress-step">
+                            <div class="progress-number">2</div>
+                            <span>Votre objectif</span>
                         </div>
-
-                        <div class="option-card" data-value="product-owner">
-                            <span class="option-icon">📦</span>
-                            <div class="option-label">Product Owner</div>
-                            <p class="option-description">Responsable produit</p>
-                        </div>
-
-                        <div class="option-card" data-value="developpeur">
-                            <span class="option-icon">💻</span>
-                            <div class="option-label">Développeur</div>
-                            <p class="option-description">Membre de l'équipe de développement</p>
-                        </div>
-
-                        <div class="option-card" data-value="manager">
-                            <span class="option-icon">👔</span>
-                            <div class="option-label">Manager</div>
-                            <p class="option-description">Manager d'équipe ou de département</p>
-                        </div>
-
-                        <div class="option-card" data-value="curieux">
-                            <span class="option-icon">🌱</span>
-                            <div class="option-label">Curieux / Débutant</div>
-                            <p class="option-description">Je découvre l'agilité</p>
+                        <div class="progress-separator"></div>
+                        <div class="progress-step">
+                            <div class="progress-number">3</div>
+                            <span>Votre contexte</span>
                         </div>
                     </div>
-                </div>
 
-                <!-- Actions -->
-                <div class="wizard-actions">
-                    <button class="btn-wizard btn-wizard-secondary" id="btnPrevious" disabled>
-                        ← Précédent
-                    </button>
-                    <button class="btn-wizard btn-wizard-primary" id="btnNext" disabled>
-                        Suivant →
-                    </button>
+                    <!-- Contenu -->
+                    <div class="wizard-content">
+                        <h2 class="wizard-question">Quel est votre rôle ?</h2>
+
+                        <!-- Étape 1 : Rôle -->
+                        <div class="wizard-step active" id="wizardStep1">
+                            <div class="options-grid" id="roleOptions">
+                                <!-- Généré dynamiquement par wizard.js -->
+                            </div>
+                        </div>
+
+                        <!-- Étape 2 : Objectif -->
+                        <div class="wizard-step" id="wizardStep2">
+                            <div class="options-grid" id="goalOptions">
+                                <!-- Généré dynamiquement par wizard.js -->
+                            </div>
+                        </div>
+
+                        <!-- Étape 3 : Contexte -->
+                        <div class="wizard-step" id="wizardStep3">
+                            <div class="options-grid" id="contextOptions">
+                                <!-- Généré dynamiquement par wizard.js -->
+                            </div>
+                        </div>
+
+                        <!-- Résultats -->
+                        <div class="wizard-step" id="wizardResults">
+                            <div class="wizard-results-header">
+                                <h3 class="wizard-results-title">🎯 Catégories recommandées pour vous</h3>
+                                <div id="selectionSummary">
+                                    <!-- Récapitulatif des sélections généré dynamiquement -->
+                                </div>
+                            </div>
+                            <div class="wizard-results-list" id="resultsContainer">
+                                <!-- Généré dynamiquement -->
+                            </div>
+                            <div class="wizard-results-actions">
+                                <button class="btn btn-primary" id="restartWizard">
+                                    🔄 Recommencer le guide
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="wizard-actions">
+                        <button class="btn-wizard btn-wizard-secondary" id="wizardBack">
+                            ← Précédent
+                        </button>
+                        <button class="btn-wizard btn-wizard-ghost" id="wizardSkip">
+                            Passer cette étape
+                        </button>
+                        <button class="btn-wizard btn-wizard-primary" id="wizardNext" style="display: none;">
+                            Voir les recommandations →
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
 
-
-        <!-- HOMEPAGE (affichée après le wizard ou si déjà visité) -->
-        <div class="homepage-container" id="homepageContainer" style="display: none;">
-
-            <!-- Hero Section -->
-            <section class="hero-section">
-                <div class="hero-content">
-                    <h1 class="hero-title">
-                        Boostez vos pratiques agiles 🚀
-                    </h1>
-                    <p class="hero-description">
-                        Collection gratuite d'outils et ressources pour les coachs agiles,
-                        Scrum Masters, Product Owners et équipes qui veulent s'améliorer.
-                    </p>
-                    <div class="hero-actions">
-                        <button class="btn btn-primary" id="showWizardBtn">
-                            🧭 Lancer le guide interactif
-                        </button>
-                        <a href="#categories" class="btn btn-secondary">
-                            Voir toutes les catégories
-                        </a>
-                    </div>
-                </div>
-
-                <div class="hero-stats">
-                    <div class="stat-card">
-                        <div class="stat-number">14</div>
-                        <div class="stat-label">Catégories</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number" id="toolsCount">50+</div>
-                        <div class="stat-label">Outils & Ressources</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">100%</div>
-                        <div class="stat-label">Gratuit & Open-source</div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Featured Categories -->
-            <section class="featured-section" id="categories">
-                <div class="section-header">
-                    <h2 class="section-title">📚 Explorez par thématique</h2>
-                    <p class="section-description">
-                        Choisissez une catégorie pour découvrir les outils et ressources adaptés
-                    </p>
-                </div>
-
-                <div class="categories-grid" id="categoriesGrid">
-                    <!-- Généré dynamiquement -->
-                </div>
-            </section>
-
-            <!-- Quick Access Tools -->
-            <section class="tools-section">
-                <div class="section-header">
-                    <h2 class="section-title">⚡ Accès rapide aux outils interactifs</h2>
-                </div>
-
-                <div class="tools-grid" id="quickToolsGrid">
-                    <!-- Généré dynamiquement depuis tools/ -->
-                </div>
-            </section>
-
-            <!-- Recent Activity (si applicable) -->
-            <section class="recents-section" id="recentsSection" style="display: none;">
-                <div class="section-header">
-                    <h2 class="section-title">🕐 Consultés récemment</h2>
-                </div>
-                <div class="recents-list" id="recentsList">
-                    <!-- Généré dynamiquement -->
-                </div>
-            </section>
-
-        </div>
-
-    </main>
-
-    <!-- FOOTER (chargé dynamiquement) -->
-    <div id="footer-placeholder"></div>
+            <!-- FOOTER (chargé dynamiquement) -->
+            <div id="footer-placeholder"></div>
+        </main>
+    </div>
 
     <!-- MODALS -->
 
@@ -310,6 +224,7 @@
     <script src="assets/js/navigation.js"></script>
     <script src="assets/js/wizard.js"></script>
     <script src="assets/js/markdown-parser.js"></script>
+    <script src="assets/js/search.js"></script>
     <script src="assets/js/main.js"></script>
 
 </body>

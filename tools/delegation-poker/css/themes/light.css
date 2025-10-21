@@ -1,0 +1,221 @@
+/**
+ * Light Theme pour Delegation Poker
+ * Thème clair avec couleurs douces et contrastes optimisés
+ */
+
+:root[data-theme="light"] {
+    /* Couleurs principales */
+    --primary: #3b82f6;
+    --primary-dark: #2563eb;
+    --success: #10b981;
+    --warning: #f59e0b;
+    --error: #ef4444;
+    
+    /* Backgrounds */
+    --bg-primary: #ffffff;
+    --bg-secondary: #f9fafb;
+    --bg-tertiary: #f3f4f6;
+    --bg-card: #ffffff;
+    
+    /* Textes */
+    --text-primary: #1f2937;
+    --text-secondary: #6b7280;
+    --text-tertiary: #9ca3af;
+    
+    /* Bordures */
+    --border-color: #e5e7eb;
+    --border-color-hover: #d1d5db;
+    
+    /* Ombres */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    
+    /* Couleurs niveaux délégation */
+    --level-1: #ef4444;
+    --level-2: #f97316;
+    --level-3: #f59e0b;
+    --level-4: #eab308;
+    --level-5: #84cc16;
+    --level-6: #22c55e;
+    --level-7: #10b981;
+    
+    /* Overlay */
+    --overlay-bg: rgba(0, 0, 0, 0.5);
+}
+
+/* Ajustements spécifiques au thème clair */
+:root[data-theme="light"] .header {
+    border-bottom-color: var(--border-color);
+}
+
+:root[data-theme="light"] .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+}
+
+:root[data-theme="light"] .btn-secondary {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+}
+
+:root[data-theme="light"] .btn-secondary:hover {
+    background: #e5e7eb;
+}
+
+:root[data-theme="light"] .level-item {
+    background: var(--bg-secondary);
+}
+
+:root[data-theme="light"] .level-item:hover {
+    background: var(--bg-tertiary);
+}
+
+:root[data-theme="light"] .vote-card {
+    background: var(--bg-secondary);
+    border-color: var(--border-color);
+}
+
+:root[data-theme="light"] .vote-card:hover {
+    border-color: var(--primary);
+}
+
+:root[data-theme="light"] .result-stats,
+:root[data-theme="light"] .result-item,
+:root[data-theme="light"] .session-item {
+    background: var(--bg-secondary);
+}
+
+:root[data-theme="light"] .session-item:hover {
+    background: var(--bg-tertiary);
+}
+
+:root[data-theme="light"] input,
+:root[data-theme="light"] select,
+:root[data-theme="light"] textarea {
+    background: var(--bg-primary);
+    border-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+:root[data-theme="light"] input:focus,
+:root[data-theme="light"] select:focus,
+:root[data-theme="light"] textarea:focus {
+    border-color: var(--primary);
+}
+
+/* Session Info */
+:root[data-theme="light"] .session-info-card {
+    background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-secondary) 100%);
+    border-color: var(--border-color);
+}
+
+:root[data-theme="light"] .session-name-container {
+    background: var(--bg-tertiary);
+}
+
+:root[data-theme="light"] #participantsList li {
+    background: var(--bg-secondary);
+}
+
+:root[data-theme="light"] #participantsList li:hover {
+    background: var(--bg-tertiary);
+}
+
+/* Workshop Explanation */
+:root[data-theme="light"] .workshop-explanation {
+    background: var(--bg-secondary);
+    border-color: var(--border-color);
+}
+
+:root[data-theme="light"] .workshop-rule {
+    background: var(--bg-tertiary);
+}
+
+:root[data-theme="light"] .workshop-consensus {
+    background: var(--bg-tertiary);
+}
+
+/* Decisions Table */
+:root[data-theme="light"] .decisions-table {
+    background: var(--bg-card);
+}
+
+:root[data-theme="light"] .decisions-table thead {
+    background: var(--bg-tertiary);
+}
+
+:root[data-theme="light"] .decisions-table th,
+:root[data-theme="light"] .decisions-table td {
+    border-color: var(--border-color);
+}
+
+:root[data-theme="light"] .decisions-table tbody tr:hover {
+    background: var(--bg-secondary);
+}
+
+:root[data-theme="light"] .decisions-table th:first-child,
+:root[data-theme="light"] .decisions-table td:first-child {
+    background: var(--bg-card);
+}
+
+:root[data-theme="light"] .consensus-indicator.active {
+    background: rgba(16, 185, 129, 0.15);
+}
+
+/* Delegation Board */
+:root[data-theme="light"] .delegation-board-table {
+    background: var(--bg-card);
+}
+
+:root[data-theme="light"] .delegation-board-table thead {
+    background: var(--bg-card);
+}
+
+:root[data-theme="light"] .delegation-board-table th,
+:root[data-theme="light"] .delegation-board-table td {
+    border-color: var(--border-color);
+}
+
+:root[data-theme="light"] .delegation-board-table th:first-child,
+:root[data-theme="light"] .delegation-board-table td:first-child {
+    background: var(--bg-card);
+}
+
+:root[data-theme="light"] .delegation-board-table tbody tr {
+    background: var(--bg-card);
+}
+
+:root[data-theme="light"] .delegation-board-table tbody tr:hover {
+    background: var(--bg-secondary);
+}
+
+:root[data-theme="light"] .delegation-board-table .board-cell {
+    background: var(--bg-card);
+}
+
+:root[data-theme="light"] .delegation-board-table .board-cell.active {
+    background: var(--bg-card);
+}
+
+/* Coach Tips */
+:root[data-theme="light"] .coach-tips {
+    background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-secondary) 100%);
+    border-top-color: var(--border-color);
+}
+
+:root[data-theme="light"] .tip-card {
+    background: var(--bg-card);
+    border-color: var(--border-color);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+:root[data-theme="light"] .tip-card:hover {
+    border-color: var(--primary);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+:root[data-theme="light"] .coach-quote {
+    background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-secondary) 100%);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}

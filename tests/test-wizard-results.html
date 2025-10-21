@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test - Résultats Wizard Améliorés</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <style>
+        body {
+            padding: 2rem;
+            background: var(--bg-primary);
+        }
+        .test-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .test-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .test-title {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+        .test-description {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <div class="test-header">
+            <h1 class="test-title">🧪 Test - Résultats Wizard Améliorés</h1>
+            <p class="test-description">
+                Visualisation des résultats groupés et colorisés (Catégories, Outils, Templates)
+            </p>
+        </div>
+
+        <div class="wizard-results-list">
+            <!-- Section Catégories -->
+            <div class="results-section">
+                <h3 class="results-section-title">
+                    <span class="section-icon">📚</span>
+                    Catégories recommandées
+                </h3>
+                <div class="results-section-grid">
+                    <a href="#" class="result-card result-card-category">
+                        <div class="result-icon" style="background-color: rgba(78, 205, 196, 0.2); color: #4ECDC4;">
+                            🚵
+                        </div>
+                        <div class="result-content">
+                            <h3 class="result-title">Frameworks</h3>
+                            <p class="result-subtitle">Scrum, Kanban & autres méthodes</p>
+                        </div>
+                        <div class="result-score">⭐⭐⭐</div>
+                    </a>
+
+                    <a href="#" class="result-card result-card-category">
+                        <div class="result-icon" style="background-color: rgba(255, 107, 107, 0.2); color: #FF6B6B;">
+                            🎯
+                        </div>
+                        <div class="result-content">
+                            <h3 class="result-title">Fondamentaux</h3>
+                            <p class="result-subtitle">Bases du coaching agile</p>
+                        </div>
+                        <div class="result-score">⭐⭐</div>
+                    </a>
+
+                    <a href="#" class="result-card result-card-category">
+                        <div class="result-icon" style="background-color: rgba(243, 156, 18, 0.2); color: #F39C12;">
+                            👑
+                        </div>
+                        <div class="result-content">
+                            <h3 class="result-title">Leadership & Coaching</h3>
+                            <p class="result-subtitle">Postures et soft skills</p>
+                        </div>
+                        <div class="result-score">⭐⭐</div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Section Outils -->
+            <div class="results-section">
+                <h3 class="results-section-title">
+                    <span class="section-icon">🛠️</span>
+                    Outils recommandés
+                </h3>
+                <div class="results-section-grid results-section-grid-compact">
+                    <a href="#" class="result-card result-card-tool">
+                        <div class="result-icon result-icon-tool">🃏</div>
+                        <div class="result-content">
+                            <h4 class="result-title">Planning Poker</h4>
+                            <p class="result-subtitle">Estimer la complexité des user stories</p>
+                        </div>
+                        <div class="result-badge">Outil</div>
+                    </a>
+
+                    <a href="#" class="result-card result-card-tool">
+                        <div class="result-icon result-icon-tool">📊</div>
+                        <div class="result-content">
+                            <h4 class="result-title">Velocity Squad</h4>
+                            <p class="result-subtitle">Suivre la vélocité de votre équipe</p>
+                        </div>
+                        <div class="result-badge">Outil</div>
+                    </a>
+
+                    <a href="#" class="result-card result-card-tool">
+                        <div class="result-icon result-icon-tool">🎯</div>
+                        <div class="result-content">
+                            <h4 class="result-title">Agile Fluency</h4>
+                            <p class="result-subtitle">Évaluer la maturité agile de votre équipe</p>
+                        </div>
+                        <div class="result-badge">Outil</div>
+                    </a>
+
+                    <a href="#" class="result-card result-card-tool">
+                        <div class="result-icon result-icon-tool">🗺️</div>
+                        <div class="result-content">
+                            <h4 class="result-title">Example Mapping</h4>
+                            <p class="result-subtitle">Clarifier les user stories avec des exemples</p>
+                        </div>
+                        <div class="result-badge">Outil</div>
+                    </a>
+
+                    <a href="#" class="result-card result-card-tool">
+                        <div class="result-icon result-icon-tool">🎴</div>
+                        <div class="result-content">
+                            <h4 class="result-title">Delegation Poker</h4>
+                            <p class="result-subtitle">Clarifier les niveaux de délégation</p>
+                        </div>
+                        <div class="result-badge">Outil</div>
+                    </a>
+
+                    <a href="#" class="result-card result-card-tool">
+                        <div class="result-icon result-icon-tool">📊</div>
+                        <div class="result-content">
+                            <h4 class="result-title">Skills Matrix</h4>
+                            <p class="result-subtitle">Cartographier les compétences de l'équipe</p>
+                        </div>
+                        <div class="result-badge">Outil</div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Section Templates -->
+            <div class="results-section">
+                <h3 class="results-section-title">
+                    <span class="section-icon">📄</span>
+                    Templates recommandés
+                </h3>
+                <div class="results-section-grid results-section-grid-compact">
+                    <a href="#" class="result-card result-card-template">
+                        <div class="result-icon result-icon-template">📋</div>
+                        <div class="result-content">
+                            <h4 class="result-title">Template Sprint Planning</h4>
+                            <p class="result-subtitle">Modèle pour organiser votre sprint planning</p>
+                        </div>
+                        <div class="result-badge">Template</div>
+                    </a>
+
+                    <a href="#" class="result-card result-card-template">
+                        <div class="result-icon result-icon-template">📝</div>
+                        <div class="result-content">
+                            <h4 class="result-title">Template Rétrospective</h4>
+                            <p class="result-subtitle">Canevas pour animer vos rétrospectives</p>
+                        </div>
+                        <div class="result-badge">Template</div>
+                    </a>
+
+                    <a href="#" class="result-card result-card-template">
+                        <div class="result-icon result-icon-template">📊</div>
+                        <div class="result-content">
+                            <h4 class="result-title">Template User Story</h4>
+                            <p class="result-subtitle">Format standardisé pour vos user stories</p>
+                        </div>
+                        <div class="result-badge">Template</div>
+                    </a>
+
+                    <a href="#" class="result-card result-card-template">
+                        <div class="result-icon result-icon-template">🎯</div>
+                        <div class="result-content">
+                            <h4 class="result-title">Template OKR</h4>
+                            <p class="result-subtitle">Définir et suivre vos objectifs</p>
+                        </div>
+                        <div class="result-badge">Template</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 3rem; padding: 2rem; background: var(--bg-secondary); border-radius: 8px;">
+            <h3 style="margin-bottom: 1rem; color: var(--text-primary);">✅ Fonctionnalités testées</h3>
+            <ul style="list-style: none; padding: 0; color: var(--text-secondary);">
+                <li>✓ Sections groupées avec titres et icônes</li>
+                <li>✓ Différenciation visuelle par couleur (bordures et fonds)</li>
+                <li>✓ Badges "OUTIL" et "TEMPLATE"</li>
+                <li>✓ Grille responsive adaptative</li>
+                <li>✓ Effets hover cohérents</li>
+                <li>✓ Icônes colorées selon le type</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

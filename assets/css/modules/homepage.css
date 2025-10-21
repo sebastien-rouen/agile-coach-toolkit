@@ -1,0 +1,8 @@
+/**
+ * homepage.css - Styles de la page d'accueil (vide - wizard uniquement)
+ */
+
+/* Cacher le bouton favori sur la page d'accueil */
+#favoriteBtn {
+    display: none !important;
+}

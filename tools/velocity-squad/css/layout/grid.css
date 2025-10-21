@@ -1,0 +1,148 @@
+/* ====================================
+   GRILLE DASHBOARD - Layout principal
+   ==================================== */
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 1.5rem;
+  max-width: 1400px;
+  margin: 2rem auto;
+  padding: 0 2rem;
+}
+
+/* Sections de base */
+.chart-section,
+.kpi-section,
+.radar-section,
+.capacity-section,
+.heatmap-section,
+.coaching-section,
+.casino-section {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+}
+
+.chart-section:hover,
+.kpi-section:hover,
+.radar-section:hover {
+  box-shadow: var(--shadow-hover);
+}
+
+.radar-section {
+  position: relative;
+  height: 400px;
+}
+
+.radar-container {
+  position: relative;
+  height: 300px;
+  width: 100%;
+}
+
+/* Barre d'actions */
+.action-bar {
+  background: white;
+  padding: 1rem 2rem;
+  display: flex;
+  gap: 1.5rem;
+  box-shadow: var(--shadow);
+  max-width: 1400px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.action-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  background: linear-gradient(135deg, #f8f9fa, #ffffff);
+  border-radius: var(--border-radius);
+  border: 1px solid #e9ecef;
+}
+
+.action-group-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #6c757d;
+  padding: 0 0.5rem;
+  white-space: nowrap;
+  border-right: 2px solid #e9ecef;
+  margin-right: 0.25rem;
+}
+
+/* Sprint Goal Section */
+.sprint-goal-section {
+  background: linear-gradient(135deg, #f8f9fa, #ffffff);
+  padding: 1.5rem 2rem;
+  box-shadow: var(--shadow);
+  max-width: 1400px;
+  margin: 0 auto 2rem;
+  border-left: 4px solid var(--primary);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.sprint-goal-section:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.sprint-goal-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.sprint-goal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sprint-goal-header h3 {
+  color: var(--primary);
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.sprint-goal-display {
+  background: white;
+  padding: 1rem 1.25rem;
+  border-radius: var(--border-radius);
+  border: 2px solid #e9ecef;
+  min-height: 60px;
+  transition: border-color 0.3s ease;
+}
+
+.sprint-goal-display:hover {
+  border-color: var(--primary);
+}
+
+.sprint-goal-display p {
+  margin: 0;
+  line-height: 1.6;
+  color: var(--text-dark);
+}
+
+.sprint-goal-empty {
+  color: #999;
+  font-style: italic;
+}
+
+.sprint-goal-text {
+  font-size: 1rem;
+  color: var(--text-dark);
+  white-space: pre-wrap;
+}
+
+.sprint-goal-meta {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: #666;
+  font-style: italic;
+}

@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stakeholder Mapping</title>
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/table-view.css">
+    <link rel="stylesheet" href="css/circles-view.css">
+    <link rel="stylesheet" href="css/matrix-view.css">
+    <link rel="stylesheet" href="css/modal.css">
+    <link rel="stylesheet" href="css/theme-light.css">
+</head>
+
+<body>
+    <!-- Sidebar Toggle Button -->
+    <button class="sidebar-toggle" id="sidebarToggle" title="Guide & Lexique">
+        <span class="sidebar-toggle-icon">📖</span>
+    </button>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2>📖 Guide & Lexique</h2>
+            <div class="sidebar-header-actions">
+                <button class="sidebar-pin" id="sidebarPin" title="Épingler la sidebar">
+                    <span class="pin-icon">📌</span>
+                </button>
+                <button class="sidebar-close" id="sidebarClose">×</button>
+            </div>
+        </div>
+        <div class="sidebar-content">
+            <div class="sidebar-section">
+                <h3>📖 Définitions</h3>
+                <div class="lexique-item">
+                    <strong>Pouvoir</strong>
+                    <p>Capacité d'une partie prenante à influencer les décisions et l'orientation du projet.</p>
+                </div>
+                <div class="lexique-item">
+                    <strong>Intérêt</strong>
+                    <p>Niveau d'attention et d'engagement qu'une partie prenante porte au projet et à ses résultats.</p>
+                </div>
+                <div class="lexique-item">
+                    <strong>Influence</strong>
+                    <p>Impact global qu'une partie prenante peut avoir sur la réussite ou l'échec du projet.</p>
+                </div>
+                <div class="lexique-item">
+                    <strong>Domaine</strong>
+                    <p>Catégorie fonctionnelle à laquelle appartient la partie prenante (Gouvernance, Client,
+                        Fournisseur, Influenceur).</p>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h3>🎯 Niveaux d'Influence</h3>
+                <div class="influence-items">
+                    <div class="influence-item vital">
+                        <div class="influence-badge">Vital</div>
+                        <p>Impact critique sur le projet</p>
+                    </div>
+                    <div class="influence-item necessary">
+                        <div class="influence-badge">Nécessaire</div>
+                        <p>Influence importante</p>
+                    </div>
+                    <div class="influence-item good">
+                        <div class="influence-badge">Bon</div>
+                        <p>Influence modérée</p>
+                    </div>
+                    <div class="influence-item courtesy">
+                        <div class="influence-badge">Courtoisie</div>
+                        <p>Influence limitée</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h3>📊 Domaines</h3>
+                <div class="domain-items">
+                    <div class="domain-item governance">
+                        <div class="domain-badge">👑 Gouvernance</div>
+                        <p>Décisions stratégiques</p>
+                    </div>
+                    <div class="domain-item customer">
+                        <div class="domain-badge">👥 Client</div>
+                        <p>Utilisateurs finaux</p>
+                    </div>
+                    <div class="domain-item provider">
+                        <div class="domain-badge">🤝 Fournisseur</div>
+                        <p>Partenaires externes</p>
+                    </div>
+                    <div class="domain-item influencer">
+                        <div class="domain-badge">💡 Influenceur</div>
+                        <p>Leaders d'opinion</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h3>🚀 Guide d'Animation Rapide</h3>
+                <div class="animation-steps">
+                    <div class="step">
+                        <span class="step-number">1</span>
+                        <div class="step-content">
+                            <strong>Brainstorming (10 min)</strong>
+                            <p>Listez toutes les parties prenantes potentielles sur des post-its.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <span class="step-number">2</span>
+                        <div class="step-content">
+                            <strong>Catégorisation (5 min)</strong>
+                            <p>Regroupez par domaine : Gouvernance, Client, Fournisseur, Influenceur.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <span class="step-number">3</span>
+                        <div class="step-content">
+                            <strong>Évaluation (10 min)</strong>
+                            <p>Pour chaque partie prenante, évaluez Pouvoir (1-5) et Intérêt (1-5).</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <span class="step-number">4</span>
+                        <div class="step-content">
+                            <strong>Priorisation (5 min)</strong>
+                            <p>Placez dans la matrice et définissez la stratégie d'engagement.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <span class="step-number">5</span>
+                        <div class="step-content">
+                            <strong>Plan d'Action (10 min)</strong>
+                            <p>Définissez la fréquence et le type de communication pour chaque quadrant.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <div class="container">
+        <header class="header">
+            <h1>🎯 Stakeholder Mapping</h1>
+            <div class="header-actions">
+                <button id="newSessionBtn" class="btn btn-primary">
+                    <span class="btn-icon">➕</span> Nouvelle Session
+                </button>
+            </div>
+        </header>
+
+        <!-- Session Info -->
+        <div class="session-info" id="sessionInfo">
+            <div class="session-name-container">
+                <span id="sessionName" class="session-name"></span>
+                <button id="editSessionName" class="btn-icon-small" title="Modifier le nom de la session">✏️</button>
+            </div>
+
+            <div class="session-actions">
+                <!-- Groupe 2: Actions -->
+                <div class="controls-group">
+                    <span class="controls-label">⚙️ Actions</span>
+                    <button class="btn btn-secondary" id="templatesBtn">
+                        <span class="btn-icon">📋</span>
+                        <span class="btn-text">Templates</span>
+                    </button>
+                    <button class="btn btn-primary" id="addStakeholderBtn">
+                        <span class="btn-icon">👤</span>
+                        <span class="btn-text">Ajouter</span>
+                    </button>
+                    <button class="btn btn-success" id="saveBtn">
+                        <span class="btn-icon">💾</span>
+                        <span class="btn-text">Sauvegarder</span>
+                    </button>
+                </div>
+
+                <div class="controls-divider"></div>
+
+                <!-- Groupe 3: Import/Export -->
+                <div class="controls-group">
+                    <span class="controls-label">🔗 Partage</span>
+                    <button class="btn btn-secondary" id="importBtn">
+                        <span class="btn-icon">📥</span>
+                        <span class="btn-text">Importer</span>
+                    </button>
+                    <button class="btn btn-secondary" id="exportBtn">
+                        <span class="btn-icon">📤</span>
+                        <span class="btn-text">Exporter</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="controls">
+            <!-- Groupe 1: Vues -->
+            <div class="controls-group">
+                <span class="controls-label">📊 Vues</span>
+                <div class="btn-group">
+                    <button class="btn btn-view active" data-view="table">
+                        <span class="btn-icon">📋</span>
+                        <span class="btn-text">Tableau</span>
+                    </button>
+                    <button class="btn btn-view" data-view="circles">
+                        <span class="btn-icon">🎯</span>
+                        <span class="btn-text">Cercles</span>
+                    </button>
+                    <button class="btn btn-view" data-view="matrix">
+                        <span class="btn-icon">📊</span>
+                        <span class="btn-text">Matrice</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Views Container -->
+        <div class="views-container">
+            <!-- Table View -->
+            <div id="tableView" class="view-content active">
+                <div class="table-container">
+                    <table id="stakeholdersTable">
+                        <thead>
+                            <tr>
+                                <th>Nom</th>
+                                <th>Rôle</th>
+                                <th>Pouvoir</th>
+                                <th>Intérêt</th>
+                                <th>Influence</th>
+                                <th>Domaine</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Circles View -->
+            <div id="circlesView" class="view-content">
+                <div class="circles-container">
+                    <svg id="circlesSvg" viewBox="0 0 800 800"></svg>
+                    <div class="circles-legend">
+                        <div class="circles-legend-item">
+                            <div class="circle-sample vital"></div>
+                            <span>Vital</span>
+                        </div>
+                        <div class="circles-legend-item">
+                            <div class="circle-sample necessary"></div>
+                            <span>Nécessaire</span>
+                        </div>
+                        <div class="circles-legend-item">
+                            <div class="circle-sample good"></div>
+                            <span>Bon</span>
+                        </div>
+                        <div class="circles-legend-item">
+                            <div class="circle-sample courtesy"></div>
+                            <span>Courtoisie</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Matrix View -->
+            <div id="matrixView" class="view-content">
+                <div class="matrix-container">
+                    <div class="matrix-grid">
+                        <div class="matrix-quadrant high-power-low-interest">
+                            <h3>Garder Satisfait</h3>
+                            <p>Pouvoir Élevé, Intérêt Faible</p>
+                            <div class="quadrant-stakeholders" data-quadrant="high-low"></div>
+                        </div>
+                        <div class="matrix-quadrant high-power-high-interest">
+                            <h3>Le Plus Important</h3>
+                            <p>Pouvoir Élevé, Intérêt Élevé</p>
+                            <div class="quadrant-stakeholders" data-quadrant="high-high"></div>
+                        </div>
+                        <div class="matrix-quadrant low-power-low-interest">
+                            <h3>Le Moins Important</h3>
+                            <p>Pouvoir Faible, Intérêt Faible</p>
+                            <div class="quadrant-stakeholders" data-quadrant="low-low"></div>
+                        </div>
+                        <div class="matrix-quadrant low-power-high-interest">
+                            <h3>Tenir Informé</h3>
+                            <p>Pouvoir Faible, Intérêt Élevé</p>
+                            <div class="quadrant-stakeholders" data-quadrant="low-high"></div>
+                        </div>
+                    </div>
+                    <div class="matrix-axes">
+                        <div class="axis-label axis-x">Intérêt de la partie prenante →</div>
+                        <div class="axis-label axis-y">↑ Pouvoir de la partie prenante</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Add/Edit Stakeholder -->
+    <div class="modal-overlay" id="stakeholderModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="modalTitle">➕ Ajouter un Stakeholder</h2>
+                <button class="modal-close" id="closeModal">×</button>
+            </div>
+            <form id="stakeholderForm" novalidate>
+                <input type="hidden" id="stakeholderId">
+
+                <!-- Section 1: Identité -->
+                <div class="form-section">
+                    <h3 class="form-section-title">👤 Identité</h3>
+
+                    <div class="form-group">
+                        <label for="stakeholderName">Nom *</label>
+                        <input type="text" id="stakeholderName" required placeholder="Ex: Jean Dupont">
+                        <span class="form-error" id="nameError"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="stakeholderRole">Rôle *</label>
+                        <input type="text" id="stakeholderRole" required placeholder="Ex: Product Owner">
+                        <span class="form-error" id="roleError"></span>
+                    </div>
+                </div>
+
+                <!-- Section 2: Évaluation -->
+                <div class="form-section">
+                    <h3 class="form-section-title">📊 Évaluation</h3>
+
+                    <div class="form-group">
+                        <label for="stakeholderPower">Pouvoir *</label>
+                        <div class="number-selector">
+                            <button type="button" class="number-btn" data-field="power" data-value="1">1</button>
+                            <button type="button" class="number-btn" data-field="power" data-value="2">2</button>
+                            <button type="button" class="number-btn" data-field="power" data-value="3">3</button>
+                            <button type="button" class="number-btn" data-field="power" data-value="4">4</button>
+                            <button type="button" class="number-btn" data-field="power" data-value="5">5</button>
+                        </div>
+                        <input type="hidden" id="stakeholderPower" required>
+                        <small>1 = Faible, 5 = Très élevé</small>
+                        <span class="form-error" id="powerError"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="stakeholderInterest">Intérêt *</label>
+                        <div class="number-selector">
+                            <button type="button" class="number-btn" data-field="interest" data-value="1">1</button>
+                            <button type="button" class="number-btn" data-field="interest" data-value="2">2</button>
+                            <button type="button" class="number-btn" data-field="interest" data-value="3">3</button>
+                            <button type="button" class="number-btn" data-field="interest" data-value="4">4</button>
+                            <button type="button" class="number-btn" data-field="interest" data-value="5">5</button>
+                        </div>
+                        <input type="hidden" id="stakeholderInterest" required>
+                        <small>1 = Faible, 5 = Très élevé</small>
+                        <span class="form-error" id="interestError"></span>
+                    </div>
+                </div>
+
+                <!-- Section 3: Catégorisation -->
+                <div class="form-section">
+                    <h3 class="form-section-title">🎯 Catégorisation</h3>
+
+                    <div class="form-group">
+                        <label for="stakeholderInfluence">Niveau d'Influence *</label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="influence" value="vital" required>
+                                <span class="radio-label">
+                                    <span class="radio-icon" style="background: var(--color-vital)"></span>
+                                    <span class="radio-text">
+                                        <strong>Vital</strong>
+                                        <small>Impact critique</small>
+                                    </span>
+                                </span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="influence" value="necessary" required>
+                                <span class="radio-label">
+                                    <span class="radio-icon" style="background: var(--color-necessary)"></span>
+                                    <span class="radio-text">
+                                        <strong>Nécessaire</strong>
+                                        <small>Influence importante</small>
+                                    </span>
+                                </span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="influence" value="good" required>
+                                <span class="radio-label">
+                                    <span class="radio-icon" style="background: var(--color-good)"></span>
+                                    <span class="radio-text">
+                                        <strong>Bon</strong>
+                                        <small>Influence modérée</small>
+                                    </span>
+                                </span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="influence" value="courtesy" required>
+                                <span class="radio-label">
+                                    <span class="radio-icon" style="background: var(--color-courtesy)"></span>
+                                    <span class="radio-text">
+                                        <strong>Courtoisie</strong>
+                                        <small>Influence limitée</small>
+                                    </span>
+                                </span>
+                            </label>
+                        </div>
+                        <input type="hidden" id="stakeholderInfluence" required>
+                        <span class="form-error" id="influenceError"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="stakeholderDomain">Domaine *</label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="domain" value="governance" required>
+                                <span class="radio-label">
+                                    <span class="radio-icon" style="background: var(--color-governance)">👑</span>
+                                    <span class="radio-text">
+                                        <strong>Gouvernance</strong>
+                                        <small>Décisions stratégiques</small>
+                                    </span>
+                                </span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="domain" value="customer" required>
+                                <span class="radio-label">
+                                    <span class="radio-icon" style="background: var(--color-customer)">👥</span>
+                                    <span class="radio-text">
+                                        <strong>Client</strong>
+                                        <small>Utilisateurs finaux</small>
+                                    </span>
+                                </span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="domain" value="provider" required>
+                                <span class="radio-label">
+                                    <span class="radio-icon" style="background: var(--color-provider)">🤝</span>
+                                    <span class="radio-text">
+                                        <strong>Fournisseur</strong>
+                                        <small>Partenaires externes</small>
+                                    </span>
+                                </span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="domain" value="influencer" required>
+                                <span class="radio-label">
+                                    <span class="radio-icon" style="background: var(--color-influencer)">💡</span>
+                                    <span class="radio-text">
+                                        <strong>Influenceur</strong>
+                                        <small>Leaders d'opinion</small>
+                                    </span>
+                                </span>
+                            </label>
+                        </div>
+                        <input type="hidden" id="stakeholderDomain" required>
+                        <span class="form-error" id="domainError"></span>
+                    </div>
+                </div>
+
+                <!-- Section 4: Notes -->
+                <div class="form-section">
+                    <h3 class="form-section-title">📝 Notes</h3>
+
+                    <div class="form-group">
+                        <label for="stakeholderNotes">Informations complémentaires</label>
+                        <textarea id="stakeholderNotes" rows="3"
+                            placeholder="Stratégie d'engagement, points d'attention..."></textarea>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">💾 Enregistrer</button>
+                    <button type="button" class="btn btn-secondary" id="cancelBtn">Annuler</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Templates -->
+    <div class="modal-overlay" id="templatesModal">
+        <div class="modal-content modal-large">
+            <div class="modal-header">
+                <h2 class="modal-title">📋 Templates de Contextes</h2>
+                <button class="modal-close" id="closeTemplatesModal">×</button>
+            </div>
+            <div class="templates-grid">
+                <div class="template-card" data-template="it-ecommerce-scrum">
+                    <div class="template-icon">🛒</div>
+                    <h3>Équipe IT E-commerce SCRUM</h3>
+                    <p>Product Owner, Scrum Master, Développeurs, Clients, Fournisseurs</p>
+                    <button class="btn btn-primary template-load-btn">Charger</button>
+                </div>
+                <div class="template-card" data-template="it-ecommerce-kanban">
+                    <div class="template-icon">📊</div>
+                    <h3>Équipe IT E-commerce KANBAN</h3>
+                    <p>Team Lead, Développeurs, Support, Clients, Partenaires</p>
+                    <button class="btn btn-primary template-load-btn">Charger</button>
+                </div>
+                <div class="template-card" data-template="it-scrum-safe">
+                    <div class="template-icon">🏗️</div>
+                    <h3>Équipe IT SCRUM en SAFe</h3>
+                    <p>RTE, Product Manager, Scrum Master, Équipes, Architectes</p>
+                    <button class="btn btn-primary template-load-btn">Charger</button>
+                </div>
+                <div class="template-card" data-template="rh">
+                    <div class="template-icon">👥</div>
+                    <h3>Équipe RH</h3>
+                    <p>DRH, Recruteurs, Managers, Employés, Syndicats</p>
+                    <button class="btn btn-primary template-load-btn">Charger</button>
+                </div>
+                <div class="template-card" data-template="armee">
+                    <div class="template-icon">🎖️</div>
+                    <h3>Équipe dans l'Armée</h3>
+                    <p>Commandant, Officiers, Soldats, État-major, Logistique</p>
+                    <button class="btn btn-primary template-load-btn">Charger</button>
+                </div>
+                <div class="template-card" data-template="medicale">
+                    <div class="template-icon">🏥</div>
+                    <h3>Équipe Médicale</h3>
+                    <p>Chef de service, Médecins, Infirmiers, Patients, Administration</p>
+                    <button class="btn btn-primary template-load-btn">Charger</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Import -->
+    <div class="modal-overlay" id="importModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">📥 Import de Données</h2>
+                <button class="modal-close" id="closeImportModal">×</button>
+            </div>
+            <div class="import-options">
+                <div class="import-option">
+                    <div class="import-icon">📊</div>
+                    <h3>Fichier JSON</h3>
+                    <p>Importez une session précédente</p>
+                    <label for="jsonFile" class="file-input-label">
+                        <span class="file-input-icon">📁</span>
+                        <span class="file-input-text">Choisir un fichier</span>
+                    </label>
+                    <input type="file" id="jsonFile" accept=".json" class="file-input-hidden">
+                    <div id="fileNameDisplay" class="file-name-display"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Files -->
+    <script src="js/config.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/templates.js"></script>
+    <script src="js/table-view.js"></script>
+    <script src="js/circles-view.js"></script>
+    <script src="js/matrix-view.js"></script>
+    <script src="js/modal.js"></script>
+    <script src="js/import-export.js"></script>
+    <script src="js/app.js"></script>
+
+    <!-- PocketBase Integration -->
+    <script src="../../assets/js/pocketbase-manager.js"></script>
+    <script src="js/pocketbase-integration.js"></script>
+
+    <!-- Intégration Agile Coach Toolkit -->
+    <script src="../../assets/js/tool-integration.js"></script>
+    <script>
+        window.TOOL_CONFIG = {
+            name: 'stakeholder-mapping',
+            backUrl: '../../index.html#tools'
+        };
+    </script>
+</body>
+
+</html>

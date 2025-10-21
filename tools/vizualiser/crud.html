@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestion des Sujets - Visualiseur Multi-Équipes</title>
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="assets/css/vizualiser.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+  
+  <style>
+    /* Styles spécifiques CRUD */
+    .crud-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    .crud-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 2px solid #e0e0e0;
+    }
+
+    .crud-header h1 {
+      font-size: 28px;
+      font-weight: 700;
+      margin: 0;
+    }
+
+    .crud-actions {
+      display: flex;
+      gap: 12px;
+    }
+
+    /* Table */
+    .table-wrapper {
+      background: white;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .table-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px;
+      background: var(--light);
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .search-box {
+      display: flex;
+      gap: 8px;
+      flex: 1;
+      max-width: 400px;
+    }
+
+    .search-box input {
+      flex: 1;
+      padding: 8px 12px;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .data-table thead {
+      background: var(--light);
+      border-bottom: 2px solid #e0e0e0;
+    }
+
+    .data-table th {
+      padding: 12px 16px;
+      text-align: left;
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--dark);
+    }
+
+    .data-table td {
+      padding: 12px 16px;
+      border-bottom: 1px solid #f0f0f0;
+      font-size: 14px;
+    }
+
+    .data-table tbody tr:hover {
+      background: #f8f9fa;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .badge-team { background: #e3f2fd; color: #1976d2; }
+    .badge-cross-team { background: #fff3e0; color: #f57c00; }
+    .badge-individual { background: #f3e5f5; color: #7b1fa2; }
+
+    .badge-critical { background: #ffebee; color: #c62828; }
+    .badge-high { background: #fff3e0; color: #e65100; }
+    .badge-medium { background: #fff9c4; color: #f57f17; }
+    .badge-low { background: #e8f5e9; color: #2e7d32; }
+
+    .status-indicator {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .action-buttons {
+      display: flex;
+      gap: 8px;
+    }
+
+    .btn-icon-sm {
+      width: 32px;
+      height: 32px;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #e0e0e0;
+      background: white;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: all 0.2s;
+    }
+
+    .btn-icon-sm:hover {
+      background: var(--light);
+      border-color: var(--primary);
+    }
+
+    /* Form Modal */
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .form-group-full {
+      grid-column: 1 / -1;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-group label {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--dark);
+    }
+
+    .form-control,
+    .form-select,
+    .form-textarea {
+      padding: 10px 12px;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      font-size: 14px;
+      font-family: inherit;
+    }
+
+    .form-textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    .form-control:focus,
+    .form-select:focus,
+    .form-textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.1);
+    }
+
+    .checkbox-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .checkbox-group label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: normal;
+    }
+
+    /* Empty state */
+    .empty-table {
+      text-align: center;
+      padding: 48px 24px;
+      color: var(--secondary);
+    }
+
+    .empty-table-icon {
+      font-size: 48px;
+      margin-bottom: 16px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .crud-header {
+        flex-direction: column;
+        gap: 16px;
+        align-items: flex-start;
+      }
+
+      .crud-actions {
+        width: 100%;
+        flex-direction: column;
+      }
+
+      .table-toolbar {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .search-box {
+        max-width: none;
+        width: 100%;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .data-table {
+        font-size: 12px;
+      }
+
+      .data-table th,
+      .data-table td {
+        padding: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="crud-container">
+    <div class="crud-header">
+      <div>
+        <h1>✏️ Gestion des Sujets</h1>
+        <p style="color: var(--secondary); margin: 8px 0 0 0;">
+          Créer, modifier et supprimer les sujets de travail
+        </p>
+      </div>
+      <div class="crud-actions">
+        <a href="index.html" class="btn btn-outline">
+          ← Retour à la MindMap
+        </a>
+        <button class="btn btn-primary" onclick="openCreateModal()">
+          ➕ Nouveau sujet
+        </button>
+      </div>
+    </div>
+
+    <!-- Table -->
+    <div class="table-wrapper">
+      <div class="table-toolbar">
+        <div class="search-box">
+          <input 
+            type="text" 
+            id="search-input" 
+            placeholder="🔍 Rechercher un sujet..."
+            onkeyup="filterTable()"
+          >
+        </div>
+        <div style="display: flex; gap: 8px;">
+          <select id="filter-type" class="form-select" onchange="filterTable()">
+            <option value="">Tous les types</option>
+            <option value="team">Équipe</option>
+            <option value="cross-team">Cross-équipe</option>
+            <option value="individual">Individuel</option>
+          </select>
+          <select id="filter-priority" class="form-select" onchange="filterTable()">
+            <option value="">Toutes priorités</option>
+            <option value="critical">Critique</option>
+            <option value="high">Haute</option>
+            <option value="medium">Moyenne</option>
+            <option value="low">Basse</option>
+          </select>
+        </div>
+      </div>
+
+      <table class="data-table" id="subjects-table">
+        <thead>
+          <tr>
+            <th>Statut</th>
+            <th>Titre</th>
+            <th>Type</th>
+            <th>Priorité</th>
+            <th>Échéance</th>
+            <th>Équipes</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="table-body">
+          <tr>
+            <td colspan="7" class="empty-table">
+              <div class="empty-table-icon">📋</div>
+              <p>Aucun sujet chargé. Importez des données depuis la page principale.</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Modal Create/Edit -->
+  <div id="form-modal" class="modal">
+    <div class="modal-content" style="max-width: 700px;">
+      <div class="modal-header">
+        <h2 id="modal-title">➕ Nouveau sujet</h2>
+        <button class="btn-close" onclick="closeFormModal()">×</button>
+      </div>
+      
+      <div class="modal-body">
+        <form id="subject-form" onsubmit="saveSubject(event)">
+          <div class="form-grid">
+            <div class="form-group form-group-full">
+              <label for="title">Titre *</label>
+              <input 
+                type="text" 
+                id="title" 
+                class="form-control" 
+                required
+                placeholder="Ex: Migration Base de Données"
+              >
+            </div>
+
+            <div class="form-group">
+              <label for="type">Type *</label>
+              <select id="type" class="form-select" required>
+                <option value="team">Équipe</option>
+                <option value="cross-team">Cross-équipe</option>
+                <option value="individual">Individuel</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="priority">Priorité *</label>
+              <select id="priority" class="form-select" required>
+                <option value="critical">Critique</option>
+                <option value="high">Haute</option>
+                <option value="medium">Moyenne</option>
+                <option value="low">Basse</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="status">Statut *</label>
+              <select id="status" class="form-select" required>
+                <option value="planned">Planifié</option>
+                <option value="in-progress">En cours</option>
+                <option value="blocked">Bloqué</option>
+                <option value="completed">Terminé</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="deadline">Échéance</label>
+              <input type="date" id="deadline" class="form-control">
+            </div>
+
+            <div class="form-group form-group-full">
+              <label>Équipes affectées</label>
+              <div class="checkbox-group" id="teams-checkboxes">
+                <!-- Rempli dynamiquement -->
+              </div>
+            </div>
+
+            <div class="form-group form-group-full">
+              <label for="description">Description</label>
+              <textarea 
+                id="description" 
+                class="form-textarea"
+                placeholder="Description détaillée du sujet..."
+              ></textarea>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 12px; margin-top: 24px; justify-content: flex-end;">
+            <button type="button" class="btn btn-outline" onclick="closeFormModal()">
+              Annuler
+            </button>
+            <button type="submit" class="btn btn-primary">
+              💾 Enregistrer
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+  <script src="assets/js/alert-engine.js"></script>
+  <script>
+    // État global
+    let data = null;
+    let editingIndex = null;
+
+    // Charger les données au démarrage
+    document.addEventListener('DOMContentLoaded', () => {
+      loadData();
+    });
+
+    function loadData() {
+      const stored = localStorage.getItem('visualizer-data');
+      if (stored) {
+        data = JSON.parse(stored);
+        renderTable();
+        populateTeamsCheckboxes();
+      }
+    }
+
+    function saveData() {
+      localStorage.setItem('visualizer-data', JSON.stringify(data));
+    }
+
+    function renderTable() {
+      const tbody = document.getElementById('table-body');
+      
+      if (!data || !data.subjects || data.subjects.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="7" class="empty-table">
+              <div class="empty-table-icon">📋</div>
+              <p>Aucun sujet. Créez-en un avec le bouton "Nouveau sujet".</p>
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      tbody.innerHTML = data.subjects.map((subject, index) => {
+        const status = AlertEngine.getAlertStatus(subject);
+        const emoji = AlertEngine.getStatusEmoji(status);
+        const statusLabel = AlertEngine.getStatusLabel(status);
+        
+        const teamNames = subject.teams 
+          ? subject.teams.map(teamId => {
+              const team = data.teams.find(t => t.id === teamId);
+              return team ? `${team.icon} ${team.name}` : teamId;
+            }).join(', ')
+          : '-';
+
+        return `
+          <tr data-index="${index}">
+            <td>
+              <span class="status-indicator" title="${statusLabel}">
+                ${emoji}
+              </span>
+            </td>
+            <td><strong>${subject.title}</strong></td>
+            <td><span class="badge badge-${subject.type}">${getTypeLabel(subject.type)}</span></td>
+            <td><span class="badge badge-${subject.priority}">${getPriorityLabel(subject.priority)}</span></td>
+            <td>${subject.deadline || '-'}</td>
+            <td style="font-size: 12px;">${teamNames}</td>
+            <td>
+              <div class="action-buttons">
+                <button class="btn-icon-sm" onclick="editSubject(${index})" title="Modifier">
+                  ✏️
+                </button>
+                <button class="btn-icon-sm" onclick="deleteSubject(${index})" title="Supprimer">
+                  🗑️
+                </button>
+              </div>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function filterTable() {
+      const searchTerm = document.getElementById('search-input').value.toLowerCase();
+      const filterType = document.getElementById('filter-type').value;
+      const filterPriority = document.getElementById('filter-priority').value;
+
+      const rows = document.querySelectorAll('#table-body tr');
+      
+      rows.forEach(row => {
+        const index = row.dataset.index;
+        if (index === undefined) return;
+
+        const subject = data.subjects[index];
+        const matchSearch = subject.title.toLowerCase().includes(searchTerm);
+        const matchType = !filterType || subject.type === filterType;
+        const matchPriority = !filterPriority || subject.priority === filterPriority;
+
+        row.style.display = (matchSearch && matchType && matchPriority) ? '' : 'none';
+      });
+    }
+
+    function openCreateModal() {
+      editingIndex = null;
+      document.getElementById('modal-title').textContent = '➕ Nouveau sujet';
+      document.getElementById('subject-form').reset();
+      document.getElementById('form-modal').classList.add('active');
+    }
+
+    function editSubject(index) {
+      editingIndex = index;
+      const subject = data.subjects[index];
+      
+      document.getElementById('modal-title').textContent = '✏️ Modifier le sujet';
+      document.getElementById('title').value = subject.title;
+      document.getElementById('type').value = subject.type;
+      document.getElementById('priority').value = subject.priority;
+      document.getElementById('status').value = subject.status;
+      document.getElementById('deadline').value = subject.deadline || '';
+      document.getElementById('description').value = subject.description || '';
+
+      // Cocher les équipes
+      document.querySelectorAll('#teams-checkboxes input').forEach(cb => {
+        cb.checked = subject.teams && subject.teams.includes(cb.value);
+      });
+
+      document.getElementById('form-modal').classList.add('active');
+    }
+
+    function saveSubject(event) {
+      event.preventDefault();
+
+      const subject = {
+        title: document.getElementById('title').value,
+        type: document.getElementById('type').value,
+        priority: document.getElementById('priority').value,
+        status: document.getElementById('status').value,
+        deadline: document.getElementById('deadline').value || null,
+        description: document.getElementById('description').value || '',
+        teams: Array.from(document.querySelectorAll('#teams-checkboxes input:checked'))
+          .map(cb => cb.value),
+        dependencies: []
+      };
+
+      if (editingIndex !== null) {
+        data.subjects[editingIndex] = subject;
+      } else {
+        data.subjects.push(subject);
+      }
+
+      saveData();
+      renderTable();
+      closeFormModal();
+    }
+
+    function deleteSubject(index) {
+      if (confirm('Êtes-vous sûr de vouloir supprimer ce sujet ?')) {
+        data.subjects.splice(index, 1);
+        saveData();
+        renderTable();
+      }
+    }
+
+    function closeFormModal() {
+      document.getElementById('form-modal').classList.remove('active');
+      editingIndex = null;
+    }
+
+    function populateTeamsCheckboxes() {
+      const container = document.getElementById('teams-checkboxes');
+      if (!data || !data.teams) return;
+
+      container.innerHTML = data.teams.map(team => `
+        <label>
+          <input type="checkbox" value="${team.id}">
+          ${team.icon} ${team.name}
+        </label>
+      `).join('');
+    }
+
+    function getTypeLabel(type) {
+      const labels = {
+        'team': 'Équipe',
+        'cross-team': 'Cross-équipe',
+        'individual': 'Individuel'
+      };
+      return labels[type] || type;
+    }
+
+    function getPriorityLabel(priority) {
+      const labels = {
+        'critical': 'Critique',
+        'high': 'Haute',
+        'medium': 'Moyenne',
+        'low': 'Basse'
+      };
+      return labels[priority] || priority;
+    }
+  </script>
+
+</body>
+</html>

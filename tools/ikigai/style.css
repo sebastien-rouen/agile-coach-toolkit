@@ -478,7 +478,7 @@ header h1 {
 #ikigai-svg {
     width: 100%;
     /*height: 100%;*/
-    min-height: 800px;
+    min-height: 90%;
     /* Empêcher la sélection de texte sur le SVG */
     user-select: none;
     -webkit-user-select: none;
@@ -1108,7 +1108,7 @@ header h1 {
 .modal-content {
     background: #f8f9fa;
     border-radius: 20px;
-    max-width: 800px;
+    max-width: 90%;
     max-height: 80vh;
     overflow-y: auto;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);

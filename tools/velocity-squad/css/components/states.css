@@ -1,0 +1,43 @@
+/* ====================================
+   ÉTATS ET CLASSES UTILITAIRES
+   ==================================== */
+
+/* États de visibilité */
+.is-hidden {
+  display: none !important;
+}
+
+.is-visible {
+  display: block !important;
+}
+
+.is-flex {
+  display: flex !important;
+}
+
+/* Curseurs */
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.cursor-default {
+  cursor: default;
+}
+
+/* Positionnement */
+.position-absolute {
+  position: absolute;
+}
+
+.position-relative {
+  position: relative;
+}
+
+.z-index-high {
+  z-index: 3000;
+}
+
+/* Animations */
+.spinning {
+  animation: spin 1.5s ease-out;
+}

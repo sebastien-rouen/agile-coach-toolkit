@@ -30,7 +30,7 @@ function renderMatrix() {
         const th = document.createElement('th');
         th.className = 'skill-name editable';
         th.textContent = skill;
-        th.onclick = () => editSkillName(index);
+        th.onclick = () => editSkillFromModal(index);
         headerRow.appendChild(th);
     });
 
@@ -127,9 +127,11 @@ function renderMatrix() {
                 renderRadar();
                 renderAdvice();
                 
-                // Sauvegarder dans PocketBase si disponible
-                if (typeof saveMemberToPocketBase === 'function' && member.pbId) {
-                    await saveMemberToPocketBase(member, memberIndex);
+                // Sauvegarder dans PocketBase si disponible (optimisé: un seul skill)
+                if (typeof saveSingleSkillToPocketBase === 'function' && member.pbId) {
+                    const skillName = matrixData.skills[skillIndex];
+                    const appetite = member.appetences?.includes(skillName) ? 4 : 0;
+                    await saveSingleSkillToPocketBase(member.pbId, skillName, newLevel, appetite);
                 }
             };
 
@@ -149,12 +151,12 @@ function renderMatrix() {
         matrixBody.appendChild(tr);
     });
 
-    // Add Total row
+    // Add Total row (par compétence uniquement)
     const totalRow = document.createElement('tr');
     totalRow.className = 'total-row';
 
     const totalLabelTd = document.createElement('td');
-    totalLabelTd.textContent = 'Total';
+    totalLabelTd.textContent = '📊 Total par compétence';
     totalRow.appendChild(totalLabelTd);
 
     // Empty cells for Appétences and Ownerships columns
@@ -216,18 +218,6 @@ function updateTotals() {
 }
 
 /**
- * Éditer le nom d'une compétence
- */
-function editSkillName(index) {
-    const newName = prompt('Nouveau nom de la compétence:', matrixData.skills[index]);
-    if (newName && newName.trim()) {
-        matrixData.skills[index] = newName.trim();
-        saveData();
-        renderMatrix();
-    }
-}
-
-/**
  * Éditer le nom d'un membre
  */
 function editMemberName(index) {
@@ -282,40 +272,7 @@ function addMember() {
     }
 }
 
-/**
- * Ajouter une compétence
- */
-function addSkill() {
-    const name = prompt('Nom de la nouvelle compétence:', `Compétence ${matrixData.skills.length + 1}`);
-    if (name && name.trim()) {
-        const trimmedName = name.trim();
 
-        // Validation : vérifier si la compétence existe déjà
-        const skillExists = matrixData.skills.some(skill =>
-            skill.toLowerCase() === trimmedName.toLowerCase()
-        );
-
-        if (skillExists) {
-            alert('⚠️ Une compétence avec ce nom existe déjà.');
-            return;
-        }
-
-        // Validation : longueur du nom
-        if (trimmedName.length > 50) {
-            alert('⚠️ Le nom est trop long (maximum 50 caractères).');
-            return;
-        }
-
-        matrixData.skills.push(trimmedName);
-        matrixData.members.forEach(member => {
-            member.levels.push(0);
-        });
-        saveData();
-        renderMatrix();
-        renderRadar();
-        renderAdvice();
-    }
-}
 
 /**
  * Supprimer un membre

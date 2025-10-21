@@ -3,10 +3,23 @@ node_modules/
 package-lock.json
 yarn.lock
 
+CHANGELOG.md
+
+# IDE and editor files
+*.kiro
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
 # Environment variables
 .env
 .env.local
 .env.*.local
+
+# BDD Pocketbase
+bdd/pb_data/
+bdd/*.gz
 
 # Logs
 logs/

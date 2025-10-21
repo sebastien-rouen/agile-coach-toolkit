@@ -7,16 +7,40 @@
    ============================================ */
 .notification {
   position: fixed;
-  top: 60px;
+  top: 80px;
   right: 20px;
-  background: linear-gradient(135deg, #19c736 0%, #024b35 100%);
   color: white;
-  padding: 15px 25px;
-  border-radius: 8px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  padding: 16px 28px;
+  border-radius: 10px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
   z-index: 10000;
-  animation: slideIn 0.3s ease;
-  font-weight: 600;
+  animation: slideIn 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.3px;
+  max-width: 400px;
+  backdrop-filter: blur(10px);
+}
+
+/* Types de notifications */
+.notification-success {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  border: 2px solid rgba(16, 185, 129, 0.5);
+}
+
+.notification-error {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  border: 2px solid rgba(239, 68, 68, 0.5);
+}
+
+.notification-info {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  border: 2px solid rgba(59, 130, 246, 0.5);
+}
+
+.notification-warning {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  border: 2px solid rgba(245, 158, 11, 0.5);
 }
 
 .notification-exit {
@@ -25,22 +49,55 @@
 
 @keyframes slideIn {
   from {
-    transform: translateX(400px);
+    transform: translateX(450px) scale(0.8);
     opacity: 0;
   }
   to {
-    transform: translateX(0);
+    transform: translateX(0) scale(1);
     opacity: 1;
   }
 }
 
 @keyframes slideOut {
   from {
-    transform: translateX(0);
+    transform: translateX(0) scale(1);
     opacity: 1;
   }
   to {
-    transform: translateX(400px);
+    transform: translateX(450px) scale(0.8);
     opacity: 0;
+  }
+}
+
+/* Responsive mobile */
+@media (max-width: 768px) {
+  .notification {
+    top: 20px;
+    right: 10px;
+    left: 10px;
+    max-width: none;
+    text-align: center;
+  }
+  
+  @keyframes slideIn {
+    from {
+      transform: translateY(-100px) scale(0.8);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slideOut {
+    from {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+    to {
+      transform: translateY(-100px) scale(0.8);
+      opacity: 0;
+    }
   }
 }

@@ -667,6 +667,53 @@ async function saveMemberItemsToPocketBase(memberId, member) {
 }
 
 /**
+ * Sauvegarde un seul skill d'un membre (optimisé pour les changements individuels)
+ */
+async function saveSingleSkillToPocketBase(memberId, skillName, level, appetite = 0) {
+    if (!usePocketBase || !pbManager || !window.currentMatrixId) return;
+
+    try {
+        // Trouver l'item correspondant au skill
+        const itemsData = await pbManager.getRecords('items', {
+            filter: `matrix = "${window.currentMatrixId}" && name = "${skillName}" && type = "skill" && active = true`
+        });
+
+        if (itemsData.length === 0) {
+            console.warn(`⚠️ Skill "${skillName}" non trouvé dans les items`);
+            return;
+        }
+
+        const itemData = itemsData[0];
+
+        // Chercher si un member_item existe déjà
+        const existingItems = await pbManager.getRecords('memberItems', {
+            filter: `matrix = "${window.currentMatrixId}" && member = "${memberId}" && item = "${itemData.id}"`
+        });
+
+        const data = {
+            matrix: window.currentMatrixId,
+            member: memberId,
+            item: itemData.id,
+            level: level,
+            appetite: appetite,
+            last_assessed: new Date().toISOString().split('T')[0]
+        };
+
+        if (existingItems.length > 0) {
+            // Mettre à jour
+            await pbManager.updateRecord('memberItems', existingItems[0].id, data);
+        } else {
+            // Créer
+            await pbManager.createRecord('memberItems', data);
+        }
+
+        console.log(`✅ Skill "${skillName}" sauvegardé (niveau ${level})`);
+    } catch (error) {
+        console.error('Erreur sauvegarde skill:', error);
+    }
+}
+
+/**
  * Supprime un membre de PocketBase
  */
 async function deleteMemberFromPocketBase(member) {
@@ -742,7 +789,10 @@ window.saveData = async function (forceFullSync = false) {
     if (forceFullSync && usePocketBase) {
         console.log('💾 Synchronisation complète demandée...');
         
-        // Afficher une notification de début
+        // Afficher le loader et une notification de début
+        if (typeof showLoader === 'function') {
+            showLoader('💾 Sauvegarde...');
+        }
         if (typeof showNotification === 'function') {
             showNotification('🔄 Synchronisation en cours...', 'info');
         }
@@ -750,14 +800,20 @@ window.saveData = async function (forceFullSync = false) {
         try {
             await syncWithPocketBase();
             
-            // Notification de succès
+            // Masquer le loader et afficher notification de succès
+            if (typeof hideLoader === 'function') {
+                hideLoader();
+            }
             if (typeof showNotification === 'function') {
                 showNotification('✅ Données sauvegardées avec succès !', 'success');
             }
         } catch (error) {
             console.error('Erreur synchronisation:', error);
             
-            // Notification d'erreur
+            // Masquer le loader et afficher notification d'erreur
+            if (typeof hideLoader === 'function') {
+                hideLoader();
+            }
             if (typeof showNotification === 'function') {
                 showNotification('❌ Erreur lors de la sauvegarde', 'error');
             }
@@ -1079,7 +1135,7 @@ document.addEventListener('DOMContentLoaded', () => {
  */
 async function editMatrixName() {
     if (!usePocketBase || !window.currentMatrixId) {
-        alert('⚠️ Fonctionnalité disponible uniquement avec PocketBase');
+        alert('⚠️ Fonctionnalité indisponible en mode Démo');
         return;
     }
 

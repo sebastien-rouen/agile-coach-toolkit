@@ -124,11 +124,11 @@ function renderSidebar() {
             e.preventDefault();
             e.stopPropagation();
             const catId = btn.dataset.cat;
-            
+
             // Ajouter animation
             btn.classList.add('adding');
             setTimeout(() => btn.classList.remove('adding'), 600);
-            
+
             toggleFavorite('category', catId);
             updateFavoriteStates();
         });
@@ -160,7 +160,7 @@ function updateFavoriteStates() {
             btn.setAttribute('title', 'Ajouter aux favoris');
         }
     });
-    
+
     // Mettre à jour le compteur de favoris
     const favoritesCount = AppState.favorites.categories.length;
     const favoritesCountBadge = document.getElementById('favoritesCount');
@@ -178,116 +178,31 @@ function updateFavoriteStates() {
  * Vérifier le statut du wizard
  */
 function checkWizardStatus() {
-    const wizardContainer = document.getElementById('wizardContainer');
+    const wizardContainer = document.querySelector('.wizard-container');
     const homepageContainer = document.getElementById('homepageContainer');
 
-    if (!wizardContainer || !homepageContainer) return;
-
-    if (AppState.wizardCompleted) {
-        // Afficher directement la homepage
-        wizardContainer.style.display = 'none';
-        homepageContainer.style.display = 'block';
-        renderHomepage();
-    } else {
-        // Afficher le wizard
-        wizardContainer.style.display = 'block';
-        homepageContainer.style.display = 'none';
-        initWizard();
+    if (!wizardContainer) {
+        console.warn('⚠️ Conteneur wizard introuvable');
+        return;
     }
+
+    // Toujours afficher le wizard (même si déjà complété)
+    wizardContainer.style.display = 'block';
+    if (homepageContainer) {
+        homepageContainer.style.display = 'none';
+    }
+
+    // Initialiser le wizard après un court délai pour s'assurer que le DOM est prêt
+    setTimeout(() => {
+        initWizard();
+    }, 100);
 }
 
 /**
  * Initialiser la page actuelle (homepage)
  */
 function initCurrentPage() {
-    // Compteur d'outils
-    const toolsCount = document.getElementById('toolsCount');
-    if (toolsCount) {
-        // Compter les outils disponibles
-        toolsCount.textContent = '50+'; // À dynamiser selon les outils réels
-    }
-}
-
-/**
- * Rendre la homepage
- */
-function renderHomepage() {
-    renderCategoriesGrid();
-    renderQuickTools();
-    renderRecents();
-}
-
-/**
- * Rendre la grille de catégories
- */
-function renderCategoriesGrid() {
-    const grid = document.getElementById('categoriesGrid');
-    if (!grid || !AppState.config) return;
-
-    const categories = AppState.config.categories;
-
-    grid.innerHTML = categories.map(cat => `
-    <a href="category.html?cat=${cat.id}" class="category-card" style="--cat-color: ${cat.color};">
-      <div class="category-card-icon">${cat.emoji}</div>
-      <h3 class="category-card-title">${cat.title}</h3>
-      <p class="category-card-subtitle">${cat.subtitle}</p>
-      <div class="category-card-footer">
-        <span class="category-card-count">Découvrir →</span>
-      </div>
-    </a>
-  `).join('');
-}
-
-/**
- * Rendre les outils rapides
- */
-function renderQuickTools() {
-    const grid = document.getElementById('quickToolsGrid');
-    if (!grid) return;
-
-    // Liste des outils interactifs (à synchroniser avec le dossier tools/)
-    const quickTools = [
-        { name: 'Planning Poker', icon: '🎴', path: 'tools/planning-poker/' },
-        { name: 'Rétrospectives', icon: '🔄', path: 'tools/retrospectives/' },
-        { name: 'Example Mapping', icon: '🗺️', path: 'tools/example-mapping/' },
-        { name: 'Velocity Squad', icon: '📈', path: 'tools/velocity-squad/' },
-        { name: 'Ikigai', icon: '🎯', path: 'tools/ikigai/' },
-        { name: 'Skills Matrix', icon: '🎓', path: 'tools/skills-matrix/' },
-    ];
-
-    grid.innerHTML = quickTools.map(tool => `
-    <a href="${tool.path}" class="tool-card">
-      <div class="tool-card-icon">${tool.icon}</div>
-      <h4 class="tool-card-name">${tool.name}</h4>
-    </a>
-  `).join('');
-}
-
-/**
- * Afficher les contenus récents
- */
-function renderRecents() {
-    const section = document.getElementById('recentsSection');
-    const list = document.getElementById('recentsList');
-
-    if (!section || !list) return;
-
-    if (AppState.recents.length === 0) {
-        section.style.display = 'none';
-        return;
-    }
-
-    section.style.display = 'block';
-
-    list.innerHTML = AppState.recents.slice(0, 5).map(recent => `
-    <a href="${recent.url}" class="recent-item">
-      <div class="recent-icon">${recent.icon || '📄'}</div>
-      <div class="recent-content">
-        <div class="recent-title">${recent.title}</div>
-        <div class="recent-date">${formatDate(recent.timestamp)}</div>
-      </div>
-    </a>
-  `).join('');
+    // Plus de homepage - on reste sur le wizard
 }
 
 /**
@@ -311,12 +226,10 @@ function initGlobalListeners() {
         });
     }
 
-    // Recherche
+    // Recherche - Géré par search.js
+    // Raccourci clavier Ctrl+K
     const searchInput = document.getElementById('searchInput');
     if (searchInput) {
-        searchInput.addEventListener('input', debounce(handleSearch, 300));
-
-        // Raccourci clavier Ctrl+K
         document.addEventListener('keydown', (e) => {
             if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
                 e.preventDefault();
@@ -377,15 +290,7 @@ function initGlobalListeners() {
         helpModalOverlay.addEventListener('click', closeHelpModal);
     }
 
-    // Bouton "Afficher le wizard"
-    const showWizardBtn = document.getElementById('showWizardBtn');
-    if (showWizardBtn) {
-        showWizardBtn.addEventListener('click', () => {
-            document.getElementById('homepageContainer').style.display = 'none';
-            document.getElementById('wizardContainer').style.display = 'block';
-            initWizard();
-        });
-    }
+    // Plus de bouton "Afficher le wizard" - le wizard est toujours visible
 
     // Échap pour fermer les modales/menus
     document.addEventListener('keydown', (e) => {
@@ -438,7 +343,7 @@ function filterSidebar(type) {
                 item.style.display = 'flex';
         }
     });
-    
+
     // Gérer l'affichage des titres de section
     sectionTitles.forEach(title => {
         if (type === 'all') {
@@ -451,7 +356,8 @@ function filterSidebar(type) {
 }
 
 /**
- * Gérer la recherche
+ * Gérer la recherche dans la sidebar (ancienne fonction, conservée pour compatibilité)
+ * La recherche principale est maintenant gérée par search.js
  */
 function handleSearch(e) {
     const query = e.target.value.toLowerCase().trim();

@@ -9,15 +9,195 @@
       "id": "outils-collaboration",
       "title": "Outils de Collaboration",
       "file": "outils-collaboration.md",
-      "tags": ["collaboration", "communication", "remote", "partage"],
+      "tags": [
+        "collaboration",
+        "communication",
+        "remote",
+        "partage"
+      ],
+      "order": 1
+    },
+    {
+      "id": "comparatif-frameworks-front",
+      "title": "Comparatif Frameworks FRONT",
+      "file": "comparatif-frameworks-front.md",
+      "tags": [
+        "atelier",
+        "frameworks",
+        "frontend",
+        "react",
+        "vuejs",
+        "angular",
+        "svelte",
+        "solidjs",
+        "comparatif",
+        "hands-on",
+        "tech-radar"
+      ],
       "order": 1
     },
     {
       "id": "ia-automatisation",
       "title": "IA & Automatisation",
       "file": "ia-automatisation.md",
-      "tags": ["IA", "automatisation", "productivité", "innovation"],
+      "tags": [
+        "IA",
+        "automatisation",
+        "productivité",
+        "innovation"
+      ],
       "order": 2
+    },
+    {
+      "id": "devops-ci-cd",
+      "title": "DevOps et CI/CD : Automatiser la Livraison",
+      "file": "devops-ci-cd.md",
+      "tags": [
+        "devops",
+        "ci-cd",
+        "automatisation",
+        "qualité",
+        "github-actions",
+        "jenkins",
+        "gitlab-ci",
+        "docker",
+        "kubernetes",
+        "tests-automatisés",
+        "pipeline",
+        "deployment",
+        "monitoring",
+        "blue-green",
+        "canary",
+        "feature-flags"
+      ],
+      "order": 3
+    },
+    {
+      "id": "la-matrice-d-eisenhower",
+      "title": "La matrice d'Eisenhower",
+      "file": "eisenhower-matrix.md",
+      "tags": [
+        "priorisation",
+        "productivité",
+        "décision",
+        "time-management"
+      ],
+      "order": 5
     }
-  ]
+  ],
+  "tools": [
+    {
+      "id": "miro",
+      "title": "Miro - Tableau Blanc Collaboratif",
+      "description": "Outil de collaboration visuelle pour ateliers, brainstorming et facilitation à distance",
+      "tags": [
+        "collaboration",
+        "remote",
+        "facilitation",
+        "atelier",
+        "brainstorming"
+      ],
+      "platform": "Web, Desktop, Mobile",
+      "external": true,
+      "url": "https://miro.com",
+      "order": 1
+    },
+    {
+      "id": "jira",
+      "title": "Jira - Gestion de Projet Agile",
+      "description": "Outil de gestion de projet et de suivi des tâches pour équipes agiles",
+      "tags": [
+        "scrum",
+        "kanban",
+        "backlog",
+        "sprint",
+        "tracking"
+      ],
+      "platform": "Web, Desktop, Mobile",
+      "external": true,
+      "url": "https://www.atlassian.com/software/jira",
+      "order": 2
+    },
+    {
+      "id": "github-actions",
+      "title": "GitHub Actions - CI/CD",
+      "description": "Plateforme d'intégration et de déploiement continus intégrée à GitHub",
+      "tags": [
+        "ci-cd",
+        "devops",
+        "automatisation",
+        "pipeline",
+        "github"
+      ],
+      "platform": "Web",
+      "external": true,
+      "url": "https://github.com/features/actions",
+      "order": 3
+    },
+    {
+      "id": "slack",
+      "title": "Slack - Communication d'Équipe",
+      "description": "Plateforme de communication pour équipes distribuées et collaboration en temps réel",
+      "tags": [
+        "communication",
+        "remote",
+        "collaboration",
+        "chat",
+        "intégrations"
+      ],
+      "platform": "Web, Desktop, Mobile",
+      "external": true,
+      "url": "https://slack.com",
+      "order": 4
+    }
+  ],
+  "templates": [
+    {
+      "id": "pipeline-ci-cd",
+      "title": "Template Pipeline CI/CD GitHub Actions",
+      "description": "Configuration complète d'un pipeline CI/CD avec tests, build et déploiement",
+      "tags": [
+        "ci-cd",
+        "github-actions",
+        "pipeline",
+        "devops"
+      ],
+      "format": "YAML",
+      "file": "pipeline-ci-cd.yml",
+      "downloadUrl": "templates/outils-technologies/pipeline-ci-cd.yml",
+      "order": 1
+    },
+    {
+      "id": "docker-compose",
+      "title": "Docker Compose Multi-Services",
+      "description": "Template Docker Compose pour environnement de développement complet",
+      "tags": [
+        "docker",
+        "devops",
+        "environnement",
+        "développement"
+      ],
+      "format": "YAML",
+      "file": "docker-compose.yml",
+      "downloadUrl": "templates/outils-technologies/docker-compose.yml",
+      "order": 2
+    },
+    {
+      "id": "monitoring-dashboard",
+      "title": "Dashboard Grafana pour Métriques Agiles",
+      "description": "Configuration Grafana pour visualiser les métriques DORA et performance d'équipe",
+      "tags": [
+        "monitoring",
+        "grafana",
+        "métriques",
+        "dora",
+        "dashboard"
+      ],
+      "format": "JSON",
+      "file": "grafana-dashboard.json",
+      "downloadUrl": "templates/outils-technologies/grafana-dashboard.json",
+      "order": 3
+    }
+  ],
+  "order": 10
 }

@@ -5,14 +5,34 @@
 /**
  * Initialiser l'application
  */
-function initApp() {
+async function initApp() {
     console.log('🚀 Initialisation de Skills Matrix...');
 
     // Charger les templates dans le select
     loadTemplatesIntoSelect();
 
-    // Charger les données
-    loadData();
+    // Vérifier si on a un ID de matrice dans l'URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const matrixId = urlParams.get('matrix');
+
+    // Si on a un ID de matrice, attendre le chargement PocketBase
+    if (matrixId) {
+        console.log('📋 Chargement depuis PocketBase...');
+        
+        // Initialiser PocketBase en premier
+        if (typeof initPocketBase === 'function') {
+            try {
+                await initPocketBase();
+            } catch (error) {
+                console.error('Erreur chargement PocketBase:', error);
+                // Fallback sur localStorage
+                loadData();
+            }
+        }
+    } else {
+        // Pas d'ID de matrice, charger depuis localStorage
+        loadData();
+    }
 
     // Si pas de données, initialiser avec le template par défaut
     if (!matrixData.skills || matrixData.skills.length === 0) {
@@ -27,7 +47,7 @@ function initApp() {
     // Rendre l'interface
     renderMatrix();
     renderRadar();
-    renderAdvice();
+    updateAllAdviceViews();
 
     // Initialiser les event listeners
     initEventListeners();
@@ -35,10 +55,13 @@ function initApp() {
     // Initialiser le sélecteur de membres dans les controls
     initMemberSelectorControl();
 
+    // Initialiser le dropdown des actions
+    initActionsDropdown();
+
     // Initialiser le comportement sticky des controls
     initStickyControls();
 
-    // Initialiser le partage
+    // Initialiser le partage (pour la synchronisation automatique)
     initShare();
 
     console.log('✅ Skills Matrix initialisée');
@@ -229,21 +252,26 @@ function showTemplateMenu() {
 
 /**
  * Afficher une notification
+ * @param {string} message - Message à afficher
+ * @param {string} type - Type de notification (success, error, info, warning)
+ * @param {number} duration - Durée d'affichage en ms (défaut: 3000)
  */
-function showNotification(message) {
+function showNotification(message, type = 'success', duration = 3000) {
     // Créer une notification temporaire
     const notification = document.createElement('div');
-    notification.className = 'notification';
+    notification.className = `notification notification-${type}`;
     notification.textContent = message;
     document.body.appendChild(notification);
 
-    // Supprimer après 3 secondes
+    // Supprimer après la durée spécifiée
     setTimeout(() => {
         notification.classList.add('notification-exit');
         setTimeout(() => {
-            document.body.removeChild(notification);
+            if (document.body.contains(notification)) {
+                document.body.removeChild(notification);
+            }
         }, 300);
-    }, 3000);
+    }, duration);
 }
 
 // Initialiser l'application au chargement du DOM

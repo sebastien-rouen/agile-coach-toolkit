@@ -1,0 +1,165 @@
+/**
+ * Skills Matrix - Styles du prompt d'import
+ * Message temporaire après import pour demander si l'utilisateur souhaite sauvegarder
+ */
+
+/* ============================================
+   IMPORT PROMPT
+   ============================================ */
+.import-prompt {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 20px 24px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  z-index: 10001;
+  display: none;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 400px;
+  border: 2px solid rgba(102, 126, 234, 0.5);
+  backdrop-filter: blur(10px);
+  animation: slideInPrompt 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.import-prompt.active {
+  display: flex;
+}
+
+.import-prompt.exit {
+  animation: slideOutPrompt 0.3s ease;
+}
+
+.import-prompt-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.3px;
+}
+
+.import-prompt-icon {
+  font-size: 20px;
+}
+
+.import-prompt-message {
+  font-size: 14px;
+  line-height: 1.5;
+  opacity: 0.95;
+}
+
+.import-prompt-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.import-prompt-btn {
+  flex: 1;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.import-prompt-btn-save {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+}
+
+.import-prompt-btn-save:hover {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.5);
+  transform: translateY(-2px);
+}
+
+.import-prompt-btn-skip {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.import-prompt-btn-skip:hover {
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px);
+}
+
+.import-prompt-btn:active {
+  transform: translateY(0);
+}
+
+/* Animations */
+@keyframes slideInPrompt {
+  from {
+    transform: translateX(450px) scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutPrompt {
+  from {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(450px) scale(0.8);
+    opacity: 0;
+  }
+}
+
+/* Responsive mobile */
+@media (max-width: 768px) {
+  .import-prompt {
+    bottom: 20px;
+    right: 10px;
+    left: 10px;
+    max-width: none;
+  }
+  
+  .import-prompt-actions {
+    flex-direction: column;
+  }
+  
+  .import-prompt-btn {
+    width: 100%;
+  }
+  
+  @keyframes slideInPrompt {
+    from {
+      transform: translateY(150px) scale(0.8);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slideOutPrompt {
+    from {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+    to {
+      transform: translateY(150px) scale(0.8);
+      opacity: 0;
+    }
+  }
+}

@@ -6,32 +6,253 @@
   "color": "#795548",
   "articles": [
     {
-      "id": "onboarding-agile",
-      "title": "Onboarding Agile",
-      "file": "onboarding-agile.md",
-      "tags": ["onboarding", "intégration", "formation", "accueil"],
-      "order": 1
-    },
-    {
       "id": "gestion-crise",
       "title": "Gestion de Crise",
       "file": "gestion-crise.md",
-      "tags": ["crise", "urgence", "adaptation", "résilience"],
-      "order": 2
+      "tags": [
+        "crise",
+        "urgence",
+        "adaptation",
+        "résilience"
+      ],
+      "order": 1
     },
     {
-      "id": "equipes-distribuees",
-      "title": "Équipes Distribuées",
-      "file": "equipes-distribuees.md",
-      "tags": ["remote", "distribué", "géographie", "communication"],
-      "order": 3
+      "id": "agilite-equipes-distribuees",
+      "title": "🌍 Agilité à Distance : Guide Pratique pour les Équipes Distribuées",
+      "file": "agilite-equipes-distribuees.md",
+      "tags": [
+        "agile",
+        "remote",
+        "distribué",
+        "équipes",
+        "géographique",
+        "timezone",
+        "collaboration",
+        "outils",
+        "rituels",
+        "confiance"
+      ],
+      "order": 2
     },
     {
       "id": "scrum-master-gen-ia",
       "title": "Scrum Master et Génération IA",
       "file": "scrum-master-gen-ia.md",
-      "tags": ["scrum-master", "IA", "génération", "intelligence-artificielle"],
+      "tags": [
+        "scrum-master",
+        "IA",
+        "génération",
+        "intelligence-artificielle"
+      ],
+      "order": 3
+    },
+    {
+      "id": "agile-secteur-public",
+      "title": "Agilité dans le Secteur Public (TO REVIEW)",
+      "file": "agile-secteur-public.md",
+      "tags": [
+        "secteur-public",
+        "administration",
+        "conformité",
+        "réglementation",
+        "marchés-publics",
+        "budget",
+        "hiérarchie",
+        "documentation",
+        "traçabilité",
+        "contrats-agiles",
+        "tranches",
+        "bons-commande",
+        "ministère",
+        "collectivité"
+      ],
+      "order": 4
+    },
+    {
+      "id": "agilite-equipes-ops",
+      "title": "🛡️ Agilité avec une Équipe 100% OPS (ou intégrée) : Guide Pratique",
+      "file": "agilite-equipes-ops.md",
+      "tags": [
+        "ops",
+        "devops",
+        "sre",
+        "agile",
+        "scaled-agile",
+        "safe",
+        "feature-team",
+        "po",
+        "collaboration",
+        "silo",
+        "cross-functional"
+      ],
+      "order": 5
+    },
+    {
+      "id": "product-ops",
+      "title": "Product Ops : L'orchestre invisible du produit",
+      "file": "product-ops.md",
+      "tags": [
+        "product-ops",
+        "alignement",
+        "data",
+        "processus",
+        "scaling"
+      ],
+      "order": 6
+    },
+    {
+      "id": "synchronisation-des-cerveaux-en-equipe-ops",
+      "title": "Synchronisation des cerveaux en équipe OPS",
+      "file": "synchronisation-cerveaux-ops.md",
+      "tags": [
+        "ops",
+        "incident",
+        "neurosciences",
+        "communication",
+        "crise"
+      ],
+      "order": 7
+    }
+  ],
+  "tools": [
+    {
+      "id": "zoom",
+      "title": "Zoom - Visioconférence",
+      "description": "Plateforme de visioconférence pour équipes distribuées avec breakout rooms",
+      "tags": [
+        "remote",
+        "visio",
+        "communication",
+        "distribué"
+      ],
+      "platform": "Web, Desktop, Mobile",
+      "external": true,
+      "url": "https://zoom.us",
+      "order": 1
+    },
+    {
+      "id": "gather-town",
+      "title": "Gather.Town - Espace Virtuel",
+      "description": "Espace de travail virtuel pour recréer l'ambiance de bureau",
+      "tags": [
+        "remote",
+        "virtuel",
+        "collaboration",
+        "social"
+      ],
+      "platform": "Web",
+      "external": true,
+      "url": "https://gather.town",
+      "order": 2
+    },
+    {
+      "id": "chatgpt",
+      "title": "ChatGPT - Assistant IA",
+      "description": "Assistant IA pour facilitation, génération de contenu et brainstorming",
+      "tags": [
+        "ia",
+        "assistant",
+        "génération",
+        "productivité"
+      ],
+      "platform": "Web, API",
+      "external": true,
+      "url": "https://chat.openai.com",
+      "order": 3
+    },
+    {
+      "id": "notion-ai",
+      "title": "Notion AI",
+      "description": "IA intégrée à Notion pour documentation et collaboration augmentée",
+      "tags": [
+        "ia",
+        "documentation",
+        "collaboration",
+        "notion"
+      ],
+      "platform": "Web, Desktop, Mobile",
+      "external": true,
+      "url": "https://www.notion.so/product/ai",
       "order": 4
     }
-  ]
+  ],
+  "templates": [
+    {
+      "id": "onboarding-checklist",
+      "title": "Checklist Onboarding Agile",
+      "description": "Liste complète pour intégrer un nouveau membre dans une équipe agile",
+      "tags": [
+        "onboarding",
+        "intégration",
+        "checklist",
+        "accueil"
+      ],
+      "format": "Excel",
+      "file": "onboarding-checklist.xlsx",
+      "downloadUrl": "templates/contextes-specialises/onboarding-checklist.xlsx",
+      "order": 1
+    },
+    {
+      "id": "remote-team-charter",
+      "title": "Charte d'Équipe Remote",
+      "description": "Template pour définir les règles de collaboration en équipe distribuée",
+      "tags": [
+        "remote",
+        "charte",
+        "collaboration",
+        "règles"
+      ],
+      "format": "Word",
+      "file": "remote-team-charter.docx",
+      "downloadUrl": "templates/contextes-specialises/remote-team-charter.docx",
+      "order": 2
+    },
+    {
+      "id": "crisis-response-plan",
+      "title": "Plan de Réponse à la Crise",
+      "description": "Framework pour gérer une situation de crise en mode agile",
+      "tags": [
+        "crise",
+        "urgence",
+        "plan",
+        "réponse"
+      ],
+      "format": "PDF",
+      "file": "crisis-response-plan.pdf",
+      "downloadUrl": "templates/contextes-specialises/crisis-response-plan.pdf",
+      "order": 3
+    },
+    {
+      "id": "ai-prompts-scrum-master",
+      "title": "Prompts IA pour Scrum Masters",
+      "description": "Collection de prompts ChatGPT pour faciliter le travail du Scrum Master",
+      "tags": [
+        "ia",
+        "prompts",
+        "scrum-master",
+        "productivité"
+      ],
+      "format": "PDF",
+      "file": "ai-prompts-sm.pdf",
+      "downloadUrl": "templates/contextes-specialises/ai-prompts-sm.pdf",
+      "order": 4
+    },
+    {
+      "id": "public-sector-agile",
+      "title": "Guide Agilité Secteur Public",
+      "description": "Adaptation des pratiques agiles aux contraintes du secteur public",
+      "tags": [
+        "secteur-public",
+        "administration",
+        "conformité",
+        "guide"
+      ],
+      "format": "PDF",
+      "file": "public-sector-agile.pdf",
+      "downloadUrl": "templates/contextes-specialises/public-sector-agile.pdf",
+      "order": 5
+    }
+  ],
+  "order": 9
 }

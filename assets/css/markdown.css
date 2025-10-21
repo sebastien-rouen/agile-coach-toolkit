@@ -6,7 +6,7 @@
    CONTENEUR PRINCIPAL
    ============================================ */
 .markdown-content {
-  max-width: 800px;
+  max-width: 90%;
   margin: 0 auto;
   padding: 0 var(--space-lg) var(--space-xl);
   color: var(--text-primary);
@@ -198,6 +198,47 @@
   background: var(--text-tertiary);
 }
 
+/* Boutons de copie pour les blocs de code */
+.markdown-content .copy-button {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 2px;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: all var(--transition-fast);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  color: var(--text-primary);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.markdown-content .copy-button:hover {
+  opacity: 1;
+  background: rgba(255, 255, 255, 1);
+  transform: scale(1.05);
+}
+
+.markdown-content .copy-button:active {
+  transform: scale(0.95);
+}
+
+/* Adaptation pour le thème sombre */
+[data-theme="dark"] .markdown-content .copy-button {
+  background: rgba(0, 0, 0, 0.8);
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .markdown-content .copy-button:hover {
+  background: rgba(0, 0, 0, 0.9);
+}
+
 /* ============================================
    CITATIONS (BLOCKQUOTE)
    ============================================ */
@@ -380,6 +421,32 @@
   margin-right: auto;
 }
 
+/* Images avec légendes */
+.markdown-content figure.image-with-caption {
+  margin: var(--space-lg) 0;
+  padding: var(--space-md);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  background-color: var(--bg-secondary);
+  text-align: center;
+}
+
+.markdown-content figure.image-with-caption img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--space-sm);
+  margin-top: 0;
+}
+
+.markdown-content figure.image-with-caption figcaption {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  font-style: italic;
+  line-height: 1.4;
+  margin-top: var(--space-xs);
+}
+
 /* ============================================
    SÉPARATEURS
    ============================================ */
@@ -503,7 +570,7 @@
 .markdown-content em,
 .markdown-content i {
   font-style: italic;
-  color: var(--text-secondary);
+  color: var(--text-primary);
 }
 
 .markdown-content mark {
@@ -578,6 +645,71 @@
   margin-bottom: var(--space-sm);
   padding-bottom: var(--space-sm);
   border-bottom: 1px solid var(--border-default);
+}
+
+/* ============================================
+   DIAGRAMMES MERMAID
+   ============================================ */
+.markdown-content .mermaid {
+  background: var(--bg-secondary);
+  padding: var(--space-lg);
+  border-radius: var(--radius-md);
+  margin: var(--space-md) 0;
+  border: 1px solid var(--border-default);
+  overflow-x: auto;
+  text-align: center;
+}
+
+/* Styles pour les diagrammes Mermaid */
+.markdown-content .mermaid svg {
+  max-width: 100%;
+  height: auto;
+  display: inline-block;
+}
+
+/* Améliorer la lisibilité des textes dans les diagrammes */
+.markdown-content .mermaid .nodeLabel,
+.markdown-content .mermaid .edgeLabel {
+  color: var(--text-primary);
+  font-family: inherit;
+}
+
+/* Adapter les couleurs au thème */
+.markdown-content .mermaid .node rect,
+.markdown-content .mermaid .node circle,
+.markdown-content .mermaid .node ellipse,
+.markdown-content .mermaid .node polygon {
+  fill: var(--bg-tertiary);
+  stroke: var(--primary-color);
+  stroke-width: 2px;
+}
+
+.markdown-content .mermaid .edgePath .path {
+  stroke: var(--text-tertiary);
+  stroke-width: 2px;
+}
+
+.markdown-content .mermaid .arrowheadPath {
+  fill: var(--text-tertiary);
+}
+
+/* Scrollbar pour les diagrammes larges */
+.markdown-content .mermaid::-webkit-scrollbar {
+  height: 8px;
+}
+
+.markdown-content .mermaid::-webkit-scrollbar-track {
+  background: var(--bg-tertiary);
+  border-radius: 4px;
+}
+
+.markdown-content .mermaid::-webkit-scrollbar-thumb {
+  background: var(--border-default);
+  border-radius: 4px;
+}
+
+.markdown-content .mermaid::-webkit-scrollbar-thumb:hover {
+  background: var(--text-tertiary);
 }
 
 /* ============================================

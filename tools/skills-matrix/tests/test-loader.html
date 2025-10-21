@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Loader - Skills Matrix</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/notifications.css">
+    <link rel="stylesheet" href="../css/import-prompt.css">
+    <style>
+        body {
+            padding: 20px;
+        }
+        .test-section {
+            margin: 30px 0;
+            padding: 20px;
+            background: rgba(26, 26, 46, 0.5);
+            border-radius: 12px;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+        }
+        .test-section h2 {
+            margin-top: 0;
+            color: #00d4ff;
+        }
+        .test-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+        .demo-controls {
+            position: relative;
+            background: rgba(26, 26, 46, 0.5);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .demo-mobile-menu {
+            position: relative;
+            background: rgba(26, 26, 46, 0.5);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Test du Loader - Skills Matrix</h1>
+        
+        <!-- Test Loader Desktop -->
+        <div class="test-section">
+            <h2>Loader Desktop (Controls)</h2>
+            <div class="demo-controls" id="demoControls">
+                <p>Zone de contrôles (desktop)</p>
+                
+                <!-- Loader Controls -->
+                <div class="controls-loader" id="controlsLoader">
+                    <div class="controls-loader-spinner"></div>
+                    <div class="controls-loader-text" id="controlsLoaderText">Chargement...</div>
+                </div>
+            </div>
+            
+            <div class="test-buttons">
+                <button class="btn" onclick="testControlsLoader('📥 Export JSON...')">
+                    Test Export JSON
+                </button>
+                <button class="btn" onclick="testControlsLoader('📊 Export Excel...')">
+                    Test Export Excel
+                </button>
+                <button class="btn" onclick="testControlsLoader('💾 Sauvegarde...')">
+                    Test Sauvegarde
+                </button>
+                <button class="btn" onclick="testControlsLoader('🔄 Réinitialisation...')">
+                    Test Réinitialisation
+                </button>
+                <button class="btn btn-danger" onclick="hideControlsLoader()">
+                    Masquer Loader
+                </button>
+            </div>
+        </div>
+        
+        <!-- Test Loader Mobile -->
+        <div class="test-section">
+            <h2>Loader Mobile (Menu)</h2>
+            <div class="demo-mobile-menu" id="demoMobileMenu">
+                <p>Zone menu mobile</p>
+                
+                <!-- Loader Mobile -->
+                <div class="mobile-menu-loader" id="mobileMenuLoader">
+                    <div class="mobile-menu-loader-spinner"></div>
+                    <div class="mobile-menu-loader-text" id="mobileMenuLoaderText">Chargement...</div>
+                </div>
+            </div>
+            
+            <div class="test-buttons">
+                <button class="btn" onclick="testMobileLoader('📤 Import JSON...')">
+                    Test Import JSON
+                </button>
+                <button class="btn" onclick="testMobileLoader('📈 Import Excel...')">
+                    Test Import Excel
+                </button>
+                <button class="btn" onclick="testMobileLoader('📝 Export Markdown...')">
+                    Test Export Markdown
+                </button>
+                <button class="btn btn-danger" onclick="hideMobileMenuLoader()">
+                    Masquer Loader
+                </button>
+            </div>
+        </div>
+        
+        <!-- Test Loader Automatique -->
+        <div class="test-section">
+            <h2>Loader Automatique (Détection Desktop/Mobile)</h2>
+            <p>Utilise <code>showLoader()</code> qui détecte automatiquement le contexte.</p>
+            
+            <div class="test-buttons">
+                <button class="btn btn-success" onclick="testAutoLoader('📥 Export automatique...')">
+                    Test Loader Auto
+                </button>
+                <button class="btn btn-success" onclick="testAutoLoaderWithDelay('💾 Sauvegarde avec délai...', 2000)">
+                    Test avec délai 2s
+                </button>
+                <button class="btn btn-danger" onclick="hideLoader()">
+                    Masquer tous les loaders
+                </button>
+            </div>
+        </div>
+        
+        <!-- Test Notifications -->
+        <div class="test-section">
+            <h2>Notifications</h2>
+            <p>Test des différents types de notifications.</p>
+            
+            <div class="test-buttons">
+                <button class="btn btn-success" onclick="showNotification('✅ Opération réussie', 'success')">
+                    Success
+                </button>
+                <button class="btn" onclick="showNotification('❌ Une erreur est survenue', 'error')">
+                    Error
+                </button>
+                <button class="btn" onclick="showNotification('ℹ️ Information importante', 'info')">
+                    Info
+                </button>
+                <button class="btn" onclick="showNotification('⚠️ Attention requise', 'warning')">
+                    Warning
+                </button>
+            </div>
+        </div>
+        
+        <!-- Test Scénario Complet -->
+        <div class="test-section">
+            <h2>Scénario Complet (Loader + Notification)</h2>
+            <p>Simule une action complète avec loader et notification de résultat.</p>
+            
+            <div class="test-buttons">
+                <button class="btn btn-success" onclick="testCompleteScenario('success')">
+                    Scénario Succès
+                </button>
+                <button class="btn" onclick="testCompleteScenario('error')">
+                    Scénario Erreur
+                </button>
+            </div>
+        </div>
+        
+        <!-- Test Prompt d'Import -->
+        <div class="test-section">
+            <h2>Prompt d'Import</h2>
+            <p>Message temporaire après import demandant si l'utilisateur souhaite sauvegarder.</p>
+            
+            <div class="test-buttons">
+                <button class="btn" onclick="testImportPrompt('JSON')">
+                    Test Prompt JSON
+                </button>
+                <button class="btn" onclick="testImportPrompt('Excel')">
+                    Test Prompt Excel
+                </button>
+                <button class="btn btn-danger" onclick="hideImportPrompt()">
+                    Masquer Prompt
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Scripts -->
+    <script src="../js/loader.js"></script>
+    <script src="../js/import-prompt.js"></script>
+    <script>
+        // Fonction showNotification pour les tests
+        function showNotification(message, type = 'success', duration = 3000) {
+            const notification = document.createElement('div');
+            notification.className = `notification notification-${type}`;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.classList.add('notification-exit');
+                setTimeout(() => {
+                    if (document.body.contains(notification)) {
+                        document.body.removeChild(notification);
+                    }
+                }, 300);
+            }, duration);
+        }
+        
+        // Test loader controls
+        function testControlsLoader(message) {
+            showControlsLoader(message);
+        }
+        
+        // Test loader mobile
+        function testMobileLoader(message) {
+            showMobileMenuLoader(message);
+        }
+        
+        // Test loader automatique
+        function testAutoLoader(message) {
+            showLoader(message);
+        }
+        
+        // Test loader avec délai
+        function testAutoLoaderWithDelay(message, delay) {
+            showLoader(message);
+            setTimeout(() => {
+                hideLoader();
+                showNotification('✅ Opération terminée', 'success');
+            }, delay);
+        }
+        
+        // Test scénario complet
+        function testCompleteScenario(type) {
+            showLoader('💾 Traitement en cours...');
+            
+            setTimeout(() => {
+                hideLoader();
+                
+                if (type === 'success') {
+                    showNotification('✅ Opération réussie avec succès', 'success');
+                } else {
+                    showNotification('❌ Une erreur est survenue', 'error');
+                }
+            }, 2000);
+        }
+        
+        // Test prompt d'import
+        function testImportPrompt(type) {
+            showImportPrompt(type);
+        }
+        
+        // Mock de saveData pour les tests
+        function saveData(sync) {
+            console.log('Mock saveData appelé avec sync =', sync);
+        }
+        
+        console.log('✅ Test loader initialisé');
+    </script>
+</body>
+</html>

@@ -1,0 +1,217 @@
+/* ===================================
+   CIRCLES VIEW (Concentric Circles)
+   =================================== */
+
+.circles-container {
+    background: var(--bg-card);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-lg);
+    box-shadow: var(--shadow);
+    position: relative;
+}
+
+#circlesSvg {
+    width: 100%;
+    height: auto;
+    max-width: 800px;
+    margin: 0 auto;
+    display: block;
+}
+
+/* Circle Styles */
+.circle-vital {
+    fill: var(--color-vital);
+    opacity: 0.3;
+    stroke: var(--color-vital);
+    stroke-width: 2;
+}
+
+.circle-necessary {
+    fill: var(--color-necessary);
+    opacity: 0.3;
+    stroke: var(--color-necessary);
+    stroke-width: 2;
+}
+
+.circle-good {
+    fill: var(--color-good);
+    opacity: 0.3;
+    stroke: var(--color-good);
+    stroke-width: 2;
+}
+
+.circle-courtesy {
+    fill: var(--color-courtesy);
+    opacity: 0.3;
+    stroke: var(--color-courtesy);
+    stroke-width: 2;
+}
+
+/* Domain Lines */
+.domain-line {
+    stroke: var(--border-color);
+    stroke-width: 1;
+    stroke-dasharray: 5, 5;
+}
+
+/* Domain Labels */
+.domain-label {
+    fill: var(--text-secondary);
+    font-size: 14px;
+    font-weight: 600;
+    text-anchor: middle;
+}
+
+/* Circle Labels */
+.circle-label {
+    fill: var(--text-primary);
+    font-size: 16px;
+    font-weight: 700;
+    text-anchor: middle;
+}
+
+/* Stakeholder Nodes */
+.stakeholder-node {
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.stakeholder-node circle {
+    fill: var(--bg-tertiary);
+    stroke-width: 3;
+}
+
+.stakeholder-node.governance circle {
+    stroke: var(--color-governance);
+}
+
+.stakeholder-node.customer circle {
+    stroke: var(--color-customer);
+}
+
+.stakeholder-node.provider circle {
+    stroke: var(--color-provider);
+}
+
+.stakeholder-node.influencer circle {
+    stroke: var(--color-influencer);
+}
+
+.stakeholder-node:hover circle {
+    fill: var(--bg-secondary);
+    r: 22;
+}
+
+.stakeholder-node text {
+    text-anchor: middle;
+    pointer-events: none;
+}
+
+.stakeholder-emoji {
+    font-size: 16px;
+    opacity: 0.4;
+}
+
+.stakeholder-initials {
+    fill: var(--text-primary);
+    font-size: 11px;
+    font-weight: 700;
+}
+
+/* Tooltip */
+.stakeholder-tooltip {
+    position: absolute;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-sm);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s;
+    z-index: 1000;
+    box-shadow: var(--shadow);
+}
+
+.stakeholder-tooltip.visible {
+    opacity: 1;
+}
+
+.tooltip-name {
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.tooltip-role {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+/* Legend */
+.circles-legend {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-lg);
+    flex-wrap: wrap;
+}
+
+.circles-legend-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.circle-sample {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid;
+}
+
+.circle-sample.vital {
+    background: var(--color-vital);
+    border-color: var(--color-vital);
+    opacity: 0.5;
+}
+
+.circle-sample.necessary {
+    background: var(--color-necessary);
+    border-color: var(--color-necessary);
+    opacity: 0.5;
+}
+
+.circle-sample.good {
+    background: var(--color-good);
+    border-color: var(--color-good);
+    opacity: 0.5;
+}
+
+.circle-sample.courtesy {
+    background: var(--color-courtesy);
+    border-color: var(--color-courtesy);
+    opacity: 0.5;
+}
+
+/* Empty State */
+.circles-empty {
+    text-align: center;
+    padding: var(--spacing-xl);
+    color: var(--text-secondary);
+}
+
+.circles-empty-icon {
+    font-size: 3rem;
+    margin-bottom: var(--spacing-md);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .circles-container {
+        padding: var(--spacing-md);
+    }
+
+    .circles-legend {
+        flex-direction: column;
+        align-items: center;
+    }
+}

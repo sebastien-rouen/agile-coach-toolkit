@@ -1,0 +1,136 @@
+📁 VELOCITY SQUAD - STRUCTURE APRÈS PHASE 1
+═══════════════════════════════════════════════
+
+tools/velocity-squad/
+│
+├── 📄 index.html                          # Page principale
+├── 📄 REFACTORING-STATUS.md               # ✅ État d'avancement
+├── 📄 REFACTORING-SUMMARY.md              # ✅ Résumé exécutif
+├── 📄 PHASE-1-COMPLETE.md                 # ✅ Ce qui a été fait
+├── 📄 TREE-STRUCTURE.txt                  # ✅ Ce fichier
+│
+├── 📁 css/                                # STYLES (Phase 1: 30% complété)
+│   ├── 📄 README.md                       # ✅ Documentation architecture
+│   ├── 📄 styles-new.css                  # ✅ Point d'entrée modulaire
+│   ├── 📄 styles.css                      # ⚠️ ANCIEN (2853 lignes) - À remplacer
+│   ├── 📄 team-manager.css                # Existant (313 lignes) ✅
+│   ├── 📄 visual.css                      # Existant (289 lignes) ✅
+│   ├── 📄 footer.css                      # Existant (431 lignes) ✅
+│   │
+│   ├── 📁 base/                           # ✅ CRÉÉ (110 lignes)
+│   │   ├── 📄 variables.css               # ✅ Variables CSS et reset (40 lignes)
+│   │   └── 📄 animations.css              # ✅ Animations globales (70 lignes)
+│   │
+│   ├── 📁 layout/                         # ✅ CRÉÉ (240 lignes)
+│   │   ├── 📄 header.css                  # ✅ En-tête dashboard (60 lignes)
+│   │   ├── 📄 grid.css                    # ✅ Grilles et layouts (140 lignes)
+│   │   └── 📄 modals.css                  # ✅ Système de modales (40 lignes)
+│   │
+│   ├── 📁 components/                     # ✅ CRÉÉ (460 lignes)
+│   │   ├── 📄 states.css                  # ✅ Classes utilitaires (40 lignes)
+│   │   ├── 📄 buttons.css                 # ✅ Système de boutons (280 lignes)
+│   │   └── 📄 forms.css                   # ✅ Formulaires (140 lignes)
+│   │
+│   ├── 📁 modules/                        # ⏳ À CRÉER (Phase 2)
+│   │   ├── 📄 charts.css                  # ⏳ Graphiques Chart.js (~250 lignes)
+│   │   ├── 📄 casino.css                  # ⏳ Vue Casino (~200 lignes)
+│   │   ├── 📄 kpi.css                     # ⏳ KPIs et métriques (~180 lignes)
+│   │   ├── 📄 annotations.css             # ⏳ Système d'annotations (~200 lignes)
+│   │   ├── 📄 pi-planning.css             # ⏳ PI Planning SAFe (~300 lignes)
+│   │   ├── 📄 capacity.css                # ⏳ Capacité équipe (~150 lignes)
+│   │   ├── 📄 heatmap.css                 # ⏳ Heatmap burnout (~120 lignes)
+│   │   ├── 📄 achievements.css            # ⏳ Badges et notifications (~150 lignes)
+│   │   ├── 📄 team.css                    # ⏳ Gestion équipe (~120 lignes)
+│   │   ├── 📄 stories.css                 # ⏳ User stories (~150 lignes)
+│   │   └── 📄 export.css                  # ⏳ Export de données (~100 lignes)
+│   │
+│   └── 📁 themes/                         # ⏳ À CRÉER (Phase 2)
+│       └── 📄 light.css                   # ⏳ Thème clair (~200 lignes)
+│
+├── 📁 js/                                 # JAVASCRIPT (Phase 4)
+│   ├── 📄 script.js                       # ⚠️ MONOLITHIQUE (5891 lignes) - À découper
+│   ├── 📄 pocketbase-integration.js       # ⚠️ (818 lignes) - À optimiser
+│   ├── 📄 team-manager.js                 # Existant (526 lignes) ✅
+│   ├── 📄 templates-data.js               # Existant (432 lignes) ✅
+│   ├── 📄 footer-loader.js                # Existant (83 lignes) ✅
+│   │
+│   ├── 📁 core/                           # ⏳ À CRÉER (Phase 4)
+│   │   ├── 📄 velocity-manager.js         # ⏳ Gestion vélocité (~600 lignes)
+│   │   ├── 📄 sprint-manager.js           # ⏳ CRUD sprints (~500 lignes)
+│   │   └── 📄 storage-manager.js          # ⏳ LocalStorage/PocketBase (~300 lignes)
+│   │
+│   ├── 📁 features/                       # ⏳ À CRÉER (Phase 4)
+│   │   ├── 📄 stories-manager.js          # ⏳ User stories (~600 lignes)
+│   │   ├── 📄 annotations-manager.js      # ⏳ Annotations (~400 lignes)
+│   │   ├── 📄 casino-manager.js           # ⏳ Vue Casino (~500 lignes)
+│   │   ├── 📄 templates-manager.js        # ⏳ Templates (~600 lignes)
+│   │   └── 📄 achievements-manager.js     # ⏳ Badges (~300 lignes)
+│   │
+│   ├── 📁 ui/                             # ⏳ À CRÉER (Phase 4)
+│   │   ├── 📄 chart-renderer.js           # ⏳ Chart.js (~500 lignes)
+│   │   ├── 📄 modal-manager.js            # ⏳ Modales (~300 lignes)
+│   │   └── 📄 notifications.js            # ⏳ Toasts (~150 lignes)
+│   │
+│   └── 📁 utils/                          # ⏳ À CRÉER (Phase 4)
+│       ├── 📄 date-utils.js               # ⏳ Dates (~200 lignes)
+│       ├── 📄 validators.js               # ⏳ Validation (~150 lignes)
+│       └── 📄 formatters.js               # ⏳ Formatage (~100 lignes)
+│
+├── 📁 docs/                               # DOCUMENTATION
+│   ├── 📄 REFACTORING-GUIDE.md            # ✅ Guide technique complet
+│   ├── 📄 CHANGELOG.md                    # ✅ Mis à jour avec Phase 1
+│   ├── 📄 README.md                       # Existant
+│   ├── 📄 QUICKSTART.md                   # Existant
+│   └── ... (autres docs)
+│
+├── 📁 scripts/                            # SCRIPTS AUTOMATISATION
+│   └── 📄 replace-inline-css.ps1          # ✅ Script remplacement CSS inline
+│
+├── 📁 bdd/                                # BASE DE DONNÉES
+│   ├── pb_data/                           # PocketBase data
+│   ├── pb_hooks/                          # PocketBase hooks
+│   └── pb_migrations/                     # PocketBase migrations
+│
+├── 📁 config/                             # CONFIGURATION
+│   └── config.json                        # Config du site
+│
+├── 📁 examples/                           # EXEMPLES
+│   ├── team-example.json
+│   └── user-stories-example.txt
+│
+└── 📁 partials/                           # PARTIALS HTML
+    └── footer.html
+
+
+LÉGENDE
+═══════
+✅ Créé / Complété
+⏳ À créer / En attente
+⚠️ Nécessite refactorisation
+
+
+PROGRESSION GLOBALE
+═══════════════════
+Phase 1 (Structure CSS Base)     ████████░░ 80% ✅
+Phase 2 (Modules CSS)             ██░░░░░░░░ 20% ⏳
+Phase 3 (CSS Inline)              ░░░░░░░░░░  0% ⏳
+Phase 4 (Découpage JS)            ░░░░░░░░░░  0% ⏳
+Phase 5 (Optimisation PB)         ░░░░░░░░░░  0% ⏳
+
+TOTAL PROJET                      ████░░░░░░ 30%
+
+
+MÉTRIQUES
+═════════
+CSS Extrait      : 835 / 2853 lignes (29.3%)
+CSS Restant      : 2018 lignes (70.7%)
+Fichiers Créés   : 15 fichiers
+Documentation    : 5 fichiers
+Scripts          : 1 fichier
+
+
+PROCHAINE ÉTAPE
+═══════════════
+📌 Phase 2 : Créer les 11 modules CSS + thème light
+⏱️  Durée estimée : 2-3 heures
+🎯 Objectif : Compléter la migration CSS (100%)

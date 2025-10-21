@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Wizard Grid - 2 Colonnes Mobile</title>
+    <link rel="stylesheet" href="../assets/css/variables.css">
+    <link rel="stylesheet" href="../assets/css/base.css">
+    <link rel="stylesheet" href="../assets/css/wizard.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+        }
+
+        .test-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .test-info {
+            background: var(--bg-secondary);
+            padding: 20px;
+            border-radius: var(--radius-lg);
+            margin-bottom: 20px;
+        }
+
+        .screen-size {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .grid-info {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .success {
+            color: var(--success-color);
+        }
+
+        .warning {
+            color: var(--warning-color);
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <div class="test-info">
+            <div class="screen-size" id="screenSize">Largeur: <span id="width">0</span>px</div>
+            <div class="grid-info">
+                <p><strong>Attendu :</strong></p>
+                <ul>
+                    <li class="success">✅ Desktop (> 768px) : Auto-fit avec min 250px</li>
+                    <li class="success">✅ Mobile (≤ 768px) : 2 colonnes fixes</li>
+                    <li class="success">✅ Petit mobile (≤ 480px) : 2 colonnes avec gap réduit</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="wizard-card">
+            <h2 style="text-align: center; margin-bottom: 2rem;">Quel est votre rôle ?</h2>
+            
+            <div class="options-grid" id="optionsGrid">
+                <button class="wizard-option">
+                    <div class="option-icon">🎯</div>
+                    <div class="option-label">Scrum Master</div>
+                    <p class="option-description">Facilitateur d'équipe Scrum</p>
+                </button>
+
+                <button class="wizard-option">
+                    <div class="option-icon">🧭</div>
+                    <div class="option-label">Coach Agile</div>
+                    <p class="option-description">Coach de transformation</p>
+                </button>
+
+                <button class="wizard-option">
+                    <div class="option-icon">📦</div>
+                    <div class="option-label">Product Owner</div>
+                    <p class="option-description">Responsable produit</p>
+                </button>
+
+                <button class="wizard-option">
+                    <div class="option-icon">💻</div>
+                    <div class="option-label">Développeur</div>
+                    <p class="option-description">Membre de l'équipe de développement</p>
+                </button>
+
+                <button class="wizard-option">
+                    <div class="option-icon">👔</div>
+                    <div class="option-label">Manager</div>
+                    <p class="option-description">Manager d'équipe ou de département</p>
+                </button>
+
+                <button class="wizard-option">
+                    <div class="option-icon">👥</div>
+                    <div class="option-label">RH / Recrutement</div>
+                    <p class="option-description">Ressources humaines et recrutement</p>
+                </button>
+
+                <button class="wizard-option">
+                    <div class="option-icon">📊</div>
+                    <div class="option-label">Data Analyst</div>
+                    <p class="option-description">Analyse de données et métriques</p>
+                </button>
+
+                <button class="wizard-option">
+                    <div class="option-icon">🎨</div>
+                    <div class="option-label">Designer UX/UI</div>
+                    <p class="option-description">Design d'expérience utilisateur</p>
+                </button>
+
+                <button class="wizard-option">
+                    <div class="option-icon">🌱</div>
+                    <div class="option-label">Curieux / Débutant</div>
+                    <p class="option-description">Je découvre l'agilité</p>
+                </button>
+            </div>
+        </div>
+
+        <div class="test-info" style="margin-top: 20px;">
+            <h3>Informations de la grille</h3>
+            <div id="gridInfo"></div>
+        </div>
+    </div>
+
+    <script>
+        function updateScreenInfo() {
+            const width = window.innerWidth;
+            document.getElementById('width').textContent = width;
+
+            const grid = document.getElementById('optionsGrid');
+            const computedStyle = window.getComputedStyle(grid);
+            const gridTemplateColumns = computedStyle.gridTemplateColumns;
+            const gap = computedStyle.gap;
+
+            const columnsCount = gridTemplateColumns.split(' ').length;
+
+            let status = '';
+            if (width > 768) {
+                status = `<p class="success">✅ Desktop : ${columnsCount} colonnes (auto-fit)</p>`;
+            } else if (width > 480) {
+                if (columnsCount === 2) {
+                    status = `<p class="success">✅ Mobile : ${columnsCount} colonnes (correct !)</p>`;
+                } else {
+                    status = `<p class="warning">⚠️ Mobile : ${columnsCount} colonnes (devrait être 2)</p>`;
+                }
+            } else {
+                if (columnsCount === 2) {
+                    status = `<p class="success">✅ Petit mobile : ${columnsCount} colonnes (correct !)</p>`;
+                } else {
+                    status = `<p class="warning">⚠️ Petit mobile : ${columnsCount} colonnes (devrait être 2)</p>`;
+                }
+            }
+
+            document.getElementById('gridInfo').innerHTML = `
+                ${status}
+                <p><strong>grid-template-columns:</strong> ${gridTemplateColumns}</p>
+                <p><strong>gap:</strong> ${gap}</p>
+                <p><strong>Nombre de colonnes détectées:</strong> ${columnsCount}</p>
+            `;
+        }
+
+        // Mettre à jour au chargement
+        updateScreenInfo();
+
+        // Mettre à jour au redimensionnement
+        window.addEventListener('resize', updateScreenInfo);
+
+        // Ajouter interaction aux options
+        document.querySelectorAll('.wizard-option').forEach(option => {
+            option.addEventListener('click', function() {
+                document.querySelectorAll('.wizard-option').forEach(o => o.classList.remove('selected'));
+                this.classList.add('selected');
+            });
+        });
+    </script>
+</body>
+</html>

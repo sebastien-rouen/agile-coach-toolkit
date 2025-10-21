@@ -1,0 +1,65 @@
+/* ====================================
+   INLINE EDIT
+   ==================================== */
+
+.editable-field {
+    position: relative;
+    cursor: pointer;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    transition: var(--transition);
+    display: inline-block;
+    min-width: 100px;
+}
+
+.editable-field:hover {
+    background: rgba(33, 150, 243, 0.1);
+}
+
+.edit-icon {
+    opacity: 0;
+    margin-left: 0.5rem;
+    font-size: 0.8rem;
+    transition: opacity 0.2s;
+}
+
+.editable-field:hover .edit-icon {
+    opacity: 0.6;
+}
+
+.inline-edit-input {
+    width: 100%;
+    padding: 0.5rem;
+    border: 2px solid var(--primary);
+    border-radius: 4px;
+    font-size: 0.95rem;
+    font-family: inherit;
+    background: white;
+    box-shadow: 0 2px 8px rgba(33, 150, 243, 0.2);
+}
+
+.inline-edit-input:focus {
+    outline: none;
+    border-color: var(--success);
+    box-shadow: 0 2px 12px rgba(76, 175, 80, 0.3);
+}
+
+/* Édition des compétences */
+.editable-field[data-field="skills"] {
+    display: block;
+    width: 100%;
+}
+
+.editable-field[data-field="skills"]:hover {
+    background: rgba(33, 150, 243, 0.05);
+}
+
+/* Édition de la capacité */
+.editable-field[data-field="capacity"] .capacity-badge {
+    pointer-events: none;
+}
+
+.inline-edit-input[type="number"] {
+    width: 80px;
+    text-align: center;
+}

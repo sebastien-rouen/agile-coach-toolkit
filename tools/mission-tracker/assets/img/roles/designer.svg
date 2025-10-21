@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <!-- Designer - Personne avec palette de couleurs -->
+  <defs>
+    <linearGradient id="gradDesigner" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#a855f7;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#9333ea;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Tête -->
+  <circle cx="45" cy="28" r="11" fill="url(#gradDesigner)"/>
+  
+  <!-- Corps -->
+  <path d="M 34 39 Q 45 37 56 39 L 56 65 Q 45 70 34 65 Z" fill="url(#gradDesigner)" opacity="0.9"/>
+  
+  <!-- Palette de couleurs -->
+  <ellipse cx="72" cy="50" rx="18" ry="24" fill="#f3e8ff" stroke="#a855f7" stroke-width="2"/>
+  
+  <!-- Trou pour le pouce -->
+  <ellipse cx="72" cy="68" rx="5" ry="6" fill="#ffffff" stroke="#9333ea" stroke-width="1.5"/>
+  
+  <!-- Couleurs sur la palette -->
+  <circle cx="65" cy="40" r="4" fill="#ef4444"/>
+  <circle cx="79" cy="40" r="4" fill="#3b82f6"/>
+  <circle cx="65" cy="50" r="4" fill="#fbbf24"/>
+  <circle cx="79" cy="50" r="4" fill="#10b981"/>
+  <circle cx="72" cy="58" r="4" fill="#a855f7"/>
+  
+  <!-- Pinceau dans la main -->
+  <path d="M 20 35 L 32 42" stroke="#92400e" stroke-width="2" stroke-linecap="round"/>
+  <path d="M 18 32 L 20 35 L 23 33" fill="#cbd5e1"/>
+  
+  <!-- Bras tenant la palette -->
+  <path d="M 56 48 L 54 50" stroke="url(#gradDesigner)" stroke-width="4" stroke-linecap="round"/>
+  
+  <!-- Jambes -->
+  <path d="M 40 65 L 37 85" stroke="url(#gradDesigner)" stroke-width="5" stroke-linecap="round"/>
+  <path d="M 50 65 L 53 85" stroke="url(#gradDesigner)" stroke-width="5" stroke-linecap="round"/>
+</svg>

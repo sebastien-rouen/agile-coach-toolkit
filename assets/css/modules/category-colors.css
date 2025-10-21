@@ -1,0 +1,74 @@
+/**
+ * category-colors.css - Couleurs spécifiques par catégorie
+ */
+
+/* Couleurs spécifiques par catégorie */
+.category-card[data-category="fondamentaux"] {
+  --category-color: #3b82f6;
+  --category-color-rgb: 59, 130, 246;
+}
+
+.category-card[data-category="frameworks"] {
+  --category-color: #10b981;
+  --category-color-rgb: 16, 185, 129;
+}
+
+.category-card[data-category="delivery-amelioration"] {
+  --category-color: #f59e0b;
+  --category-color-rgb: 245, 158, 11;
+}
+
+.category-card[data-category="animation-facilitation"] {
+  --category-color: #ec4899;
+  --category-color-rgb: 236, 72, 153;
+}
+
+.category-card[data-category="gestion-defis"] {
+  --category-color: #ef4444;
+  --category-color-rgb: 239, 68, 68;
+}
+
+.category-card[data-category="leadership-coaching"] {
+  --category-color: #8b5cf6;
+  --category-color-rgb: 139, 92, 246;
+}
+
+.category-card[data-category="multi-equipes-scale"] {
+  --category-color: #06b6d4;
+  --category-color-rgb: 6, 182, 212;
+}
+
+.category-card[data-category="contextes-specialises"] {
+  --category-color: #f97316;
+  --category-color-rgb: 249, 115, 22;
+}
+
+.category-card[data-category="product-design"] {
+  --category-color: #a855f7;
+  --category-color-rgb: 168, 85, 247;
+}
+
+.category-card[data-category="transformation-culture"] {
+  --category-color: #14b8a6;
+  --category-color-rgb: 20, 184, 166;
+}
+
+.category-card[data-category="outils-technologies"] {
+  --category-color: #6366f1;
+  --category-color-rgb: 99, 102, 241;
+}
+
+.category-card[data-category="developpement-coach"] {
+  --category-color: #84cc16;
+  --category-color-rgb: 132, 204, 22;
+}
+
+.category-card[data-category="ressources-rex"] {
+  --category-color: #22c55e;
+  --category-color-rgb: 34, 197, 94;
+}
+
+.category-card[data-category="outils-interactifs"] {
+  --category-color: #eab308;
+  --category-color-rgb: 234, 179, 8;
+}

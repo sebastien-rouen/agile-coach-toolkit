@@ -1,0 +1,368 @@
+/* ====================================
+   TEAM MANAGER - Styles CRUD membres
+   ==================================== */
+
+.team-section {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+    grid-column: span 2;
+}
+
+.team-section h3 {
+    color: var(--text-dark);
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.team-empty {
+    text-align: center;
+    padding: 3rem 2rem;
+    color: #666;
+    background: #f8f9fa;
+    border-radius: var(--border-radius);
+}
+
+.team-empty p {
+    margin: 0.5rem 0;
+}
+
+/* Conteneur des membres */
+#teamMembersContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+/* Ligne de membre */
+.team-member-row {
+    display: grid;
+    grid-template-columns: 2fr 1.5fr 80px 80px;
+    gap: 1rem;
+    align-items: center;
+    padding: 1rem;
+    background: linear-gradient(135deg, #f8f9fa, #ffffff);
+    border-radius: var(--border-radius);
+    border-left: 4px solid var(--primary);
+    transition: var(--transition);
+}
+
+.team-member-row:hover {
+    background: linear-gradient(135deg, #e9ecef, #f8f9fa);
+    transform: translateX(5px);
+    box-shadow: var(--shadow);
+}
+
+/* Membre sorti */
+.team-member-row.team-member-left {
+    background: linear-gradient(135deg, #ffe5e5, #fff0f0);
+    border-left-color: #ef4444;
+    opacity: 0.85;
+}
+
+.team-member-row.team-member-left:hover {
+    background: linear-gradient(135deg, #ffd5d5, #ffe5e5);
+}
+
+.team-member-row.team-member-left .team-member-name {
+    color: #dc2626;
+}
+
+.member-left-badge {
+    display: inline-block;
+    background: #ef4444;
+    color: white;
+    padding: 0.2rem 0.5rem;
+    border-radius: 12px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    margin-left: 0.5rem;
+    vertical-align: middle;
+}
+
+/* Section headers */
+.team-section-header {
+    margin: 1.5rem 0 1rem 0;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--primary);
+}
+
+.team-section-header.team-section-left {
+    border-bottom-color: #ef4444;
+}
+
+.team-section-header h4 {
+    margin: 0;
+    color: var(--primary);
+    font-size: 1.1rem;
+}
+
+.team-section-header.team-section-left h4 {
+    color: #dc2626;
+}
+
+/* Dates du membre */
+.team-member-dates {
+    font-size: 0.75rem;
+    color: #666;
+    margin-top: 0.25rem;
+    font-style: italic;
+}
+
+.team-member-row.team-member-left .team-member-dates {
+    color: #dc2626;
+}
+
+/* Informations du membre */
+.team-member-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.team-member-name {
+    font-weight: 600;
+    color: var(--primary);
+    font-size: 1rem;
+}
+
+.team-member-role {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.team-member-skills {
+    font-size: 0.8rem;
+    color: #999;
+    font-style: italic;
+}
+
+/* Mood selector inline */
+.team-member-mood {
+    display: flex;
+    justify-content: center;
+}
+
+.mood-selector-inline {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.mood-btn-inline {
+    width: 40px;
+    height: 40px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    background: white;
+    font-size: 1.3rem;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mood-btn-inline:hover {
+    transform: scale(1.1);
+    border-color: var(--primary);
+    box-shadow: 0 2px 8px rgba(33, 150, 243, 0.2);
+}
+
+.mood-btn-inline.active {
+    border-color: var(--primary);
+    background: rgba(33, 150, 243, 0.1);
+    transform: scale(1.15);
+    box-shadow: 0 2px 12px rgba(33, 150, 243, 0.3);
+}
+
+/* Capacité */
+.team-member-capacity {
+    text-align: center;
+    font-weight: 600;
+    color: var(--primary);
+    font-size: 1rem;
+}
+
+/* Actions */
+.team-member-actions {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: flex-end;
+}
+
+.btn-icon {
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-edit {
+    background: #e3f2fd;
+    color: var(--primary);
+}
+
+.btn-edit:hover {
+    background: var(--primary);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.btn-delete {
+    background: #ffebee;
+    color: var(--danger);
+}
+
+.btn-delete:hover {
+    background: var(--danger);
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* Formulaire d'ajout/édition */
+#teamMemberFormContainer {
+    background: linear-gradient(135deg, #f8f9fa, #ffffff);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    margin-top: 1rem;
+    border: 2px dashed var(--primary);
+}
+
+#teamMemberFormContainer .form-group {
+    margin-bottom: 1rem;
+}
+
+#teamMemberFormContainer label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+#teamMemberFormContainer input,
+#teamMemberFormContainer select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid #ddd;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+#teamMemberFormContainer input:focus,
+#teamMemberFormContainer select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);
+}
+
+#teamMemberFormContainer small {
+    display: block;
+    margin-top: 0.25rem;
+    font-size: 0.85rem;
+    color: #666;
+}
+
+.form-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .team-member-row {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+
+    .team-member-actions {
+        justify-content: center;
+    }
+
+    .team-member-mood {
+        justify-content: flex-start;
+    }
+
+    .team-member-capacity {
+        text-align: left;
+    }
+}
+
+
+/* ====================================
+   AUTOCOMPLETE COMPÉTENCES
+   ==================================== */
+
+.autocomplete-container {
+    position: relative;
+}
+
+.autocomplete-suggestions {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border: 2px solid var(--primary);
+    border-top: none;
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 1000;
+    display: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.autocomplete-suggestions.show {
+    display: block;
+}
+
+.autocomplete-suggestion {
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.autocomplete-suggestion:last-child {
+    border-bottom: none;
+}
+
+.autocomplete-suggestion:hover,
+.autocomplete-suggestion.active {
+    background: rgba(33, 150, 243, 0.1);
+}
+
+.autocomplete-suggestion-text {
+    flex: 1;
+    color: var(--text-dark);
+}
+
+.autocomplete-suggestion-count {
+    font-size: 0.8rem;
+    color: #999;
+    background: #f0f0f0;
+    padding: 0.2rem 0.5rem;
+    border-radius: 12px;
+}
+
+.autocomplete-no-results {
+    padding: 0.75rem 1rem;
+    color: #999;
+    font-style: italic;
+    text-align: center;
+}

@@ -1,0 +1,113 @@
+{
+  "moved": [
+    {
+      "from": "impact-mapping/impact-mapping-01.png",
+      "to": "animation-facilitation_impact-mapping_1762263683604.png",
+      "category": "animation-facilitation",
+      "content": "impact-mapping"
+    },
+    {
+      "from": "kanban/001-kanban-stickies.webp",
+      "to": "frameworks_kanban-method_1762263683616.webp",
+      "category": "frameworks",
+      "content": "kanban-method"
+    },
+    {
+      "from": "kanban/002-kanban-basic.webp",
+      "to": "frameworks_kanban-method_1762263683617.webp",
+      "category": "frameworks",
+      "content": "kanban-method"
+    },
+    {
+      "from": "kanban/003-kanban-basic-2.webp",
+      "to": "frameworks_kanban-method_1762263683619.webp",
+      "category": "frameworks",
+      "content": "kanban-method"
+    },
+    {
+      "from": "kanban/004-kanban-swim-lanes.webp",
+      "to": "frameworks_kanban-method_1762263683620.webp",
+      "category": "frameworks",
+      "content": "kanban-method"
+    },
+    {
+      "from": "kanban/005-kanban-reglesclaires.webp",
+      "to": "frameworks_kanban-method_1762263683621.webp",
+      "category": "frameworks",
+      "content": "kanban-method"
+    },
+    {
+      "from": "kanban/006-kanban-reglesclaires-2.webp",
+      "to": "frameworks_kanban-method_1762263683623.webp",
+      "category": "frameworks",
+      "content": "kanban-method"
+    },
+    {
+      "from": "kanban/fiche-kanban.webp",
+      "to": "frameworks_kanban-method_1762263683624.webp",
+      "category": "frameworks",
+      "content": "kanban-method"
+    },
+    {
+      "from": "kanban/fiche-kanban-details.webp",
+      "to": "frameworks_kanban-method_1762263683626.webp",
+      "category": "frameworks",
+      "content": "kanban-method"
+    },
+    {
+      "from": "kanban/007-kanban-limit-1.webp",
+      "to": "frameworks_kanban-method_1762263683627.webp",
+      "category": "frameworks",
+      "content": "kanban-method"
+    },
+    {
+      "from": "kanban/008-kanban-limit-2.webp",
+      "to": "frameworks_kanban-method_1762263683629.webp",
+      "category": "frameworks",
+      "content": "kanban-method"
+    },
+    {
+      "from": "kanban/009-kanban-limit-3.webp",
+      "to": "frameworks_kanban-method_1762263683630.webp",
+      "category": "frameworks",
+      "content": "kanban-method"
+    },
+    {
+      "from": "kanban/010-kanban-limit-4.webp",
+      "to": "frameworks_kanban-method_1762263683631.webp",
+      "category": "frameworks",
+      "content": "kanban-method"
+    },
+    {
+      "from": "cycle-improvement.png",
+      "to": "frameworks_scrum-framework_1762263683622.png",
+      "category": "frameworks",
+      "content": "scrum-framework"
+    },
+    {
+      "from": "lois.png",
+      "to": "ressources-rex_lois_1762263683635.png",
+      "category": "ressources-rex",
+      "content": "lois"
+    }
+  ],
+  "updated": [
+    {
+      "file": "animation-facilitation/impact-mapping.md",
+      "images": 1
+    },
+    {
+      "file": "frameworks/kanban-method.md",
+      "images": 12
+    },
+    {
+      "file": "frameworks/scrum-framework.md",
+      "images": 1
+    },
+    {
+      "file": "ressources-rex/lois.md",
+      "images": 1
+    }
+  ],
+  "errors": []
+}

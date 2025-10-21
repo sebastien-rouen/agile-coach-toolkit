@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rapport Final de Mission - {{mission.title}}</title>
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/report-templates.css">
+</head>
+<body>
+  <div class="report-container report-final">
+    <!-- Page de Couverture -->
+    <header class="report-cover">
+      <div class="report-cover-content">
+        <div class="report-cover-type">Rapport Final de Mission</div>
+        <h1 class="report-cover-title">{{mission.title}}</h1>
+        <div class="report-cover-meta">
+          <div class="cover-meta-item">
+            <span class="cover-meta-label">Client</span>
+            <span class="cover-meta-value">{{mission.client}}</span>
+          </div>
+          <div class="cover-meta-item">
+            <span class="cover-meta-label">Période</span>
+            <span class="cover-meta-value">{{mission.startDate | formatDate}} - {{mission.endDate | formatDate}}</span>
+          </div>
+          <div class="cover-meta-item">
+            <span class="cover-meta-label">Durée</span>
+            <span class="cover-meta-value">{{mission.duration}} mois</span>
+          </div>
+          <div class="cover-meta-item">
+            <span class="cover-meta-label">Coach Agile</span>
+            <span class="cover-meta-value">{{author}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="report-cover-decoration"></div>
+    </header>
+
+    <!-- Table des Matières -->
+    <section class="report-section report-toc">
+      <h2>Table des Matières</h2>
+      <ul class="toc-list">
+        <li><a href="#executive-summary">1. Résumé Exécutif</a></li>
+        <li><a href="#mission-context">2. Contexte de la Mission</a></li>
+        <li><a href="#objectives-results">3. Objectifs et Résultats</a></li>
+        <li><a href="#achievements">4. Réalisations Principales</a></li>
+        <li><a href="#transformation">5. Transformation et Impact</a></li>
+        <li><a href="#metrics">6. Métriques et KPIs</a></li>
+        <li><a href="#challenges">7. Défis Rencontrés</a></li>
+        <li><a href="#learnings">8. Apprentissages Clés</a></li>
+        <li><a href="#recommendations">9. Recommandations</a></li>
+        <li><a href="#roadmap">10. Roadmap Post-Mission</a></li>
+        <li><a href="#conclusion">11. Conclusion</a></li>
+        <li><a href="#appendices">Annexes</a></li>
+      </ul>
+    </section>
+
+    <!-- 1. Résumé Exécutif -->
+    <section id="executive-summary" class="report-section report-executive">
+      <div class="report-section-header">
+        <h2 class="report-section-title">
+          <span class="report-section-number">1.</span>
+          Résumé Exécutif
+        </h2>
+      </div>
+      <div class="report-section-content">
+        <div class="executive-summary">
+          {{executiveSummary}}
+        </div>
+        
+        <div class="executive-highlights">
+          <h3>Points Clés de la Mission</h3>
+          <div class="highlights-grid">
+            <div class="highlight-card highlight-success">
+              <div class="highlight-icon">🎯</div>
+              <div class="highlight-value">{{objectivesAchieved}}/{{totalObjectives}}</div>
+              <div class="highlight-label">Objectifs Atteints</div>
+            </div>
+            <div class="highlight-card highlight-team">
+              <div class="highlight-icon">👥</div>
+              <div class="highlight-value">{{teamMembers}}</div>
+              <div class="highlight-label">Personnes Accompagnées</div>
+            </div>
+            <div class="highlight-card highlight-events">
+              <div class="highlight-icon">📅</div>
+              <div class="highlight-value">{{totalEvents}}</div>
+              <div class="highlight-label">Événements Majeurs</div>
+            </div>
+            <div class="highlight-card highlight-impact">
+              <div class="highlight-icon">📈</div>
+              <div class="highlight-value">{{impactScore}}/10</div>
+              <div class="highlight-label">Score d'Impact</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Contexte de la Mission -->
+    <section id="mission-context" class="report-section">
+      <div class="report-section-header">
+        <h2 class="report-section-title">
+          <span class="report-section-number">2.</span>
+          Contexte de la Mission
+        </h2>
+      </div>
+      <div class="report-section-content">
+        <div class="context-grid">
+          <div class="context-card">
+            <h3>🏢 Contexte Organisationnel</h3>
+            <div class="context-content">
+              {{context.organizational}}
+            </div>
+          </div>
+          
+          <div class="context-card">
+            <h3>👥 Équipe et Périmètre</h3>
+            <div class="context-content">
+              <p><strong>Équipe :</strong> {{team.size}} personnes</p>
+              <p><strong>Rôles :</strong> {{team.roles}}</p>
+              <p><strong>Périmètre :</strong> {{scope}}</p>
+            </div>
+          </div>
+          
+          <div class="context-card">
+            <h3>🎯 Enjeux Initiaux</h3>
+            <div class="context-content">
+              <ul>
+                {{#each initialChallenges}}
+                <li>{{this}}</li>
+                {{/each}}
+              </ul>
+            </div>
+          </div>
+          
+          <div class="context-card">
+            <h3>📊 État Initial</h3>
+            <div class="context-content">
+              <p><strong>Maturité Agile :</strong> {{initialMaturity}}/5</p>
+              <p><strong>Vélocité :</strong> {{initialVelocity}}</p>
+              <p><strong>Quality Score :</strong> {{initialQuality}}/10</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Objectifs et Résultats -->
+    <section id="objectives-results" class="report-section">
+      <div class="report-section-header">
+        <h2 class="report-section-title">
+          <span class="report-section-number">3.</span>
+          Objectifs et Résultats
+        </h2>
+      </div>
+      <div class="report-section-content">
+        {{#if objectives.length}}
+        <div class="objectives-results-list">
+          {{#each objectives}}
+          <div class="objective-result-card status-{{status}}">
+            <div class="objective-result-header">
+              <div class="objective-result-title">
+                <h3>{{title}}</h3>
+                <span class="objective-status-badge status-badge-{{status}}">
+                  {{#if (eq status 'achieved')}}✅ Atteint{{/if}}
+                  {{#if (eq status 'partial')}}🔄 Partiel{{/if}}
+                  {{#if (eq status 'not-achieved')}}❌ Non atteint{{/if}}
+                </span>
+              </div>
+              <div class="objective-result-progress">
+                <div class="progress-bar">
+                  <div class="progress-fill" style="width: {{progress}}%;"></div>
+                </div>
+                <span class="progress-label">{{progress}}%</span>
+              </div>
+            </div>
+            
+            <div class="objective-result-body">
+              <div class="objective-description">
+                <strong>Objectif :</strong> {{description}}
+              </div>
+              
+              {{#if results}}
+              <div class="objective-results">
+                <strong>Résultats :</strong>
+                <ul>
+                  {{#each results}}
+                  <li>{{this}}</li>
+                  {{/each}}
+                </ul>
+              </div>
+              {{/if}}
+              
+              {{#if metrics}}
+              <div class="objective-metrics">
+                <strong>Métriques :</strong>
+                <div class="metrics-comparison-inline">
+                  {{#each metrics}}
+                  <div class="metric-inline">
+                    <span class="metric-name">{{name}} :</span>
+                    <span class="metric-values">
+                      <span class="metric-before">{{initial}}</span>
+                      <span class="metric-arrow">→</span>
+                      <span class="metric-after">{{final}}</span>
+                    </span>
+                  </div>
+                  {{/each}}
+                </div>
+              </div>
+              {{/if}}
+              
+              {{#if blockers}}
+              <div class="objective-blockers">
+                <strong>Blocages rencontrés :</strong>
+                <ul>
+                  {{#each blockers}}
+                  <li>{{this}}</li>
+                  {{/each}}
+                </ul>
+              </div>
+              {{/if}}
+            </div>
+          </div>
+          {{/each}}
+        </div>
+        {{else}}
+        <p class="text-muted">Aucun objectif défini.</p>
+        {{/if}}
+      </div>
+    </section>
+
+    <!-- 4. Réalisations Principales -->
+    <section id="achievements" class="report-section">
+      <div class="report-section-header">
+        <h2 class="report-section-title">
+          <span class="report-section-number">4.</span>
+          Réalisations Principales
+        </h2>
+      </div>
+      <div class="report-section-content">
+        {{#if achievements.length}}
+        <div class="achievements-timeline">
+          {{#each achievements}}
+          <div class="achievement-major-card">
+            <div class="achievement-major-icon">{{icon}}</div>
+            <div class="achievement-major-content">
+              <div class="achievement-major-header">
+                <h3>{{title}}</h3>
+                <span class="achievement-date">{{date | formatDate}}</span>
+              </div>
+              <p class="achievement-description">{{description}}</p>
+              
+              {{#if impact}}
+              <div class="achievement-impact">
+                <strong>Impact :</strong>
+                <div class="impact-tags">
+                  {{#each impact}}
+                  <span class="impact-tag impact-{{type}}">{{label}}</span>
+                  {{/each}}
+                </div>
+              </div>
+              {{/if}}
+              
+              {{#if testimonial}}
+              <div class="achievement-testimonial">
+                <blockquote>
+                  "{{testimonial.quote}}"
+                  <footer>— {{testimonial.author}}, {{testimonial.role}}</footer>
+                </blockquote>
+              </div>
+              {{/if}}
+            </div>
+          </div>
+          {{/each}}
+        </div>
+        {{else}}
+        <p class="text-muted">Aucune réalisation documentée.</p>
+        {{/if}}
+      </div>
+    </section>
+
+    <!-- 5. Transformation et Impact -->
+    <section id="transformation" class="report-section">
+      <div class="report-section-header">
+        <h2 class="report-section-title">
+          <span class="report-section-number">5.</span>
+          Transformation et Impact
+        </h2>
+      </div>
+      <div class="report-section-content">
+        <div class="transformation-areas">
+          <div class="transformation-area">
+            <h3>🎯 Transformation Agile</h3>
+            <div class="transformation-comparison">
+              <div class="comparison-before">
+                <h4>Avant</h4>
+                <ul>
+                  {{#each transformation.agile.before}}
+                  <li>{{this}}</li>
+                  {{/each}}
+                </ul>
+              </div>
+              <div class="comparison-arrow">→</div>
+              <div class="comparison-after">
+                <h4>Après</h4>
+                <ul>
+                  {{#each transformation.agile.after}}
+                  <li>{{this}}</li>
+                  {{/each}}
+                </ul>
+              </div>
+            </div>
+          </div>
+          
+          <div class="transformation-area">
+            <h3>👥 Transformation Équipe</h3>
+            <div class="transformation-comparison">
+              <div class="comparison-before">
+                <h4>Avant</h4>
+                <ul>
+                  {{#each transformation.team.before}}
+                  <li>{{this}}</li>
+                  {{/each}}
+                </ul>
+              </div>
+              <div class="comparison-arrow">→</div>
+              <div class="comparison-after">
+                <h4>Après</h4>
+                <ul>
+                  {{#each transformation.team.after}}
+                  <li>{{this}}</li>
+                  {{/each}}
+                </ul>
+              </div>
+            </div>
+          </div>
+          
+          <div class="transformation-area">
+            <h3>⚙️ Transformation Technique</h3>
+            <div class="transformation-comparison">
+              <div class="comparison-before">
+                <h4>Avant</h4>
+                <ul>
+                  {{#each transformation.technical.before}}
+                  <li>{{this}}</li>
+                  {{/each}}
+                </ul>
+              </div>
+              <div class="comparison-arrow">→</div>
+              <div class="comparison-after">
+                <h4>Après</h4>
+                <ul>
+                  {{#each transformation.technical.after}}
+                  <li>{{this}}</li>
+                  {{/each}}
+                </ul>
+              </div>
+            </div>
+          </div>
+          
+          <div class="transformation-area">
+            <h3>🏢 Transformation Organisationnelle</h3>
+            <div class="transformation-comparison">
+              <div class="comparison-before">
+                <h4>Avant</h4>
+                <ul>
+                  {{#each transformation.organizational.before}}
+                  <li>{{this}}</li>
+                  {{/each}}
+                </ul>
+              </div>
+              <div class="comparison-arrow">→</div>
+              <div class="comparison-after">
+                <h4>Après</h4>
+                <ul>
+                  {{#each transformation.organizational.after}}
+                  <li>{{this}}</li>
+                  {{/each}}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Métriques et KPIs -->
+    <section id="metrics" class="report-section">
+      <div class="report-section-header">
+        <h2 class="report-section-title">
+          <span class="report-section-number">6.</span>
+          Métriques et KPIs
+        </h2>
+      </div>
+      <div class="report-section-content">
+        {{#if metrics.length}}
+        <div class="metrics-evolution">
+          {{#each metrics}}
+          <div class="metric-evolution-card">
+            <h3>{{label}}</h3>
+            <div class="metric-evolution-chart">
+              <div class="metric-evolution-values">
+                <div class="metric-evolution-start">
+                  <span class="metric-label">Début</span>
+                  <span class="metric-value">{{startValue}}{{unit}}</span>
+                </div>
+                <div class="metric-evolution-line">
+                  <div class="evolution-arrow trend-{{trend}}">
+                    {{#if (eq trend 'up')}}↗{{/if}}
+                    {{#if (eq trend 'down')}}↘{{/if}}
+                    {{#if (eq trend 'stable')}}→{{/if}}
+                  </div>
+                  <div class="evolution-change {{changeClass}}">
+                    {{changePercent}}%
+                  </div>
+                </div>
+                <div class="metric-evolution-end">
+                  <span class="metric-label">Fin</span>
+                  <span class="metric-value">{{endValue}}{{unit}}</span>
+                </div>
+              </div>
+              
+              {{#if milestones}}
+              <div class="metric-milestones">
+                <strong>Jalons :</strong>
+                <ul>
+                  {{#each milestones}}
+                  <li>
+                    <span class="milestone-date">{{date | formatDate}}</span>
+                    <span class="milestone-value">{{value}}{{../unit}}</span>
+                    <span class="milestone-label">{{label}}</span>
+                  </li>
+                  {{/each}}
+                </ul>
+              </div>
+              {{/if}}
+            </div>
+            
+            <div class="metric-analysis">
+              <p>{{analysis}}</p>
+            </div>
+          </div>
+          {{/each}}
+        </div>
+        
+        <div class="metrics-summary">
+          <h3>Synthèse des Améliorations</h3>
+          <div class="metrics-summary-grid">
+            <div class="summary-card summary-positive">
+              <div class="summary-icon">📈</div>
+              <div class="summary-content">
+                <h4>Métriques Améliorées</h4>
+                <ul>
+                  {{#each metricsImproved}}
+                  <li>{{this}}</li>
+                  {{/each}}
+                </ul>
+              </div>
+            </div>
+            <div class="summary-card summary-stable">
+              <div class="summary-icon">📊</div>
+              <div class="summary-content">
+                <h4>Métriques Stables</h4>
+                <ul>
+                  {{#each metricsStable}}
+                  <li>{{this}}</li>
+                  {{/each}}
+                </ul>
+              </div>
+            </div>
+            <div class="summary-card summary-attention">
+              <div class="summary-icon">⚠️</div>
+              <div class="summary-content">
+                <h4>Métriques à Surveiller</h4>
+                <ul>
+                  {{#each metricsToWatch}}
+                  <li>{{this}}</li>
+                  {{/each}}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        {{else}}
+        <p class="text-muted">Aucune métrique définie.</p>
+        {{/if}}
+      </div>
+    </section>
+
+    <!-- 7. Défis Rencontrés -->
+    <section id="challenges" class="report-section">
+      <div class="report-section-header">
+        <h2 class="report-section-title">
+          <span class="report-section-number">7.</span>
+          Défis Rencontrés et Solutions
+        </h2>
+      </div>
+      <div class="report-section-content">
+        {{#if challenges.length}}
+        <div class="challenges-solutions">
+          {{#each challenges}}
+          <div class="challenge-solution-card">
+            <div class="challenge-header">
+              <h3>{{title}}</h3>
+              <span class="challenge-category category-{{category}}">{{categoryLabel}}</span>
+            </div>
+            
+            <div class="challenge-problem">
+              <h4>❗ Problème</h4>
+              <p>{{problem}}</p>
+            </div>
+            
+            <div class="challenge-impact">
+              <h4>📉 Impact</h4>
+              <p>{{impact}}</p>
+            </div>
+            
+            <div class="challenge-solution">
+              <h4>✅ Solution Mise en Place</h4>
+              <p>{{solution}}</p>
+            </div>
+            
+            {{#if results}}
+            <div class="challenge-results">
+              <h4>📊 Résultats</h4>
+              <p>{{results}}</p>
+            </div>
+            {{/if}}
+            
+            {{#if lessons}}
+            <div class="challenge-lessons">
+              <h4>💡 Leçons Apprises</h4>
+              <ul>
+                {{#each lessons}}
+                <li>{{this}}</li>
+                {{/each}}
+              </ul>
+            </div>
+            {{/if}}
+          </div>
+          {{/each}}
+        </div>
+        {{else}}
+        <p class="text-muted">Aucun défi documenté.</p>
+        {{/if}}
+      </div>
+    </section>
+
+    <!-- 8. Apprentissages Clés -->
+    <section id="learnings" class="report-section">
+      <div class="report-section-header">
+        <h2 class="report-section-title">
+          <span class="report-section-number">8.</span>
+          Apprentissages Clés
+        </h2>
+      </div>
+      <div class="report-section-content">
+        {{#if learnings.length}}
+        <div class="learnings-categories">
+          {{#each learningsByCategory}}
+          <div class="learning-category">
+            <h3>{{category}}</h3>
+            <div class="learnings-list">
+              {{#each items}}
+              <div class="learning-item-detailed">
+                <div class="learning-icon">💡</div>
+                <div class="learning-content">
+                  <h4>{{title}}</h4>
+                  <p>{{description}}</p>
+                  {{#if application}}
+                  <div class="learning-application">
+                    <strong>Application :</strong> {{application}}
+                  </div>
+                  {{/if}}
+                  {{#if recommendations}}
+                  <div class="learning-recommendations">
+                    <strong>Recommandations :</strong>
+                    <ul>
+                      {{#each recommendations}}
+                      <li>{{this}}</li>
+                      {{/each}}
+                    </ul>
+                  </div>
+                  {{/if}}
+                </div>
+              </div>
+              {{/each}}
+            </div>
+          </div>
+          {{/each}}
+        </div>
+        {{else}}
+        <p class="text-muted">Aucun apprentissage documenté.</p>
+        {{/if}}
+      </div>
+    </section>
+
+    <!-- 9. Recommandations -->
+    <section id="recommendations" class="report-section">
+      <div class="report-section-header">
+        <h2 class="report-section-title">
+          <span class="report-section-number">9.</span>
+          Recommandations pour la Suite
+        </h2>
+      </div>
+      <div class="report-section-content">
+        {{#if recommendations.length}}
+        <div class="recommendations-prioritized">
+          <div class="recommendations-high-priority">
+            <h3>🔴 Priorité Haute</h3>
+            <div class="recommendations-list">
+              {{#each recommendations}}
+              {{#if (eq priority 'high')}}
+              <div class="recommendation-detailed">
+                <h4>{{title}}</h4>
+                <p>{{description}}</p>
+                <div class="recommendation-meta">
+                  <span class="recommendation-timeline">⏱️ {{timeline}}</span>
+                  {{#if owner}}<span class="recommendation-owner">👤 {{owner}}</span>{{/if}}
+                  {{#if effort}}<span class="recommendation-effort">💪 Effort: {{effort}}</span>{{/if}}
+                </div>
+                {{#if actions}}
+                <div class="recommendation-actions">
+                  <strong>Actions :</strong>
+                  <ol>
+                    {{#each actions}}
+                    <li>{{this}}</li>
+                    {{/each}}
+                  </ol>
+                </div>
+                {{/if}}
+              </div>
+              {{/if}}
+              {{/each}}
+            </div>
+          </div>
+          
+          <div class="recommendations-medium-priority">
+            <h3>🟡 Priorité Moyenne</h3>
+            <div class="recommendations-list">
+              {{#each recommendations}}
+              {{#if (eq priority 'medium')}}
+              <div class="recommendation-detailed">
+                <h4>{{title}}</h4>
+                <p>{{description}}</p>
+                <div class="recommendation-meta">
+                  <span class="recommendation-timeline">⏱️ {{timeline}}</span>
+                  {{#if owner}}<span class="recommendation-owner">👤 {{owner}}</span>{{/if}}
+                </div>
+              </div>
+              {{/if}}
+              {{/each}}
+            </div>
+          </div>
+          
+          <div class="recommendations-low-priority">
+            <h3>🟢 Priorité Basse</h3>
+            <div class="recommendations-list">
+              {{#each recommendations}}
+              {{#if (eq priority 'low')}}
+              <div class="recommendation-detailed">
+                <h4>{{title}}</h4>
+                <p>{{description}}</p>
+              </div>
+              {{/if}}
+              {{/each}}
+            </div>
+          </div>
+        </div>
+        {{else}}
+        <p class="text-muted">Aucune recommandation pour le moment.</p>
+        {{/if}}
+      </div>
+    </section>
+
+    <!-- 10. Roadmap Post-Mission -->
+    <section id="roadmap" class="report-section">
+      <div class="report-section-header">
+        <h2 class="report-section-title">
+          <span class="report-section-number">10.</span>
+          Roadmap Post-Mission
+        </h2>
+      </div>
+      <div class="report-section-content">
+        {{#if roadmap}}
+        <div class="roadmap-timeline">
+          <div class="roadmap-phase">
+            <h3>📅 1-3 Mois (Court Terme)</h3>
+            <ul>
+              {{#each roadmap.shortTerm}}
+              <li>{{this}}</li>
+              {{/each}}
+            </ul>
+          </div>
+          
+          <div class="roadmap-phase">
+            <h3>📅 3-6 Mois (Moyen Terme)</h3>
+            <ul>
+              {{#each roadmap.mediumTerm}}
+              <li>{{this}}</li>
+              {{/each}}
+            </ul>
+          </div>
+          
+          <div class="roadmap-phase">
+            <h3>📅 6-12 Mois (Long Terme)</h3>
+            <ul>
+              {{#each roadmap.longTerm}}
+              <li>{{this}}</li>
+              {{/each}}
+            </ul>
+          </div>
+        </div>
+        
+        {{#if roadmap.continuousImprovement}}
+        <div class="continuous-improvement">
+          <h3>🔄 Amélioration Continue</h3>
+          <p>{{roadmap.continuousImprovement}}</p>
+        </div>
+        {{/if}}
+        {{else}}
+        <p class="text-muted">Aucune roadmap définie.</p>
+        {{/if}}
+      </div>
+    </section>
+
+    <!-- 11. Conclusion -->
+    <section id="conclusion" class="report-section report-conclusion">
+      <div class="report-section-header">
+        <h2 class="report-section-title">
+          <span class="report-section-number">11.</span>
+          Conclusion
+        </h2>
+      </div>
+      <div class="report-section-content">
+        <div class="conclusion-content">
+          {{conclusion}}
+        </div>
+        
+        {{#if gratitude}}
+        <div class="conclusion-gratitude">
+          <h3>🙏 Remerciements</h3>
+          <p>{{gratitude}}</p>
+        </div>
+        {{/if}}
+        
+        <div class="conclusion-signature">
+          <p><strong>{{author}}</strong></p>
+          <p class="text-muted">Coach Agile</p>
+          <p class="text-muted">{{mission.endDate | formatDate}}</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Annexes -->
+    <section id="appendices" class="report-section">
+      <div class="report-section-header">
+        <h2 class="report-section-title">Annexes</h2>
+      </div>
+      <div class="report-section-content">
+        {{#if appendices}}
+        <div class="appendices-list">
+          {{#each appendices}}
+          <div class="appendix-item">
+            <h3>Annexe {{index}} : {{title}}</h3>
+            <div class="appendix-content">
+              {{content}}
+            </div>
+          </div>
+          {{/each}}
+        </div>
+        {{else}}
+        <p class="text-muted">Aucune annexe.</p>
+        {{/if}}
+      </div>
+    </section>
+
+    <!-- Footer Final -->
+    <footer class="report-footer-final">
+      <div class="footer-final-content">
+        <div class="footer-final-logo">
+          <img src="../assets/images/logo.svg" alt="Logo">
+        </div>
+        <div class="footer-final-info">
+          <p><strong>Rapport Final de Mission</strong></p>
+          <p>{{mission.title}}</p>
+          <p class="text-muted">Généré le {{generatedDate | formatDate}}</p>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Print Styles -->
+  <style media="print">
+    @page {
+      margin: 2cm;
+      size: A4;
+    }
+
+    body {
+      background: white;
+      color: black;
+    }
+
+    .report-cover {
+      page-break-after: always;
+    }
+
+    .report-toc {
+      page-break-after: always;
+    }
+
+    .report-section {
+      page-break-inside: avoid;
+    }
+
+    .report-section-header h2 {
+      page-break-after: avoid;
+    }
+  </style>
+</body>
+</html>

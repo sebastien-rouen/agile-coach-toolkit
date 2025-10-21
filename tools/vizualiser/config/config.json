@@ -1,0 +1,67 @@
+{
+  "id": "vizualiser",
+  "name": "Visualiseur Multi-Équipes",
+  "icon": "🎯",
+  "path": "tools/vizualiser",
+  "description": "Cartographie visuelle des sujets avec codes couleurs d'alerte automatiques",
+  "order": 10,
+  "features": {
+    "mindmap": true,
+    "crud": true,
+    "import_yaml": true,
+    "import_jira": false,
+    "export": true,
+    "filters": true,
+    "realtime_stats": true
+  },
+  "alert_thresholds": {
+    "warning_days": 7,
+    "critical_days": 0
+  },
+  "demo_templates": [
+    {
+      "id": "safe",
+      "name": "SAFe ART",
+      "description": "4 équipes, 12 sujets dont 3 cross-team",
+      "icon": "🚀",
+      "file": "assets/data/templates/demo-safe.yaml",
+      "context": "80+ personnes"
+    },
+    {
+      "id": "spotify",
+      "name": "Spotify Model",
+      "description": "5 squads, 3 guilds, 15 sujets",
+      "icon": "🎵",
+      "file": "assets/data/templates/demo-spotify.yaml",
+      "context": "60 personnes"
+    },
+    {
+      "id": "simple",
+      "name": "Simple",
+      "description": "2 équipes, 5 sujets basiques",
+      "icon": "✨",
+      "file": "assets/data/templates/demo-simple.yaml",
+      "context": "20 personnes"
+    }
+  ],
+  "methodologies": [
+    {
+      "name": "SAFe",
+      "use_case": "PI Planning avec 80 personnes",
+      "reference": "https://scaledagileframework.com/pi-planning/"
+    },
+    {
+      "name": "Spotify Model",
+      "use_case": "Coordination Squads & Guilds",
+      "reference": "https://blog.crisp.se/wp-content/uploads/2012/11/SpotifyScaling.pdf"
+    },
+    {
+      "name": "LeSS",
+      "use_case": "Multi-Team Sprint Planning",
+      "reference": "https://less.works/less/framework/coordination-and-integration"
+    }
+  ],
+  "version": "1.0.0",
+  "author": "Sébastien ROUEN",
+  "license": "MIT"
+}

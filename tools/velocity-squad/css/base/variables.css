@@ -1,0 +1,46 @@
+/* ====================================
+   VARIABLES CSS ET RESET
+   ==================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* Couleurs sémantiques */
+  --primary: #2196F3;
+  --success: #4CAF50;
+  --warning: #FF9800;
+  --error: #F44336;
+  --info: #00BCD4;
+  
+  /* Couleurs de fond */
+  --bg-light: #f5f5f5;
+  --bg-dark: #1a1a1a;
+  
+  /* Couleurs de texte */
+  --text-dark: #333;
+  --text-light: #fff;
+  --text-muted: #666;
+  
+  /* Espacements harmoniques */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 12px;
+  --spacing-lg: 20px;
+  --spacing-xl: 32px;
+  
+  /* Système de design */
+  --border-radius: 8px;
+  --transition: 0.2s ease;
+  --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --shadow-hover: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: var(--bg-dark);
+  color: var(--text-light);
+  line-height: 1.6;
+}

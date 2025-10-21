@@ -1,0 +1,144 @@
+{
+  "session": {
+    "id": "example_session_001",
+    "name": "Projet Transformation Digitale",
+    "created": "2025-01-15T10:00:00.000Z",
+    "updated": "2025-01-15T10:00:00.000Z"
+  },
+  "stakeholders": [
+    {
+      "id": "stakeholder_001",
+      "name": "Marie Dupont",
+      "role": "CEO",
+      "power": 5,
+      "interest": 5,
+      "influence": "vital",
+      "domain": "governance",
+      "notes": "Sponsor principal du projet. Décisions stratégiques finales. Reporting mensuel requis.",
+      "created": "2025-01-15T10:00:00.000Z"
+    },
+    {
+      "id": "stakeholder_002",
+      "name": "Jean Martin",
+      "role": "CTO",
+      "power": 5,
+      "interest": 4,
+      "influence": "vital",
+      "domain": "governance",
+      "notes": "Responsable technique. Validation architecture et choix technologiques.",
+      "created": "2025-01-15T10:00:00.000Z"
+    },
+    {
+      "id": "stakeholder_003",
+      "name": "Sophie Bernard",
+      "role": "Product Owner",
+      "power": 3,
+      "interest": 5,
+      "influence": "necessary",
+      "domain": "customer",
+      "notes": "Représente les utilisateurs finaux. Priorise le backlog. Daily contact.",
+      "created": "2025-01-15T10:00:00.000Z"
+    },
+    {
+      "id": "stakeholder_004",
+      "name": "Pierre Dubois",
+      "role": "Scrum Master",
+      "power": 2,
+      "interest": 5,
+      "influence": "good",
+      "domain": "provider",
+      "notes": "Facilite l'équipe de développement. Gère les impediments.",
+      "created": "2025-01-15T10:00:00.000Z"
+    },
+    {
+      "id": "stakeholder_005",
+      "name": "Claire Petit",
+      "role": "Utilisateur Final - Service Commercial",
+      "power": 1,
+      "interest": 4,
+      "influence": "good",
+      "domain": "customer",
+      "notes": "Utilisateur clé du service commercial. Feedback terrain important.",
+      "created": "2025-01-15T10:00:00.000Z"
+    },
+    {
+      "id": "stakeholder_006",
+      "name": "Thomas Roux",
+      "role": "Consultant Externe",
+      "power": 2,
+      "interest": 3,
+      "influence": "courtesy",
+      "domain": "influencer",
+      "notes": "Conseil stratégique ponctuel. Expertise méthodologique.",
+      "created": "2025-01-15T10:00:00.000Z"
+    },
+    {
+      "id": "stakeholder_007",
+      "name": "Isabelle Moreau",
+      "role": "Directrice RH",
+      "power": 4,
+      "interest": 3,
+      "influence": "necessary",
+      "domain": "governance",
+      "notes": "Gestion du changement. Formation des équipes. Impact organisationnel.",
+      "created": "2025-01-15T10:00:00.000Z"
+    },
+    {
+      "id": "stakeholder_008",
+      "name": "Luc Fontaine",
+      "role": "Responsable Sécurité",
+      "power": 4,
+      "interest": 2,
+      "influence": "necessary",
+      "domain": "governance",
+      "notes": "Validation sécurité et conformité. Audits réguliers.",
+      "created": "2025-01-15T10:00:00.000Z"
+    },
+    {
+      "id": "stakeholder_009",
+      "name": "Émilie Garnier",
+      "role": "Chef de Projet IT",
+      "power": 3,
+      "interest": 4,
+      "influence": "good",
+      "domain": "provider",
+      "notes": "Coordination technique. Gestion des dépendances inter-projets.",
+      "created": "2025-01-15T10:00:00.000Z"
+    },
+    {
+      "id": "stakeholder_010",
+      "name": "Marc Leroy",
+      "role": "Représentant Syndicat",
+      "power": 2,
+      "interest": 3,
+      "influence": "courtesy",
+      "domain": "influencer",
+      "notes": "Représentation des employés. Communication sur les impacts sociaux.",
+      "created": "2025-01-15T10:00:00.000Z"
+    },
+    {
+      "id": "stakeholder_011",
+      "name": "Nathalie Blanc",
+      "role": "Directrice Marketing",
+      "power": 3,
+      "interest": 2,
+      "influence": "good",
+      "domain": "customer",
+      "notes": "Impact sur la communication externe. Alignement marque.",
+      "created": "2025-01-15T10:00:00.000Z"
+    },
+    {
+      "id": "stakeholder_012",
+      "name": "Olivier Durand",
+      "role": "Fournisseur Cloud",
+      "power": 2,
+      "interest": 2,
+      "influence": "courtesy",
+      "domain": "provider",
+      "notes": "Partenaire infrastructure. Support technique.",
+      "created": "2025-01-15T10:00:00.000Z"
+    }
+  ],
+  "exportDate": "2025-01-15T10:00:00.000Z",
+  "version": "1.0"
+}

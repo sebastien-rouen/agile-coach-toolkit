@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Flow Master - Kanban Game</title>
+    <link rel="stylesheet" href="../../assets/css/variables.css">
+    <link rel="stylesheet" href="../../assets/css/base.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="hospital-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="hospital-info">
+                    <h1>🏥 Hospital Flow Master</h1>
+                    <p>Service de Médecine Interne - CHU Saint-Antoine</p>
+                </div>
+                <div class="game-status">
+                    <div class="timer-display">
+                        <span class="timer-label">⏰ Temps restant:</span>
+                        <span id="gameTimer" class="timer-value">5:00</span>
+                    </div>
+                    <div class="score-display">
+                        <span class="score-label">🏆 Score:</span>
+                        <span id="gameScore" class="score-value">0</span>
+                    </div>
+                </div>
+                <div class="game-controls">
+                    <button id="pauseBtn" class="btn-control">⏸️ Pause</button>
+                    <button id="speedBtn" class="btn-control">⏩ x1</button>
+                    <button id="helpBtn" class="btn-control">❓ Aide</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Indicateur de stress -->
+    <div class="stress-indicator" id="stressIndicator">
+        <span>🌡️ Stress:</span>
+        <span id="stressLevel" class="stress-level-low">0%</span>
+    </div>
+
+    <!-- NOUVEAU : Zone d'affichage des événements actifs -->
+    <div class="active-events-bar" id="activeEventsBar" style="display: none;">
+        <div class="container">
+            <div class="active-event-content">
+                <span class="event-icon">⚡</span>
+                <span class="event-title" id="activeEventTitle">Événement actif</span>
+                <span class="event-effect" id="activeEventEffect">Effet sur le tableau</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Couloir d'urgence -->
+    <div class="emergency-lane" id="emergencyLane">
+        <div class="emergency-header">
+            <h3>🚨 Couloir d'urgence</h3>
+            <div class="emergency-count">
+                <span id="emergencyCount">0</span> urgence(s)
+            </div>
+        </div>
+        <div class="emergency-content" id="emergencyContent">
+            <!-- Patients urgents et critiques -->
+        </div>
+    </div>
+
+    <div class="game-dashboard">
+        <div class="container">
+            <!-- Métriques en temps réel -->
+            <div class="metrics-bar">
+                <div class="metric-card">
+                    <div class="metric-icon">⏱️</div>
+                    <div class="metric-content">
+                        <div class="metric-label">Lead Time Moyen</div>
+                        <div class="metric-value" id="leadTime">4.2h</div>
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon">🚀</div>
+                    <div class="metric-content">
+                        <div class="metric-label">Throughput</div>
+                        <div class="metric-value" id="throughput">12/jour</div>
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon">🚨</div>
+                    <div class="metric-content">
+                        <div class="metric-label">Urgences en attente</div>
+                        <div class="metric-value urgent" id="urgentCount">3</div>
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon">😊</div>
+                    <div class="metric-content">
+                        <div class="metric-label">Satisfaction</div>
+                        <div class="metric-value" id="satisfaction">87%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main class="kanban-board">
+        <div class="container">
+            <!-- Tableau Kanban médical -->
+            <div class="board-container">
+                <!-- Salle d'attente (Parking) -->
+                <div class="parking-area" id="parkingArea">
+                    <div class="parking-header">
+                        <h4>🪑 Salle d'attente</h4>
+                        <div class="parking-count">
+                            <span id="parkingCount">0</span> en attente
+                        </div>
+                    </div>
+                    <div class="parking-content" id="parkingContent">
+                        <!-- Patients en attente -->
+                    </div>
+                </div>
+
+                <div class="board-column" data-column="triage">
+                    <div class="column-header">
+                        <h3>🚪 Triage</h3>
+                        <div class="wip-limit">
+                            <span class="wip-current" id="triageCount">0</span>
+                            <span class="wip-max">/ 5</span>
+                        </div>
+                    </div>
+                    <div class="column-content" id="triageColumn">
+                        <!-- Les patients apparaîtront ici -->
+                    </div>
+                </div>
+
+                <div class="board-column" data-column="consultation">
+                    <div class="column-header">
+                        <h3>👩‍⚕️ Consultation</h3>
+                        <div class="wip-limit">
+                            <span class="wip-current" id="consultationCount">0</span>
+                            <span class="wip-max">/ 4</span>
+                        </div>
+                    </div>
+                    <div class="column-content" id="consultationColumn">
+                        <!-- Consultations en cours -->
+                    </div>
+                </div>
+
+                <div class="board-column" data-column="examens">
+                    <div class="column-header">
+                        <h3>🔬 Examens</h3>
+                        <div class="wip-limit">
+                            <span class="wip-current" id="examensCount">0</span>
+                            <span class="wip-max">/ 3</span>
+                        </div>
+                    </div>
+                    <div class="column-content" id="examensColumn">
+                        <!-- Examens en attente/cours -->
+                    </div>
+                </div>
+
+                <div class="board-column" data-column="traitement">
+                    <div class="column-header">
+                        <h3>💊 Traitement</h3>
+                        <div class="wip-limit">
+                            <span class="wip-current" id="traitementCount">0</span>
+                            <span class="wip-max">/ 6</span>
+                        </div>
+                    </div>
+                    <div class="column-content" id="traitementColumn">
+                        <!-- Traitements en cours -->
+                    </div>
+                </div>
+
+                <div class="board-column" data-column="sortie">
+                    <div class="column-header">
+                        <h3>🏠 Sortie</h3>
+                        <div class="wip-limit">
+                            <span class="wip-current" id="sortieCount">0</span>
+                            <span class="wip-max">/ ∞</span>
+                        </div>
+                    </div>
+                    <div class="column-content" id="sortieColumn">
+                        <!-- Patients traités -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Panneau latéral d'informations -->
+    <aside class="info-panel" id="infoPanel">
+        <div class="panel-header">
+            <h3>📊 Informations</h3>
+            <button class="close-panel" id="closePanelBtn">×</button>
+        </div>
+        <div class="panel-content">
+            <div class="patient-details" id="patientDetails">
+                <!-- Détails du patient sélectionné -->
+            </div>
+            <div class="flow-analytics" id="flowAnalytics">
+                <!-- Analyses du flux -->
+            </div>
+        </div>
+    </aside>
+
+    <!-- Modal d'événements -->
+    <div class="modal-overlay" id="eventModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="eventTitle">🚨 Événement</h3>
+            </div>
+            <div class="modal-body">
+                <p id="eventDescription"></p>
+                <div class="event-options" id="eventOptions">
+                    <!-- Options de réponse -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/patient-generator.js"></script>
+    <script src="js/kanban-board.js"></script>
+    <script src="js/flow-metrics.js"></script>
+    <script src="js/event-system.js"></script>
+    <script src="js/game-engine.js"></script>
+</body>
+</html>

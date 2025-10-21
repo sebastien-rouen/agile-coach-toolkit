@@ -9,8 +9,221 @@
       "id": "product-backlog-management",
       "title": "Product Backlog Management",
       "file": "product-backlog-management.md",
-      "tags": ["backlog", "priorisation", "user-stories", "valeur"],
+      "tags": [
+        "backlog",
+        "priorisation",
+        "user-stories",
+        "valeur"
+      ],
       "order": 1
+    },
+    {
+      "id": "design-thinking",
+      "title": "Design Thinking",
+      "file": "design-thinking.md",
+      "tags": [
+        "design-thinking",
+        "innovation",
+        "user-experience",
+        "créativité"
+      ],
+      "order": 2
+    },
+    {
+      "id": "story-mapping",
+      "title": "Story Mapping : visualiser le parcours utilisateur (TO REVIEW)",
+      "file": "story-mapping.md",
+      "tags": [
+        "story-mapping",
+        "product-owner",
+        "backlog",
+        "user-journey"
+      ],
+      "order": 3
+    },
+    {
+      "id": "les-3-amigos-example-mapping-le-duo-gagnant-pour-s-aligner",
+      "title": "Les 3 Amigos & Example Mapping : le duo gagnant pour s'aligner",
+      "file": "les-3-amigos-example-mapping-le-duo-gagnant-pour-saligner.md",
+      "tags": [
+        "3-amigos",
+        "example-mapping",
+        "collaboration",
+        "user-stories",
+        "bdd",
+        "refinement"
+      ],
+      "order": 4
     }
-  ]
+  ],
+  "tools": [
+    {
+      "id": "figma",
+      "title": "Figma - Design Collaboratif",
+      "description": "Outil de design d'interface et prototypage collaboratif en temps réel",
+      "tags": [
+        "design",
+        "prototypage",
+        "ui-ux",
+        "collaboration"
+      ],
+      "platform": "Web, Desktop",
+      "external": true,
+      "url": "https://www.figma.com",
+      "order": 1
+    },
+    {
+      "id": "productboard",
+      "title": "Productboard - Product Management",
+      "description": "Plateforme complète pour gérer roadmap, feedback utilisateurs et priorisation",
+      "tags": [
+        "product-management",
+        "roadmap",
+        "priorisation",
+        "feedback"
+      ],
+      "platform": "Web",
+      "external": true,
+      "url": "https://www.productboard.com",
+      "order": 2
+    },
+    {
+      "id": "aha",
+      "title": "Aha! - Roadmapping",
+      "description": "Outil de roadmapping et stratégie produit pour Product Managers",
+      "tags": [
+        "roadmap",
+        "stratégie",
+        "product-management",
+        "planning"
+      ],
+      "platform": "Web",
+      "external": true,
+      "url": "https://www.aha.io",
+      "order": 3
+    },
+    {
+      "id": "hotjar",
+      "title": "Hotjar - Analytics Comportementaux",
+      "description": "Heatmaps, enregistrements de sessions et feedback utilisateurs",
+      "tags": [
+        "analytics",
+        "ux",
+        "feedback",
+        "heatmap"
+      ],
+      "platform": "Web",
+      "external": true,
+      "url": "https://www.hotjar.com",
+      "order": 4
+    },
+    {
+      "id": "maze",
+      "title": "Maze - User Testing",
+      "description": "Plateforme de tests utilisateurs rapides pour valider vos designs",
+      "tags": [
+        "user-testing",
+        "ux",
+        "validation",
+        "prototypage"
+      ],
+      "platform": "Web",
+      "external": true,
+      "url": "https://maze.co",
+      "order": 5
+    },
+    {
+      "id": "storiesonboard",
+      "title": "StoriesOnBoard - Story Mapping",
+      "description": "Outil dédié au story mapping collaboratif en ligne",
+      "tags": [
+        "story-mapping",
+        "backlog",
+        "user-journey",
+        "collaboration"
+      ],
+      "platform": "Web",
+      "external": true,
+      "url": "https://storiesonboard.com",
+      "order": 6
+    }
+  ],
+  "templates": [
+    {
+      "id": "product-backlog-template",
+      "title": "Template Product Backlog",
+      "description": "Modèle Excel de backlog produit avec priorisation MoSCoW et estimation",
+      "tags": [
+        "backlog",
+        "priorisation",
+        "moscow",
+        "estimation"
+      ],
+      "format": "Excel",
+      "file": "product-backlog.xlsx",
+      "downloadUrl": "templates/product-design/product-backlog.xlsx",
+      "order": 1
+    },
+    {
+      "id": "design-thinking-canvas",
+      "title": "Canvas Design Thinking",
+      "description": "Template Miro pour animer un atelier Design Thinking complet",
+      "tags": [
+        "design-thinking",
+        "atelier",
+        "innovation",
+        "miro"
+      ],
+      "format": "Miro Board",
+      "file": "design-thinking-canvas.rtb",
+      "downloadUrl": "templates/product-design/design-thinking-canvas.rtb",
+      "order": 2
+    },
+    {
+      "id": "user-persona-template",
+      "title": "Template User Personas",
+      "description": "Modèle pour créer des personas utilisateurs détaillés",
+      "tags": [
+        "personas",
+        "ux",
+        "user-research",
+        "empathie"
+      ],
+      "format": "PowerPoint",
+      "file": "user-personas.pptx",
+      "downloadUrl": "templates/product-design/user-personas.pptx",
+      "order": 3
+    },
+    {
+      "id": "story-mapping-board",
+      "title": "Story Mapping Board",
+      "description": "Template Miro de story mapping avec backbone, walking skeleton et releases",
+      "tags": [
+        "story-mapping",
+        "user-journey",
+        "mvp",
+        "miro"
+      ],
+      "format": "Miro Board",
+      "file": "story-mapping-board.rtb",
+      "downloadUrl": "templates/product-design/story-mapping-board.rtb",
+      "order": 4
+    },
+    {
+      "id": "product-roadmap",
+      "title": "Product Roadmap Template",
+      "description": "Roadmap produit visuelle avec timeline, thèmes et objectifs",
+      "tags": [
+        "roadmap",
+        "planning",
+        "stratégie",
+        "communication"
+      ],
+      "format": "PowerPoint",
+      "file": "product-roadmap.pptx",
+      "downloadUrl": "templates/product-design/product-roadmap.pptx",
+      "order": 5
+    }
+  ],
+  "order": 4
 }

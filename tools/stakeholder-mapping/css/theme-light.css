@@ -1,0 +1,56 @@
+/* ===================================
+   STAKEHOLDER MAPPING - LIGHT THEME
+   =================================== */
+
+:root[data-theme="light"] {
+    /* Backgrounds */
+    --bg-primary: #ffffff;
+    --bg-secondary: #f9fafb;
+    --bg-tertiary: #f3f4f6;
+    --bg-card: #ffffff;
+
+    /* Textes */
+    --text-primary: #1f2937;
+    --text-secondary: #6b7280;
+    --text-tertiary: #9ca3af;
+
+    /* Bordures */
+    --border-color: #e5e7eb;
+    --border-color-hover: #d1d5db;
+
+    /* Overlay */
+    --overlay-bg: rgba(0, 0, 0, 0.5);
+
+    /* Shadow */
+    --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Adjustments for light theme */
+:root[data-theme="light"] .btn {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+}
+
+:root[data-theme="light"] .btn:hover {
+    background: var(--bg-secondary);
+}
+
+:root[data-theme="light"] #stakeholdersTable tbody tr:hover {
+    background: var(--bg-secondary);
+}
+
+:root[data-theme="light"] .stakeholder-node circle {
+    fill: var(--bg-card);
+}
+
+:root[data-theme="light"] .stakeholder-node:hover circle {
+    fill: var(--bg-secondary);
+}
+
+:root[data-theme="light"] .matrix-stakeholder-card {
+    background: var(--bg-secondary);
+}
+
+:root[data-theme="light"] .matrix-stakeholder-card:hover {
+    background: var(--bg-tertiary);
+}

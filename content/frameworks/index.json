@@ -7,24 +7,300 @@
   "articles": [
     {
       "id": "scrum-framework",
-      "title": "Scrum Framework",
+      "title": "🚀 Scrum : Le Framework Agile Qui Déchaîne les Équipes (Sans les Épuiser)",
       "file": "scrum-framework.md",
-      "tags": ["scrum", "sprint", "iteratif", "ceremonies"],
+      "tags": [
+        "scrum",
+        "sprint",
+        "itératif",
+        "cérémonies",
+        "agile"
+      ],
       "order": 1
     },
     {
       "id": "kanban-method",
-      "title": "Kanban Method",
+      "title": "🏗️ Kanban : La méthode Agile qui s'adapte à TOUT",
       "file": "kanban-method.md",
-      "tags": ["kanban", "flux", "wip", "continu"],
+      "tags": [
+        "kanban",
+        "flow",
+        "visualisation",
+        "amélioration continue",
+        "lean"
+      ],
       "order": 2
     },
     {
       "id": "scrumban",
-      "title": "Scrumban",
+      "title": "🔄 Scrumban : le meilleur des deux mondes (scrum + kanban) sans les contraintes",
       "file": "scrumban.md",
-      "tags": ["scrumban", "hybride", "transition", "pragmatique"],
+      "tags": [
+        "scrumban",
+        "hybride",
+        "agile",
+        "flux",
+        "amélioration continue"
+      ],
       "order": 3
+    },
+    {
+      "id": "safe",
+      "title": "🧩 SAFe : le guide complet (quand l'utiliser, comment l'adapter, et quand le fuir)",
+      "file": "safe.md",
+      "tags": [
+        "SAFe",
+        "Scaled Agile Framework",
+        "agile à l'échelle",
+        "PI Planning",
+        "ART",
+        "customisation SAFe",
+        "SAFe vs LeSS",
+        "SAFe vs Scrum@Scale",
+        "transformation agile",
+        "enterprise agile",
+        "agile pour grandes organisations"
+      ],
+      "order": 4
+    },
+    {
+      "id": "lean-framework",
+      "title": "🏗️ Lean Framework : Le Guide Pratique pour TOUS les Métiers (Pas Juste la Production !)",
+      "file": "lean-framework.md",
+      "tags": [
+        "Lean",
+        "Lean Framework",
+        "amélioration continue",
+        "kaizen",
+        "muda",
+        "value stream mapping",
+        "Lean Startup",
+        "Lean IT",
+        "Lean Marketing",
+        "Lean Healthcare",
+        "Lean Services",
+        "5S",
+        "kanban",
+        "juste-à-temps",
+        "PDCA",
+        "gemba"
+      ],
+      "order": 5
+    },
+    {
+      "id": "unfix",
+      "title": "🚀 unFIX : vous libère des méthodes (et redonne du sens à vos équipes)",
+      "file": "unfix.md",
+      "tags": [
+        "unFIX",
+        "agile sans dogme",
+        "organisation produit",
+        "autonomie",
+        "expérimentation",
+        "culture produit",
+        "framework agile",
+        "anti-SAFe",
+        "anti-Scrum",
+        "design organisationnel",
+        "purpose-driven",
+        "value creation",
+        "team design",
+        "agile à l'échelle",
+        "transformation agile"
+      ],
+      "order": 6
+    },
+    {
+      "id": "accelerate-framework",
+      "title": "Accelerate : Le Framework de Performance du Delivery",
+      "file": "accelerate-framework.md",
+      "tags": [
+        "accelerate",
+        "devops",
+        "métriques",
+        "performance",
+        "dora",
+        "continuous-delivery",
+        "lead-time",
+        "mttr",
+        "change-failure-rate",
+        "deployment-frequency",
+        "nicole-forsgren",
+        "jez-humble",
+        "gene-kim",
+        "24-capacités",
+        "westrum",
+        "lean",
+        "flow"
+      ],
+      "order": 7
+    },
+    {
+      "id": "definition-of-done-ready",
+      "title": "Definition of Done & Ready",
+      "file": "definition-of-done-ready.md",
+      "tags": [
+        "dod",
+        "dor",
+        "qualite",
+        "criteres"
+      ],
+      "order": 8
     }
-  ]
+  ],
+  "tools": [
+    {
+      "id": "scrum-org",
+      "title": "Scrum.org - Ressources Scrum",
+      "description": "Plateforme officielle avec guides, formations et certifications Scrum",
+      "tags": [
+        "scrum",
+        "formation",
+        "certification",
+        "ressources"
+      ],
+      "platform": "Web",
+      "external": true,
+      "url": "https://www.scrum.org",
+      "order": 1
+    },
+    {
+      "id": "kanbanize",
+      "title": "Kanbanize - Kanban Board",
+      "description": "Outil de gestion Kanban avancé avec métriques et analytics",
+      "tags": [
+        "kanban",
+        "flux",
+        "wip",
+        "métriques"
+      ],
+      "platform": "Web",
+      "external": true,
+      "url": "https://kanbanize.com",
+      "order": 2
+    },
+    {
+      "id": "safe-studio",
+      "title": "SAFe Studio",
+      "description": "Outil officiel pour planifier et visualiser votre implémentation SAFe",
+      "tags": [
+        "safe",
+        "scaled",
+        "planning",
+        "portfolio"
+      ],
+      "platform": "Web",
+      "external": true,
+      "url": "https://www.scaledagileframework.com/safe-studio",
+      "order": 3
+    },
+    {
+      "id": "dora-metrics",
+      "title": "DORA Metrics Dashboard",
+      "description": "Outil pour mesurer les 4 métriques clés de performance DevOps",
+      "tags": [
+        "dora",
+        "métriques",
+        "devops",
+        "performance"
+      ],
+      "platform": "Web",
+      "external": true,
+      "url": "https://cloud.google.com/blog/products/devops-sre/using-the-four-keys-to-measure-your-devops-performance",
+      "order": 4
+    },
+    {
+      "id": "unfix-patterns",
+      "title": "Unfix Patterns Library",
+      "description": "Bibliothèque de patterns organisationnels pour équipes agiles",
+      "tags": [
+        "unfix",
+        "patterns",
+        "organisation",
+        "équipes"
+      ],
+      "platform": "Web",
+      "external": true,
+      "url": "https://unfix.com/patterns",
+      "order": 5
+    }
+  ],
+  "templates": [
+    {
+      "id": "sprint-planning-template",
+      "title": "Template Sprint Planning",
+      "description": "Board Miro pour faciliter votre Sprint Planning avec objectif, backlog et capacity",
+      "tags": [
+        "scrum",
+        "sprint-planning",
+        "miro",
+        "facilitation"
+      ],
+      "format": "Miro Board",
+      "file": "sprint-planning.rtb",
+      "downloadUrl": "templates/frameworks/sprint-planning.rtb",
+      "order": 1
+    },
+    {
+      "id": "kanban-board-template",
+      "title": "Kanban Board Template",
+      "description": "Template de board Kanban avec WIP limits et métriques de flux",
+      "tags": [
+        "kanban",
+        "flux",
+        "wip",
+        "métriques"
+      ],
+      "format": "Excel",
+      "file": "kanban-board.xlsx",
+      "downloadUrl": "templates/frameworks/kanban-board.xlsx",
+      "order": 2
+    },
+    {
+      "id": "dod-dor-template",
+      "title": "Template Definition of Done & Ready",
+      "description": "Modèle pour définir vos critères de Done et Ready avec exemples",
+      "tags": [
+        "dod",
+        "dor",
+        "qualité",
+        "critères"
+      ],
+      "format": "Word",
+      "file": "dod-dor-template.docx",
+      "downloadUrl": "templates/frameworks/dod-dor-template.docx",
+      "order": 3
+    },
+    {
+      "id": "safe-pi-planning",
+      "title": "SAFe PI Planning Board",
+      "description": "Template pour organiser votre Program Increment Planning",
+      "tags": [
+        "safe",
+        "pi-planning",
+        "scaled",
+        "art"
+      ],
+      "format": "Miro Board",
+      "file": "safe-pi-planning.rtb",
+      "downloadUrl": "templates/frameworks/safe-pi-planning.rtb",
+      "order": 4
+    },
+    {
+      "id": "accelerate-metrics",
+      "title": "Tableau de Bord Métriques Accelerate",
+      "description": "Dashboard Excel pour suivre les 4 métriques DORA et les 24 capacités",
+      "tags": [
+        "accelerate",
+        "dora",
+        "métriques",
+        "dashboard"
+      ],
+      "format": "Excel",
+      "file": "accelerate-dashboard.xlsx",
+      "downloadUrl": "templates/frameworks/accelerate-dashboard.xlsx",
+      "order": 5
+    }
+  ],
+  "order": 3
 }

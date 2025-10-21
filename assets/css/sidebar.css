@@ -38,34 +38,34 @@
    SIDEBAR
    ============================================ */
 .sidebar {
-  position: fixed;
-  top: var(--header-height, 64px);
-  left: 0;
   width: 340px;
-  height: calc(100vh - var(--header-height, 64px));
   background: var(--bg-secondary);
   border-right: var(--border-width) solid var(--border-default);
-  z-index: 999;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
   transition: transform var(--transition-base);
+  flex-shrink: 0;
 }
 
-/* Sur desktop : sidebar visible par défaut */
+/* Sur desktop : sidebar gérée par Grid */
 @media (min-width: 1025px) {
   .sidebar {
-    transform: translateX(0);
+    /* Position gérée par CSS Grid dans layout.css */
+    border-radius: 0 0 10px 0;
   }
 }
 
-/* Sur mobile/tablet : sidebar cachée par défaut */
+/* Sur mobile/tablet : sidebar en position fixed */
 @media (max-width: 1024px) {
   .sidebar {
+    position: fixed;
     top: 0;
+    left: 0;
     height: 100vh;
     width: 320px;
     transform: translateX(-100%);
+    z-index: 999;
+    overflow-y: auto;
   }
 
   .sidebar.active {
@@ -193,6 +193,7 @@
   align-items: center;
   gap: var(--space-md);
   padding: var(--space-md);
+  min-height: 44px;
   border-radius: var(--radius-md);
   text-decoration: none;
   color: var(--text-primary);
@@ -200,6 +201,7 @@
   margin-bottom: var(--space-xs);
   position: relative;
   border: var(--border-width) solid transparent;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .category-item:hover {
@@ -211,6 +213,11 @@
 
 .category-item:active {
   transform: translateX(2px);
+}
+
+.category-item:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
 }
 
 .category-icon {
@@ -318,22 +325,17 @@
 /* ============================================
    MAIN CONTENT AVEC SIDEBAR
    ============================================ */
-/* Sur desktop : décaler le contenu pour laisser place à la sidebar */
+/* Sur desktop : géré par CSS Grid dans layout.css */
 @media (min-width: 1025px) {
   .main-content {
-    margin-left: 340px;
-    transition: margin-left var(--transition-base);
-  }
-
-  /* Ajuster aussi le header si nécessaire */
-  body {
-    padding-left: 0;
+    /* Position et dimensions gérées par Grid */
   }
 }
 
-/* Sur mobile/tablet : pas de décalage */
+/* Sur mobile/tablet : le contenu prend toute la largeur */
 @media (max-width: 1024px) {
   .main-content {
+    width: 100%;
     margin-left: 0;
   }
 }

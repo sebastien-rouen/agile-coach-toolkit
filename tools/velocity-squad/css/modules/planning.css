@@ -1,0 +1,474 @@
+/* ====================================
+   PLANNING & TIMELINE
+   ==================================== */
+
+/* Planning Section */
+.planning-section {
+    background: white;
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+}
+
+.planning-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.planning-header h3 {
+    color: var(--text-dark);
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+/* Planning Timeline */
+.planning-timeline {
+    background: linear-gradient(to bottom, #f8f9fa, #ffffff);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    margin-bottom: 1.5rem;
+    border: 1px solid #e9ecef;
+}
+
+.timeline-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.timeline-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.timeline-range {
+    font-size: 0.8rem;
+    color: #666;
+}
+
+/* Timeline Weeks */
+.timeline-weeks {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.timeline-week {
+    flex: 1;
+    text-align: center;
+    padding: 0.5rem;
+    background: white;
+    border-radius: 6px;
+    border: 1px solid #e9ecef;
+}
+
+.timeline-week-label {
+    font-size: 0.75rem;
+    color: #666;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.timeline-week-dates {
+    font-size: 0.7rem;
+    color: #999;
+}
+
+/* Timeline Grid */
+.timeline-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Timeline Day */
+.timeline-day {
+    aspect-ratio: 1;
+    background: #f8f9fa;
+    border-radius: 4px;
+    position: relative;
+    cursor: pointer;
+    transition: var(--transition);
+    border: 1px solid #e9ecef;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40px;
+}
+
+.timeline-day.weekend {
+    background: #a2a2a2;
+    opacity: 0.3;
+}
+
+.timeline-day:hover {
+    transform: scale(1.1);
+    z-index: 10;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.timeline-day.has-events,
+.timeline-day.has-multiple {
+    background: #ffffff;
+    border-color: #d1d5db;
+}
+
+.timeline-day.today {
+    border: 4px solid var(--info);
+    box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.9);
+}
+
+/* Timeline Day Label */
+.timeline-day-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #666;
+    z-index: 1;
+}
+
+/* Timeline Day Letter (jour de la semaine) */
+.timeline-day-letter {
+    position: absolute;
+    bottom: 2px;
+    border: 1px solid #000;
+    left: 2px;
+    font-size: 0.5rem;
+    font-weight: 600;
+    color: #222121;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 1px 3px;
+    border-radius: 2px;
+    line-height: 1;
+    z-index: 2;
+}
+
+.timeline-day.weekend .timeline-day-letter {
+    color: #666;
+    font-weight: 700;
+}
+
+/* Timeline Event Squares */
+.timeline-event-squares {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px;
+    max-width: calc(100% - 4px);
+    z-index: 3;
+}
+
+.timeline-event-square {
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    flex-shrink: 0;
+}
+
+.timeline-event-more {
+    font-size: 0.5rem;
+    font-weight: 700;
+    color: #333;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 1px 3px;
+    border-radius: 2px;
+    line-height: 1;
+}
+
+/* Timeline Day Count */
+.timeline-day-count {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    background: var(--success);
+    color: white;
+    font-size: 0.6rem;
+    font-weight: 600;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid white;
+}
+
+/* Timeline Legend */
+.timeline-legend {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+    padding: 0.75rem;
+    background: rgba(0, 0, 0, 0.02);
+    border-radius: 6px;
+    font-size: 0.85rem;
+    color: #666;
+}
+
+.timeline-legend-title {
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 0.25rem;
+    font-size: 0.9rem;
+}
+
+.timeline-legend-separator {
+    width: 100%;
+    height: 1px;
+    background: #ddd;
+    margin: 0.25rem 0;
+}
+
+.timeline-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    background: white;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    width: 100%;
+}
+
+.timeline-legend-item:hover {
+    background: rgba(0, 0, 0, 0.05);
+    transform: translateX(4px);
+}
+
+.timeline-legend-box {
+    width: 16px;
+    height: 16px;
+    border-radius: 4px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    flex-shrink: 0;
+}
+
+/* Compact Timeline */
+.compact-timeline {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    margin-bottom: 1.5rem;
+}
+
+.compact-timeline-events {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.compact-event-badge {
+    background: white;
+    border: 2px solid var(--primary);
+    border-radius: var(--border-radius);
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    transition: var(--transition);
+    text-align: center;
+    min-width: 100px;
+}
+
+.compact-event-badge:hover {
+    background: var(--primary);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(33, 150, 243, 0.3);
+}
+
+.compact-event-date {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.compact-event-count {
+    font-size: 0.8rem;
+    opacity: 0.8;
+}
+
+/* Planning Events */
+.planning-events {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.planning-event {
+    background: white;
+    padding: 0;
+    border-radius: var(--border-radius);
+    border-left: 3px solid var(--primary);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: var(--transition);
+}
+
+.planning-event:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+}
+
+.planning-event.event-today {
+    background: linear-gradient(135deg, rgba(76, 175, 80, 0.15), rgba(129, 199, 132, 0.1));
+    border-left-width: 5px;
+    box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
+}
+
+.planning-event.event-tomorrow {
+    background: linear-gradient(135deg, rgba(33, 150, 243, 0.1), rgba(100, 181, 246, 0.05));
+    border-left-width: 4px;
+    box-shadow: 0 2px 6px rgba(33, 150, 243, 0.2);
+}
+
+.event-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.event-type {
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.event-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--text-dark);
+}
+
+.event-meta {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.85rem;
+    color: #666;
+    margin-bottom: 0.5rem;
+}
+
+.event-recurring {
+    color: var(--primary);
+}
+
+.event-description {
+    font-size: 0.85rem;
+    color: #666;
+    line-height: 1.4;
+}
+
+/* Toggle Button */
+#toggleTimelineViewBtn {
+    cursor: pointer;
+}
+
+/* Planning Date Group */
+.planning-date-group {
+    margin-bottom: 1.5rem;
+}
+
+.planning-date {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--primary);
+    text-transform: capitalize;
+}
+
+.planning-events-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+/* Planning Event Details */
+.planning-event {
+    display: grid;
+    grid-template-columns: 50px 1fr;
+    gap: 0.75rem;
+    align-items: start;
+    padding: 0.75rem;
+}
+
+.event-time {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--primary);
+    text-align: center;
+    padding: 0.35rem 0.25rem;
+    background: rgba(33, 150, 243, 0.1);
+    border-radius: var(--border-radius);
+}
+
+.event-details {
+    flex: 1;
+}
+
+.event-title {
+    font-size: 0.95rem;
+    margin-bottom: 0.25rem;
+}
+
+.event-description {
+    font-size: 0.8rem;
+    margin-bottom: 0.25rem;
+}
+
+.event-duration {
+    font-size: 0.75rem;
+    color: #666;
+    margin-top: 0.15rem;
+    display: inline-block;
+    background: #f8f9fa;
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+}
+
+/* Event Types Colors */
+.planning-event[data-type="daily"] {
+    border-left-color: #FFC107;
+}
+
+.planning-event[data-type="planning"],
+.planning-event[data-type="sprint_planning"] {
+    border-left-color: #2196F3;
+}
+
+.planning-event[data-type="review"],
+.planning-event[data-type="sprint_review"] {
+    border-left-color: #4CAF50;
+}
+
+.planning-event[data-type="retro"],
+.planning-event[data-type="sprint_retrospective"] {
+    border-left-color: #9C27B0;
+}
+
+.planning-event[data-type="refinement"],
+.planning-event[data-type="backlog_refinement"] {
+    border-left-color: #FF9800;
+}
+
+.planning-event[data-type="demo"] {
+    border-left-color: #00BCD4;
+}
+
+.planning-event[data-type="meeting"] {
+    border-left-color: #607D8B;
+}
+
+.planning-event[data-type="other"] {
+    border-left-color: #9E9E9E;
+}

@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Agile Coach Toolkit</title>
+    <link rel="icon" type="image/x-icon" href="../assets/icons/logo.svg">
+    <link rel="stylesheet" href="../assets/css/variables.css">
+    <link rel="stylesheet" href="../assets/css/base.css">
+    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="admin-logo">
+                <i class="fas fa-tools"></i>
+                <h2>Admin Panel</h2>
+            </div>
+            <nav class="admin-nav">
+                <a href="#" class="nav-item active" data-section="categories">
+                    <i class="fas fa-folder"></i>
+                    <span>Catégories</span>
+                </a>
+                <a href="#" class="nav-item" data-section="contents">
+                    <i class="fas fa-file-alt"></i>
+                    <span>Contenus</span>
+                </a>
+                <a href="#" class="nav-item" data-section="tools">
+                    <i class="fas fa-tools"></i>
+                    <span>Outils Interactifs</span>
+                </a>
+                <a href="../index.html" class="nav-item nav-back">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Retour au site</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <!-- Categories Section -->
+            <section id="categories-section" class="admin-section active">
+                <div class="section-header">
+                    <h1><i class="fas fa-folder"></i> Gestion des Catégories</h1>
+                    <button class="btn-primary" id="add-category-btn">
+                        <i class="fas fa-plus"></i> Nouvelle Catégorie
+                    </button>
+                </div>
+                <div class="categories-list" id="categories-list">
+                    <!-- Categories will be loaded here with drag and drop -->
+                </div>
+            </section>
+
+            <!-- Contents Section -->
+            <section id="contents-section" class="admin-section">
+                <div class="section-header">
+                    <h1><i class="fas fa-file-alt"></i> Gestion des Contenus</h1>
+                    <div class="header-actions">
+                        <select id="category-filter" class="category-select">
+                            <option value="">Toutes les catégories</option>
+                        </select>
+                        <button class="btn-primary" id="add-content-btn">
+                            <i class="fas fa-plus"></i> Nouveau Contenu
+                        </button>
+                    </div>
+                </div>
+                <div class="contents-list" id="contents-list">
+                    <!-- Contents will be loaded here -->
+                </div>
+            </section>
+
+            <!-- Tools Section -->
+            <section id="tools-section" class="admin-section">
+                <div class="section-header">
+                    <h1><i class="fas fa-tools"></i> Outils Interactifs</h1>
+                    <button class="btn-primary" id="add-tool-btn">
+                        <i class="fas fa-plus"></i> Créer un Outil
+                    </button>
+                </div>
+                <div class="tools-list" id="tools-list">
+                    <!-- Tools will be loaded here -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modal for Category CRUD -->
+    <div id="category-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="category-modal-title">Nouvelle Catégorie</h2>
+                <button class="modal-close">&times;</button>
+            </div>
+            <form id="category-form">
+                <input type="hidden" id="category-id">
+                <div class="form-group">
+                    <label for="category-name">Nom de la catégorie *</label>
+                    <input type="text" id="category-name" required placeholder="ex: animation-facilitation">
+                    <small class="form-hint">Format kebab-case (minuscules et tirets)</small>
+                </div>
+                <div class="form-group">
+                    <label for="category-title">Titre *</label>
+                    <input type="text" id="category-title" required placeholder="ex: Animation & Facilitation">
+                </div>
+                <div class="form-group">
+                    <label for="category-description">Description</label>
+                    <textarea id="category-description" rows="3"
+                        placeholder="Description courte de la catégorie"></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="category-icon">Icône (Font Awesome)</label>
+                        <div class="icon-input-wrapper">
+                            <input type="text" id="category-icon" placeholder="ex: fas fa-users" readonly>
+                            <button type="button" class="btn-icon-picker" id="open-icon-picker">
+                                <i class="fas fa-icons"></i> Choisir
+                            </button>
+                        </div>
+                        <div class="icon-preview" id="icon-preview">
+                            <i class="fas fa-folder"></i>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="category-color">Couleur</label>
+                        <div class="color-input-wrapper">
+                            <input type="color" id="category-color" value="#00d4ff">
+                            <input type="text" id="category-color-hex" placeholder="#00d4ff" maxlength="7">
+                            <div class="color-preview" id="color-preview"></div>
+                        </div>
+                        <div class="color-presets">
+                            <button type="button" class="color-preset" data-color="#FF6B6B"
+                                style="background: #FF6B6B"></button>
+                            <button type="button" class="color-preset" data-color="#4ECDC4"
+                                style="background: #4ECDC4"></button>
+                            <button type="button" class="color-preset" data-color="#45B7D1"
+                                style="background: #45B7D1"></button>
+                            <button type="button" class="color-preset" data-color="#FFA07A"
+                                style="background: #FFA07A"></button>
+                            <button type="button" class="color-preset" data-color="#98D8C8"
+                                style="background: #98D8C8"></button>
+                            <button type="button" class="color-preset" data-color="#F7DC6F"
+                                style="background: #F7DC6F"></button>
+                            <button type="button" class="color-preset" data-color="#BB8FCE"
+                                style="background: #BB8FCE"></button>
+                            <button type="button" class="color-preset" data-color="#85C1E2"
+                                style="background: #85C1E2"></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary modal-cancel">Annuler</button>
+                    <button type="submit" class="btn-primary">Enregistrer</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Icon Picker Modal -->
+    <div id="icon-picker-modal" class="modal">
+        <div class="modal-content modal-large">
+            <div class="modal-header">
+                <h2>Choisir une icône</h2>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="icon-search">
+                    <input type="text" id="icon-search-input" placeholder="Rechercher une icône...">
+                </div>
+                <div class="icon-grid" id="icon-grid">
+                    <!-- Icons will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Content CRUD -->
+    <div id="content-modal" class="modal">
+        <div class="modal-content modal-large">
+            <div class="modal-header">
+                <h2 id="content-modal-title">Nouveau Contenu</h2>
+                <button class="modal-close">&times;</button>
+            </div>
+            <form id="content-form">
+                <input type="hidden" id="content-id">
+                <input type="hidden" id="content-original-file">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="content-category">Catégorie *</label>
+                        <select id="content-category" required>
+                            <option value="">Sélectionner une catégorie</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="content-file">Nom du fichier *</label>
+                        <input type="text" id="content-file" required placeholder="ex: mon-article.md">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="content-title">Titre *</label>
+                    <input type="text" id="content-title" required placeholder="Titre de l'article">
+                </div>
+                <div class="form-group">
+                    <label for="content-tags">Tags (séparés par des virgules)</label>
+                    <input type="text" id="content-tags" placeholder="ex: scrum, agile, facilitation">
+                </div>
+                <div class="form-group">
+                    <label for="content-order">Ordre d'affichage</label>
+                    <input type="number" id="content-order" value="1" min="1">
+                </div>
+                <div class="form-group">
+                    <label for="content-markdown">Contenu Markdown *</label>
+                    <div class="editor-toolbar">
+                        <button type="button" class="toolbar-btn" data-action="bold" title="Gras">
+                            <i class="fas fa-bold"></i>
+                        </button>
+                        <button type="button" class="toolbar-btn" data-action="italic" title="Italique">
+                            <i class="fas fa-italic"></i>
+                        </button>
+                        <button type="button" class="toolbar-btn" data-action="heading" title="Titre">
+                            <i class="fas fa-heading"></i>
+                        </button>
+                        <button type="button" class="toolbar-btn" data-action="link" title="Lien">
+                            <i class="fas fa-link"></i>
+                        </button>
+                        <button type="button" class="toolbar-btn" data-action="code" title="Code">
+                            <i class="fas fa-code"></i>
+                        </button>
+                        <button type="button" class="toolbar-btn" data-action="list" title="Liste">
+                            <i class="fas fa-list"></i>
+                        </button>
+                        <button type="button" class="toolbar-btn" data-action="preview" title="Prévisualiser">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                        <button type="button" class="toolbar-btn upload-btn" id="upload-image-btn" title="Uploader une image">
+                            <i class="fas fa-image"></i>
+                        </button>
+                        <button type="button" class="toolbar-btn" id="open-library-btn" title="Bibliothèque d'images">
+                            <i class="fas fa-images"></i>
+                        </button>
+                    </div>
+                    <textarea id="content-markdown" rows="20" required placeholder="Contenu en Markdown..."></textarea>
+                    <div id="markdown-preview" class="markdown-preview" style="display: none;"></div>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary modal-cancel">Annuler</button>
+                    <button type="submit" class="btn-primary">Enregistrer</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div id="delete-modal" class="modal">
+        <div class="modal-content modal-small">
+            <div class="modal-header">
+                <h2>Confirmer la suppression</h2>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p id="delete-message">Êtes-vous sûr de vouloir supprimer cet élément ?</p>
+            </div>
+            <div class="modal-actions">
+                <button type="button" class="btn-secondary modal-cancel">Annuler</button>
+                <button type="button" class="btn-danger" id="confirm-delete">Supprimer</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Create Tool Modal -->
+    <div id="create-tool-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Créer un Nouvel Outil</h2>
+                <button class="modal-close">&times;</button>
+            </div>
+            <form id="create-tool-form">
+                <div class="form-group">
+                    <label for="tool-id">ID de l'outil *</label>
+                    <input type="text" id="tool-id" required placeholder="ex: mon-outil">
+                    <small class="form-hint">Format kebab-case (minuscules et tirets)</small>
+                </div>
+                <div class="form-group">
+                    <label for="tool-name">Nom de l'outil *</label>
+                    <input type="text" id="tool-name" required placeholder="ex: Mon Outil">
+                </div>
+                <div class="form-group">
+                    <label for="tool-icon">Icône (emoji)</label>
+                    <input type="text" id="tool-icon" placeholder="ex: 🎯" maxlength="2">
+                </div>
+                <div class="form-group">
+                    <label for="tool-description">Description</label>
+                    <textarea id="tool-description" rows="3" placeholder="Description courte de l'outil"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="tool-pocketbase">
+                        Inclure l'intégration PocketBase
+                    </label>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary modal-cancel">Annuler</button>
+                    <button type="submit" class="btn-primary">Créer l'Outil</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Upload Modal -->
+    <div id="upload-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Uploader une Image</h2>
+                <button class="modal-close">&times;</button>
+            </div>
+            <form id="upload-form">
+                <div class="modal-body">
+                    <div class="upload-zone" id="upload-zone">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Cliquez ou glissez une image ici</p>
+                        <input type="file" id="upload-file" accept="image/*">
+                    </div>
+                    <div class="upload-preview" id="upload-preview">
+                        <img id="preview-image" src="" alt="Aperçu">
+                        <div class="upload-info" id="upload-info"></div>
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary modal-cancel">Annuler</button>
+                    <button type="submit" class="btn-primary">Uploader</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Library Modal -->
+    <div id="library-modal" class="modal">
+        <div class="modal-content modal-large">
+            <div class="modal-header">
+                <h2><i class="fas fa-images"></i> Bibliothèque d'Images</h2>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="library-stats" id="library-stats" style="margin-bottom: 16px; padding: 12px; background: var(--bg-tertiary, #2a2f4a); border-radius: 8px; display: none;">
+                    <span style="color: var(--text-secondary, #8b949e); font-size: 14px;">
+                        <i class="fas fa-info-circle"></i> 
+                        <span id="library-stats-text">Chargement...</span>
+                    </span>
+                </div>
+                <div class="library-grid" id="library-grid">
+                    <!-- Images will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="config-loader.js"></script>
+    <script src="upload-manager.js"></script>
+    <script src="admin.js"></script>
+</body>
+
+</html>

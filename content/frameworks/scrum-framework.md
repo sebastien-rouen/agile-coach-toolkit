@@ -11,7 +11,9 @@ description: "Décryptage complet de Scrum : origines, rôles, cérémonies, art
 > *"Scrum, c’est comme faire du vélo en équipe : si tout le monde pédale dans le même sens, on avance vite. Si un membre regarde son téléphone en roulant… ça finit en pile-up."* — **Coach Sticko**
 
 ## 🎯 **Pourquoi Scrum ? (Le Pitch en 30 Secondes)**
-Scrum est **le framework Agile le plus utilisé** (87% des équipes Agile en 2023, selon *State of Agile Report*) pour livrer des produits complexes **par itérations courtes (1-4 semaines)**. Son super-pouvoir ? **Rendre visible les problèmes** (retards, blocages, désalignements) **avant qu’ils ne deviennent ingérables**.
+Scrum est **le framework Agile le plus utilisé** (87% des équipes Agile en 2023, selon *State of Agile Report*) pour livrer des produits complexes **par itérations courtes (1-4 semaines)**.
+Son super-pouvoir ?
+- **Rendre visible les problèmes** (retards, blocages, désalignements) **avant qu’ils ne deviennent ingérables**.
 
 ✅ **Pour qui ?**
 - Équipes de **3 à 9 personnes** (devs, designers, testeurs…).
@@ -66,6 +68,9 @@ Scrum est **le framework Agile le plus utilisé** (87% des équipes Agile en 202
 - Le PO impose des tâches sans écouter les devs (**❌ Pas d’ouverture**).
 - Les devs acceptent des changements en cours de Sprint (**❌ Pas de focus**).
 
+![Cycle d'amélioration continue](/uploads/frameworks_scrum-framework_1762263683622.png)
+
+
 ### **3️⃣ La Structure : 3 Rôles, 5 Événements, 3 Artefacts**
 #### **👥 Les 3 Rôles (Pas de Chefs, Que des Responsabilités)**
 | Rôle               | Responsabilités                                                                 | Pièges à Éviter                                                                 |
@@ -117,6 +122,8 @@ Scrum est **le framework Agile le plus utilisé** (87% des équipes Agile en 202
 | **Amélioration continue**          | Une équipe réduit ses *bugs en prod* de 40% après 3 rétros sur la qualité.    |
 | **Flexibilité**                    | Un concurrent sort une nouvelle feature ? On pivote **dès le prochain Sprint**. |
 | **Motivation de l’équipe**         | Les devs **choisissent** comment atteindre l’objectif (autonomie = engagement). |
+
+![Team with all ceremonies from ZombieScrum.org](uploads/Team%20with%20all%20ceremonies-ZombieScrum.org.jpeg)
 
 ---
 
@@ -322,6 +329,88 @@ L'équipe de devs passe **60% de son temps** à corriger des bugs liés à des c
 
 ---
 
+## **🚫 Quand Scrum Devient Toxique (Exemples Réels)**
+
+### **🏭 Cas A : Scrum dans une Usine de Production**
+**Contexte** :
+Une usine automobile veut "être agile" et impose Scrum pour assembler des voitures.
+
+**Pourquoi ça ne marche pas** :
+- **Processus ultra-prévisible** : Assembler une portière = toujours les mêmes étapes.
+- **Pas d'incertitude** : On sait exactement combien de temps prend chaque tâche.
+- **Coût du changement énorme** : Modifier une pièce = arrêter toute la chaîne.
+
+**Résultat** :
+- Les Daily Scrums deviennent des **rapports d'activité inutiles**.
+- Les Sprints n'apportent **aucune valeur** (on produit les mêmes voitures).
+- **Frustration générale** : *"Pourquoi on fait des réunions pour dire qu'on visse des boulons ?"*
+
+**Alternative** : **Lean Manufacturing** ou **Kanban** (flux continu, amélioration des processus).
+
+---
+
+### **🏦 Cas B : Scrum pour la Comptabilité**
+**Contexte** :
+Un cabinet comptable veut "moderniser" ses processus avec Scrum.
+
+**Pourquoi ça échoue** :
+- **Travail réglementé** : Les déclarations fiscales suivent des **règles légales fixes**.
+- **Pas de "client final"** : Le vrai client, c'est l'administration fiscale (qui ne donne pas de feedback).
+- **Saisonnalité extrême** : 80% du travail se fait en mars-avril.
+
+**Résultat** :
+- Les **Sprints de 2 semaines** ne correspondent pas aux **échéances trimestrielles**.
+- Les **User Stories** deviennent absurdes : *"En tant que contribuable, je veux que ma TVA soit calculée correctement"* (euh... oui, c'est obligatoire).
+
+**Alternative** : **Gestion de projet classique** avec des jalons alignés sur les échéances légales.
+
+---
+
+### **🎓 Cas C : Scrum dans une École Primaire**
+**Contexte** :
+Un directeur d'école veut appliquer Scrum pour "organiser les cours".
+
+**Problèmes majeurs** :
+- **Programme scolaire imposé** : Pas de flexibilité sur le contenu (mathématiques = mathématiques).
+- **"Équipe" non volontaire** : Les enfants de 8 ans ne choisissent pas d'être là.
+- **Pas d'auto-organisation possible** : Un enfant ne peut pas décider de "skipper" les tables de multiplication.
+
+**Résultat** :
+- Les **Daily Scrums** avec des enfants de 8 ans = chaos total.
+- Les **Retrospectives** : *"Maîtresse, je veux plus faire de maths !"*
+- **Burnout des enseignants** qui doivent gérer Scrum + pédagogie.
+
+**Alternative** : **Pédagogie par projets** (sans le formalisme Scrum) ou **méthodes Montessori**.
+
+---
+
+### **🎯 Règle d'Or : Quand NE PAS Utiliser Scrum**
+
+| **Contexte**                          | **Pourquoi Scrum échoue**                                    | **Alternative recommandée**        |
+|---------------------------------------|---------------------------------------------------------------|-------------------------------------|
+| **Processus répétitifs/prévisibles**  | Pas d'incertitude = pas besoin d'adaptation                  | Kanban, Lean, processus standard   |
+| **Réglementation stricte**            | Pas de flexibilité possible sur le "quoi"                    | Gestion de projet classique        |
+| **Équipe non volontaire**             | Auto-organisation impossible sans engagement                  | Management traditionnel            |
+| **Projet avec contraintes fixes**     | Scrum = flexibilité, contraintes fixes = rigidité           | Prince2, cycle en V                |
+| **Urgences/crises**                   | Pas le temps pour les cérémonies                             | Protocoles d'urgence               |
+| **Équipe < 3 ou > 9 personnes**       | Trop petit = overhead, trop grand = coordination impossible  | Autres frameworks (SAFe, LeSS)     |
+
+---
+
+**💡 Test Rapide : "Scrum ou Pas Scrum ?"**
+
+Posez-vous ces 3 questions :
+1. **Y a-t-il de l'incertitude** sur ce qu'il faut construire ? (Si non → pas Scrum)
+2. **L'équipe peut-elle s'auto-organiser** ? (Si non → pas Scrum)
+3. **Peut-on livrer de la valeur par petits incréments** ? (Si non → pas Scrum)
+
+Si vous répondez **"Non"** à une seule question → **Scrum n'est pas fait pour vous**.
+
+> *"Utiliser Scrum partout, c'est comme utiliser un marteau pour visser : ça marche parfois, mais c'est pas optimal."* — **Pablo Pernot**
+
+
+---
+
 ## 🎯 **Checklist "Anti-Bullshit Scrum"** *(Inspirée de Pablo Pernot)*
 
 Avant de dire *"On fait Scrum"*, vérifiez :
@@ -350,6 +439,7 @@ Avant de dire *"On fait Scrum"*, vérifiez :
 > *La différence ? L'intention derrière l'outil."* — **Pablo Pernot**
 
 ---
+
 **📌 Ressources Utiles**
 - [Scrum Guide 2020 (PDF officiel)](https://scrumguides.org/)
 - [Template Miro pour Sprint Planning](https://miro.com/templates/sprint-planning/)

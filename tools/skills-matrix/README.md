@@ -9,14 +9,39 @@ Outil interactif de gestion des compétences d'équipe avec système de **consei
 ### 📈 Matrice de Compétences Interactive
 - **Évaluation en temps réel** : Système de notation de 0 à 4 pour chaque compétence
 - **Visualisation colorée** : Codes couleur intuitifs pour identifier rapidement les niveaux
-- **Totaux automatiques** : Calcul instantané des scores par compétence et par membre
+- **Totaux par compétence** : Calcul instantané des scores par compétence (v3.2.0)
 - **Édition facile** : Modification des noms et niveaux en un clic
+- **Suppression de compétences** : Dialogue Modifier/Supprimer avec confirmation (v3.2.0)
 
-### 🎨 Radar des Compétences
-- **Visualisation graphique** : Radar chart dynamique pour comparer les profils
-- **Multi-membres** : Affichage simultané de plusieurs membres pour comparaison
-- **Légende interactive** : Identification claire des compétences par couleur
-- **Mise à jour en temps réel** : Synchronisation automatique avec les modifications
+### 📊 Graphique en Bâtons (v3.2.0)
+- **Visualisation claire** : Graphique en barres groupées pour meilleure lisibilité
+- **Comparaison facile** : Barres côte à côte par compétence
+- **Valeurs affichées** : Niveaux visibles au-dessus de chaque barre
+- **Multi-membres** : Affichage simultané de plusieurs membres avec couleurs distinctes
+- **Grille de référence** : Lignes horizontales pour les niveaux 0-4
+- **Responsive** : Adaptation automatique mobile/desktop
+
+### 📥📤 Import/Export Amélioré (v3.2.0)
+- **Import JSON** : Chargement de données depuis fichier JSON
+- **Import Excel** : Chargement depuis fichiers .xlsx/.xls
+- **Export JSON** : Sauvegarde complète des données
+- **Export Excel stylé** : Fichier professionnel avec couleurs dark cohérentes
+  - En-têtes colorés (violet, bleu, rose)
+  - Niveaux avec couleurs (vert, jaune, orange, rouge, gris)
+  - Ligne de totaux stylée
+  - Colonnes Appétences et Ownerships incluses
+
+### ⏳ Loader Élégant (v3.3.0)
+- **Feedback visuel** : Affichage d'un loader animé lors des actions de contrôle
+- **Messages contextuels** : Texte dynamique selon l'action (export, import, sauvegarde)
+- **Détection automatique** : Adaptation desktop/mobile avec `showLoader()` et `hideLoader()`
+- **Animations fluides** : Transitions CSS avec fade-in, pulse et rotation du spinner
+- **Prévention des clics** : Blocage des interactions pendant le traitement
+- **Notifications améliorées** : Support des types (success, error, info, warning) avec couleurs distinctes
+- **Prompt d'import** : Message temporaire après import demandant si l'utilisateur souhaite sauvegarder
+  - Auto-disparition après 10 secondes
+  - Choix "Sauvegarder" ou "Plus tard"
+  - Design cohérent avec le thème
 
 ### 💡 Conseils Automatisés Coach Sticko
 
@@ -34,6 +59,18 @@ Le système analyse automatiquement les niveaux de compétence et génère des c
 - Exercices pratiques adaptés
 - Suggestions de projets fil rouge
 - Encouragement au pair programming
+
+#### Messages Stylisés (v3.3.1)
+- **Design élégant** : Fond semi-transparent avec bordure cyan et effet hover
+- **Formatage riche** : Support de `<strong>`, `<em>` et `<code>` avec couleurs distinctes
+- **Interactivité** : Animation fluide au survol
+- **Thème adaptatif** : Couleurs optimisées pour dark et light mode
+
+#### Conseils Adaptés aux Rôles (v3.3.2)
+- **Personnalisation intelligente** : Messages et plans d'action adaptés selon appétences et ownerships
+- **Priorisation** : Ownership > Appétence > Standard
+- **Objectifs ajustés** : Délais de progression selon le contexte (2-4 mois)
+- **Messages contextuels** : 3 variantes par niveau pour chaque situation
 
 **⭐ Niveau 3 - Compétent**
 - Invitation à devenir mentor

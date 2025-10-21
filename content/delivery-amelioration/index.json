@@ -9,15 +9,207 @@
       "id": "sprint-review",
       "title": "Sprint Review",
       "file": "sprint-review.md",
-      "tags": ["review", "demo", "feedback", "stakeholders"],
+      "tags": [
+        "review",
+        "demo",
+        "feedback",
+        "stakeholders"
+      ],
       "order": 1
     },
     {
       "id": "metriques-kpi",
       "title": "Métriques & KPI",
       "file": "metriques-kpi.md",
-      "tags": ["métriques", "kpi", "mesure", "performance", "data"],
+      "tags": [
+        "métriques",
+        "kpi",
+        "mesure",
+        "performance",
+        "data"
+      ],
       "order": 2
+    },
+    {
+      "id": "velocity-estimation",
+      "title": "Vélocité et Estimation",
+      "file": "velocity-estimation.md",
+      "tags": [
+        "vélocité",
+        "estimation",
+        "planning-poker",
+        "métriques"
+      ],
+      "order": 3
+    },
+    {
+      "id": "les-differents-types-de-vote-decisions-collectives",
+      "title": "🗳️ Les différents types de vote : décisions collectives",
+      "file": "types-de-vote.md",
+      "tags": [
+        "vote",
+        "décision collective",
+        "intelligence collective",
+        "fouloscopie",
+        "facilitation"
+      ],
+      "order": 4
+    },
+    {
+      "id": "matrice-competences-cross-functionality",
+      "title": "Matrice de Compétences (Skills Matrix) : Cross-Functionality",
+      "file": "matrice-competences-cross-functionality.md",
+      "tags": [
+        "compétences",
+        "skills-matrix",
+        "cross-functionality",
+        "polyvalence",
+        "équipe",
+        "formation"
+      ],
+      "order": 5
     }
-  ]
+  ],
+  "tools": [
+    {
+      "id": "jira-dashboard",
+      "title": "Jira Dashboards & Reports",
+      "description": "Tableaux de bord et rapports pour suivre la vélocité et les métriques d'équipe",
+      "tags": [
+        "jira",
+        "métriques",
+        "dashboard",
+        "reporting"
+      ],
+      "platform": "Web",
+      "external": true,
+      "url": "https://www.atlassian.com/software/jira/features/reports",
+      "order": 1
+    },
+    {
+      "id": "actionableagile",
+      "title": "ActionableAgile Analytics",
+      "description": "Outil d'analyse avancée pour métriques de flux et prédictibilité",
+      "tags": [
+        "métriques",
+        "flux",
+        "analytics",
+        "prédictibilité"
+      ],
+      "platform": "Web",
+      "external": true,
+      "url": "https://www.actionableagile.com",
+      "order": 2
+    },
+    {
+      "id": "linear",
+      "title": "Linear - Issue Tracking",
+      "description": "Outil moderne de suivi des issues avec focus sur la vélocité",
+      "tags": [
+        "tracking",
+        "vélocité",
+        "issues",
+        "sprint"
+      ],
+      "platform": "Web, Desktop, Mobile",
+      "external": true,
+      "url": "https://linear.app",
+      "order": 3
+    },
+    {
+      "id": "cycle-time",
+      "title": "Cycle Time Calculator",
+      "description": "Calculateur de cycle time et lead time pour optimiser le flux",
+      "tags": [
+        "cycle-time",
+        "lead-time",
+        "flux",
+        "métriques"
+      ],
+      "platform": "Web",
+      "external": true,
+      "url": "https://www.agilealliance.org/glossary/cycle-time",
+      "order": 4
+    }
+  ],
+  "templates": [
+    {
+      "id": "sprint-review-template",
+      "title": "Template Sprint Review",
+      "description": "Support de présentation pour animer une Sprint Review efficace",
+      "tags": [
+        "sprint-review",
+        "demo",
+        "feedback",
+        "présentation"
+      ],
+      "format": "PowerPoint",
+      "file": "sprint-review.pptx",
+      "downloadUrl": "templates/delivery-amelioration/sprint-review.pptx",
+      "order": 1
+    },
+    {
+      "id": "metrics-dashboard",
+      "title": "Dashboard Métriques Agiles",
+      "description": "Tableau de bord Excel avec vélocité, burndown, cycle time et lead time",
+      "tags": [
+        "métriques",
+        "dashboard",
+        "vélocité",
+        "burndown"
+      ],
+      "format": "Excel",
+      "file": "metrics-dashboard.xlsx",
+      "downloadUrl": "templates/delivery-amelioration/metrics-dashboard.xlsx",
+      "order": 2
+    },
+    {
+      "id": "planning-poker-cards",
+      "title": "Cartes Planning Poker",
+      "description": "Jeu de cartes Planning Poker imprimable (Fibonacci + T-Shirt)",
+      "tags": [
+        "estimation",
+        "planning-poker",
+        "fibonacci",
+        "t-shirt-sizing"
+      ],
+      "format": "PDF",
+      "file": "planning-poker.pdf",
+      "downloadUrl": "templates/delivery-amelioration/planning-poker.pdf",
+      "order": 3
+    },
+    {
+      "id": "burndown-chart",
+      "title": "Burndown Chart Template",
+      "description": "Graphique burndown automatique avec calcul de vélocité",
+      "tags": [
+        "burndown",
+        "vélocité",
+        "sprint",
+        "tracking"
+      ],
+      "format": "Excel",
+      "file": "burndown-chart.xlsx",
+      "downloadUrl": "templates/delivery-amelioration/burndown-chart.xlsx",
+      "order": 4
+    },
+    {
+      "id": "skills-matrix-template",
+      "title": "Matrice de Compétences (Skills)",
+      "description": "Template visuel pour évaluer et améliorer la polyvalence des équipes agiles",
+      "tags": [
+        "skills-matrix",
+        "compétences",
+        "cross-functionality",
+        "polyvalence",
+        "évaluation"
+      ],
+      "format": "Image",
+      "file": "ScrumZombie - Matrice de compétences - Improve cross-functionality-Skills Matrix.jpg",
+      "downloadUrl": "uploads/ScrumZombie - Matrice de compétences - Improve cross-functionality-Skills Matrix.jpg",
+      "imageUrl": "uploads/ScrumZombie - Matrice de compétences - Improve cross-functionality-Skills Matrix.jpg",
+      "order": 5
+    }
+  ],
+  "order": 2
 }

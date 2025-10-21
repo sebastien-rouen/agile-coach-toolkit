@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Revue Mensuelle - {{mission.title}}</title>
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/report-templates.css">
+</head>
+<body>
+  <div class="report-container">
+    <!-- En-tête -->
+    <header class="report-header">
+      <div class="report-header-content">
+        <h1 class="report-title">Revue Mensuelle</h1>
+        <h2 class="report-subtitle">{{mission.title}}</h2>
+        <div class="report-meta">
+          <span class="report-meta-item">
+            <sl-icon name="calendar"></sl-icon>
+            {{monthName}} {{year}}
+          </span>
+          <span class="report-meta-item">
+            <sl-icon name="clock"></sl-icon>
+            Mois {{monthNumber}} / {{mission.duration}}
+          </span>
+          <span class="report-meta-item">
+            <sl-icon name="person"></sl-icon>
+            {{author}}
+          </span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Vue d'Ensemble du Mois -->
+    <section class="report-section overview-section">
+      <div class="overview-grid">
+        <div class="overview-card">
+          <div class="overview-icon">📊</div>
+          <div class="overview-value">{{eventsCount}}</div>
+          <div class="overview-label">Événements</div>
+        </div>
+        <div class="overview-card">
+          <div class="overview-icon">✅</div>
+          <div class="overview-value">{{achievementsCount}}</div>
+          <div class="overview-label">Réussites</div>
+        </div>
+        <div class="overview-card">
+          <div class="overview-icon">💡</div>
+          <div class="overview-value">{{learningsCount}}</div>
+          <div class="overview-label">Apprentissages</div>
+        </div>
+        <div class="overview-card">
+          <div class="overview-icon">🎯</div>
+          <div class="overview-value">{{progressPercent}}%</div>
+          <div class="overview-label">Progression Objectifs</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 1. Synthèse du Mois -->
+    <section class="report-section">
+      <div class="report-section-header">
+        <h2 class="report-section-title">
+          <span class="report-section-icon">📋</span>
+          1. Synthèse du Mois
+        </h2>
+      </div>
+      <div class="report-section-content">
+        <div class="summary-content">
+          {{summary}}
+        </div>
+        
+        {{#if highlights}}
+        <div class="highlights-section">
+          <h3>Points Saillants</h3>
+          <ul class="highlights-list">
+            {{#each highlights}}
+            <li class="highlight-item">
+              <span class="highlight-icon">{{icon}}</span>
+              <span class="highlight-text">{{text}}</span>
+            </li>
+            {{/each}}
+          </ul>
+        </div>
+        {{/if}}
+      </div>
+    </section>
+
+    <!-- 2. Progression des Objectifs -->
+    <section class="report-section">
+      <div class="report-section-header">
+        <h2 class="report-section-title">
+          <span class="report-section-icon">🎯</span>
+          2. Progression des Objectifs
+        </h2>
+      </div>
+      <div class="report-section-content">
+        {{#if objectives.length}}
+        <div class="objectives-progress">
+          {{#each objectives}}
+          <div class="objective-progress-item">
+            <div class="objective-progress-header">
+              <h4>{{title}}</h4>
+              <span class="objective-progress-percent">{{progress}}%</span>
+            </div>
+            <div class="objective-progress-bar">
+              <div class="objective-progress-fill" style="width: {{progress}}%;"></div>
+            </div>
+            <p class="objective-progress-description">{{description}}</p>
+            
+            {{#if milestones}}
+            <div class="objective-milestones">
+              <strong>Jalons :</strong>
+              <ul>
+                {{#each milestones}}
+                <li class="milestone-item status-{{status}}">
+                  {{#if (eq status 'done')}}✅{{/if}}
+                  {{#if (eq status 'in-progress')}}🔄{{/if}}
+                  {{#if (eq status 'pending')}}⏳{{/if}}
+                  {{text}}
+                </li>
+                {{/each}}
+              </ul>
+            </div>
+            {{/if}}
+            
+            {{#if blockers}}
+            <div class="objective-blockers">
+              <strong>Blocages :</strong>
+              <ul>
+                {{#each blockers}}
+                <li>{{this}}</li>
+                {{/each}}
+              </ul>
+            </div>
+            {{/if}}
+          </div>
+          {{/each}}
+        </div>
+        {{else}}
+        <p class="text-muted">Aucun objectif défini.</p>
+        {{/if}}
+      </div>
+    </section>
+
+    <!-- 3. Métriques et Tendances -->
+    <section class="report-section">
+      <div class="report-section-header">
+        <h2 class="report-section-title">
+          <span class="report-section-icon">📈</span>
+          3. Métriques et Tendances
+        </h2>
+      </div>
+      <div class="report-section-content">
+        {{#if metrics.length}}
+        <div class="metrics-comparison">
+          {{#each metrics}}
+          <div class="metric-comparison-card">
+            <h4>{{label}}</h4>
+            <div class="metric-values">
+              <div class="metric-current">
+                <span class="metric-value">{{currentValue}}{{unit}}</span>
+                <span class="metric-label">Actuel</span>
+              </div>
+              <div class="metric-arrow trend-{{trend}}">
+                {{#if (eq trend 'up')}}↑{{/if}}
+                {{#if (eq trend 'down')}}↓{{/if}}
+                {{#if (eq trend 'stable')}}→{{/if}}
+              </div>
+              <div class="metric-previous">
+                <span class="metric-value">{{previousValue}}{{unit}}</span>
+                <span class="metric-label">Mois dernier</span>
+              </div>
+            </div>
+            <div class="metric-evolution {{evolutionClass}}">
+              {{evolution}}
+            </div>
+            {{#if chart}}
+            <div class="metric-chart">
+              <!-- Mini chart placeholder -->
+              <canvas id="chart-{{id}}" width="200" height="80"></canvas>
+            </div>
+            {{/if}}
+          </div>
+          {{/each}}
+        </div>
+        
+        <div class="trends-analysis">
+          <h3>Analyse des Tendances</h3>
+          <div class="trends-grid">
+            <div class="trend-card trend-positive">
+              <h4>Tendances Positives 📈</h4>
+              <ul>
+                {{#each positiveTrends}}
+                <li>{{this}}</li>
+                {{/each}}
+              </ul>
+            </div>
+            <div class="trend-card trend-negative">
+              <h4>Tendances à Surveiller ⚠️</h4>
+              <ul>
+                {{#each negativeTrends}}
+                <li>{{this}}</li>
+                {{/each}}
+              </ul>
+            </div>
+          </div>
+        </div>
+        {{else}}
+        <p class="text-muted">Aucune métrique définie.</p>
+        {{/if}}
+      </div>
+    </section>
+
+    <!-- 4. Rétrospective du Mois -->
+    <section class="report-section">
+      <div class="report-section-header">
+        <h2 class="report-section-title">
+          <span class="report-section-icon">🔄</span>
+          4. Rétrospective du Mois
+        </h2>
+      </div>
+      <div class="report-section-content">
+        <div class="retrospective-grid">
+          <div class="retrospective-column retrospective-good">
+            <h3>✅ Ce qui a bien fonctionné</h3>
+            {{#if whatWorked.length}}
+            <ul>
+              {{#each whatWorked}}
+              <li>{{this}}</li>
+              {{/each}}
+            </ul>
+            {{else}}
+            <p class="text-muted">Aucun élément.</p>
+            {{/if}}
+          </div>
+          
+          <div class="retrospective-column retrospective-improve">
+            <h3>🔧 À améliorer</h3>
+            {{#if toImprove.length}}
+            <ul>
+              {{#each toImprove}}
+              <li>{{this}}</li>
+              {{/each}}
+            </ul>
+            {{else}}
+            <p class="text-muted">Aucun élément.</p>
+            {{/if}}
+          </div>
+          
+          <div class="retrospective-column retrospective-learn">
+            <h3>💡 Leçons apprises</h3>
+            {{#if lessonsLearned.length}}
+            <ul>
+              {{#each lessonsLearned}}
+              <li>{{this}}</li>
+              {{/each}}
+            </ul>
+            {{else}}
+            <p class="text-muted">Aucun élément.</p>
+            {{/if}}
+          </div>
+          
+          <div class="retrospective-column retrospective-actions">
+            <h3>🎯 Actions pour le mois prochain</h3>
+            {{#if actions.length}}
+            <ul>
+              {{#each actions}}
+              <li>
+                <strong>{{title}}</strong> - {{description}}
+                {{#if owner}}<em>({{owner}})</em>{{/if}}
+              </li>
+              {{/each}}
+            </ul>
+            {{else}}
+            <p class="text-muted">Aucune action définie.</p>
+            {{/if}}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Timeline du Mois -->
+    <section class="report-section">
+      <div class="report-section-header">
+        <h2 class="report-section-title">
+          <span class="report-section-icon">📅</span>
+          5. Timeline du Mois
+        </h2>
+      </div>
+      <div class="report-section-content">
+        {{#if events.length}}
+        <div class="month-timeline">
+          {{#each eventsByWeek}}
+          <div class="week-section">
+            <h3 class="week-title">Semaine {{week}}</h3>
+            <div class="week-events">
+              {{#each events}}
+              <div class="timeline-event event-type-{{type}}">
+                <div class="event-marker event-marker-{{type}}"></div>
+                <div class="event-date">{{date | formatDate}}</div>
+                <div class="event-content">
+                  <div class="event-type-badge">{{typeLabel}}</div>
+                  <h4>{{title}}</h4>
+                  <p>{{description}}</p>
+                </div>
+              </div>
+              {{/each}}
+            </div>
+          </div>
+          {{/each}}
+        </div>
+        {{else}}
+        <p class="text-muted">Aucun événement ce mois-ci.</p>
+        {{/if}}
+      </div>
+    </section>
+
+    <!-- 6. Feedbacks et Alignement -->
+    {{#if feedbacks}}
+    <section class="report-section">
+      <div class="report-section-header">
+        <h2 class="report-section-title">
+          <span class="report-section-icon">💬</span>
+          6. Feedbacks et Alignement
+        </h2>
+      </div>
+      <div class="report-section-content">
+        <div class="feedbacks-list">
+          {{#each feedbacks}}
+          <div class="feedback-item">
+            <div class="feedback-header">
+              <strong>{{source}}</strong>
+              <span class="feedback-date">{{date | formatDate}}</span>
+            </div>
+            <p class="feedback-content">{{content}}</p>
+            {{#if actions}}
+            <div class="feedback-actions">
+              <strong>Actions :</strong> {{actions}}
+            </div>
+            {{/if}}
+          </div>
+          {{/each}}
+        </div>
+      </div>
+    </section>
+    {{/if}}
+
+    <!-- 7. Plan pour le Mois Prochain -->
+    <section class="report-section">
+      <div class="report-section-header">
+        <h2 class="report-section-title">
+          <span class="report-section-icon">🚀</span>
+          7. Plan pour le Mois Prochain
+        </h2>
+      </div>
+      <div class="report-section-content">
+        {{#if nextMonthPlan.length}}
+        <div class="next-month-plan">
+          {{#each nextMonthPlan}}
+          <div class="plan-item priority-{{priority}}">
+            <div class="plan-header">
+              <h4>{{title}}</h4>
+              <span class="plan-priority">{{priorityLabel}}</span>
+            </div>
+            <p>{{description}}</p>
+            {{#if deliverables}}
+            <div class="plan-deliverables">
+              <strong>Livrables :</strong>
+              <ul>
+                {{#each deliverables}}
+                <li>{{this}}</li>
+                {{/each}}
+              </ul>
+            </div>
+            {{/if}}
+          </div>
+          {{/each}}
+        </div>
+        {{else}}
+        <p class="text-muted">Aucun plan défini pour le mois prochain.</p>
+        {{/if}}
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="report-footer">
+      <div class="report-footer-signature">
+        <p>Revue mensuelle rédigée par <strong>{{author}}</strong></p>
+        <p class="text-muted">{{generatedDate | formatDate}}</p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Print Styles -->
+  <style media="print">
+    @page {
+      margin: 2cm;
+      size: A4;
+    }
+
+    body {
+      background: white;
+      color: black;
+    }
+
+    .report-section {
+      page-break-inside: avoid;
+    }
+
+    .overview-section,
+    .retrospective-grid {
+      page-break-inside: auto;
+    }
+  </style>
+</body>
+</html>
