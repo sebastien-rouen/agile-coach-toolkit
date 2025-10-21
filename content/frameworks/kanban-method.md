@@ -82,7 +82,8 @@ Le mot **Kanban** (看板) signifie _"tableau"_ ou _"enseigne"_ en japonais. À 
 → Prévoir **quand une tâche sera terminée** (si le flux est stable).
 
 **Exemple** :
-![Exemple CFD](https://pablopernot.fr/wp-content/uploads/2017/03/cfd-example.png)
+![Exemple CFD](https://pablopernot.fr/images/2017/03/ods4_hu_4be3e41f6f2f2c23.webp)
+![CFD](https://pablopernot.fr/images/2017/03/ods-leadtime1_hu_6b5c7d8f1b1ad5d3.webp)
 _(Source : Pablo Pernot)_
 
 **Comment le lire ?**
@@ -92,7 +93,6 @@ _(Source : Pablo Pernot)_
 - **Cassure brute** = Un blocage majeur (ex : un serveur en panne).
 
 💡 **Astuce Coach Sticko** :
-
 > _"Si votre CFD ressemble à un sapin de Noël, c’est que vous avez trop de WIP. Coupez les branches (limitez le WIP) !"_
 
 ---

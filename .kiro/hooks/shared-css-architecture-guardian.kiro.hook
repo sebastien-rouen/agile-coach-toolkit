@@ -1,0 +1,18 @@
+{
+  "enabled": true,
+  "name": "CSS Architecture Guardian",
+  "description": "Surveille l'architecture CSS et détecte les violations : fichiers > 800 lignes, CSS dans JS, doublons, mauvaises pratiques",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "assets/css/**/*.css",
+      "assets/js/**/*.js",
+      "**/*.html"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Fichiers CSS/JS modifiés. Vérifie le respect de l'architecture CSS selon ces règles :\n\n**Règles Critiques** :\n1. ❌ **Fichiers CSS > 800 lignes** : Doit être découpé en composants\n2. ❌ **CSS dans fichiers JS** : Interdit (utiliser classes CSS)\n3. ❌ **Variables dupliquées** : Doivent être centralisées dans `base.css`\n4. ❌ **Animations dupliquées** : Consolider dans `base.css`\n5. ❌ **Sélecteurs trop spécifiques** : Optimiser (éviter `#id .class .subclass`)\n\n**Structure Attendue** :\n```\nassets/css/\n├── base.css           # Variables, reset, animations globales\n├── components/        # Composants UI réutilisables\n├── layout/           # Grilles, conteneurs\n├── modules/          # Fonctionnalités spécifiques\n└── themes/           # Light/Dark themes\n```\n\n**Conventions** :\n- Classes : kebab-case (`.service-item`)\n- Variables : préfixes sémantiques (`--primary`, `--spacing-md`)\n- Indentation : 2 espaces\n- Pas de CSS inline dans JS : `element.classList.add('is-active')`\n\n**Actions** :\n1. Compte les lignes des fichiers CSS modifiés\n2. Détecte le CSS dans les fichiers JS (`.style.`, `innerHTML` avec styles)\n3. Identifie les variables/animations dupliquées\n4. Suggère des refactorisations si nécessaire\n5. Propose une structure modulaire si fichier > 800 lignes\n\nRapporte les violations avec des solutions concrètes et priorisées."
+  }
+}

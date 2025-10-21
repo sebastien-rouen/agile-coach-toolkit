@@ -9,14 +9,27 @@ Outil interactif de gestion des compétences d'équipe avec système de **consei
 ### 📈 Matrice de Compétences Interactive
 - **Évaluation en temps réel** : Système de notation de 0 à 4 pour chaque compétence
 - **Visualisation colorée** : Codes couleur intuitifs pour identifier rapidement les niveaux
-- **Totaux automatiques** : Calcul instantané des scores par compétence et par membre
+- **Totaux par compétence** : Calcul instantané des scores par compétence (v3.2.0)
 - **Édition facile** : Modification des noms et niveaux en un clic
+- **Suppression de compétences** : Dialogue Modifier/Supprimer avec confirmation (v3.2.0)
 
-### 🎨 Radar des Compétences
-- **Visualisation graphique** : Radar chart dynamique pour comparer les profils
-- **Multi-membres** : Affichage simultané de plusieurs membres pour comparaison
-- **Légende interactive** : Identification claire des compétences par couleur
-- **Mise à jour en temps réel** : Synchronisation automatique avec les modifications
+### 📊 Graphique en Bâtons (v3.2.0)
+- **Visualisation claire** : Graphique en barres groupées pour meilleure lisibilité
+- **Comparaison facile** : Barres côte à côte par compétence
+- **Valeurs affichées** : Niveaux visibles au-dessus de chaque barre
+- **Multi-membres** : Affichage simultané de plusieurs membres avec couleurs distinctes
+- **Grille de référence** : Lignes horizontales pour les niveaux 0-4
+- **Responsive** : Adaptation automatique mobile/desktop
+
+### 📥📤 Import/Export Amélioré (v3.2.0)
+- **Import JSON** : Chargement de données depuis fichier JSON
+- **Import Excel** : Chargement depuis fichiers .xlsx/.xls
+- **Export JSON** : Sauvegarde complète des données
+- **Export Excel stylé** : Fichier professionnel avec couleurs dark cohérentes
+  - En-têtes colorés (violet, bleu, rose)
+  - Niveaux avec couleurs (vert, jaune, orange, rouge, gris)
+  - Ligne de totaux stylée
+  - Colonnes Appétences et Ownerships incluses
 
 ### 💡 Conseils Automatisés Coach Sticko
 

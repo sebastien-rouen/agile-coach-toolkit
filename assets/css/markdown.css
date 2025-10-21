@@ -503,7 +503,7 @@
 .markdown-content em,
 .markdown-content i {
   font-style: italic;
-  color: var(--text-secondary);
+  color: var(--text-primary);
 }
 
 .markdown-content mark {
@@ -578,6 +578,71 @@
   margin-bottom: var(--space-sm);
   padding-bottom: var(--space-sm);
   border-bottom: 1px solid var(--border-default);
+}
+
+/* ============================================
+   DIAGRAMMES MERMAID
+   ============================================ */
+.markdown-content .mermaid {
+  background: var(--bg-secondary);
+  padding: var(--space-lg);
+  border-radius: var(--radius-md);
+  margin: var(--space-md) 0;
+  border: 1px solid var(--border-default);
+  overflow-x: auto;
+  text-align: center;
+}
+
+/* Styles pour les diagrammes Mermaid */
+.markdown-content .mermaid svg {
+  max-width: 100%;
+  height: auto;
+  display: inline-block;
+}
+
+/* Améliorer la lisibilité des textes dans les diagrammes */
+.markdown-content .mermaid .nodeLabel,
+.markdown-content .mermaid .edgeLabel {
+  color: var(--text-primary);
+  font-family: inherit;
+}
+
+/* Adapter les couleurs au thème */
+.markdown-content .mermaid .node rect,
+.markdown-content .mermaid .node circle,
+.markdown-content .mermaid .node ellipse,
+.markdown-content .mermaid .node polygon {
+  fill: var(--bg-tertiary);
+  stroke: var(--primary-color);
+  stroke-width: 2px;
+}
+
+.markdown-content .mermaid .edgePath .path {
+  stroke: var(--text-tertiary);
+  stroke-width: 2px;
+}
+
+.markdown-content .mermaid .arrowheadPath {
+  fill: var(--text-tertiary);
+}
+
+/* Scrollbar pour les diagrammes larges */
+.markdown-content .mermaid::-webkit-scrollbar {
+  height: 8px;
+}
+
+.markdown-content .mermaid::-webkit-scrollbar-track {
+  background: var(--bg-tertiary);
+  border-radius: 4px;
+}
+
+.markdown-content .mermaid::-webkit-scrollbar-thumb {
+  background: var(--border-default);
+  border-radius: 4px;
+}
+
+.markdown-content .mermaid::-webkit-scrollbar-thumb:hover {
+  background: var(--text-tertiary);
 }
 
 /* ============================================

@@ -6,32 +6,46 @@
   "color": "#2196F3",
   "articles": [
     {
+      "id": "manifeste-agile",
+      "title": "Manifeste Agile",
+      "file": "manifeste-agile.md",
+      "tags": ["manifeste", "valeurs", "principes", "agilité"],
+      "order": 1
+    },
+    {
+      "id": "agile-fondamentaux-modernagile",
+      "title": "Agile Fondamentaux Modern Agile",
+      "file": "agile-fondamentaux-modernagile.md",
+      "tags": ["fondamentaux", "modern agile", "principes", "valeurs", "pratiques"],
+      "order": 2
+    },
+    {
       "id": "cadrage-intervention",
       "title": "Cadrage d'Intervention",
       "file": "cadrage-intervention.md",
       "tags": ["cadrage", "contrat", "objectifs", "périmètre"],
-      "order": 1
+      "order": 3
     },
     {
       "id": "vision-strategie",
       "title": "Vision & Stratégie",
       "file": "vision-strategie.md",
       "tags": ["vision", "stratégie", "alignement", "communication"],
-      "order": 2
+      "order": 4
     },
     {
       "id": "formations-frameworks",
       "title": "Formations Frameworks",
       "file": "formations-frameworks.md",
       "tags": ["formation", "apprentissage", "certification", "compétences"],
-      "order": 3
+      "order": 5
     },
     {
       "id": "assessment-diagnostic",
       "title": "Assessment & Diagnostic",
       "file": "assessment-diagnostic.md",
       "tags": ["assessment", "maturité", "diagnostic", "amélioration"],
-      "order": 4
+      "order": 6
     }
   ]
 }

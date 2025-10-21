@@ -1,0 +1,43 @@
+{
+  "skills": [
+    "JavaScript",
+    "React",
+    "Node.js",
+    "Docker",
+    "Git"
+  ],
+  "members": [
+    {
+      "name": "Alice Martin",
+      "levels": [4, 4, 3, 2, 4],
+      "appetences": ["Kubernetes", "GraphQL"],
+      "ownerships": ["Architecture Frontend", "Code Review"]
+    },
+    {
+      "name": "Bob Dupont",
+      "levels": [3, 2, 4, 4, 3],
+      "appetences": ["Rust", "WebAssembly"],
+      "ownerships": ["DevOps", "CI/CD"]
+    },
+    {
+      "name": "Claire Rousseau",
+      "levels": [2, 3, 2, 1, 3],
+      "appetences": ["TypeScript", "Testing"],
+      "ownerships": []
+    }
+  ],
+  "appetences": [
+    "Kubernetes",
+    "GraphQL",
+    "Rust",
+    "WebAssembly",
+    "TypeScript",
+    "Testing"
+  ],
+  "ownerships": [
+    "Architecture Frontend",
+    "Code Review",
+    "DevOps",
+    "CI/CD"
+  ]
+}

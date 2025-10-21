@@ -1,0 +1,21 @@
+{
+  "enabled": true,
+  "name": "Security Scanner",
+  "description": "Détecte les failles de sécurité : secrets exposés, XSS, validation manquante, mauvaises pratiques",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "**/*.js",
+      "**/*.html",
+      "**/*.env",
+      "**/*.json",
+      "!**/node_modules/**",
+      "!**/pb_data/**"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Fichiers modifiés. Analyse de sécurité selon les standards du projet :\n\n**Failles Critiques à Détecter** :\n\n1. **Secrets Exposés** :\n   - ❌ Clés API, tokens, mots de passe en dur\n   - ❌ Credentials dans le code (DB_PASSWORD, JWT_SECRET)\n   - ✅ Utilisation de variables d'environnement (.env)\n\n2. **Vulnérabilités XSS** :\n   - ❌ `innerHTML` avec données utilisateur\n   - ❌ `eval()`, `Function()` avec input non validé\n   - ✅ `textContent`, `setAttribute()` pour données utilisateur\n   - ✅ Sanitization des entrées\n\n3. **Validation Manquante** :\n   - ❌ Pas de validation côté serveur\n   - ❌ Confiance aveugle dans les données client\n   - ✅ Validation côté client ET serveur\n   - ✅ Échappement des données utilisateur\n\n4. **Mauvaises Pratiques** :\n   - ❌ `console.log()` au lieu de Winston Logger\n   - ❌ Logs contenant des données sensibles\n   - ❌ Fichiers .env commités (vérifier .gitignore)\n   - ❌ CORS trop permissif\n\n5. **Injection SQL/NoSQL** :\n   - ❌ Concaténation de requêtes avec input utilisateur\n   - ✅ Requêtes paramétrées, ORM sécurisé\n\n**Patterns à Rechercher** :\n```javascript\n// ❌ Dangereux\nelement.innerHTML = userInput;\neval(userCode);\nconst query = `SELECT * FROM users WHERE id = ${userId}`;\nconst password = \"hardcoded123\";\n\n// ✅ Sécurisé\nelement.textContent = userInput;\nconst sanitized = DOMPurify.sanitize(userInput);\nconst query = db.prepare(\"SELECT * FROM users WHERE id = ?\").get(userId);\nconst password = process.env.DB_PASSWORD;\n```\n\n**Actions** :\n1. Scanne les patterns dangereux\n2. Vérifie l'utilisation de Winston Logger\n3. Détecte les secrets potentiels\n4. Identifie les failles XSS\n5. Propose des corrections sécurisées\n\nRapporte UNIQUEMENT les problèmes de sécurité détectés avec leur niveau de criticité (🔴 Critique, 🟠 Important, 🟡 Attention) et des solutions concrètes."
+  }
+}

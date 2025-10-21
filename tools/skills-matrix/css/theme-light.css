@@ -131,7 +131,6 @@
 }
 
 [data-theme="light"] .skill-name {
-    background: var(--bg-tertiary);
     color: #764ba2;
 }
 

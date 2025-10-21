@@ -85,7 +85,7 @@ curl http://localhost:3002/api/sites
 | **maison** | 8094 | 8095 | items, categories, locations | Inventaire et gestion des objets du foyer |
 | **prompts** | 8096 | 8097 | prompts, categories, tags | Collection de prompts pour IA et créativité |
 | **cuisine** | 8098 | 8099 | recipes, ingredients, menus | Recettes, ingrédients et planification repas |
-| **bastalab** | 8100 | 8101 | experiments, results, notes | Laboratoire d'expérimentations et tests |
+| **bastalab** | 8100 | 8101 | experiments, results, notes | Homelab auto-hébergé sur Proxmox - Dashboard temps réel, monitoring système, gestion VMs/containers pour domotique, multimédia et sauvegarde |
 | **carnet-explorateur** | 8102 | 8103 | travels, steps, wishlists, weather | Planification et suivi de voyages d'exploration |
 | **carnet-voiture** | 8104 | 8105 | maintenance, fuel, trips | Entretien véhicule et suivi des trajets |
 | **articles** | 8106 | 8107 | articles, comments, tags | Publication et gestion d'articles |

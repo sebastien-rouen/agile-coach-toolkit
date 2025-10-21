@@ -18,6 +18,20 @@
       "file": "culture-entreprise.md",
       "tags": ["culture", "valeurs", "comportements", "mindset"],
       "order": 2
+    },
+    {
+      "id": "org-topologies",
+      "title": "ORG Topologies",
+      "file": "org-topologies.md",
+      "tags": ["organisation", "structure", "topologies", "design"],
+      "order": 3
+    },
+    {
+      "id": "team-topologies",
+      "title": "Team Topologies",
+      "file": "team-topologies.md",
+      "tags": ["équipes", "topologies", "collaboration", "architecture"],
+      "order": 4
     }
   ]
 }

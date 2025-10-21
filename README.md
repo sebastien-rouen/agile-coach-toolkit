@@ -162,6 +162,31 @@ Chaque catégorie dispose de **contenus pédagogiques** :
 
 Les fichiers Markdown sont **interprétés à la volée** et affichés avec style.
 
+#### 📊 Support des Diagrammes Mermaid
+
+Les contenus Markdown supportent maintenant **Mermaid.js** pour créer des diagrammes :
+
+```markdown
+\`\`\`mermaid
+graph LR
+    A[Pourquoi ?\nObjectif] --> B[Qui ?\nActeurs]
+    B --> C[Comment ?\nImpacts]
+    C --> D[Quoi ?\nLivrables]
+\`\`\`
+```
+
+**Types de diagrammes supportés** :
+- Diagrammes de flux (flowchart)
+- Diagrammes de séquence
+- Diagrammes de classes
+- Diagrammes d'état
+- Diagrammes de Gantt
+- Diagrammes circulaires (pie)
+- ERD (Entity Relationship Diagram)
+- User Journey
+
+📚 **Documentation complète** : [docs/MERMAID-INTEGRATION.md](docs/MERMAID-INTEGRATION.md)
+
 ### 🎨 5. Design moderne
 
 - **Dark mode** par défaut (confortable pour les yeux)
@@ -177,7 +202,9 @@ Les fichiers Markdown sont **interprétés à la volée** et affichés avec styl
 - **HTML5** : Structure sémantique
 - **CSS3** : Variables CSS, Grid, Flexbox
 - **JavaScript Vanilla** : Aucune dépendance externe
-- **Markdown** : Pour les contenus
+- **Markdown** : Pour les contenus (avec [marked.js](https://marked.js.org/))
+- **Mermaid.js** : Pour les diagrammes dans le Markdown
+- **js-yaml** : Pour le parsing des métadonnées YAML
 - **JSON** : Configuration centralisée
 
 **Aucun framework lourd** → Performance maximale et légèreté.

@@ -1,0 +1,23 @@
+{
+  "enabled": true,
+  "name": "Documentation Sync",
+  "description": "Monitors all source files (HTML, CSS, JS, JSON config) and triggers documentation updates in README.md or /docs folder when changes are detected",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "**/*.html",
+      "**/*.css",
+      "**/*.js",
+      "config/**/*.json",
+      "partials/**/*.html",
+      ".kiro/steering/**/*.md",
+      "bdd/pb_migrations/**/*.js"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Fichiers sources modifiés. Vérifie si la documentation nécessite une mise à jour :\n\n**Fichiers de Documentation** :\n- `README.md` : Structure globale, features, installation (max 1000 lignes)\n- `docs/DOCUMENTATION.md` : Détails techniques, architecture\n- `.kiro/steering/*.md` : Règles et conventions du projet\n- `CHANGELOG.md` : Historique des modifications (géré par hook dédié)\n\n**Quand Mettre à Jour** :\n1. **README.md** :\n   - Nouvelles fonctionnalités majeures\n   - Changements d'architecture\n   - Nouvelles dépendances ou prérequis\n   - Modifications des commandes d'installation/démarrage\n\n2. **docs/DOCUMENTATION.md** :\n   - Détails d'implémentation technique\n   - Nouveaux composants ou modules\n   - Changements d'API\n   - Patterns de code\n\n3. **Steering Rules** :\n   - Nouvelles conventions de code\n   - Changements de workflow\n   - Nouvelles bonnes pratiques\n\n4. **Migrations PocketBase** :\n   - Documenter les nouvelles collections\n   - Expliquer les changements de schéma\n\n**Instructions** :\n- Documentation en français\n- Exemples de code concrets\n- Mise à jour des exemples si API modifiée\n- Garder la documentation concise et actionnable\n- Si README.md > 1000 lignes, suggérer de splitter\n\nPropose UNIQUEMENT les mises à jour nécessaires, pas de modifications cosmétiques."
+  }
+  }
+}

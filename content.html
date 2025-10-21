@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="assets/css/layout.css">
     <link rel="stylesheet" href="assets/css/markdown.css">
     <link rel="stylesheet" href="assets/css/responsive.css">
+    <link rel="stylesheet" href="assets/css/search.css">
 
     <style>
         /* Article Header */
@@ -193,11 +194,13 @@
     <!-- Bibliothèques externes pour le parsing Markdown -->
     <script src="https://cdn.jsdelivr.net/npm/marked@11.1.1/marked.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js"></script>
     
     <script src="assets/js/partials-loader.js"></script>
     <script src="assets/js/utils.js"></script>
     <script src="assets/js/navigation.js"></script>
     <script src="assets/js/markdown-parser.js"></script>
+    <script src="assets/js/search.js"></script>
     <script src="assets/js/main.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', async () => {
@@ -256,8 +259,19 @@
                 // Parser et afficher le markdown
                 let html;
                 if (typeof marked !== 'undefined') {
-                    // Utiliser marked.js si disponible
-                    html = marked.parse(markdown);
+                    // Configurer marked pour gérer les blocs de code Mermaid
+                    const renderer = new marked.Renderer();
+                    const originalCodeRenderer = renderer.code.bind(renderer);
+                    
+                    renderer.code = function(code, language) {
+                        if (language === 'mermaid') {
+                            return `<div class="mermaid">${code}</div>`;
+                        }
+                        return originalCodeRenderer(code, language);
+                    };
+                    
+                    // Utiliser marked.js avec le renderer personnalisé
+                    html = marked.parse(markdown, { renderer });
                 } else {
                     // Fallback : parser maison
                     html = parseMarkdown(markdown);
@@ -268,6 +282,11 @@
                 // Styliser les citations avec auteur
                 if (typeof styleBlockquotesWithAuthor === 'function') {
                     styleBlockquotesWithAuthor();
+                }
+                
+                // Initialiser Mermaid pour les diagrammes
+                if (typeof initMermaid === 'function') {
+                    initMermaid();
                 }
 
                 // Utiliser le titre du front-matter ou extraire du H1

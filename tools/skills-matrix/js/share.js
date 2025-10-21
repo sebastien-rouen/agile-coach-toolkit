@@ -26,17 +26,13 @@ function initShare() {
         currentSessionId = matrixId;
         window.currentMatrixId = matrixId;
 
-        // Attendre que PocketBase soit initialisé (il charge déjà les données)
-        if (typeof initPocketBase === 'function') {
-            initPocketBase().then(() => {
-                startAutoSync();
-                updateShareUI(true);
-                showNotification('✅ Matrice partagée chargée', 'success');
-            }).catch(error => {
-                console.error('Erreur chargement matrice partagée:', error);
-                showNotification('❌ Erreur lors du chargement', 'error');
-                updateShareUI(false);
-            });
+        // PocketBase est déjà initialisé par main.js, juste démarrer la sync
+        if (typeof usePocketBase !== 'undefined' && usePocketBase) {
+            startAutoSync();
+            updateShareUI(true);
+            console.log('💾 Sauvegarde automatique activée (pas de sync périodique)');
+        } else {
+            updateShareUI(false);
         }
     } else if (sessionId) {
         // Ancien système (fallback)
@@ -45,10 +41,7 @@ function initShare() {
         startAutoSync();
         updateShareUI(true);
     } else {
-        // Pas de partage, initialiser PocketBase normalement
-        if (typeof initPocketBase === 'function') {
-            initPocketBase();
-        }
+        // Pas de partage
         updateShareUI(false);
     }
 }
@@ -192,21 +185,13 @@ function leaveSharedSession() {
  */
 function updateShareUI(isShared) {
     const shareBtn = document.getElementById('shareBtn');
-    const shareBtnText = document.getElementById('shareBtnText');
 
     if (!shareBtn) return;
 
     if (isShared) {
-        if (shareBtnText) {
-            shareBtnText.textContent = 'Quitter';
-        }
         shareBtn.classList.add('btn-shared');
-        shareBtn.title = 'Cliquer pour quitter la session partagée';
-        // Pas de statut de synchronisation affiché (sauvegarde automatique)
+        shareBtn.title = 'Matrice partagée - Sauvegarde automatique active';
     } else {
-        if (shareBtnText) {
-            shareBtnText.textContent = 'Partager';
-        }
         shareBtn.classList.remove('btn-shared');
         shareBtn.title = 'Cliquer pour créer un lien de partage';
     }
@@ -290,10 +275,14 @@ async function copyShareUrl(url) {
  */
 function handleShareClick() {
     if (currentSessionId) {
-        // Si déjà en session, proposer de quitter
-        if (confirm('Voulez-vous quitter la session partagée ?')) {
-            leaveSharedSession();
-        }
+        // Si déjà en session, recréer le lien (copier à nouveau)
+        const fullUrl = `${window.location.origin}${window.location.pathname}?matrix=${currentSessionId}`;
+        navigator.clipboard.writeText(fullUrl).then(() => {
+            showNotification('✅ Lien copié ! Partagez-le avec votre équipe');
+            showShareModal(fullUrl, null);
+        }).catch(() => {
+            showNotification('❌ Erreur lors de la copie');
+        });
     } else {
         // Créer une nouvelle session
         createSharedSession();

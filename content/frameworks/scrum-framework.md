@@ -66,6 +66,9 @@ Scrum est **le framework Agile le plus utilisé** (87% des équipes Agile en 202
 - Le PO impose des tâches sans écouter les devs (**❌ Pas d’ouverture**).
 - Les devs acceptent des changements en cours de Sprint (**❌ Pas de focus**).
 
+![Cycle d'amélioration continue](assets/images/cycle-improvement.png)
+
+
 ### **3️⃣ La Structure : 3 Rôles, 5 Événements, 3 Artefacts**
 #### **👥 Les 3 Rôles (Pas de Chefs, Que des Responsabilités)**
 | Rôle               | Responsabilités                                                                 | Pièges à Éviter                                                                 |

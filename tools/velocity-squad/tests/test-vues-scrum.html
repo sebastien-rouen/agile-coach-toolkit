@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test - Vues Scrum</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            color: #2196F3;
+            margin-bottom: 2rem;
+        }
+        
+        .test-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .test-section h2 {
+            color: #333;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #2196F3;
+            padding-bottom: 0.5rem;
+        }
+        
+        .test-case {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+        }
+        
+        .test-case h3 {
+            color: #555;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+        
+        .test-result {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+        
+        .status {
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        
+        .status.pass {
+            background: #4CAF50;
+            color: white;
+        }
+        
+        .status.fail {
+            background: #F44336;
+            color: white;
+        }
+        
+        .status.pending {
+            background: #FF9800;
+            color: white;
+        }
+        
+        .code {
+            background: #263238;
+            color: #aed581;
+            padding: 1rem;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            margin-top: 0.5rem;
+        }
+        
+        .instructions {
+            background: #e3f2fd;
+            border-left: 4px solid #2196F3;
+            padding: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .instructions h3 {
+            color: #1976D2;
+            margin-bottom: 0.5rem;
+        }
+        
+        .checklist {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .checklist li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .checklist li:before {
+            content: "☐ ";
+            color: #2196F3;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧪 Tests - Vues Multiples Scrum</h1>
+    
+    <div class="instructions">
+        <h3>📋 Instructions de Test</h3>
+        <p>Suivez ces étapes pour valider les nouvelles fonctionnalités des vues Scrum :</p>
+        <ol>
+            <li>Ouvrir l'application principale (index.html)</li>
+            <li>S'assurer d'être en mode <strong>Scrum</strong></li>
+            <li>Avoir au moins <strong>3 sprints</strong> avec des données</li>
+            <li>Vérifier chaque test ci-dessous</li>
+        </ol>
+    </div>
+
+    <div class="test-section">
+        <h2>📊 Test 1 : Affichage du Sélecteur de Vues</h2>
+        
+        <div class="test-case">
+            <h3>1.1 - Sélecteur visible en mode Scrum</h3>
+            <p>Le sélecteur avec 3 boutons emoji doit être visible en haut du graphique.</p>
+            <div class="test-result">
+                <span class="status pending">À TESTER</span>
+                <span>Vérifier la présence des boutons 📊 📉 📈</span>
+            </div>
+        </div>
+        
+        <div class="test-case">
+            <h3>1.2 - Sélecteur caché en mode Kanban</h3>
+            <p>Passer en mode Kanban : le sélecteur doit disparaître.</p>
+            <div class="test-result">
+                <span class="status pending">À TESTER</span>
+                <span>Changer le mode et vérifier</span>
+            </div>
+        </div>
+        
+        <div class="test-case">
+            <h3>1.3 - Sélecteur caché sans sprints</h3>
+            <p>Supprimer tous les sprints : le sélecteur doit disparaître.</p>
+            <div class="test-result">
+                <span class="status pending">À TESTER</span>
+                <span>Vérifier avec 0 sprint</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>📊 Test 2 : Vue Vélocité</h2>
+        
+        <div class="test-case">
+            <h3>2.1 - Affichage par défaut</h3>
+            <p>Au chargement, la vue Vélocité doit être active (bouton 📊 en bleu).</p>
+            <div class="test-result">
+                <span class="status pending">À TESTER</span>
+                <span>Vérifier le bouton actif</span>
+            </div>
+        </div>
+        
+        <div class="test-case">
+            <h3>2.2 - Titre du graphique</h3>
+            <p>Le titre doit afficher "📊 Vélocité par Sprint".</p>
+            <div class="test-result">
+                <span class="status pending">À TESTER</span>
+                <span>Vérifier le titre</span>
+            </div>
+        </div>
+        
+        <div class="test-case">
+            <h3>2.3 - Barres et tendance</h3>
+            <p>Le graphique doit afficher des barres bleues et une ligne orange de tendance.</p>
+            <div class="test-result">
+                <span class="status pending">À TESTER</span>
+                <span>Vérifier les datasets</span>
+            </div>
+        </div>
+        
+        <div class="test-case">
+            <h3>2.4 - Annotations visibles</h3>
+            <p>Les faits marquants doivent être affichés sur le graphique.</p>
+            <div class="test-result">
+                <span class="status pending">À TESTER</span>
+                <span>Ajouter une annotation et vérifier</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>📉 Test 3 : Vue Burndown</h2>
+        
+        <div class="test-case">
+            <h3>3.1 - Changement de vue</h3>
+            <p>Cliquer sur le bouton 📉 : le graphique doit changer.</p>
+            <div class="test-result">
+                <span class="status pending">À TESTER</span>
+                <span>Cliquer et observer</span>
+            </div>
+        </div>
+        
+        <div class="test-case">
+            <h3>3.2 - Titre du graphique</h3>
+            <p>Le titre doit afficher "📉 Burndown Chart".</p>
+            <div class="test-result">
+                <span class="status pending">À TESTER</span>
+                <span>Vérifier le titre</span>
+            </div>
+        </div>
+        
+        <div class="test-case">
+            <h3>3.3 - Ligne de travail restant</h3>
+            <p>Une ligne rouge doit descendre de gauche à droite.</p>
+            <div class="test-result">
+                <span class="status pending">À TESTER</span>
+                <span>Vérifier la ligne rouge</span>
+            </div>
+        </div>
+        
+        <div class="test-case">
+            <h3>3.4 - Ligne idéale</h3>
+            <p>Une ligne grise pointillée doit descendre linéairement.</p>
+            <div class="test-result">
+                <span class="status pending">À TESTER</span>
+                <span>Vérifier la ligne grise</span>
+            </div>
+        </div>
+        
+        <div class="test-case">
+            <h3>3.5 - Point final à zéro</h3>
+            <p>Le dernier point doit être à 0 sur l'axe Y.</p>
+            <div class="test-result">
+                <span class="status pending">À TESTER</span>
+                <span>Vérifier le dernier point</span>
+            </div>
+        </div>
+        
+        <div class="test-case">
+            <h3>3.6 - Tooltip avec points restants</h3>
+            <p>Survoler un point : le tooltip doit afficher "X points".</p>
+            <div class="test-result">
+                <span class="status pending">À TESTER</span>
+                <span>Survoler et lire</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>📈 Test 4 : Vue Burnup</h2>
+        
+        <div class="test-case">
+            <h3>4.1 - Changement de vue</h3>
+            <p>Cliquer sur le bouton 📈 : le graphique doit changer.</p>
+            <div class="test-result">
+                <span class="status pending">À TESTER</span>
+                <span>Cliquer et observer</span>
+            </div>
+        </div>
+        
+        <div class="test-case">
+            <h3>4.2 - Titre du graphique</h3>
+            <p>Le titre doit afficher "📈 Burnup Chart".</p>
+            <div class="test-result">
+                <span class="status pending">À TESTER</span>
+                <span>Vérifier le titre</span>
+            </div>
+        </div>
+        
+        <div class="test-case">
+            <h3>4.3 - Ligne de travail complété</h3>
+            <p>Une ligne verte doit monter de gauche à droite (cumulatif).</p>
+            <div class="test-result">
+                <span class="status pending">À TESTER</span>
+                <span>Vérifier la ligne verte</span>
+            </div>
+        </div>
+        
+        <div class="test-case">
+            <h3>4.4 - Ligne de scope total</h3>
+            <p>Une ligne bleue doit représenter le scope (peut varier).</p>
+            <div class="test-result">
+                <span class="status pending">À TESTER</span>
+                <span>Vérifier la ligne bleue</span>
+            </div>
+        </div>
+        
+        <div class="test-case">
+            <h3>4.5 - Tooltip avec progression</h3>
+            <p>Survoler un point : le tooltip doit afficher "Progression: X%".</p>
+            <div class="test-result">
+                <span class="status pending">À TESTER</span>
+                <span>Survoler et lire le footer</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>💾 Test 5 : Sauvegarde et Restauration</h2>
+        
+        <div class="test-case">
+            <h3>5.1 - Sauvegarde de la vue</h3>
+            <p>Changer de vue, recharger la page : la vue doit être restaurée.</p>
+            <div class="test-result">
+                <span class="status pending">À TESTER</span>
+                <span>Changer, F5, vérifier</span>
+            </div>
+            <div class="code">
+// Vérifier dans localStorage
+localStorage.getItem('velocityToolData')
+// Chercher: "chartView": "burndown" ou "burnup"
+            </div>
+        </div>
+        
+        <div class="test-case">
+            <h3>5.2 - Bouton actif restauré</h3>
+            <p>Le bon bouton doit être en bleu après rechargement.</p>
+            <div class="test-result">
+                <span class="status pending">À TESTER</span>
+                <span>Vérifier la classe "active"</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>🎨 Test 6 : Interface Utilisateur</h2>
+        
+        <div class="test-case">
+            <h3>6.1 - Tooltips des boutons</h3>
+            <p>Survoler chaque bouton : un tooltip doit apparaître en dessous.</p>
+            <div class="test-result">
+                <span class="status pending">À TESTER</span>
+                <span>Survoler 📊 📉 📈</span>
+            </div>
+        </div>
+        
+        <div class="test-case">
+            <h3>6.2 - Effet hover</h3>
+            <p>Survoler un bouton : il doit se soulever légèrement.</p>
+            <div class="test-result">
+                <span class="status pending">À TESTER</span>
+                <span>Observer la translation</span>
+            </div>
+        </div>
+        
+        <div class="test-case">
+            <h3>6.3 - Bouton actif en gradient bleu</h3>
+            <p>Le bouton actif doit avoir un fond bleu dégradé.</p>
+            <div class="test-result">
+                <span class="status pending">À TESTER</span>
+                <span>Vérifier le gradient</span>
+            </div>
+        </div>
+        
+        <div class="test-case">
+            <h3>6.4 - Transition fluide</h3>
+            <p>Le changement de vue doit être instantané et fluide.</p>
+            <div class="test-result">
+                <span class="status pending">À TESTER</span>
+                <span>Cliquer rapidement entre les vues</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>🔗 Test 7 : Intégration avec Fonctionnalités Existantes</h2>
+        
+        <div class="test-case">
+            <h3>7.1 - Annotations préservées</h3>
+            <p>Les annotations doivent être visibles sur toutes les vues.</p>
+            <div class="test-result">
+                <span class="status pending">À TESTER</span>
+                <span>Ajouter annotation, changer de vue</span>
+            </div>
+        </div>
+        
+        <div class="test-case">
+            <h3>7.2 - Tooltip avec faits marquants</h3>
+            <p>Survoler un sprint avec annotation : le tooltip doit l'afficher.</p>
+            <div class="test-result">
+                <span class="status pending">À TESTER</span>
+                <span>Vérifier sur les 3 vues</span>
+            </div>
+        </div>
+        
+        <div class="test-case">
+            <h3>7.3 - Ajout de sprint</h3>
+            <p>Ajouter un sprint : toutes les vues doivent se mettre à jour.</p>
+            <div class="test-result">
+                <span class="status pending">À TESTER</span>
+                <span>Ajouter sprint, changer de vue</span>
+            </div>
+        </div>
+        
+        <div class="test-case">
+            <h3>7.4 - Export/Import</h3>
+            <p>Exporter puis importer : la vue doit être préservée.</p>
+            <div class="test-result">
+                <span class="status pending">À TESTER</span>
+                <span>Export JSON, import, vérifier</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>📱 Test 8 : Responsive</h2>
+        
+        <div class="test-case">
+            <h3>8.1 - Mobile (< 768px)</h3>
+            <p>Les boutons doivent rester visibles et cliquables sur mobile.</p>
+            <div class="test-result">
+                <span class="status pending">À TESTER</span>
+                <span>Tester en mode responsive</span>
+            </div>
+        </div>
+        
+        <div class="test-case">
+            <h3>8.2 - Tablette (768px - 1024px)</h3>
+            <p>Le sélecteur doit s'adapter à la largeur de l'écran.</p>
+            <div class="test-result">
+                <span class="status pending">À TESTER</span>
+                <span>Tester en mode tablette</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>✅ Checklist Finale</h2>
+        <ul class="checklist">
+            <li>Toutes les vues s'affichent correctement</li>
+            <li>Les titres changent selon la vue</li>
+            <li>Les données sont cohérentes entre les vues</li>
+            <li>Les annotations sont préservées</li>
+            <li>La sauvegarde fonctionne</li>
+            <li>L'interface est responsive</li>
+            <li>Pas d'erreur dans la console</li>
+            <li>Les tooltips sont informatifs</li>
+            <li>Les transitions sont fluides</li>
+            <li>Compatible avec PocketBase</li>
+        </ul>
+    </div>
+
+    <div class="instructions">
+        <h3>📝 Rapport de Test</h3>
+        <p>Une fois tous les tests effectués, documenter les résultats :</p>
+        <ul>
+            <li>✅ Tests réussis : X/Y</li>
+            <li>❌ Tests échoués : Liste des problèmes</li>
+            <li>⚠️ Améliorations suggérées</li>
+        </ul>
+    </div>
+</body>
+</html>

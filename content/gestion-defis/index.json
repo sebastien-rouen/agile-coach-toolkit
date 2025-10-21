@@ -11,6 +11,13 @@
       "file": "resistance-changement.md",
       "tags": ["résistance", "changement", "accompagnement", "adoption"],
       "order": 1
+    },
+    {
+      "id": "stress-surcharge",
+      "title": "Stress et Surcharge",
+      "file": "stress-surcharge.md",
+      "tags": ["stress", "surcharge", "bien-être", "gestion"],
+      "order": 2
     }
   ]
 }

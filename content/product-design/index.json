@@ -11,6 +11,13 @@
       "file": "product-backlog-management.md",
       "tags": ["backlog", "priorisation", "user-stories", "valeur"],
       "order": 1
+    },
+    {
+      "id": "design-thinking",
+      "title": "Design Thinking",
+      "file": "design-thinking.md",
+      "tags": ["design-thinking", "innovation", "user-experience", "créativité"],
+      "order": 2
     }
   ]
 }

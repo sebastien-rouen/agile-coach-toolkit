@@ -25,6 +25,27 @@
       "file": "open-space-liberating-structures.md",
       "tags": ["open-space", "liberating-structures", "facilitation", "participation"],
       "order": 3
+    },
+    {
+      "id": "impact-mapping",
+      "title": "Impact Mapping - Facilitation",
+      "file": "impact-mapping.md",
+      "tags": ["impact-mapping", "facilitation", "stratégie", "objectifs"],
+      "order": 4
+    },
+    {
+      "id": "example-mapping",
+      "title": "Example Mapping",
+      "file": "example-mapping.md",
+      "tags": ["example-mapping", "facilitation", "spécification", "collaboration"],
+      "order": 5
+    },
+    {
+      "id": "roles-responsabilites",
+      "title": "Rôles et Responsabilités",
+      "file": "roles-responsabilites.md",
+      "tags": ["rôles", "responsabilités", "équipe", "organisation"],
+      "order": 6
     }
   ]
 }

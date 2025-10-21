@@ -236,6 +236,42 @@ console.log('✅ radar.js chargé');
 
 
 /**
+ * Initialiser le dropdown des actions
+ */
+function initActionsDropdown() {
+    const btn = document.getElementById('actionsDropdownBtn');
+    const dropdown = document.getElementById('actionsDropdown');
+    
+    if (!btn || !dropdown) return;
+
+    // Toggle dropdown au clic
+    btn.onclick = (e) => {
+        e.stopPropagation();
+        const isActive = dropdown.classList.toggle('active');
+        btn.classList.toggle('active', isActive);
+    };
+
+    // Fermer le dropdown si on clique ailleurs
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.actions-dropdown-control')) {
+            dropdown.classList.remove('active');
+            btn.classList.remove('active');
+        }
+    });
+}
+
+/**
+ * Fermer le dropdown des actions
+ */
+function closeActionsDropdown() {
+    const dropdown = document.getElementById('actionsDropdown');
+    const btn = document.getElementById('actionsDropdownBtn');
+    
+    if (dropdown) dropdown.classList.remove('active');
+    if (btn) btn.classList.remove('active');
+}
+
+/**
  * Initialiser le sélecteur de membres dans les controls
  */
 function initMemberSelectorControl() {

@@ -1,0 +1,98 @@
+/**
+ * Skills Matrix - Styles Autocomplétion
+ * 
+ * Styles pour le système d'autocomplétion des champs de saisie
+ * 
+ * @version 1.0.0
+ */
+
+/* Conteneur des suggestions */
+.autocomplete-suggestions {
+  position: absolute;
+  z-index: 1000;
+  background: var(--bg-primary, #ffffff);
+  border: 1px solid var(--border-color, #ddd);
+  border-radius: 4px;
+  max-height: 200px;
+  overflow-y: auto;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 4px;
+  width: 100%;
+}
+
+/* Item de suggestion */
+.autocomplete-item {
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  font-size: 14px;
+  color: var(--text-primary, #333);
+}
+
+/* Hover sur un item */
+.autocomplete-item:hover,
+.autocomplete-item.active {
+  background-color: var(--primary-light, #e3f2fd);
+}
+
+/* Premier et dernier item */
+.autocomplete-item:first-child {
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+.autocomplete-item:last-child {
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+/* Scrollbar personnalisée */
+.autocomplete-suggestions::-webkit-scrollbar {
+  width: 6px;
+}
+
+.autocomplete-suggestions::-webkit-scrollbar-track {
+  background: var(--bg-secondary, #f5f5f5);
+}
+
+.autocomplete-suggestions::-webkit-scrollbar-thumb {
+  background: var(--border-color, #ddd);
+  border-radius: 3px;
+}
+
+.autocomplete-suggestions::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary, #999);
+}
+
+/* État vide */
+.autocomplete-suggestions:empty {
+  display: none;
+}
+
+/* Animation d'apparition */
+@keyframes autocompleteSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.autocomplete-suggestions {
+  animation: autocompleteSlideIn 0.2s ease;
+}
+
+/* Responsive mobile */
+@media (max-width: 768px) {
+  .autocomplete-suggestions {
+    max-height: 150px;
+    font-size: 16px; /* Éviter le zoom sur iOS */
+  }
+
+  .autocomplete-item {
+    padding: 12px 16px;
+  }
+}

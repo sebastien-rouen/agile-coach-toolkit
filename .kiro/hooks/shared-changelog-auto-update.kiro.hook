@@ -1,0 +1,26 @@
+{
+  "enabled": true,
+  "name": "CHANGELOG Auto-Update",
+  "description": "Détecte les modifications de code et suggère automatiquement des entrées pour CHANGELOG.md selon les conventions Conventional Commits",
+  "version": "1.1",
+  "author": "Kiro AI Assistant",
+  "created": "2025-10-21",
+  "lastModified": "2025-10-21",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "**/*.js",
+      "**/*.html",
+      "**/*.css",
+      "**/*.json",
+      "!**/node_modules/**",
+      "!**/pb_data/**",
+      "!**/package-lock.json",
+      "!CHANGELOG.md"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Analyse les modifications de code et propose une mise à jour du CHANGELOG.md.\n\n**Types de changements** :\n- ✨ Added : Nouvelles fonctionnalités\n- 🔧 Changed : Modifications de fonctionnalités existantes\n- 🐛 Fixed : Corrections de bugs\n- 🗑️ Removed : Suppressions\n- ⚡ Performance : Optimisations\n- 📖 Documentation : Ajouts/modifications de docs\n\n**Format attendu** :\n```markdown\n## [Unreleased]\n\n### ✨ Ajouté - YYYY-MM-DD\n- Description claire en français\n- Fichiers impactés : `chemin/fichier.js`\n```\n\n**Règles** :\n1. Identifie le type de changement (Added/Changed/Fixed/Removed/Performance/Documentation)\n2. Rédige une description concise en français (1-2 lignes max)\n3. Ajoute dans la section [Unreleased] avec la date du jour\n4. Mentionne les fichiers clés modifiés\n5. **Ignore les changements mineurs** (typos, formatage, commentaires)\n6. **Groupe les modifications liées** en une seule entrée\n\nPropose UNIQUEMENT si le changement est significatif."
+  }
+}

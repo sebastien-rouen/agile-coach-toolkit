@@ -311,12 +311,10 @@ function initGlobalListeners() {
         });
     }
 
-    // Recherche
+    // Recherche - Géré par search.js
+    // Raccourci clavier Ctrl+K
     const searchInput = document.getElementById('searchInput');
     if (searchInput) {
-        searchInput.addEventListener('input', debounce(handleSearch, 300));
-
-        // Raccourci clavier Ctrl+K
         document.addEventListener('keydown', (e) => {
             if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
                 e.preventDefault();
@@ -451,7 +449,8 @@ function filterSidebar(type) {
 }
 
 /**
- * Gérer la recherche
+ * Gérer la recherche dans la sidebar (ancienne fonction, conservée pour compatibilité)
+ * La recherche principale est maintenant gérée par search.js
  */
 function handleSearch(e) {
     const query = e.target.value.toLowerCase().trim();

@@ -9,6 +9,108 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### ✨ Ajouté - 2025-10-21
+
+#### Système de Recherche avec Autocomplétion
+- **Recherche intelligente dans tous les contenus** : Indexation automatique de tous les fichiers markdown des dossiers `content/`
+  - Indexation au chargement avec cache en mémoire pour performances optimales
+  - Recherche multi-critères : titre, tags, extrait et contenu complet
+  - Algorithme de scoring intelligent pour classer les résultats par pertinence
+  - Limite de 10 résultats affichés avec surlignage des termes recherchés
+  
+- **Interface utilisateur élégante**
+  - Dropdown de résultats sous le champ de recherche avec animation
+  - Affichage des métadonnées : catégorie, tags, extrait
+  - Icônes colorées par catégorie pour identification rapide
+  - Design responsive adapté mobile et desktop
+  
+- **Navigation au clavier complète**
+  - `Ctrl+K` : Focus sur le champ de recherche
+  - `↑/↓` : Navigation dans les résultats
+  - `Enter` : Ouvrir le résultat sélectionné
+  - `Escape` : Fermer les résultats
+  
+- **Fichiers ajoutés**
+  - `assets/js/search.js` : Logique de recherche et indexation (300 lignes)
+  - `assets/css/search.css` : Styles du système de recherche (200 lignes)
+  - `docs/SEARCH-SYSTEM.md` : Documentation complète du système
+
+### ✨ Ajouté - 2025-01-19
+
+#### Intégration Mermaid.js pour les Diagrammes
+- **Support complet de Mermaid.js** : Rendu automatique des diagrammes dans les fichiers Markdown
+  - Détection automatique des blocs ` ```mermaid ` via renderer personnalisé de marked.js
+  - Configuration du renderer dans `content.html` pour transformer les blocs en `<div class="mermaid">`
+  - Initialisation automatique avec adaptation au thème clair/sombre
+  - Fonction `refreshMermaid()` pour recharger les diagrammes lors du changement de thème
+  
+- **Types de diagrammes supportés**
+  - Diagrammes de flux (flowchart) : LR, TD, RL, BT
+  - Diagrammes de séquence (sequence)
+  - Diagrammes de classes (class)
+  - Diagrammes d'état (state)
+  - Diagrammes de Gantt
+  - Diagrammes circulaires (pie)
+  - Diagrammes ERD (entity relationship)
+  - User Journey
+  
+- **Styles CSS personnalisés**
+  - Conteneur avec fond, bordure et padding adaptatifs
+  - Adaptation automatique des couleurs au thème du site
+  - Scrollbar horizontale pour les diagrammes larges
+  - Styles pour les nœuds, flèches et labels
+  
+- **Documentation complète**
+  - Guide d'utilisation : `docs/MERMAID-INTEGRATION.md`
+  - Exemples pratiques pour l'agilité (Impact Mapping, Scrum, Kanban)
+  - Syntaxe et personnalisation des diagrammes
+  - Bonnes pratiques et dépannage
+
+- **Bibliothèque externe**
+  - Mermaid.js v10.6.1 chargé via CDN dans `content.html`
+  - Configuration optimisée pour le rendu et la performance
+
+### ✨ Ajouté - 2025-01-18
+
+#### Intégration PocketBase - Velocity Squad v1.0
+- **Gestion des sessions d'équipe** : Système complet de sessions réutilisables
+  - Création de nouvelles sessions avec nom personnalisé
+  - Chargement de sessions existantes via paramètre URL `?session=ID`
+  - Mode démo sans session (localStorage uniquement)
+  - Affichage du nom de session dans l'en-tête
+  
+- **Collections PocketBase créées**
+  - `tools_velocity_squad_sessions` : Sessions d'équipe avec paramètres (framework, sprint_length, working_days)
+  - `tools_velocity_squad_sprints` : Sprints avec vélocité et date de fin
+  - `tools_velocity_squad_team` : Membres d'équipe avec compétences et capacité
+  - `tools_velocity_squad_annotations` : Faits marquants sur les sprints (6 types)
+  - `tools_velocity_squad_mood` : Suivi de l'humeur quotidienne de l'équipe
+
+- **Synchronisation automatique**
+  - Sauvegarde automatique des sprints lors de l'ajout manuel
+  - Sauvegarde automatique des membres d'équipe
+  - Sauvegarde automatique des annotations (faits marquants)
+  - Sauvegarde automatique du mood tracking
+  - Suppression synchronisée avec PocketBase
+
+- **Interface utilisateur**
+  - Bouton "➕ Nouvelle Session" dans l'en-tête
+  - Notification en mode démo avec bouton de création de session
+  - Notification si session introuvable avec options de récupération
+  - Affichage du nom de session dans le titre
+
+- **Migrations PocketBase**
+  - 5 migrations créées pour les collections Velocity Squad
+  - Relations cascade entre session et données associées
+  - Index optimisés pour les requêtes fréquentes
+  - Règles d'accès configurées (lecture/écriture publique)
+
+- **Documentation**
+  - `README-POCKETBASE.md` : Guide complet d'utilisation
+  - Architecture des collections détaillée
+  - Cas d'usage multiples (équipe unique, plusieurs équipes, historique)
+  - Guide de dépannage
+
 ### ✨ Ajouté - 2025-01-14
 
 #### Intégration PocketBase - Skills Matrix v2.0

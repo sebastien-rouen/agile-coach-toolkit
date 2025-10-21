@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test - Ordre des Sprints</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            color: #2196F3;
+            margin-bottom: 2rem;
+        }
+        
+        .test-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .test-section h2 {
+            color: #333;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #2196F3;
+            padding-bottom: 0.5rem;
+        }
+        
+        .visual-test {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 1rem 0;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 6px;
+        }
+        
+        .sprint-box {
+            background: linear-gradient(135deg, #2196F3, #1976D2);
+            color: white;
+            padding: 1rem;
+            border-radius: 6px;
+            min-width: 100px;
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        .arrow {
+            font-size: 2rem;
+            color: #2196F3;
+        }
+        
+        .expected {
+            background: #e8f5e9;
+            border-left: 4px solid #4CAF50;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .expected h3 {
+            color: #2e7d32;
+            margin-bottom: 0.5rem;
+        }
+        
+        .checklist {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .checklist li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .checklist li:before {
+            content: "☐ ";
+            color: #2196F3;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+        
+        .code {
+            background: #263238;
+            color: #aed581;
+            padding: 1rem;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            margin-top: 0.5rem;
+        }
+        
+        .instructions {
+            background: #e3f2fd;
+            border-left: 4px solid #2196F3;
+            padding: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .instructions h3 {
+            color: #1976D2;
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧪 Test - Ordre d'Affichage des Sprints</h1>
+    
+    <div class="instructions">
+        <h3>📋 Objectif du Test</h3>
+        <p>Vérifier que les sprints s'affichent dans l'ordre chronologique : <strong>du plus ancien (gauche) au plus récent (droite)</strong>.</p>
+    </div>
+
+    <div class="test-section">
+        <h2>📊 Ordre Attendu</h2>
+        
+        <div class="expected">
+            <h3>✅ Comportement Correct</h3>
+            <p>Les sprints doivent s'afficher de gauche à droite dans l'ordre chronologique :</p>
+        </div>
+        
+        <div class="visual-test">
+            <div class="sprint-box">Sprint 1<br><small>(Plus ancien)</small></div>
+            <div class="arrow">→</div>
+            <div class="sprint-box">Sprint 2</div>
+            <div class="arrow">→</div>
+            <div class="sprint-box">Sprint 3</div>
+            <div class="arrow">→</div>
+            <div class="sprint-box">Sprint 4<br><small>(Plus récent)</small></div>
+        </div>
+        
+        <p style="margin-top: 1rem; color: #666;">
+            <strong>Lecture naturelle :</strong> Le temps progresse de gauche à droite, comme une timeline.
+        </p>
+    </div>
+
+    <div class="test-section">
+        <h2>🔍 Tests à Effectuer</h2>
+        
+        <h3>Test 1 : Vue Vélocité (📊)</h3>
+        <ul class="checklist">
+            <li>Ouvrir l'application avec plusieurs sprints</li>
+            <li>Vérifier que le sprint le plus ancien est à gauche</li>
+            <li>Vérifier que le sprint le plus récent est à droite</li>
+            <li>Vérifier que l'ordre est chronologique</li>
+        </ul>
+        
+        <h3>Test 2 : Vue Burndown (📉)</h3>
+        <ul class="checklist">
+            <li>Changer vers la vue Burndown</li>
+            <li>Vérifier que l'ordre est identique à la vue Vélocité</li>
+            <li>Vérifier que les labels correspondent aux bons sprints</li>
+        </ul>
+        
+        <h3>Test 3 : Vue Burnup (📈)</h3>
+        <ul class="checklist">
+            <li>Changer vers la vue Burnup</li>
+            <li>Vérifier que l'ordre est identique aux autres vues</li>
+            <li>Vérifier la cohérence des données</li>
+        </ul>
+        
+        <h3>Test 4 : Annotations</h3>
+        <ul class="checklist">
+            <li>Ajouter une annotation sur un sprint spécifique</li>
+            <li>Vérifier que l'icône apparaît au bon endroit</li>
+            <li>Survoler l'annotation : vérifier le tooltip</li>
+            <li>Cliquer sur l'annotation : vérifier les détails</li>
+        </ul>
+        
+        <h3>Test 5 : Tooltips</h3>
+        <ul class="checklist">
+            <li>Survoler chaque barre/point du graphique</li>
+            <li>Vérifier que le nom du sprint correspond</li>
+            <li>Vérifier que les données affichées sont correctes</li>
+            <li>Vérifier que les annotations s'affichent dans le tooltip</li>
+        </ul>
+    </div>
+
+    <div class="test-section">
+        <h2>🔧 Vérification Technique</h2>
+        
+        <h3>Console du Navigateur</h3>
+        <p>Ouvrir la console (F12) et exécuter :</p>
+        <div class="code">
+// Afficher l'ordre des sprints dans les données
+console.log('Ordre original:', 
+    window.velocityTool.data.sprints.map(s => s.name)
+);
+
+// Afficher l'ordre inversé (affiché)
+console.log('Ordre affiché:', 
+    [...window.velocityTool.data.sprints].reverse().map(s => s.name)
+);
+        </div>
+        
+        <h3>Résultat Attendu</h3>
+        <div class="code">
+// Exemple avec 4 sprints
+Ordre original: ["Sprint 4", "Sprint 3", "Sprint 2", "Sprint 1"]
+Ordre affiché:  ["Sprint 1", "Sprint 2", "Sprint 3", "Sprint 4"]
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>📝 Scénarios de Test</h2>
+        
+        <h3>Scénario 1 : Ajout d'un Nouveau Sprint</h3>
+        <ol>
+            <li>Ajouter un nouveau sprint (Sprint 5)</li>
+            <li>Vérifier qu'il apparaît à <strong>droite</strong> (plus récent)</li>
+            <li>Vérifier que les autres sprints restent dans l'ordre</li>
+        </ol>
+        
+        <h3>Scénario 2 : Import de Données</h3>
+        <ol>
+            <li>Exporter les données actuelles</li>
+            <li>Importer un fichier avec des sprints dans le désordre</li>
+            <li>Vérifier que l'affichage est chronologique</li>
+        </ol>
+        
+        <h3>Scénario 3 : Changement de Vue</h3>
+        <ol>
+            <li>Noter l'ordre dans la vue Vélocité</li>
+            <li>Changer vers Burndown puis Burnup</li>
+            <li>Vérifier que l'ordre reste identique</li>
+        </ol>
+        
+        <h3>Scénario 4 : Annotations Multiples</h3>
+        <ol>
+            <li>Ajouter 3 annotations sur des sprints différents</li>
+            <li>Vérifier que chaque annotation est au bon endroit</li>
+            <li>Changer de vue : vérifier que les annotations suivent</li>
+        </ol>
+    </div>
+
+    <div class="test-section">
+        <h2>✅ Checklist de Validation</h2>
+        <ul class="checklist">
+            <li>Sprint le plus ancien à gauche</li>
+            <li>Sprint le plus récent à droite</li>
+            <li>Ordre chronologique respecté</li>
+            <li>Cohérence entre les 3 vues</li>
+            <li>Annotations correctement positionnées</li>
+            <li>Tooltips affichent les bonnes données</li>
+            <li>Interactions (hover, clic) fonctionnent</li>
+            <li>Ajout de sprint : apparaît à droite</li>
+            <li>Import/Export : ordre préservé</li>
+            <li>Pas d'erreur dans la console</li>
+        </ul>
+    </div>
+
+    <div class="test-section">
+        <h2>🐛 Problèmes Potentiels</h2>
+        
+        <h3>❌ Ordre Inversé</h3>
+        <p><strong>Symptôme :</strong> Le sprint le plus récent est à gauche</p>
+        <p><strong>Cause :</strong> L'inversion n'est pas appliquée</p>
+        <p><strong>Solution :</strong> Vérifier que <code>[...this.data.sprints].reverse()</code> est bien utilisé</p>
+        
+        <h3>❌ Annotations Décalées</h3>
+        <p><strong>Symptôme :</strong> Les icônes ne sont pas au bon endroit</p>
+        <p><strong>Cause :</strong> L'index n'est pas inversé dans le plugin</p>
+        <p><strong>Solution :</strong> Vérifier le calcul de <code>displayIndex</code> dans le plugin</p>
+        
+        <h3>❌ Tooltips Incorrects</h3>
+        <p><strong>Symptôme :</strong> Le tooltip affiche les données d'un autre sprint</p>
+        <p><strong>Cause :</strong> L'index n'est pas inversé dans les callbacks</p>
+        <p><strong>Solution :</strong> Vérifier le calcul dans <code>afterBody</code></p>
+    </div>
+
+    <div class="instructions">
+        <h3>📊 Rapport de Test</h3>
+        <p>Après avoir effectué tous les tests, documenter :</p>
+        <ul>
+            <li>✅ Tests réussis : X/10</li>
+            <li>❌ Tests échoués : Liste des problèmes</li>
+            <li>📝 Observations : Comportements notés</li>
+            <li>💡 Suggestions : Améliorations possibles</li>
+        </ul>
+    </div>
+</body>
+</html>

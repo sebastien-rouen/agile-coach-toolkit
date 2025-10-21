@@ -5,14 +5,34 @@
 /**
  * Initialiser l'application
  */
-function initApp() {
+async function initApp() {
     console.log('🚀 Initialisation de Skills Matrix...');
 
     // Charger les templates dans le select
     loadTemplatesIntoSelect();
 
-    // Charger les données
-    loadData();
+    // Vérifier si on a un ID de matrice dans l'URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const matrixId = urlParams.get('matrix');
+
+    // Si on a un ID de matrice, attendre le chargement PocketBase
+    if (matrixId) {
+        console.log('📋 Chargement depuis PocketBase...');
+        
+        // Initialiser PocketBase en premier
+        if (typeof initPocketBase === 'function') {
+            try {
+                await initPocketBase();
+            } catch (error) {
+                console.error('Erreur chargement PocketBase:', error);
+                // Fallback sur localStorage
+                loadData();
+            }
+        }
+    } else {
+        // Pas d'ID de matrice, charger depuis localStorage
+        loadData();
+    }
 
     // Si pas de données, initialiser avec le template par défaut
     if (!matrixData.skills || matrixData.skills.length === 0) {
@@ -27,7 +47,7 @@ function initApp() {
     // Rendre l'interface
     renderMatrix();
     renderRadar();
-    renderAdvice();
+    updateAllAdviceViews();
 
     // Initialiser les event listeners
     initEventListeners();
@@ -35,10 +55,13 @@ function initApp() {
     // Initialiser le sélecteur de membres dans les controls
     initMemberSelectorControl();
 
+    // Initialiser le dropdown des actions
+    initActionsDropdown();
+
     // Initialiser le comportement sticky des controls
     initStickyControls();
 
-    // Initialiser le partage
+    // Initialiser le partage (pour la synchronisation automatique)
     initShare();
 
     console.log('✅ Skills Matrix initialisée');

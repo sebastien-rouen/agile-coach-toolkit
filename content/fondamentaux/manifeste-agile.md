@@ -190,8 +190,7 @@ Au-delà des 4 valeurs, le Manifeste décline **12 principes** pour guider les p
 
 ---
 
-## 🎓 Quiz rapide
-
+## 🎓 Quizz rapide
 **1. Combien de valeurs compte le Manifeste Agile ?**
 - A) 2
 - B) 4 ✅
@@ -207,16 +206,37 @@ Au-delà des 4 valeurs, le Manifeste décline **12 principes** pour guider les p
 - B) L'accueillir positivement ✅
 - C) Le tolérer à contrecœur
 
----
+**4. Combien de principes accompagnent les valeurs du Manifeste Agile ?**
+- A) 8
+- B) 10
+- C) 12 ✅
 
-## 💬 Votre expérience
+**5. Quelle est la méthode la plus efficace pour transmettre de l'information ?**
+- A) Les emails détaillés
+- B) Le dialogue en face à face ✅
+- C) La documentation exhaustive
 
-Et vous, quelle valeur du Manifeste Agile trouvez-vous **la plus difficile à appliquer** dans votre contexte ?
+**6. À quelle fréquence doit-on livrer un logiciel opérationnel ?**
+- A) Une fois par an
+- B) Fréquemment, de quelques semaines à quelques mois ✅
+- C) Seulement à la fin du projet
 
-Partagez votre retour d'expérience en commentaire ou sur [LinkedIn](https://linkedin.com) ! 🚀
+**7. Qui doit travailler ensemble quotidiennement selon le Manifeste ?**
+- A) Seulement les développeurs
+- B) Les utilisateurs/représentants et les développeurs ✅
+- C) Seulement les managers
 
----
+**8. Que privilégie l'Agile par rapport aux processus et outils ?**
+- A) La documentation
+- B) Les individus et leurs interactions ✅
+- C) Les contrats stricts
 
-**Dernière mise à jour :** 10 janvier 2024  
-**Auteur :** Coach Sticko 🎓  
-**Catégorie :** Fondamentaux
+**9. Qu'est-ce qui renforce l'agilité selon les principes ?**
+- A) L'attention continue à l'excellence technique ✅
+- B) La multiplication des réunions
+- C) L'augmentation de la documentation
+
+**10. À quelle fréquence l'équipe doit-elle réfléchir à son efficacité ?**
+- A) Une fois par an
+- B) À intervalles réguliers ✅
+- C) Seulement en cas de problème

@@ -18,6 +18,13 @@
       "file": "rex-terrain.md",
       "tags": ["REX", "étude-cas", "apprentissage", "échec", "succès"],
       "order": 2
+    },
+    { 
+      "id": "lois",
+      "title": "Lois",
+      "file": "lois.md",
+      "tags": ["loi", "conway", "parkinson", "organisation", "théorie"],
+      "order": 3
     }
   ]
 }

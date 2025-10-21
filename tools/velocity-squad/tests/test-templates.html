@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Templates - Velocity Squad</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #2196F3;
+            margin-bottom: 1rem;
+        }
+
+        .test-section {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #2196F3;
+        }
+
+        .test-section h2 {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .template-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .template-item {
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            border: 2px solid #e9ecef;
+        }
+
+        .template-item h3 {
+            color: #2196F3;
+            margin-bottom: 0.5rem;
+        }
+
+        .template-item .details {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .template-item .details strong {
+            color: #333;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-top: 0.5rem;
+        }
+
+        .status.success {
+            background: #e8f5e8;
+            color: #2e7d32;
+        }
+
+        .status.error {
+            background: #ffebee;
+            color: #c62828;
+        }
+
+        .test-button {
+            background: #2196F3;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+
+        .test-button:hover {
+            background: #1976D2;
+        }
+
+        .results {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 8px;
+            border: 2px solid #e9ecef;
+        }
+
+        .results pre {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 4px;
+            overflow-x: auto;
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Test des Templates Métiers</h1>
+        <p>Vérification de la structure et du contenu des templates Scrum et Kanban</p>
+
+        <div class="test-section">
+            <h2>📊 Statistiques Globales</h2>
+            <div id="stats"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>🏃‍♂️ Templates Scrum</h2>
+            <div id="scrum-templates" class="template-list"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>🌊 Templates Kanban</h2>
+            <div id="kanban-templates" class="template-list"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>🔍 Tests de Validation</h2>
+            <button class="test-button" onclick="runValidationTests()">▶️ Lancer les tests</button>
+            <div id="test-results" class="results" style="display: none;"></div>
+        </div>
+    </div>
+
+    <script src="../js/templates-data.js"></script>
+    <script>
+        // Afficher les statistiques
+        function displayStats() {
+            const templates = Object.keys(TEMPLATES_DATA);
+            const scrumTemplates = templates.filter(k => k.startsWith('scrum-'));
+            const kanbanTemplates = templates.filter(k => k.startsWith('kanban-'));
+
+            const stats = `
+                <div class="details">
+                    <strong>Total de templates :</strong> ${templates.length}<br>
+                    <strong>Templates Scrum :</strong> ${scrumTemplates.length}<br>
+                    <strong>Templates Kanban :</strong> ${kanbanTemplates.length}
+                </div>
+            `;
+
+            document.getElementById('stats').innerHTML = stats;
+        }
+
+        // Afficher les templates Scrum
+        function displayScrumTemplates() {
+            const container = document.getElementById('scrum-templates');
+            const scrumKeys = Object.keys(TEMPLATES_DATA).filter(k => k.startsWith('scrum-'));
+
+            container.innerHTML = scrumKeys.map(key => {
+                const template = TEMPLATES_DATA[key];
+                return `
+                    <div class="template-item">
+                        <h3>${template.name}</h3>
+                        <div class="details">
+                            <strong>Sprints :</strong> ${template.sprints.length}<br>
+                            <strong>Équipe :</strong> ${template.team.length} personnes<br>
+                            <strong>Annotations :</strong> ${template.annotationsTemplate?.length || 0}<br>
+                            <strong>Durée sprint :</strong> ${template.settings.sprintLength} jours
+                        </div>
+                        <span class="status success">✓ Valide</span>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Afficher les templates Kanban
+        function displayKanbanTemplates() {
+            const container = document.getElementById('kanban-templates');
+            const kanbanKeys = Object.keys(TEMPLATES_DATA).filter(k => k.startsWith('kanban-'));
+
+            container.innerHTML = kanbanKeys.map(key => {
+                const template = TEMPLATES_DATA[key];
+                return `
+                    <div class="template-item">
+                        <h3>${template.name}</h3>
+                        <div class="details">
+                            <strong>Périodes :</strong> ${template.sprints.length}<br>
+                            <strong>Équipe :</strong> ${template.team.length} personnes<br>
+                            <strong>Annotations :</strong> ${template.annotationsTemplate?.length || 0}<br>
+                            <strong>Durée période :</strong> ${template.settings.sprintLength} jours
+                        </div>
+                        <span class="status success">✓ Valide</span>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Tests de validation
+        function runValidationTests() {
+            const results = [];
+            const templates = Object.keys(TEMPLATES_DATA);
+
+            // Test 1: Tous les templates ont un nom
+            results.push({
+                test: 'Tous les templates ont un nom',
+                passed: templates.every(key => TEMPLATES_DATA[key].name),
+                details: templates.filter(key => !TEMPLATES_DATA[key].name).join(', ') || 'Tous OK'
+            });
+
+            // Test 2: Tous les templates ont des sprints
+            results.push({
+                test: 'Tous les templates ont des sprints',
+                passed: templates.every(key => TEMPLATES_DATA[key].sprints && TEMPLATES_DATA[key].sprints.length > 0),
+                details: templates.filter(key => !TEMPLATES_DATA[key].sprints || TEMPLATES_DATA[key].sprints.length === 0).join(', ') || 'Tous OK'
+            });
+
+            // Test 3: Tous les templates ont une équipe
+            results.push({
+                test: 'Tous les templates ont une équipe',
+                passed: templates.every(key => TEMPLATES_DATA[key].team && TEMPLATES_DATA[key].team.length > 0),
+                details: templates.filter(key => !TEMPLATES_DATA[key].team || TEMPLATES_DATA[key].team.length === 0).join(', ') || 'Tous OK'
+            });
+
+            // Test 4: Tous les sprints ont des objectifs
+            results.push({
+                test: 'Tous les sprints ont des objectifs (goal)',
+                passed: templates.every(key => 
+                    TEMPLATES_DATA[key].sprints.every(sprint => sprint.goal && sprint.goal.trim())
+                ),
+                details: 'Vérification des goals'
+            });
+
+            // Test 5: Tous les membres ont des compétences
+            results.push({
+                test: 'Tous les membres ont des compétences',
+                passed: templates.every(key => 
+                    TEMPLATES_DATA[key].team.every(member => member.skills && member.skills.length > 0)
+                ),
+                details: 'Vérification des skills'
+            });
+
+            // Test 6: Framework correct
+            results.push({
+                test: 'Framework correct (scrum/kanban)',
+                passed: templates.every(key => {
+                    const framework = TEMPLATES_DATA[key].framework;
+                    return framework === 'scrum' || framework === 'kanban';
+                }),
+                details: 'Vérification des frameworks'
+            });
+
+            // Test 7: Cohérence nom/clé
+            results.push({
+                test: 'Cohérence entre clé et framework',
+                passed: templates.every(key => {
+                    const framework = TEMPLATES_DATA[key].framework;
+                    return key.startsWith(framework + '-');
+                }),
+                details: templates.filter(key => {
+                    const framework = TEMPLATES_DATA[key].framework;
+                    return !key.startsWith(framework + '-');
+                }).join(', ') || 'Tous OK'
+            });
+
+            // Afficher les résultats
+            const resultsContainer = document.getElementById('test-results');
+            resultsContainer.style.display = 'block';
+            
+            const passedCount = results.filter(r => r.passed).length;
+            const totalCount = results.length;
+
+            resultsContainer.innerHTML = `
+                <h3>Résultats : ${passedCount}/${totalCount} tests réussis</h3>
+                <pre>${results.map(r => 
+                    `${r.passed ? '✅' : '❌'} ${r.test}\n   ${r.details}`
+                ).join('\n\n')}</pre>
+            `;
+        }
+
+        // Initialisation
+        displayStats();
+        displayScrumTemplates();
+        displayKanbanTemplates();
+    </script>
+</body>
+</html>

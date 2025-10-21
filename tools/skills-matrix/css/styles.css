@@ -231,8 +231,66 @@ h2 {
 
 /* Animation de rotation pour les dropdowns actifs */
 .member-selector-dropdown.active ~ .btn .btn-arrow,
-.btn.active .btn-arrow {
+.btn.active .btn-arrow,
+.actions-dropdown.active ~ .btn .btn-arrow {
     transform: rotate(180deg);
+}
+
+/* ============================================
+   ACTIONS DROPDOWN
+   ============================================ */
+.actions-dropdown-control {
+    position: relative;
+}
+
+.actions-dropdown {
+    display: none;
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    min-width: 200px;
+    background: #16213e;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    border: 1px solid rgba(102, 126, 234, 0.3);
+    overflow: hidden;
+}
+
+.actions-dropdown.active {
+    display: block;
+    animation: slideDown 0.3s ease;
+}
+
+.dropdown-item {
+    width: 100%;
+    padding: 12px 16px;
+    background: transparent;
+    color: #e0e0e0;
+    border: none;
+    border-bottom: 1px solid #0f3460;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    text-align: left;
+}
+
+.dropdown-item:last-child {
+    border-bottom: none;
+}
+
+.dropdown-item:hover {
+    background: #0f3460;
+}
+
+.dropdown-separator {
+    height: 1px;
+    background: rgba(102, 126, 234, 0.3);
+    margin: 4px 0;
 }
 
 .btn-small {
@@ -563,6 +621,154 @@ select:focus + .template-selector::after {
 
 .btn-new-matrix .btn-icon {
     font-size: 1.2em;
+}
+
+/* ============================================
+   LOADER CONTROLS
+   ============================================ */
+.controls-loader {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(15, 52, 96, 0.95);
+    backdrop-filter: blur(4px);
+    border-radius: 12px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1001;
+    gap: 12px;
+    pointer-events: none;
+}
+
+.controls-loader.active {
+    pointer-events: all;
+}
+
+.controls-loader.active {
+    display: flex;
+}
+
+.controls-loader-spinner {
+    width: 24px;
+    height: 24px;
+    border: 3px solid rgba(0, 212, 255, 0.2);
+    border-top-color: #00d4ff;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+.controls-loader-text {
+    color: #00d4ff;
+    font-weight: 600;
+    font-size: 14px;
+    text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Mobile menu loader */
+.mobile-menu {
+    position: relative;
+}
+
+.mobile-menu-loader {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(15, 52, 96, 0.95);
+    backdrop-filter: blur(4px);
+    border-radius: 12px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    gap: 12px;
+}
+
+.mobile-menu-loader.active {
+    display: flex;
+}
+
+.mobile-menu-loader-spinner {
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(0, 212, 255, 0.2);
+    border-top-color: #00d4ff;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+.mobile-menu-loader-text {
+    color: #00d4ff;
+    font-weight: 600;
+    font-size: 13px;
+}
+
+/* ============================================
+   AUTOCOMPLETE
+   ============================================ */
+.autocomplete-suggestions {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #1a1a2e;
+    border: 1px solid rgba(102, 126, 234, 0.3);
+    border-radius: 8px;
+    margin-top: 4px;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.autocomplete-item {
+    padding: 10px 12px;
+    cursor: pointer;
+    color: #e0e0e0;
+    transition: all 0.2s ease;
+    border-bottom: 1px solid rgba(102, 126, 234, 0.1);
+}
+
+.autocomplete-item:last-child {
+    border-bottom: none;
+}
+
+.autocomplete-item:hover,
+.autocomplete-item.selected {
+    background: rgba(102, 126, 234, 0.2);
+    color: #00d4ff;
+}
+
+.autocomplete-item.selected {
+    background: rgba(102, 126, 234, 0.3);
+}
+
+/* Scrollbar pour autocomplete */
+.autocomplete-suggestions::-webkit-scrollbar {
+    width: 6px;
+}
+
+.autocomplete-suggestions::-webkit-scrollbar-track {
+    background: rgba(26, 26, 46, 0.5);
+}
+
+.autocomplete-suggestions::-webkit-scrollbar-thumb {
+    background: rgba(102, 126, 234, 0.5);
+    border-radius: 3px;
+}
+
+.autocomplete-suggestions::-webkit-scrollbar-thumb:hover {
+    background: rgba(102, 126, 234, 0.7);
 }
 
 /* Responsive */

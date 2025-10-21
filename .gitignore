@@ -8,6 +8,10 @@ yarn.lock
 .env.local
 .env.*.local
 
+# BDD
+bdd/pb_data/
+bdd/*.gz
+
 # Logs
 logs/
 *.log

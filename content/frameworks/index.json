@@ -9,22 +9,85 @@
       "id": "scrum-framework",
       "title": "Scrum Framework",
       "file": "scrum-framework.md",
-      "tags": ["scrum", "sprint", "iteratif", "ceremonies"],
+      "tags": [
+        "scrum",
+        "sprint",
+        "iteratif",
+        "ceremonies"
+      ],
       "order": 1
     },
     {
       "id": "kanban-method",
       "title": "Kanban Method",
       "file": "kanban-method.md",
-      "tags": ["kanban", "flux", "wip", "continu"],
+      "tags": [
+        "kanban",
+        "flux",
+        "wip",
+        "continu"
+      ],
       "order": 2
     },
     {
       "id": "scrumban",
       "title": "Scrumban",
       "file": "scrumban.md",
-      "tags": ["scrumban", "hybride", "transition", "pragmatique"],
+      "tags": [
+        "scrumban",
+        "hybride",
+        "transition",
+        "pragmatique"
+      ],
       "order": 3
+    },
+    {
+      "id": "safe",
+      "title": "SAFe Framework",
+      "file": "safe.md",
+      "tags": [
+        "safe",
+        "scaled",
+        "enterprise",
+        "portfolio"
+      ],
+      "order": 4
+    },
+    {
+      "id": "lean-framework",
+      "title": "Lean Framework",
+      "file": "lean-framework.md",
+      "tags": [
+        "lean",
+        "agile",
+        "kanban",
+        "flux"
+      ],
+      "order": 5
+    },
+    {
+      "id": "unfix",
+      "title": "Unfix",
+      "file": "unfix.md",
+      "tags": [
+        "unfix",
+        "framework",
+        "agile",
+        "methode"
+      ],
+      "order": 6
+    },
+    {
+      "id": "definition-of-done-ready",
+      "title": "Definition of Done & Ready",
+      "file": "definition-of-done-ready.md",
+      "tags": [
+        "dod",
+        "dor",
+        "qualite",
+        "criteres"
+      ],
+      "order": 7
     }
   ]
 }

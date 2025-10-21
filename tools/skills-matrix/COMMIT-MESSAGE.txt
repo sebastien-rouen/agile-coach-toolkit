@@ -1,0 +1,26 @@
+refactor(autocomplete): suppression code dupliqué et CSS inline
+
+🔧 Corrections critiques
+- Suppression de 75 lignes de code dupliqué (-23%)
+- Correction faille XSS (échappement HTML manquant)
+- Suppression CSS inline (8 lignes → 1 ligne)
+- Élimination event listeners doublons
+
+✨ Améliorations
+- Positionnement parent intelligent avec getComputedStyle()
+- Conservation debouncing et cache (code original)
+- Conformité standards BastaVerse (séparation CSS/JS)
+
+📊 Métriques
+- Avant: 327 lignes, 23% duplication, 1 faille XSS
+- Après: 252 lignes, 0% duplication, 0 faille
+
+📝 Documentation
+- Nouveau: REFACTOR-AUTOCOMPLETE.md (rapport complet)
+- Mise à jour: CHANGELOG.md v3.2.9
+
+Fichiers modifiés:
+- tools/skills-matrix/js/autocomplete.js
+- tools/skills-matrix/CHANGELOG.md
+- tools/skills-matrix/REFACTOR-AUTOCOMPLETE.md (nouveau)
+- tools/skills-matrix/COMMIT-MESSAGE.txt (nouveau)

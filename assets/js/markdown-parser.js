@@ -343,6 +343,12 @@ function parseMarkdown(markdown) {
   // Blocs de code (```langue ... ```)
   html = html.replace(/```(\w+)?\n([\s\S]*?)```/g, (match, lang, code) => {
     const language = lang || 'plaintext';
+    
+    // Détecter les blocs Mermaid
+    if (language === 'mermaid') {
+      return `<div class="mermaid">${code.trim()}</div>`;
+    }
+    
     return `<pre><code class="language-${language}">${code.trim()}</code></pre>`;
   });
   
@@ -559,14 +565,63 @@ function styleBlockquotesWithAuthor() {
   });
 }
 
+/**
+ * Initialiser Mermaid pour le rendu des diagrammes
+ */
+function initMermaid() {
+  if (typeof mermaid !== 'undefined') {
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default',
+      securityLevel: 'loose',
+      fontFamily: 'inherit',
+      flowchart: {
+        useMaxWidth: true,
+        htmlLabels: true,
+        curve: 'basis'
+      }
+    });
+    
+    // Re-render les diagrammes Mermaid après chargement du contenu
+    setTimeout(() => {
+      mermaid.contentLoaded();
+    }, 100);
+  }
+}
+
+/**
+ * Rafraîchir les diagrammes Mermaid (utile après changement de thème)
+ */
+function refreshMermaid() {
+  if (typeof mermaid !== 'undefined') {
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default';
+    mermaid.initialize({ theme });
+    
+    // Re-render tous les diagrammes
+    document.querySelectorAll('.mermaid').forEach((element, index) => {
+      const graphDefinition = element.textContent;
+      element.removeAttribute('data-processed');
+      element.innerHTML = graphDefinition;
+    });
+    
+    mermaid.contentLoaded();
+  }
+}
+
 // Appliquer le style après le chargement du DOM
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', styleBlockquotesWithAuthor);
+  document.addEventListener('DOMContentLoaded', () => {
+    styleBlockquotesWithAuthor();
+    initMermaid();
+  });
 } else {
   styleBlockquotesWithAuthor();
+  initMermaid();
 }
 
 // Exporter pour utilisation externe
 window.styleBlockquotesWithAuthor = styleBlockquotesWithAuthor;
+window.initMermaid = initMermaid;
+window.refreshMermaid = refreshMermaid;
 
 console.log('✅ markdown-parser.js chargé');

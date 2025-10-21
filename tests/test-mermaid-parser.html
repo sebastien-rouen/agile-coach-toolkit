@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Parser Mermaid avec Marked.js</title>
+    
+    <link rel="stylesheet" href="../assets/css/variables.css">
+    <link rel="stylesheet" href="../assets/themes/theme-light.css">
+    <link rel="stylesheet" href="../assets/css/base.css">
+    <link rel="stylesheet" href="../assets/css/markdown.css">
+    
+    <style>
+        body {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .test-section {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: var(--bg-secondary);
+            border-radius: var(--radius-lg);
+        }
+        
+        h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .markdown-source {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 1rem;
+            border-radius: var(--radius-md);
+            margin-bottom: 1rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            white-space: pre-wrap;
+            overflow-x: auto;
+        }
+        
+        .result {
+            border: 2px solid var(--primary-color);
+            padding: 1rem;
+            border-radius: var(--radius-md);
+            background: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧪 Test Parser Mermaid avec Marked.js</h1>
+    <p>Ce test vérifie que le parser Markdown détecte et convertit correctement les blocs Mermaid.</p>
+    
+    <!-- Test 1 -->
+    <div class="test-section">
+        <h2>Test 1: Bloc Mermaid Simple</h2>
+        <div class="markdown-source" id="source1"></div>
+        <h3>Résultat:</h3>
+        <div class="result markdown-content" id="result1"></div>
+    </div>
+    
+    <!-- Test 2 -->
+    <div class="test-section">
+        <h2>Test 2: Bloc Mermaid avec Styles</h2>
+        <div class="markdown-source" id="source2"></div>
+        <h3>Résultat:</h3>
+        <div class="result markdown-content" id="result2"></div>
+    </div>
+    
+    <!-- Test 3 -->
+    <div class="test-section">
+        <h2>Test 3: Markdown Mixte (Texte + Mermaid + Code)</h2>
+        <div class="markdown-source" id="source3"></div>
+        <h3>Résultat:</h3>
+        <div class="result markdown-content" id="result3"></div>
+    </div>
+    
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/marked@11.1.1/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js"></script>
+    <script src="../assets/js/markdown-parser.js"></script>
+    
+    <script>
+        // Test 1: Bloc Mermaid simple
+        const markdown1 = `\`\`\`mermaid
+graph LR
+    A[Début] --> B[Fin]
+\`\`\``;
+        
+        // Test 2: Bloc Mermaid avec styles
+        const markdown2 = `\`\`\`mermaid
+graph TD
+    A[Étape 1] --> B[Étape 2]
+    B --> C[Étape 3]
+    
+    style A fill:#3b82f6,stroke:#1e40af,color:#fff
+    style B fill:#10b981,stroke:#059669,color:#fff
+    style C fill:#ef4444,stroke:#dc2626,color:#fff
+\`\`\``;
+        
+        // Test 3: Markdown mixte
+        const markdown3 = `# Titre Principal
+
+Voici un paragraphe de texte avec **gras** et *italique*.
+
+\`\`\`mermaid
+graph LR
+    A[Pourquoi ?] --> B[Qui ?]
+    B --> C[Comment ?]
+    C --> D[Quoi ?]
+\`\`\`
+
+Et voici du code JavaScript :
+
+\`\`\`javascript
+function hello() {
+    console.log("Hello World!");
+}
+\`\`\`
+
+Fin du document.`;
+        
+        // Afficher les sources
+        document.getElementById('source1').textContent = markdown1;
+        document.getElementById('source2').textContent = markdown2;
+        document.getElementById('source3').textContent = markdown3;
+        
+        // Parser avec marked.js et renderer personnalisé
+        function parseMarkdownWithMermaid(markdown) {
+            const renderer = new marked.Renderer();
+            const originalCodeRenderer = renderer.code.bind(renderer);
+            
+            renderer.code = function(code, language) {
+                if (language === 'mermaid') {
+                    return `<div class="mermaid">${code}</div>`;
+                }
+                return originalCodeRenderer(code, language);
+            };
+            
+            return marked.parse(markdown, { renderer });
+        }
+        
+        // Parser et afficher les résultats
+        document.getElementById('result1').innerHTML = parseMarkdownWithMermaid(markdown1);
+        document.getElementById('result2').innerHTML = parseMarkdownWithMermaid(markdown2);
+        document.getElementById('result3').innerHTML = parseMarkdownWithMermaid(markdown3);
+        
+        // Initialiser Mermaid
+        if (typeof mermaid !== 'undefined') {
+            mermaid.initialize({
+                startOnLoad: true,
+                theme: 'default',
+                securityLevel: 'loose',
+                fontFamily: 'inherit',
+                flowchart: {
+                    useMaxWidth: true,
+                    htmlLabels: true,
+                    curve: 'basis'
+                }
+            });
+            
+            // Forcer le rendu
+            setTimeout(() => {
+                mermaid.contentLoaded();
+            }, 100);
+        }
+        
+        // Vérifier que les blocs sont bien créés
+        setTimeout(() => {
+            const mermaidBlocks = document.querySelectorAll('.mermaid');
+            console.log(`✅ ${mermaidBlocks.length} blocs Mermaid détectés`);
+            
+            mermaidBlocks.forEach((block, index) => {
+                console.log(`Bloc ${index + 1}:`, block.textContent.substring(0, 50) + '...');
+            });
+        }, 200);
+    </script>
+</body>
+</html>

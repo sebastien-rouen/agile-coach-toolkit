@@ -69,4 +69,41 @@ function getFormattedDate() {
     return `${year}-${month}-${day}_${hours}-${minutes}-${seconds}`;
 }
 
+/**
+ * Afficher le loader dans les controls
+ * @param {string} text - Texte à afficher (optionnel)
+ */
+function showControlsLoader(text = 'Chargement...') {
+    const loader = document.getElementById('controlsLoader');
+    const loaderText = document.getElementById('controlsLoaderText');
+    const mobileLoader = document.getElementById('mobileMenuLoader');
+    const mobileLoaderText = document.getElementById('mobileMenuLoaderText');
+    
+    if (loader) {
+        if (loaderText) loaderText.textContent = text;
+        loader.classList.add('active');
+    }
+    
+    if (mobileLoader) {
+        if (mobileLoaderText) mobileLoaderText.textContent = text;
+        mobileLoader.classList.add('active');
+    }
+}
+
+/**
+ * Masquer le loader dans les controls
+ */
+function hideControlsLoader() {
+    const loader = document.getElementById('controlsLoader');
+    const mobileLoader = document.getElementById('mobileMenuLoader');
+    
+    if (loader) {
+        loader.classList.remove('active');
+    }
+    
+    if (mobileLoader) {
+        mobileLoader.classList.remove('active');
+    }
+}
+
 console.log('✅ utils.js chargé');
